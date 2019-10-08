@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 # COMP3059 - Capstone Project I
 ## Team 30 - Restaurant Management Application
-### This is our first professional project, we need a replacement for Thanh Quan ASAP
+### This is our first professional project, we need a replacement for Thanh Quan(Handsome) ASAP
 
 ### Team Members:
 ### 1.  Thong Nguyen
