@@ -1,4 +1,3 @@
-<h1> GIVE ME THE MOBILE VERSION OF THE FIGMA THONG BA  </h1>
 # Capstone Project I + II
 ## Team 30 - Restaurant Management Application
 ### This is our first professional project, we need a replacement for Thanh Quan(Handsome) ASAP
