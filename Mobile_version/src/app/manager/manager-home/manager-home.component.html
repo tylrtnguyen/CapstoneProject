@@ -1,1 +1,66 @@
-<Button text="manager-home works!" class="btn btn-primary"></Button>
+<BottomNavigation selectedIndex="0">
+
+    <RadCalendar></RadCalendar>
+    <!-- Bottom Navigator ( Could change it component location ) -->
+    <!-- CHANGE THIS TO ICON VIA MATERIAL.IO -->
+    <TabStrip>
+        <TabStripItem >
+            <Label text="Home" ></Label>
+            <Image  ></Image>
+        </TabStripItem>
+        <TabStripItem>
+            <Label text="Scheudle"></Label>
+            <Image  ></Image>
+        </TabStripItem>
+        <TabStripItem >
+            <Label text="Work History"></Label>
+            <Image  ></Image>
+        </TabStripItem>
+        <TabStripItem >
+            <Label text="Inventory"></Label>
+            <Image  ></Image>
+        </TabStripItem>
+        <TabStripItem >
+            <Label text="Employee"></Label>
+            <Image  ></Image>
+        </TabStripItem>
+    </TabStrip>
+
+
+    <!-- CONTENT OF THE NAVIGATOR -->
+    <!-- HOME CONTENT -->
+    <TabContentItem>
+        <GridLayout>
+            <Label text="Home Page" class="h2 text-center"></Label>
+        </GridLayout>
+    </TabContentItem>
+
+    <!-- SCHEDULE PAGE LINK VIA ROUTING -->
+    <TabContentItem>
+        <GridLayout>
+            <Label text="Schedule Page" class="h2 text-center"></Label>
+        </GridLayout>
+    </TabContentItem>
+
+    <!-- WORKING HISTORY/CLOCK HISTORY LINK VIA ROUTING -->
+    <TabContentItem>
+        <GridLayout>
+            <Label text="Work History Page" class="h2 text-center"></Label>
+        </GridLayout>
+    </TabContentItem>
+
+    <!-- INVETORY VIEW LINK VIA ROUTING -->
+    <TabContentItem>
+        <GridLayout>
+            <Label text="Inventory Page" class="h2 text-center"></Label>
+        </GridLayout>
+    </TabContentItem>
+
+    <!-- EMPLOYEE VIEW LINK VIA ROUTING -->
+    <TabContentItem>
+        <GridLayout>
+            <Label text="Employee" class="h2 text-center"></Label>
+        </GridLayout>
+    </TabContentItem>
+
+</BottomNavigation>

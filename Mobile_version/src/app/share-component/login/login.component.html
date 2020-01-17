@@ -11,6 +11,6 @@
     <Label text='Welcome to the login page'> Welcome to the login page </Label>
     <TextField hint='Your Email Address' keyboardType="email"></TextField>
     <TextField hint='Password' secure='true'></TextField>
-    <Button class='-primary -rounded-lg' style="background-color: aquamarine;" text=' Sign in as manager'></Button>
+    <Button class='-primary -rounded-lg' style="background-color: aquamarine;" text=' Sign in as manager' [nsRouterLink]="['/manager-home']"></Button>
     <Button class='-primary -rounded-lg' style="background-color: red;"  text=' Sign in as a staff member'></Button>
 </StackLayout>
