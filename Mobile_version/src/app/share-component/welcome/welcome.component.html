@@ -1,9 +1,13 @@
 <GridLayout>
     <StackLayout>
         <Image></Image>
-        <Label text='ResTaskest'>  </Label>
-        <Label text='Restaurant task done fastest'></Label>
-        <Button class="-primary -rounded-lg" style='background-color: aquamarine' text='Sign in' [nsRouterLink]="['/login']" text='Sign In'>         </Button>
-        <Button class="-primary -rounded-lg " style="background-color: red" text='Im new to ResTaskest'>      </Button>
+        <StackLayout style="margin: 100px;">
+            <Label text='ResTaskest' class="margin" style="font-size: 50">  </Label>
+            <Label text='Restaurant task done fastest' class="margin"></Label>
+        </StackLayout>
+        <StackLayout style="margin: 100px;">
+            <Button class="-primary -rounded-lg" style='background-color: aquamarine' text='Sign in' [nsRouterLink]="['/login']" text='Sign In'>         </Button>
+            <Button class="-primary -rounded-lg " style="background-color: red" text='Im new to ResTaskest'></Button>
+        </StackLayout>
     </StackLayout>
 </GridLayout>
