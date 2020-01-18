@@ -11,6 +11,7 @@ NativeScript core theme at https://github.com/nativescript/theme
 The imported CSS rules must precede all other types of rules.
 */
 @import "~@nativescript/theme/css/core.css";
+
 @import "./custom_theme.css";
 
 

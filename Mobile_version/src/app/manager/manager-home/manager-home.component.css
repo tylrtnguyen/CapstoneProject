@@ -1,12 +1,2 @@
 
 
-TabStripItem {
-    background-color:antiquewhite;
-    color: gray;
-} 
-TabStripItem:active {
-    background-color: azure;
-    color: black;
-}
-
-

@@ -4,14 +4,14 @@ import { Routes } from "@angular/router";
 
 import { LoginComponent } from "./share-component/login/login.component";
 import { WelcomeComponent } from "./share-component/welcome/welcome.component";
-import { ManagerHomeComponent } from "./manager/manager-home/manager-home.component"; 
+import { ManagerBottomNavigationComponent } from "./manager/manager-bottom-navigation/manager-bottom-navigation.component"; 
 // import { ItemDetailComponent } from "./item/item-detail.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/welcome", pathMatch: "full" },
     { path: "welcome", component: WelcomeComponent },
     { path: "login", component: LoginComponent },
-    { path: "manager-home", component: ManagerHomeComponent }
+    { path: "manager-home", component: ManagerBottomNavigationComponent }
     // { path: "item/:id", component: ItemDetailComponent }
 ];
 

@@ -1,66 +1,20 @@
-<BottomNavigation selectedIndex="0">
+<ns-action-bar></ns-action-bar>
+<StackLayout class='page'>
+    <RadCalendar viewMode="Week" [eventSource]="eventSource" (dateSelected)="onDateSelected($event)" row="0">
+    </RadCalendar>
 
-    <RadCalendar></RadCalendar>
-    <!-- Bottom Navigator ( Could change it component location ) -->
-    <!-- CHANGE THIS TO ICON VIA MATERIAL.IO -->
-    <TabStrip>
-        <TabStripItem >
-            <Label text="Home" ></Label>
-            <Image  ></Image>
-        </TabStripItem>
-        <TabStripItem>
-            <Label text="Scheudle"></Label>
-            <Image  ></Image>
-        </TabStripItem>
-        <TabStripItem >
-            <Label text="Work History"></Label>
-            <Image  ></Image>
-        </TabStripItem>
-        <TabStripItem >
-            <Label text="Inventory"></Label>
-            <Image  ></Image>
-        </TabStripItem>
-        <TabStripItem >
-            <Label text="Employee"></Label>
-            <Image  ></Image>
-        </TabStripItem>
-    </TabStrip>
-
-
-    <!-- CONTENT OF THE NAVIGATOR -->
-    <!-- HOME CONTENT -->
-    <TabContentItem>
-        <GridLayout>
-            <Label text="Home Page" class="h2 text-center"></Label>
-        </GridLayout>
-    </TabContentItem>
-
-    <!-- SCHEDULE PAGE LINK VIA ROUTING -->
-    <TabContentItem>
-        <GridLayout>
-            <Label text="Schedule Page" class="h2 text-center"></Label>
-        </GridLayout>
-    </TabContentItem>
-
-    <!-- WORKING HISTORY/CLOCK HISTORY LINK VIA ROUTING -->
-    <TabContentItem>
-        <GridLayout>
-            <Label text="Work History Page" class="h2 text-center"></Label>
-        </GridLayout>
-    </TabContentItem>
-
-    <!-- INVETORY VIEW LINK VIA ROUTING -->
-    <TabContentItem>
-        <GridLayout>
-            <Label text="Inventory Page" class="h2 text-center"></Label>
-        </GridLayout>
-    </TabContentItem>
-
-    <!-- EMPLOYEE VIEW LINK VIA ROUTING -->
-    <TabContentItem>
-        <GridLayout>
-            <Label text="Employee" class="h2 text-center"></Label>
-        </GridLayout>
-    </TabContentItem>
-
-</BottomNavigation>
+    <StackLayout style="margin-left: 100px; margin-right: 100px;">
+        <Button class="btn-primary btn-rounded-lg" text="{{location}}" (tap)="displayActionDialog()" ></Button>
+        <!-- DON'T KNOW WHAT IS WRONG WITH THE IMAGES -->
+    </StackLayout>
+    <StackLayout>
+        <Label text='{{current_date}}'></Label>
+        <ListView [items]="ListEvent" row="1">
+            <ng-template let-item="item">
+                <StackLayout class="listRow">
+                    <Label [text]="item.title"></Label>
+                </StackLayout>
+            </ng-template>
+        </ListView>
+    </StackLayout>
+</StackLayout>

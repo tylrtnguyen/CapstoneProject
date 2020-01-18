@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SelectedIndexChangedEventData } from "nativescript-drop-down";
+
 
 @Component({
   selector: 'ns-welcome',

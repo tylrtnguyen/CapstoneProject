@@ -3,6 +3,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptFormsModule  } from "nativescript-angular/forms"
 import { NativeScriptUICalendarModule } from "nativescript-ui-calendar/angular";
+import { DropDownModule } from "nativescript-drop-down/angular";
 
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -25,6 +26,8 @@ import { EmployeeScheduleViewComponent } from './employee/employee-schedule-view
 import { InventoryComponent } from './share-component/inventory/inventory.component';
 import { EmployeeSettingComponent } from './employee/employee-setting/employee-setting.component';
 import { EmployeePayrollComponent } from './employee/employee-payroll/employee-payroll.component';
+import { ManagerBottomNavigationComponent } from './manager/manager-bottom-navigation/manager-bottom-navigation.component';
+import { ActionBarComponent } from './share-component/action-bar/action-bar.component';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -42,7 +45,8 @@ import { EmployeePayrollComponent } from './employee/employee-payroll/employee-p
         AppRoutingModule,
         NativeScriptRouterModule,
         NativeScriptFormsModule,
-        NativeScriptUICalendarModule
+        NativeScriptUICalendarModule,
+        DropDownModule
     ],
     declarations: [
 
@@ -68,6 +72,8 @@ import { EmployeePayrollComponent } from './employee/employee-payroll/employee-p
         EmployeeScheduleViewComponent,
         EmployeeSettingComponent,
         EmployeePayrollComponent,
+        ManagerBottomNavigationComponent,
+        ActionBarComponent,
 
         //Share Service        
     ],
