@@ -12,6 +12,7 @@ const routes: Routes = [
     { path: "welcome", component: WelcomeComponent },
     { path: "login", component: LoginComponent },
     { path: "manager-home", component: ManagerBottomNavigationComponent }
+    // { path: "manager-schedule", component:}
     // { path: "item/:id", component: ItemDetailComponent }
 ];
 

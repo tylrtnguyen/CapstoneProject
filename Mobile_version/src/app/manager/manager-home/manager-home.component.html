@@ -1,20 +1,20 @@
 <ns-action-bar></ns-action-bar>
-<StackLayout class='page'>
-    <RadCalendar viewMode="Week" [eventSource]="eventSource" (dateSelected)="onDateSelected($event)" row="0">
-    </RadCalendar>
 
-    <StackLayout style="margin-left: 100px; margin-right: 100px;">
-        <Button class="btn-primary btn-rounded-lg" text="{{location}}" (tap)="displayActionDialog()" ></Button>
-        <!-- DON'T KNOW WHAT IS WRONG WITH THE IMAGES -->
-    </StackLayout>
+<StackLayout class='page'>
+
+    <ns-manager-calendar></ns-manager-calendar>
+
     <StackLayout>
-        <Label text='{{current_date}}'></Label>
-        <ListView [items]="ListEvent" row="1">
-            <ng-template let-item="item">
-                <StackLayout class="listRow">
-                    <Label [text]="item.title"></Label>
-                </StackLayout>
-            </ng-template>
-        </ListView>
+        <StackLayout style="background-color: antiquewhite ;" margin="20" height="100%">
+            <GridLayout rows="auto" columns="*">
+                <Label row="0" horizontalAlignment="right" text="Currently Working :"></Label>
+                <Label row="0" horizontalAlignment="left" text="Number of worker : "></Label>
+            </GridLayout>
+       
+            <!-- <ListView>
+                <Label text='Display the current working employee'></Label>
+                <Label text='Display the information of the employee'></Label>
+            </ListView> -->
+        </StackLayout>
     </StackLayout>
 </StackLayout>

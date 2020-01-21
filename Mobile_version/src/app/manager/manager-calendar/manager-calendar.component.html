@@ -1,0 +1,18 @@
+<StackLayout>
+    <RadCalendar viewMode="Week" [eventSource]="eventSource" (dateSelected)="onDateSelected($event)" row="0">
+    </RadCalendar>
+    <Label text='{{current_date}}'></Label>
+    <ListView 
+    [items]="ListEvent" row="1">
+        <ng-template let-item="item">
+            <StackLayout class="listRow">
+                <Label [text]="item.title"></Label>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+    
+    <StackLayout style="margin-left: 100px; margin-right: 100px;">
+        <Button class="btn-primary btn-rounded-lg" text="{{location}}" (tap)="displayActionDialog()"></Button>
+        <!-- DON'T KNOW WHAT IS WRONG WITH THE IMAGES -->
+    </StackLayout>
+</StackLayout>
