@@ -5,13 +5,15 @@ import { Routes } from "@angular/router";
 import { LoginComponent } from "./share-component/login/login.component";
 import { WelcomeComponent } from "./share-component/welcome/welcome.component";
 import { ManagerBottomNavigationComponent } from "./manager/manager-bottom-navigation/manager-bottom-navigation.component"; 
+import { EmployeeHomeComponent } from "./employee/employee-home/employee-home.component";
 // import { ItemDetailComponent } from "./item/item-detail.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/welcome", pathMatch: "full" },
     { path: "welcome", component: WelcomeComponent },
     { path: "login", component: LoginComponent },
-    { path: "manager-home", component: ManagerBottomNavigationComponent }
+    { path: "manager-home", component: ManagerBottomNavigationComponent },
+    { path: "employee-home", component: EmployeeHomeComponent}
     // { path: "manager-schedule", component:}
     // { path: "item/:id", component: ItemDetailComponent }
 ];
