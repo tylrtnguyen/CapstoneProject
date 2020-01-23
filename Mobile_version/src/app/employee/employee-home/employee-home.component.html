@@ -1,2 +1,50 @@
-
 <Button text="employee-home works!" class="btn btn-primary"></Button>
+<BottomNavigation selectedIndex="0">
+    <!-- Bottom Navigator ( Could change it component location ) -->
+    <!-- CHANGE THIS TO ICON VIA MATERIAL.IO -->
+    <TabStrip>
+        <TabStripItem >
+            <Label text="Home" ></Label>
+            <Image></Image>
+        </TabStripItem>
+        <TabStripItem (tap)="scheudle()">
+            <Label text="Scheudle"></Label>
+            <Image></Image>
+        </TabStripItem>
+        <TabStripItem >
+            <Label text="Inventory"></Label>
+            <Image></Image>
+        </TabStripItem>
+        <TabStripItem >
+            <Label text="Payroll"></Label>
+            <Image></Image>
+        </TabStripItem>
+    </TabStrip>
+
+
+    <!-- CONTENT OF THE NAVIGATOR -->
+    <!-- HOME CONTENT -->
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+
+    <!-- SCHEDULE PAGE LINK VIA ROUTING -->
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+
+    <!-- INVETORY VIEW LINK VIA ROUTING -->
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+
+    <!-- EMPLOYEE VIEW LINK VIA ROUTING -->
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+
+</BottomNavigation>
