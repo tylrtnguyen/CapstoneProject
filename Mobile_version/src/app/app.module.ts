@@ -29,7 +29,6 @@ import { EmployeeSettingComponent } from './employee/employee-setting/employee-s
 import { EmployeePayrollComponent } from './employee/employee-payroll/employee-payroll.component';
 import { ActionBarComponent } from './share-component/action-bar/action-bar.component';
 import { ManagerCalendarComponent } from './manager/manager-calendar/manager-calendar.component';
-import { EmployeeBottomNavigationComponent } from './employee/employee-bottom-navigation/employee-bottom-navigation.component';
 //SHARE SERVICE
 import { ShareService } from "./share-services/share.service";
 
@@ -79,7 +78,7 @@ import { ShareService } from "./share-services/share.service";
         EmployeePayrollComponent,
         ActionBarComponent,
         ManagerCalendarComponent,
-        EmployeeBottomNavigationComponent,
+        
 
         //Share Service        
     ],
