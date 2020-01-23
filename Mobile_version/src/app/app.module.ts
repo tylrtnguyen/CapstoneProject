@@ -29,6 +29,7 @@ import { EmployeePayrollComponent } from './employee/employee-payroll/employee-p
 import { ManagerBottomNavigationComponent } from './manager/manager-bottom-navigation/manager-bottom-navigation.component';
 import { ActionBarComponent } from './share-component/action-bar/action-bar.component';
 import { ManagerCalendarComponent } from './manager/manager-calendar/manager-calendar.component';
+import { EmployeeBottomNavigationComponent } from './employee/employee-bottom-navigation/employee-bottom-navigation.component';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -76,6 +77,7 @@ import { ManagerCalendarComponent } from './manager/manager-calendar/manager-cal
         ManagerBottomNavigationComponent,
         ActionBarComponent,
         ManagerCalendarComponent,
+        EmployeeBottomNavigationComponent,
 
         //Share Service        
     ],

@@ -18,61 +18,66 @@ export class ManagerCalendarComponent implements OnInit {
     location: String = "Click to choose your inital location";
     constructor() {}
     ngOnInit() {
-        //setting up the date and stuff
+        //init new event
         let now = new Date();
         let startDate: Date, endDate: Date, event: CalendarEvent;
         startDate = new Date(now.getFullYear(), now.getMonth(), 22);
         endDate = new Date(now.getFullYear(), now.getMonth(), 23);
-        //create a event list
-        let events: Array<CalendarEvent> = new Array<CalendarEvent>();
 
-        //turn it into an event by concact startdate enddate and event and more !!
+        //add new event
         event = new CalendarEvent(
             "Testing out the event date tutorial",
             startDate,
             endDate
         );
 
-        //pushing events to the calendar
+        //create a temp event list
+        let events: Array<CalendarEvent> = new Array<CalendarEvent>();
+
+        //pushing temp event list to the main event list
         events.push(event);
         this.events = events;
     }
 
+    //drop down box alike
     displayActionDialog() {
-      // >> action-dialog-code
-      let options = {
-          title: "Choose your location",
-          cancelButtonText: "Cancel",
-          actions: [
-              "Hell Kitchen",
-              "Restaurant number 2",
-              "Restaurant number 3",
-              "Restaurant number 4"
-          ]
-      };
-      //getter and setter using promise
-      action(options).then((result)=>{
-        this.location = result;
-        console.log("Testing")
+        // >> action-dialog-code
+        let options = {
+            title: "Choose your location",
+            cancelButtonText: "Cancel",
+            actions: [
+                "Hell Kitchen",
+                "Restaurant number 2",
+                "Restaurant number 3",
+                "Restaurant number 4"
+            ]
+        };
+        //getter and setter using promise
+        action(options).then(result => {
+            this.location = result;
+            console.log("Testing");
+        });
 
-      });
-      
-      // << action-dialog-code
-  }
-    //here is where we put all our event in the [eventSource]
+        // << action-dialog-code
+    }
+
+
+    //putting added event to the radcalendar
     get eventSource() {
         return this.events;
     }
 
-    //here is where to write all the event in a list
+    // getter and setter for the listEvent to show the event
     get ListEvent(): Array<CalendarEvent> {
         return this.listEvent;
     }
     set ListEvent(value) {
         this.listEvent = value;
     }
+
     //getting the value out of the calendar
     onDateSelected(args: CalendarSelectionEventData) {
+        //get the selected date using RadCalendar argument
         const calendar: RadCalendar = args.object;
         const date: Date = args.date;
         const weekdays = [
@@ -90,9 +95,11 @@ export class ManagerCalendarComponent implements OnInit {
         const year_value = date.getFullYear();
         const selected_time = `${day_value} ${date_value} ${month_value} ${year_value}`;
 
-        const events: Array<CalendarEvent> = calendar.getEventsForDate(date);
+        //put the selected event in a temp variable
+        // const events: Array<CalendarEvent> = calendar.getEventsForDate(date);
 
+        //output the selected date and event
         this.current_date = selected_time;
-        this.ListEvent = events;
+        this.ListEvent = calendar.getEventsForDate(date);
     }
 }

@@ -5,7 +5,7 @@ import { Routes } from "@angular/router";
 import { LoginComponent } from "./share-component/login/login.component";
 import { WelcomeComponent } from "./share-component/welcome/welcome.component";
 import { ManagerBottomNavigationComponent } from "./manager/manager-bottom-navigation/manager-bottom-navigation.component"; 
-import { EmployeeHomeComponent } from "./employee/employee-home/employee-home.component";
+import { EmployeeBottomNavigationComponent } from "./employee/employee-bottom-navigation/employee-bottom-navigation.component";
 // import { ItemDetailComponent } from "./item/item-detail.component";
 
 const routes: Routes = [
@@ -13,7 +13,7 @@ const routes: Routes = [
     { path: "welcome", component: WelcomeComponent },
     { path: "login", component: LoginComponent },
     { path: "manager-home", component: ManagerBottomNavigationComponent },
-    { path: "employee-home", component: EmployeeHomeComponent}
+    { path: "employee-home", component: EmployeeBottomNavigationComponent}
     // { path: "manager-schedule", component:}
     // { path: "item/:id", component: ItemDetailComponent }
 ];
