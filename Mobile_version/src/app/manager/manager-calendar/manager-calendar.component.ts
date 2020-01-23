@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,  Output, EventEmitter } from "@angular/core";
 import { action } from "tns-core-modules/ui/dialogs";
-
 import {
     RadCalendar,
     CalendarEvent,
     CalendarSelectionEventData
 } from "nativescript-ui-calendar";
+
 @Component({
     selector: "ns-manager-calendar",
     templateUrl: "./manager-calendar.component.html",
@@ -16,8 +16,15 @@ export class ManagerCalendarComponent implements OnInit {
     events: Array<CalendarEvent>;
     listEvent: Array<CalendarEvent>;
     location: String = "Click to choose your inital location";
+   
+
+    @Output() timeEvent = new EventEmitter<string>();
+    send_current_time() {
+        this.timeEvent.emit(this.current_date)
+    }
     constructor() {}
     ngOnInit() {
+
         //init new event
         let now = new Date();
         let startDate: Date, endDate: Date, event: CalendarEvent;
@@ -101,5 +108,9 @@ export class ManagerCalendarComponent implements OnInit {
         //output the selected date and event
         this.current_date = selected_time;
         this.ListEvent = calendar.getEventsForDate(date);
+
+        this.send_current_time()
     }
+
+
 }

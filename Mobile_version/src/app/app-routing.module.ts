@@ -4,16 +4,18 @@ import { Routes } from "@angular/router";
 
 import { LoginComponent } from "./share-component/login/login.component";
 import { WelcomeComponent } from "./share-component/welcome/welcome.component";
-import { ManagerBottomNavigationComponent } from "./manager/manager-bottom-navigation/manager-bottom-navigation.component"; 
 import { EmployeeBottomNavigationComponent } from "./employee/employee-bottom-navigation/employee-bottom-navigation.component";
+import { ManagerHomeComponent } from "./manager/manager-home/manager-home.component";
+import { ManagerScheduleComponent } from "./manager/manager-schedule/manager-schedule.component";
 // import { ItemDetailComponent } from "./item/item-detail.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/welcome", pathMatch: "full" },
     { path: "welcome", component: WelcomeComponent },
     { path: "login", component: LoginComponent },
-    { path: "manager-home", component: ManagerBottomNavigationComponent },
-    { path: "employee-home", component: EmployeeBottomNavigationComponent}
+    { path: "manager-home", component: ManagerHomeComponent },
+    { path: "employee-home", component: EmployeeBottomNavigationComponent},
+    { path: "manager-schedule", component: ManagerScheduleComponent},
     // { path: "manager-schedule", component:}
     // { path: "item/:id", component: ItemDetailComponent }
 ];

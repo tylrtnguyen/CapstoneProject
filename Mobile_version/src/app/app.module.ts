@@ -4,6 +4,7 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptFormsModule  } from "nativescript-angular/forms"
 import { NativeScriptUICalendarModule } from "nativescript-ui-calendar/angular";
 import { DropDownModule } from "nativescript-drop-down/angular";
+import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -26,10 +27,11 @@ import { EmployeeScheduleViewComponent } from './employee/employee-schedule-view
 import { InventoryComponent } from './share-component/inventory/inventory.component';
 import { EmployeeSettingComponent } from './employee/employee-setting/employee-setting.component';
 import { EmployeePayrollComponent } from './employee/employee-payroll/employee-payroll.component';
-import { ManagerBottomNavigationComponent } from './manager/manager-bottom-navigation/manager-bottom-navigation.component';
 import { ActionBarComponent } from './share-component/action-bar/action-bar.component';
 import { ManagerCalendarComponent } from './manager/manager-calendar/manager-calendar.component';
 import { EmployeeBottomNavigationComponent } from './employee/employee-bottom-navigation/employee-bottom-navigation.component';
+//SHARE SERVICE
+import { ShareService } from "./share-services/share.service";
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -48,7 +50,8 @@ import { EmployeeBottomNavigationComponent } from './employee/employee-bottom-na
         NativeScriptRouterModule,
         NativeScriptFormsModule,
         NativeScriptUICalendarModule,
-        DropDownModule
+        DropDownModule,
+        NativeScriptUIListViewModule
     ],
     declarations: [
 
@@ -74,14 +77,13 @@ import { EmployeeBottomNavigationComponent } from './employee/employee-bottom-na
         EmployeeScheduleViewComponent,
         EmployeeSettingComponent,
         EmployeePayrollComponent,
-        ManagerBottomNavigationComponent,
         ActionBarComponent,
         ManagerCalendarComponent,
         EmployeeBottomNavigationComponent,
 
         //Share Service        
     ],
-    providers: [],
+    providers: [ShareService],
     schemas: [
         NO_ERRORS_SCHEMA
     ]

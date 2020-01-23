@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import {Router} from '@angular/router';
 
 // import { ActionBarComponent } from "~/app/share-component/action-bar/action-bar.component";
 
@@ -8,12 +9,15 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./manager-home.component.css"]
 })
 export class ManagerHomeComponent implements OnInit {
-    constructor() {}
+    constructor(public router : Router) {}
 
     ngOnInit() {
 
     }
 
+    schedule(){
+        this.router.navigateByUrl('/manager-schedule')
+    }
    
 
 

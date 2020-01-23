@@ -25,6 +25,7 @@
     "nativescript-bottom-navigation": "^2.0.5",
     "nativescript-drop-down": "^5.0.4",
     "nativescript-ui-calendar": "^6.0.0",
+    "nativescript-ui-listview": "^8.0.1",
     "reflect-metadata": "~0.1.12",
     "rxjs": "^6.4.0",
     "tns-core-modules": "~6.3.0",
