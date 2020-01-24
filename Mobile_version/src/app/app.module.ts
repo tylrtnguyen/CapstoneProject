@@ -33,6 +33,7 @@ import { ManagerCalendarComponent } from './manager/manager-calendar/manager-cal
 //SHARE SERVICE
 import { ShareService } from "./share-services/share.service";
 import { ManagerInventoryComponent } from './manager/manager-inventory/manager-inventory.component';
+import { EmployeeRegistrationComponent } from './employee/employee-registration/employee-registration.component';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -82,6 +83,7 @@ import { ManagerInventoryComponent } from './manager/manager-inventory/manager-i
         ActionBarComponent,
         ManagerCalendarComponent,
         ManagerInventoryComponent,
+        EmployeeRegistrationComponent,
         
 
         //Share Service        

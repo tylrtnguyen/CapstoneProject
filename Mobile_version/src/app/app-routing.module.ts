@@ -13,6 +13,7 @@ import { ManagerEmployeeListComponent } from "./manager/manager-employee-list/ma
 import { ManagerInventoryComponent } from "./manager/manager-inventory/manager-inventory.component";
 import { ManagerAddScheduleComponent } from "./manager/manager-add-schedule/manager-add-schedule.component";
 import { RegistrationComponent } from "./share-component/registration/registration.component";
+import { EmployeeRegistrationComponent } from "./employee/employee-registration/employee-registration.component";
 // import { ItemDetailComponent } from "./item/item-detail.component";
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
     { path: "manager-add-schedule", component: ManagerAddScheduleComponent },
     { path: "employee-home", component: EmployeeHomeComponent},
     { path: "employee-schedule", component: EmployeeScheduleViewComponent},
-    { path: "registration", component: RegistrationComponent}
+    { path: "registration", component: RegistrationComponent},
+    { path: "employee-registration", component: EmployeeRegistrationComponent}
 
 ];
 
