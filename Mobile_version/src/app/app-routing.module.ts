@@ -12,6 +12,7 @@ import { ManagerWorkHistoryComponent } from "./manager/manager-work-history/mana
 import { ManagerEmployeeListComponent } from "./manager/manager-employee-list/manager-employee-list.component";
 import { ManagerInventoryComponent } from "./manager/manager-inventory/manager-inventory.component";
 import { ManagerAddScheduleComponent } from "./manager/manager-add-schedule/manager-add-schedule.component";
+import { RegistrationComponent } from "./share-component/registration/registration.component";
 // import { ItemDetailComponent } from "./item/item-detail.component";
 
 const routes: Routes = [
@@ -24,9 +25,9 @@ const routes: Routes = [
     { path: "manager-inventory", component: ManagerInventoryComponent},
     { path: "manager-employee-list", component: ManagerEmployeeListComponent },
     { path: "manager-add-schedule", component: ManagerAddScheduleComponent },
-
     { path: "employee-home", component: EmployeeHomeComponent},
-    { path: "employee-schedule", component: EmployeeScheduleViewComponent}
+    { path: "employee-schedule", component: EmployeeScheduleViewComponent},
+    { path: "registration", component: RegistrationComponent}
 
 ];
 

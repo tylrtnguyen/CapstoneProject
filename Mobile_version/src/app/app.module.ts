@@ -11,6 +11,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { LoginComponent } from './share-component/login/login.component';
 import { WelcomeComponent } from './share-component/welcome/welcome.component';
+import { RegistrationComponent } from './share-component/registration/registration.component';
 
 //MANAGER COMPONENT
 import { ManagerHomeComponent } from './manager/manager-home/manager-home.component';
@@ -61,6 +62,7 @@ import { ManagerInventoryComponent } from './manager/manager-inventory/manager-i
         WelcomeComponent,
         ProfileComponent,
         InventoryComponent,
+        RegistrationComponent,
 
         //Manager Component
         ManagerHomeComponent,
