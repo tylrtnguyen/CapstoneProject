@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { action } from "tns-core-modules/ui/dialogs";
+
 @Component({
     selector: "ns-manager-schedule",
     templateUrl: "./manager-schedule.component.html",
@@ -83,7 +85,7 @@ export class ManagerScheduleComponent implements OnInit {
         this.router.navigateByUrl("/manager-employee-list");
     }
 
-    add_schedule(){
-      
-    }
+
+
+
 }

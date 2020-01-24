@@ -25,4 +25,5 @@ export class ManagerHomeComponent implements OnInit {
     employee() {
         this.router.navigateByUrl("/manager-employee-list");
     }
+    
 }
