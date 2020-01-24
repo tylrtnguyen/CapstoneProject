@@ -1,18 +1,20 @@
-<ActionBar>
-    <Label text='Schedule'></Label>
-    <Button text='Publish' style="width: 20px"></Button>
-    <Button text='Add Schedule'style="width: 20px"></Button>
+<ActionBar title="test">
+    <StackLayout orientation="horizontal" ios:horizontalAlignment="center" android:horizontalAlignment="left">
+
+        <Button text='Add' [nsRouterLink]="['/manager-add-schedule']"></Button>
+        <Button text='Publish'></Button>
+    </StackLayout>
 </ActionBar>
 <StackLayout>
-    <ns-manager-calendar (timeEvent)='receive_current_time($event)' ></ns-manager-calendar>
+    <ns-manager-calendar (timeEvent)='receive_current_time($event)'></ns-manager-calendar>
     <RadListView [items]="temp_dataItems">
-        <ng-template  let-item="item">
+        <ng-template let-item="item">
             <StackLayout orientation="vertical">
-                <Label class="nameLabel" [text]="item.name"></Label>  
+                <Label class="nameLabel" [text]="item.name"></Label>
                 <Label class="nameLabel" [text]="item.start_time"></Label>
                 <Label class="nameLabel" [text]="item.end_time"></Label>
-                <Label class="nameLabel" [text]="item.position"></Label> 
-                <Label class="nameLabel" [text]="item.date"></Label>                
+                <Label class="nameLabel" [text]="item.position"></Label>
+                <Label class="nameLabel" [text]="item.date"></Label>
             </StackLayout>
         </ng-template>
     </RadListView>
@@ -21,38 +23,46 @@
     <!-- Bottom Navigator ( Could change it component location ) -->
     <!-- CHANGE THIS TO ICON VIA MATERIAL.IO -->
     <TabStrip>
-        <TabStripItem (tap)="home()" >
+        <TabStripItem (tap)="home()">
             <Label text="Home"></Label>
-            <Image  ></Image>
+            <Image></Image>
         </TabStripItem>
         <TabStripItem>
             <Label text="Scheudle"></Label>
-            <Image  ></Image>
+            <Image></Image>
         </TabStripItem>
-        <TabStripItem >
+        <TabStripItem (tap)="work_history()">
             <Label text="Work History"></Label>
-            <Image  ></Image>
+            <Image></Image>
         </TabStripItem>
-        <TabStripItem >
+        <TabStripItem (tap)="inventory()">
             <Label text="Inventory"></Label>
-            <Image  ></Image>
+            <Image></Image>
         </TabStripItem>
-        <TabStripItem >
+        <TabStripItem (tap)="employee()">
 
             <Label text="Employee"></Label>
-            <Image  ></Image>
+            <Image></Image>
         </TabStripItem>
     </TabStrip>
     <!-- DO NOT PUT ANYTHING IN -->
-    <TabContentItem class="first-tabcontent">
+    <TabContentItem>
         <GridLayout>
         </GridLayout>
     </TabContentItem>
-    <TabContentItem class="second-tabcontent">
+    <TabContentItem>
         <GridLayout>
         </GridLayout>
     </TabContentItem>
-    <TabContentItem class="third-tabcontent">
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem>
         <GridLayout>
         </GridLayout>
     </TabContentItem>

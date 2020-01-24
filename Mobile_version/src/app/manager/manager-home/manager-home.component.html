@@ -1,6 +1,8 @@
 <ActionBar>
-    <Image></Image>
-    <Label text='Thanh Quan'></Label>
+    <StackLayout orientation="horizontal" horizontalAlignment="left">
+        <Image></Image>
+        <Button text='Thanh Quan'></Button>
+    </StackLayout>
 </ActionBar>
 
 <StackLayout class='page'>  
@@ -32,30 +34,38 @@
             <Label text="Scheudle"></Label>
             <Image  ></Image>
         </TabStripItem>
-        <TabStripItem >
+        <TabStripItem (tap)="work_history()">
             <Label text="Work History"></Label>
             <Image  ></Image>
         </TabStripItem>
-        <TabStripItem >
+        <TabStripItem (tap)="inventory()" >
             <Label text="Inventory"></Label>
             <Image  ></Image>
         </TabStripItem>
-        <TabStripItem >
+        <TabStripItem (tap)="employee()">
 
             <Label text="Employee"></Label>
             <Image  ></Image>
         </TabStripItem>
     </TabStrip>
     <!-- DO NOT PUT ANYTHING IN -->
-    <TabContentItem class="first-tabcontent">
+    <TabContentItem >
         <GridLayout>
         </GridLayout>
     </TabContentItem>
-    <TabContentItem class="second-tabcontent">
+    <TabContentItem>
         <GridLayout>
         </GridLayout>
     </TabContentItem>
-    <TabContentItem class="third-tabcontent">
+    <TabContentItem >
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem >
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem >
         <GridLayout>
         </GridLayout>
     </TabContentItem>

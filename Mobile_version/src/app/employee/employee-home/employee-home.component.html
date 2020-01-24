@@ -1,50 +1,44 @@
-<Button text="employee-home works!" class="btn btn-primary"></Button>
+
+<StackLayout class='page'>  
+    <Label text='Hello from employee home page'></Label>
+</StackLayout>
 <BottomNavigation selectedIndex="0">
     <!-- Bottom Navigator ( Could change it component location ) -->
     <!-- CHANGE THIS TO ICON VIA MATERIAL.IO -->
     <TabStrip>
-        <TabStripItem >
-            <Label text="Home" ></Label>
+        <TabStripItem>
+            <Label text="Home"></Label>
             <Image></Image>
         </TabStripItem>
-        <TabStripItem (tap)="scheudle()">
+        <TabStripItem (tap)="schedule()">
             <Label text="Scheudle"></Label>
-            <Image></Image>
+            <Image  ></Image>
+        </TabStripItem>
+        <TabStripItem >
+            <Label text="Work History"></Label>
+            <Image  ></Image>
         </TabStripItem>
         <TabStripItem >
             <Label text="Inventory"></Label>
-            <Image></Image>
+            <Image  ></Image>
         </TabStripItem>
         <TabStripItem >
-            <Label text="Payroll"></Label>
-            <Image></Image>
+
+            <Label text="Employee"></Label>
+            <Image  ></Image>
         </TabStripItem>
     </TabStrip>
-
-
-    <!-- CONTENT OF THE NAVIGATOR -->
-    <!-- HOME CONTENT -->
-    <TabContentItem>
+    <!-- DO NOT PUT ANYTHING IN -->
+    <TabContentItem class="first-tabcontent">
         <GridLayout>
         </GridLayout>
     </TabContentItem>
-
-    <!-- SCHEDULE PAGE LINK VIA ROUTING -->
-    <TabContentItem>
+    <TabContentItem class="second-tabcontent">
         <GridLayout>
         </GridLayout>
     </TabContentItem>
-
-    <!-- INVETORY VIEW LINK VIA ROUTING -->
-    <TabContentItem>
+    <TabContentItem class="third-tabcontent">
         <GridLayout>
         </GridLayout>
     </TabContentItem>
-
-    <!-- EMPLOYEE VIEW LINK VIA ROUTING -->
-    <TabContentItem>
-        <GridLayout>
-        </GridLayout>
-    </TabContentItem>
-
 </BottomNavigation>
