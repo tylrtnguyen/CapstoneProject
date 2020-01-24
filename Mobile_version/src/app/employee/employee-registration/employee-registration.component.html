@@ -1,0 +1,20 @@
+<ns-action-bar></ns-action-bar>
+<StackLayout class="page">
+    <label text = "Sign up for Restasket" style="font-size: 28px; padding: 25px; margin-top: 50px;" ></label>
+    <StackLayout class="margin">
+        <label style="font-size: medium; padding: 0px;"
+            text = "Please use the email that you " >
+        </label>
+        <label style="font-size: medium; padding: 0px;"
+            text = " gave the manager to invite" >
+        </label>
+    </StackLayout>
+    <StackLayout class="margin">
+        <TextField hint='Email Address' keyboardType="email"></TextField>
+        <TextField hint='Password' secure='true'></TextField>
+    </StackLayout>
+    <StackLayout class="margin">
+        <button class="btn-primary btn-rounded-lg" text = "Create my accout" ></button>
+        <button class="btn-rounded-lg" text = "Not been invited yet?" (tap)="showDialog()"></button>
+    </StackLayout>
+</StackLayout>
