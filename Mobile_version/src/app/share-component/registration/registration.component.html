@@ -1,6 +1,6 @@
 <ns-action-bar></ns-action-bar>
 <StackLayout class="page">
     <label text="Select your role to continue" style="font-size: 25px; font-weight: bold;" ></label>
-    <button class="btn-rounded-lg" text = "Owner/Manager" ></button>
+    <button class="btn-rounded-lg" text = "Owner/Manager" [nsRouterLink] ="['/manager-registration']"></button>
     <button class="btn-rounded-lg" text = "Employee" [nsRouterLink] ="['/employee-registration']"></button>
 </StackLayout>
