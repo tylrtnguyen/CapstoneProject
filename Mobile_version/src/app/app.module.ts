@@ -5,6 +5,7 @@ import { NativeScriptFormsModule  } from "nativescript-angular/forms"
 import { NativeScriptUICalendarModule } from "nativescript-ui-calendar/angular";
 import { DropDownModule } from "nativescript-drop-down/angular";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
+import { NativeScriptDateTimePickerModule } from "nativescript-datetimepicker/angular";
 
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -51,7 +52,8 @@ import { ManagerInventoryComponent } from './manager/manager-inventory/manager-i
         NativeScriptFormsModule,
         NativeScriptUICalendarModule,
         DropDownModule,
-        NativeScriptUIListViewModule
+        NativeScriptUIListViewModule,
+        NativeScriptDateTimePickerModule
     ],
     declarations: [
 

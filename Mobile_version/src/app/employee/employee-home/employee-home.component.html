@@ -1,44 +1,12 @@
-
-<StackLayout class='page'>  
-    <Label text='Hello from employee home page'></Label>
-</StackLayout>
-<BottomNavigation selectedIndex="0">
-    <!-- Bottom Navigator ( Could change it component location ) -->
-    <!-- CHANGE THIS TO ICON VIA MATERIAL.IO -->
-    <TabStrip>
-        <TabStripItem>
-            <Label text="Home"></Label>
-            <Image></Image>
-        </TabStripItem>
-        <TabStripItem (tap)="schedule()">
-            <Label text="Scheudle"></Label>
-            <Image  ></Image>
-        </TabStripItem>
-        <TabStripItem >
-            <Label text="Work History"></Label>
-            <Image  ></Image>
-        </TabStripItem>
-        <TabStripItem >
-            <Label text="Inventory"></Label>
-            <Image  ></Image>
-        </TabStripItem>
-        <TabStripItem >
-
-            <Label text="Employee"></Label>
-            <Image  ></Image>
-        </TabStripItem>
-    </TabStrip>
-    <!-- DO NOT PUT ANYTHING IN -->
-    <TabContentItem class="first-tabcontent">
-        <GridLayout>
-        </GridLayout>
-    </TabContentItem>
-    <TabContentItem class="second-tabcontent">
-        <GridLayout>
-        </GridLayout>
-    </TabContentItem>
-    <TabContentItem class="third-tabcontent">
-        <GridLayout>
-        </GridLayout>
-    </TabContentItem>
-</BottomNavigation>
+<TabView selectedIndex="0" (selectedIndexChanged)="onSelectedIndexchanged($event)">
+    <StackLayout *tabItem="{title: 'First Tab', iconSource: 'res://icon'}">
+        <StackLayout>
+            <Label text="First Tab" textWrap="true" class="m-15 h2 text-left" color="blue"></Label>
+        </StackLayout>
+    </StackLayout>
+    <StackLayout *tabItem="{title: 'Second Tab', iconSource: 'res://icon'}">
+        <StackLayout>
+            <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue"></Label>
+        </StackLayout>
+    </StackLayout>
+</TabView>

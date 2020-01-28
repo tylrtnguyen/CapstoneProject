@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SelectedIndexChangedEventData } from "tns-core-modules/ui/tab-view";
 
 @Component({
   selector: 'ns-employee-home',
@@ -15,5 +16,8 @@ export class EmployeeHomeComponent implements OnInit {
   schedule(){
     this.router.navigateByUrl("/employee-schedule");
   }
+  onSelectedIndexchanged(args: SelectedIndexChangedEventData) {
+    let newIndex = args.newIndex;
+}
 
 }

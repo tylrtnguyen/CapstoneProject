@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DatePicker } from "tns-core-modules/ui/date-picker";
 import { ListViewEventData, RadListView } from "nativescript-ui-listview";
+import { TimePicker } from "tns-core-modules/ui/time-picker/time-picker";
 
 @Component({
     selector: "ns-manager-add-schedule",
@@ -120,5 +121,13 @@ export class ManagerAddScheduleComponent implements OnInit {
   public onItemDeselected(args: ListViewEventData) {
     let name = this.dataItems[args.index].name;
     this.selected_employees = this.selected_employees.filter(employee => employee != name )    
+  }
+  todayObj: Date = new Date();
+
+    onTimeChanged(args) {
+        const tp = args.object as TimePicker;
+
+        const time = args.value;
+        console.log(`Chosen time: ${time}`);
   }
 }

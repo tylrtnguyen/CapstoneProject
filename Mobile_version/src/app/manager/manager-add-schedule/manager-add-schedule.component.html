@@ -12,10 +12,15 @@
 
     <!-- start time -->
     <Button text='Start Time' (tap)="start_time()"></Button>
-    <StackLayout *ngIf="show_start_time">
-        <TimePicker hour="9" minute="25" maxHour="23" maxMinute="59" minuteInterval="5"
-            (timeChange)="onTimeChanged($event)">
+    <StackLayout >
+
+        <TimePicker hour="10" minute="25"
+            row="2" col="0" colSpan="2" 
+            class="m-15" verticalAlignment="center"
+            (timeChange)="onTimeChanged($event)"
+        >
         </TimePicker>
+
     </StackLayout>
 
     <!-- end time -->
