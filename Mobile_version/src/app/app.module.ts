@@ -12,6 +12,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { LoginComponent } from './share-component/login/login.component';
 import { WelcomeComponent } from './share-component/welcome/welcome.component';
+import { RegistrationComponent } from './share-component/registration/registration.component';
 
 //MANAGER COMPONENT
 import { ManagerHomeComponent } from './manager/manager-home/manager-home.component';
@@ -33,6 +34,8 @@ import { ManagerCalendarComponent } from './manager/manager-calendar/manager-cal
 //SHARE SERVICE
 import { ShareService } from "./share-services/share.service";
 import { ManagerInventoryComponent } from './manager/manager-inventory/manager-inventory.component';
+import { EmployeeRegistrationComponent } from './employee/employee-registration/employee-registration.component';
+import { ManagerRegistrationComponent } from './manager/manager-registration/manager-registration.component';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -63,6 +66,7 @@ import { ManagerInventoryComponent } from './manager/manager-inventory/manager-i
         WelcomeComponent,
         ProfileComponent,
         InventoryComponent,
+        RegistrationComponent,
 
         //Manager Component
         ManagerHomeComponent,
@@ -82,6 +86,8 @@ import { ManagerInventoryComponent } from './manager/manager-inventory/manager-i
         ActionBarComponent,
         ManagerCalendarComponent,
         ManagerInventoryComponent,
+        EmployeeRegistrationComponent,
+        ManagerRegistrationComponent,
         
 
         //Share Service        
