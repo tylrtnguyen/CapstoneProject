@@ -15,13 +15,14 @@ import { ManagerAddScheduleComponent } from "./manager/manager-add-schedule/mana
 import { RegistrationComponent } from "./share-component/registration/registration.component";
 import { EmployeeRegistrationComponent } from "./employee/employee-registration/employee-registration.component";
 import { ManagerRegistrationComponent } from "./manager/manager-registration/manager-registration.component";
+import { ManagerTabManagerComponent } from "./manager/manager-tab-manager/manager-tab-manager.component";
 // import { ItemDetailComponent } from "./item/item-detail.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/welcome", pathMatch: "full" },
     { path: "welcome", component: WelcomeComponent },
     { path: "login", component: LoginComponent },
-    { path: "manager-home", component: ManagerHomeComponent },
+    { path: "manager-home", component: ManagerTabManagerComponent },
     { path: "manager-schedule", component: ManagerScheduleComponent},
     { path: "manager-work-history", component: ManagerWorkHistoryComponent },
     { path: "manager-inventory", component: ManagerInventoryComponent},

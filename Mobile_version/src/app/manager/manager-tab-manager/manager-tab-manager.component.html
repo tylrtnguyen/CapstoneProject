@@ -1,0 +1,14 @@
+<TabView selectedIndex="0" (selectedIndexChanged)="onSelectedIndexchanged($event)">
+    <StackLayout *tabItem="{title: 'First Tab', iconSource: 'res://icon'}">
+        <StackLayout>
+            <ns-manager-home></ns-manager-home>
+        </StackLayout>
+    </StackLayout>
+    <StackLayout *tabItem="{title: 'Second Tab', iconSource: 'res://icon'}">
+        <StackLayout>
+            <ns-manager-schedule></ns-manager-schedule>
+        </StackLayout>
+    </StackLayout>
+</TabView>
+
+

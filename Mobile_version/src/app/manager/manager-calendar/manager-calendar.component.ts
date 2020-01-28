@@ -5,6 +5,7 @@ import {
     CalendarEvent,
     CalendarSelectionEventData
 } from "nativescript-ui-calendar";
+import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 
 @Component({
     selector: "ns-manager-calendar",
@@ -16,7 +17,7 @@ export class ManagerCalendarComponent implements OnInit {
     events: Array<CalendarEvent>;
     listEvent: Array<CalendarEvent>;
     location: String = "Click to choose your inital location";
-   
+    height:String;
 
     @Output() timeEvent = new EventEmitter<string>();
     send_current_time() {
@@ -24,7 +25,7 @@ export class ManagerCalendarComponent implements OnInit {
     }
     constructor() {}
     ngOnInit() {
-
+        this.calendar_size()
         //init new event
         let now = new Date();
         let startDate: Date, endDate: Date, event: CalendarEvent;
@@ -113,4 +114,10 @@ export class ManagerCalendarComponent implements OnInit {
     }
 
 
+    calendar_size(){
+        if(isIOS){
+            this.height = '15%'
+            console.log("This is IOS")
+        }
+    }
 }

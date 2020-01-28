@@ -1,12 +1,9 @@
-<ActionBar title="test">
-    <StackLayout orientation="horizontal" ios:horizontalAlignment="center" android:horizontalAlignment="left">
 
-        <Button text='Add' [nsRouterLink]="['/manager-add-schedule']"></Button>
-        <Button text='Publish'></Button>
-    </StackLayout>
-</ActionBar>
 <StackLayout>
+    
     <ns-manager-calendar (timeEvent)='receive_current_time($event)'></ns-manager-calendar>
+    <Button text='Add' [nsRouterLink]="['/manager-add-schedule']"></Button>
+        <Button text='Publish'></Button>
     <RadListView [items]="temp_dataItems">
         <ng-template let-item="item">
             <StackLayout orientation="vertical">
@@ -19,51 +16,3 @@
         </ng-template>
     </RadListView>
 </StackLayout>
-<BottomNavigation selectedIndex="1">
-    <!-- Bottom Navigator ( Could change it component location ) -->
-    <!-- CHANGE THIS TO ICON VIA MATERIAL.IO -->
-    <TabStrip>
-        <TabStripItem (tap)="home()">
-            <Label text="Home"></Label>
-            <Image></Image>
-        </TabStripItem>
-        <TabStripItem>
-            <Label text="Scheudle"></Label>
-            <Image></Image>
-        </TabStripItem>
-        <TabStripItem (tap)="work_history()">
-            <Label text="Work History"></Label>
-            <Image></Image>
-        </TabStripItem>
-        <TabStripItem (tap)="inventory()">
-            <Label text="Inventory"></Label>
-            <Image></Image>
-        </TabStripItem>
-        <TabStripItem (tap)="employee()">
-
-            <Label text="Employee"></Label>
-            <Image></Image>
-        </TabStripItem>
-    </TabStrip>
-    <!-- DO NOT PUT ANYTHING IN -->
-    <TabContentItem>
-        <GridLayout>
-        </GridLayout>
-    </TabContentItem>
-    <TabContentItem>
-        <GridLayout>
-        </GridLayout>
-    </TabContentItem>
-    <TabContentItem>
-        <GridLayout>
-        </GridLayout>
-    </TabContentItem>
-    <TabContentItem>
-        <GridLayout>
-        </GridLayout>
-    </TabContentItem>
-    <TabContentItem>
-        <GridLayout>
-        </GridLayout>
-    </TabContentItem>
-</BottomNavigation>

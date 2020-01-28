@@ -36,6 +36,7 @@ import { ShareService } from "./share-services/share.service";
 import { ManagerInventoryComponent } from './manager/manager-inventory/manager-inventory.component';
 import { EmployeeRegistrationComponent } from './employee/employee-registration/employee-registration.component';
 import { ManagerRegistrationComponent } from './manager/manager-registration/manager-registration.component';
+import { ManagerTabManagerComponent } from './manager/manager-tab-manager/manager-tab-manager.component';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -88,6 +89,7 @@ import { ManagerRegistrationComponent } from './manager/manager-registration/man
         ManagerInventoryComponent,
         EmployeeRegistrationComponent,
         ManagerRegistrationComponent,
+        ManagerTabManagerComponent,
         
 
         //Share Service        
