@@ -15,42 +15,42 @@ export class ManagerScheduleComponent implements OnInit {
             start_time: "15:00",
             end_time: "17:00",
             position: "Manager",
-            date: "Tuesday 21 1 2020"
+            date: "Tue Jan 21 2020"
         },
         {
             name: "Thay Ba",
             start_time: "15:00",
             end_time: "17:00",
             position: "Manager",
-            date: "Wednesday 22 1 2020"
+            date: "Tue Jan 21 2020"
         },
         {
             name: "Tu Nguyen",
             start_time: "15:00",
             end_time: "17:00",
             position: "Janitor",
-            date: "Tuesday 21 1 2020"
+            date: "Tue Jan 21 2020"
         },
         {
             name: "Thanh Dep Trai",
             start_time: "15:00",
             end_time: "17:00",
             position: "CEO",
-            date: "Wednesday 22 1 2020"
+            date: "Wed Jan 22 2020"
         },
         {
             name: "Quang Pham",
             start_time: "15:00",
             end_time: "17:00",
             position: "Striper 1",
-            date: "Wednesday 22 1 2020"
+            date: "Wed Jan 22 2020"
         },
         {
             name: "Thong Nguyen",
             start_time: "15:00",
             end_time: "17:00",
             position: "Striper 2",
-            date: "Wednesday 22 1 2020"
+            date: "Wed Jan 22 2020"
         }
     ];
     temp_dataItems = [];

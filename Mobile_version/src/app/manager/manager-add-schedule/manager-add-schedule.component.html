@@ -3,22 +3,18 @@
     <!-- start date -->
     <Button text='Start Date' (tap)='show_date()'></Button>
     <StackLayout *ngIf="show_datepicker">
-        <DatePicker year="{{current_year}}" month="{{current_month}}" day="{{current_day}}" [minDate]="minDate" [maxDate]="maxDate"
-            (dateChange)="onDateChanged($event)" (dayChange)="onDayChanged($event)"
-            (monthChange)="onMonthChanged($event)" (yearChange)="onYearChanged($event)"
+        <DatePicker year="{{current_year}}" month="{{current_month}}" day="{{current_day}}" [minDate]="minDate"
+            [maxDate]="maxDate" (dateChange)="onDateChanged($event)" 
             (loaded)="onDatePickerLoaded($event)" verticalAlignment="center">
         </DatePicker>
     </StackLayout>
 
     <!-- start time -->
     <Button text='Start Time' (tap)="start_time()"></Button>
-    <StackLayout >
+    <StackLayout>
 
-        <TimePicker hour="10" minute="25"
-            row="2" col="0" colSpan="2" 
-            class="m-15" verticalAlignment="center"
-            (timeChange)="onTimeChanged($event)"
-        >
+        <TimePicker *ngIf="show_start_time" row="2" col="0" colSpan="2" class="m-15" verticalAlignment="center"
+            (loaded)="onTimeLoad($event)" (timeChange)="onStartTimeSelected($event)">
         </TimePicker>
 
     </StackLayout>
@@ -26,21 +22,22 @@
     <!-- end time -->
     <Button text='End Time' (tap)="end_time()"></Button>
     <StackLayout *ngIf="show_end_time">
-        <TimePicker hour="9" minute="25" maxHour="23" maxMinute="59" minuteInterval="5"
-            (timeChange)="onTimeChanged($event)">
+        <TimePicker (loaded)="onTimeLoad($event)" (timeChange)="onEndTimeSelected($event)">
         </TimePicker>
     </StackLayout>
 
     <Button text=' Employee : ' (tap)=show_employee()></Button>
     <StackLayout *ngIf="show_employee_condition">
-        <RadListView [items]="dataItems" selectionBehavior="Press" multipleSelection="true" (itemSelected)="onItemSelected($event)" (itemDeselected)="onItemDeselected($event)">
+        <RadListView [items]="dataItems" selectionBehavior="Press" multipleSelection="true"
+            (itemSelected)="onItemSelected($event)" (itemDeselected)="onItemDeselected($event)">
             <ng-template let-item="item">
                 <StackLayout ios:class="iosListItemStackLayout" android:class="androidListItemStackLayout">
                     <Label ios:class="iosNameLabel" android:class="androidNameLabel" [text]="item.name"></Label>
-                    <Label ios:class="iosDescriptionLabel" android:class="androidDescriptionLabel" class="descriptionLabel" [text]="item.position"></Label>
+                    <Label ios:class="iosDescriptionLabel" android:class="androidDescriptionLabel"
+                        class="descriptionLabel" [text]="item.position"></Label>
                 </StackLayout>
             </ng-template>
         </RadListView>
     </StackLayout>
-    <Button text='Add Schedule'></Button>
+    <Button text='Add Schedule' (tap)=onSubmit()></Button>
 </StackLayout>

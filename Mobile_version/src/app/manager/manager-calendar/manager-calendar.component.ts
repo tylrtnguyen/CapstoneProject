@@ -89,19 +89,34 @@ export class ManagerCalendarComponent implements OnInit {
         const calendar: RadCalendar = args.object;
         const date: Date = args.date;
         const weekdays = [
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday"
+            "Sun",
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat"
         ];
+        const months = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "June",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+
+        ]
         const day_value = weekdays[date.getDay()];
         const date_value = date.getDate();
-        const month_value = date.getMonth() + 1;
+        const month_value = months[date.getMonth()];
         const year_value = date.getFullYear();
-        const selected_time = `${day_value} ${date_value} ${month_value} ${year_value}`;
+        const selected_time = `${day_value} ${month_value} ${date_value} ${year_value}`;
 
         //put the selected event in a temp variable
         // const events: Array<CalendarEvent> = calendar.getEventsForDate(date);

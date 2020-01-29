@@ -1,14 +1,98 @@
-<TabView selectedIndex="0" (selectedIndexChanged)="onSelectedIndexchanged($event)">
-    <StackLayout *tabItem="{title: 'First Tab', iconSource: 'res://icon'}">
-        <StackLayout>
+
+    <TabView *ngIf='ifIOS' selectedIndex="0" (selectedIndexChanged)="onSelectedIndexchanged($event)">
+        <StackLayout *tabItem="{title: 'Home', iconSource: 'res://icon'}">
+            <StackLayout>
+                <ns-manager-home></ns-manager-home>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout *tabItem="{title: 'Schedule', iconSource: 'res://icon'}">
+            <StackLayout>
+                <ns-manager-schedule></ns-manager-schedule>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout *tabItem="{title: 'Work History', iconSource: 'res://icon'}">
+            <StackLayout>
+                <ns-manager-work-history></ns-manager-work-history>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout *tabItem="{title: 'Inventory', iconSource: 'res://icon'}">
+            <StackLayout>
+                <ns-manager-inventory></ns-manager-inventory>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout *tabItem="{title: 'Employee', iconSource: 'res://icon'}">
+            <StackLayout>
+                <ns-manager-employee-list></ns-manager-employee-list>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout *tabItem="{title: 'Profile', iconSource: 'res://icon'}">
+            <StackLayout>
+                <ns-profile></ns-profile>
+            </StackLayout>
+        </StackLayout>
+    </TabView>
+
+
+<BottomNavigation selectedIndex="1" *ngIf='ifAndroid'>
+
+    <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
+    <TabStrip>
+        <TabStripItem>
+            <Label text="Home"></Label>
+            <Image src="font://&#xf015;" class="fas t-36"></Image>
+        </TabStripItem>
+        <TabStripItem class="special">
+            <Label text="Scheudle"></Label>
+            <Image src="font://&#xf007;" class="fas t-36"></Image>
+        </TabStripItem>
+        <TabStripItem class="special">
+            <Label text="Work History"></Label>
+            <Image src="font://&#xf00e;" class="fas t-36"></Image>
+        </TabStripItem>
+        <TabStripItem class="special">
+            <Label text="Inventory"></Label>
+            <Image src="font://&#xf00e;" class="fas t-36"></Image>
+        </TabStripItem>
+        <TabStripItem class="special">
+            <Label text="Employee"></Label>
+            <Image src="font://&#xf00e;" class="fas t-36"></Image>
+        </TabStripItem>
+        <TabStripItem class="special">
+            <Label text="Profile"></Label>
+            <Image src="font://&#xf00e;" class="fas t-36"></Image>
+        </TabStripItem>
+    </TabStrip>
+
+    <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
+    <TabContentItem>
+        <GridLayout>
             <ns-manager-home></ns-manager-home>
-        </StackLayout>
-    </StackLayout>
-    <StackLayout *tabItem="{title: 'Second Tab', iconSource: 'res://icon'}">
-        <StackLayout>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <GridLayout>
             <ns-manager-schedule></ns-manager-schedule>
-        </StackLayout>
-    </StackLayout>
-</TabView>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <GridLayout>
+            <ns-manager-work-history></ns-manager-work-history>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <GridLayout>
+            <ns-manager-inventory></ns-manager-inventory>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <GridLayout>
+            <ns-manager-employee-list></ns-manager-employee-list>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <GridLayout>
+            <ns-profile></ns-profile>
+        </GridLayout>
+    </TabContentItem>
 
-
+</BottomNavigation>
