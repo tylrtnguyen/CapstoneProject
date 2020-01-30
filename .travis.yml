@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - 10.9.0
+
+cache: npm
+
+before_install:
+  - "npm config set spin false"
+  # Install now (zeit)
+  - npm i -g now
+install:
+  # Install the project dependencies
+  - cd BusinessWeb
+  - npm install
+script:
+  - npm run build
+  - npm run test
+deploy:
+  - provider: script
+  - script: bash BusinessWeb/ scripts/deploy.sh
+  - skip_cleanup: true
