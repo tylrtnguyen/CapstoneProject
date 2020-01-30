@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
+import {Router} from "@angular/router"
 import { DatePicker } from "tns-core-modules/ui/date-picker";
 import { ListViewEventData, RadListView } from "nativescript-ui-listview";
 import { TimePicker } from "tns-core-modules/ui/time-picker/time-picker";
 import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
+import {ShareService} from '../../share-services/share.service'
 declare var java
 @Component({
     selector: "ns-manager-add-schedule",
@@ -10,7 +12,7 @@ declare var java
     styleUrls: ["./manager-add-schedule.component.css"]
 })
 export class ManagerAddScheduleComponent implements OnInit {
-    constructor() {}
+    constructor(public share : ShareService , public router :Router) {}
 
     ngOnInit() {}
 
@@ -59,7 +61,8 @@ export class ManagerAddScheduleComponent implements OnInit {
         }
     ];
 
-    selected_employees = [];
+    temp_selected_employees = [];
+    selected_employees_final = [];
     selected_start_date: String;
     selected_end_date: String;
     selected_date: String;
@@ -100,17 +103,17 @@ export class ManagerAddScheduleComponent implements OnInit {
     }
     show_employee() {
         this.show_employee_condition = !this.show_employee_condition;
+        this.selected_employees_final = this.temp_selected_employees;
     }
 
     public onItemSelected(args: ListViewEventData) {
         // this.selected_employees.push(this.dataItems[args.index])
         let name = this.dataItems[args.index].name;
-        this.selected_employees.push(name);
-        console.log(this.selected_employees);
+        this.temp_selected_employees.push(name);
     }
     public onItemDeselected(args: ListViewEventData) {
         let name = this.dataItems[args.index].name;
-        this.selected_employees = this.selected_employees.filter(
+        this.temp_selected_employees = this.temp_selected_employees.filter(
             employee => employee != name
         );
     }
@@ -126,8 +129,7 @@ export class ManagerAddScheduleComponent implements OnInit {
         const timePicker = args.object;
         if (isAndroid) {
             timePicker.android.setIs24HourView(java.lang.Boolean.TRUE);
-            timePicker.hour = 23;
-            timePicker.minute = 59;
+            
         }
     }
     onEndTimeSelected(args) {
@@ -138,6 +140,8 @@ export class ManagerAddScheduleComponent implements OnInit {
         // console.log(`Chosen end time: ${time}`);
     }
     onSubmit() {
-         console.log(`Employees : ${this.selected_employees} is start working from ${this.selected_start_date} to ${this.selected_end_date} on this date ${this.selected_date} `)
+        this.share.work_date = this.selected_date
+        console.log(`Employees : ${this.selected_employees_final} is start working from ${this.selected_start_date} to ${this.selected_end_date} on this date ${this.selected_date} `)
+        this.router.navigateByUrl('/manager-schedule')
     }
 }

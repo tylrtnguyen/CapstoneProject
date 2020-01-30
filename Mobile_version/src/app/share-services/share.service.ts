@@ -5,4 +5,5 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ShareService {
+  work_date : String;
 }

@@ -1,9 +1,10 @@
-
 <StackLayout>
-    
+
     <ns-manager-calendar (timeEvent)='receive_current_time($event)'></ns-manager-calendar>
-    <Button text='Add' [nsRouterLink]="['/manager-add-schedule']"></Button>
+    <StackLayout orientation='horizontal' >
+        <Button text='Add' [nsRouterLink]="['/manager-add-schedule']"></Button>
         <Button text='Publish'></Button>
+    </StackLayout>
     <RadListView [items]="temp_dataItems">
         <ng-template let-item="item">
             <StackLayout orientation="vertical">
@@ -15,4 +16,5 @@
             </StackLayout>
         </ng-template>
     </RadListView>
+    <ns-manager-tab-manager></ns-manager-tab-manager>
 </StackLayout>

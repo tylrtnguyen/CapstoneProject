@@ -4,13 +4,6 @@
         </RadCalendar>
     </StackLayout>
     <Label text='{{current_date}}'></Label>
-    <ListView [items]="ListEvent" row="1">
-        <ng-template let-item="item">
-            <StackLayout class="listRow">
-                <Label [text]="item.title"></Label>
-            </StackLayout>
-        </ng-template>
-    </ListView>
 
     
 

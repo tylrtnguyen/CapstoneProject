@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { action } from "tns-core-modules/ui/dialogs";
-
+import { Page } from "tns-core-modules/ui/page";
+import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 @Component({
     selector: "ns-manager-schedule",
     templateUrl: "./manager-schedule.component.html",
@@ -9,6 +10,8 @@ import { action } from "tns-core-modules/ui/dialogs";
 })
 export class ManagerScheduleComponent implements OnInit {
     message: String;
+    ifAndroid: Boolean;
+    ifIOS: Boolean;
     dataItems = [
         {
             name: "Thanh Quan",
@@ -68,9 +71,19 @@ export class ManagerScheduleComponent implements OnInit {
         this.temp_dataItems = filtered_word;
     }
 
-    constructor(public router: Router) {}
+    constructor(public router: Router,public page: Page) {
+        this.page.actionBarHidden = true;
+    }
 
-    ngOnInit() {}
+    ngOnInit() {
+        if (isAndroid) {
+            this.ifAndroid = true;
+            this.ifIOS = false;
+        } else if (isIOS) {
+            this.ifIOS = true;
+            this.ifAndroid = false;
+        }
+    }
 
     home() {
         this.router.navigateByUrl("/manager-home");

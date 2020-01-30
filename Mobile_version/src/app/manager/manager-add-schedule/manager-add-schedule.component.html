@@ -3,7 +3,7 @@
     <!-- start date -->
     <Button text='Start Date' (tap)='show_date()'></Button>
     <StackLayout *ngIf="show_datepicker">
-        <DatePicker year="{{current_year}}" month="{{current_month}}" day="{{current_day}}" [minDate]="minDate"
+        <DatePicker [minDate]="minDate"
             [maxDate]="maxDate" (dateChange)="onDateChanged($event)" 
             (loaded)="onDatePickerLoaded($event)" verticalAlignment="center">
         </DatePicker>
@@ -13,7 +13,7 @@
     <Button text='Start Time' (tap)="start_time()"></Button>
     <StackLayout>
 
-        <TimePicker *ngIf="show_start_time" row="2" col="0" colSpan="2" class="m-15" verticalAlignment="center"
+        <TimePicker *ngIf="show_start_time"  verticalAlignment="center"
             (loaded)="onTimeLoad($event)" (timeChange)="onStartTimeSelected($event)">
         </TimePicker>
 
@@ -26,8 +26,8 @@
         </TimePicker>
     </StackLayout>
 
-    <Button text=' Employee : ' (tap)=show_employee()></Button>
-    <StackLayout *ngIf="show_employee_condition">
+    <Button (tap)='show_employee()' text='employee list'></Button>
+    <StackLayout *ngIf='show_employee_condition'>
         <RadListView [items]="dataItems" selectionBehavior="Press" multipleSelection="true"
             (itemSelected)="onItemSelected($event)" (itemDeselected)="onItemDeselected($event)">
             <ng-template let-item="item">
