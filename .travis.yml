@@ -16,5 +16,7 @@ script:
   - npm run build
 deploy:
   - provider: script
-  - script: bash scripts/deploy.sh
+  - script: scripts/deploy.sh
   - skip_cleanup: true
+notifications:
+  slack: plus84:Vy3jZe5HC07pFAzKRrcZa9sN
