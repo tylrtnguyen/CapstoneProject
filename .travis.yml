@@ -13,10 +13,11 @@ install:
   - cd BusinessWeb
   - npm install
 script:
+  - git checkout -- package-lock.json
   - npm run build
 deploy:
   - provider: script
-  - script: scripts/deploy.sh
+  - script: bash scripts/deploy.sh
   - skip_cleanup: true
 notifications:
   slack: plus84:Vy3jZe5HC07pFAzKRrcZa9sN
