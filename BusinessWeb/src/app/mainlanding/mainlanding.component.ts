@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-mainlanding',
@@ -12,4 +12,5 @@ export class MainlandingComponent implements OnInit {
   ngOnInit() {
   }
 
+  
 }

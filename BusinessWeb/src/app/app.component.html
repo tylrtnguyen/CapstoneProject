@@ -1,7 +1,7 @@
 
 <div class="main-container">
 <div class="header">
-<nav class="nav-bar">
+<nav class="nav-bar" id="navbar">
   <nav class='navbar-left'>
       <a href="#home"><img class='logo' src="../assets/images/restaskestLogo.png" alt='logo'></a>
       <ul class="nav-links">
@@ -55,7 +55,10 @@
   <div class="footer-features">
     <div class="content">
       <p class="header">Features</p>
-      <p>Dashboard </p><p> InventoryCompiling </p> <p>Employee Scheduling </p><p>Paystub Generator</p>
+      <a><p>Dashboard </p></a>
+      <a><p>Dashboard </p></a> 
+      <p>Employee Scheduling </p>
+      <p>Paystub Generator</p>
     </div>
   </div>
   <div class="footer-company">
@@ -78,3 +81,14 @@
 
 
 </div>
+<script>
+  $(window).on("scroll", () =>{
+    if($(window).scrollTop()){
+      $('nav-bar').addClass('black')
+    }
+    else{
+      $('nav-bar').removeClass('black')
+    }
+  })
+
+</script>
