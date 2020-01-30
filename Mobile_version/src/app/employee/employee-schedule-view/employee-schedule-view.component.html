@@ -1,0 +1,41 @@
+
+<BottomNavigation selectedIndex="1">
+    <!-- Bottom Navigator ( Could change it component location ) -->
+    <!-- CHANGE THIS TO ICON VIA MATERIAL.IO -->
+    <TabStrip>
+        <TabStripItem (tap)="home()">
+            <Label text="Home"></Label>
+            <Image></Image>
+        </TabStripItem>
+        <TabStripItem >
+            <Label text="Scheudle"></Label>
+            <Image  ></Image>
+        </TabStripItem>
+        <TabStripItem >
+            <Label text="Work History"></Label>
+            <Image  ></Image>
+        </TabStripItem>
+        <TabStripItem >
+            <Label text="Inventory"></Label>
+            <Image  ></Image>
+        </TabStripItem>
+        <TabStripItem >
+
+            <Label text="Employee"></Label>
+            <Image  ></Image>
+        </TabStripItem>
+    </TabStrip>
+    <!-- DO NOT PUT ANYTHING IN -->
+    <TabContentItem class="first-tabcontent">
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem class="second-tabcontent">
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem class="third-tabcontent">
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+</BottomNavigation>
