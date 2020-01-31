@@ -1,12 +1,9 @@
-<TabView selectedIndex="0" (selectedIndexChanged)="onSelectedIndexchanged($event)">
-    <StackLayout *tabItem="{title: 'First Tab', iconSource: 'res://icon'}">
+<ns-action-bar></ns-action-bar>
+<StackLayout class='page'>
+    <StackLayout>
         <StackLayout>
-            <Label text="First Tab" textWrap="true" class="m-15 h2 text-left" color="blue"></Label>
+            <label text = 'test'></label>
         </StackLayout>
     </StackLayout>
-    <StackLayout *tabItem="{title: 'Second Tab', iconSource: 'res://icon'}">
-        <StackLayout>
-            <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue"></Label>
-        </StackLayout>
-    </StackLayout>
-</TabView>
+    <ns-employee-tab-manager></ns-employee-tab-manager>
+</StackLayout>

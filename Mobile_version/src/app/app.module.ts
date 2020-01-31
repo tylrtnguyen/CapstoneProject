@@ -37,6 +37,9 @@ import { ManagerInventoryComponent } from './manager/manager-inventory/manager-i
 import { EmployeeRegistrationComponent } from './employee/employee-registration/employee-registration.component';
 import { ManagerRegistrationComponent } from './manager/manager-registration/manager-registration.component';
 import { ManagerTabManagerComponent } from './manager/manager-tab-manager/manager-tab-manager.component';
+import { EmployeeTabManagerComponent } from './employee/employee-tab-manager/employee-tab-manager.component';
+import { EmployeeInventoryComponent } from './employee/employee-inventory/employee-inventory.component';
+import { EmployeeProfileComponent } from './employee/employee-profile/employee-profile.component';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -90,6 +93,9 @@ import { ManagerTabManagerComponent } from './manager/manager-tab-manager/manage
         EmployeeRegistrationComponent,
         ManagerRegistrationComponent,
         ManagerTabManagerComponent,
+        EmployeeTabManagerComponent,
+        EmployeeInventoryComponent,
+        EmployeeProfileComponent,
         
 
         //Share Service        

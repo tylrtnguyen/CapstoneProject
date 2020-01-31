@@ -16,6 +16,9 @@ import { RegistrationComponent } from "./share-component/registration/registrati
 import { EmployeeRegistrationComponent } from "./employee/employee-registration/employee-registration.component";
 import { ManagerRegistrationComponent } from "./manager/manager-registration/manager-registration.component";
 import { ManagerTabManagerComponent } from "./manager/manager-tab-manager/manager-tab-manager.component";
+import { EmployeeInventoryComponent } from "./employee/employee-inventory/employee-inventory.component";
+import { EmployeeProfileComponent } from "./employee/employee-profile/employee-profile.component";
+import { EmployeePayrollComponent } from "./employee/employee-payroll/employee-payroll.component";
 // import { ItemDetailComponent } from "./item/item-detail.component";
 
 const routes: Routes = [
@@ -33,7 +36,11 @@ const routes: Routes = [
     { path: "employee-schedule", component: EmployeeScheduleViewComponent},
     { path: "registration", component: RegistrationComponent},
     { path: "employee-registration", component: EmployeeRegistrationComponent},
-    { path: "manager-registration", component: ManagerRegistrationComponent}
+    { path: "manager-registration", component: ManagerRegistrationComponent},
+    { path: "employee-inventory", component: EmployeeInventoryComponent},
+    { path: "employee-profile", component: EmployeeProfileComponent},
+    { path: "employee-payroll", component: EmployeePayrollComponent}
+
 ];
 
 @NgModule({

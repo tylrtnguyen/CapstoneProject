@@ -5,11 +5,11 @@ import { Page } from "tns-core-modules/ui/page";
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'ns-manager-tab-manager',
-  templateUrl: './manager-tab-manager.component.html',
-  styleUrls: ['./manager-tab-manager.component.css']
+  selector: 'ns-employee-tab-manager',
+  templateUrl: './employee-tab-manager.component.html',
+  styleUrls: ['./employee-tab-manager.component.css']
 })
-export class ManagerTabManagerComponent implements OnInit {
+export class EmployeeTabManagerComponent implements OnInit {
   ifAndroid: Boolean;
   ifIOS: Boolean;
   constructor(private page: Page, public router : Router) {
@@ -34,9 +34,6 @@ export class ManagerTabManagerComponent implements OnInit {
   onSelectedIndexchanged(args: SelectedIndexChangedEventData) {
     let newIndex = args.newIndex;
     return newIndex
-}
-  route_link(){
-    console.log('Route demo')
-    this.router.navigateByUrl('/manager-schedule')
   }
+
 }

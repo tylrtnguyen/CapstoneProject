@@ -1,0 +1,58 @@
+<StackLayout orientation='horizontal' *ngIf='ifIOS'>
+    <Button text='Home' [nsRouterLink]="['/employee-home']"></Button>
+    <Button text='Schedule' [nsRouterLink]="['/employee-schedule']"></Button>
+    <Button text='Inventory' [nsRouterLink]="['/employee-inventory']"></Button>
+    <Button text='Payroll' [nsRouterLink]="['/employee-payroll']"></Button>
+    <Button text='Profile' [nsRouterLink]="['/employee-profile']"></Button>
+</StackLayout>
+
+
+<BottomNavigation selectedIndex="0" *ngIf='ifAndroid'>
+
+<TabStrip>
+    <TabStripItem [nsRouterLink]="['/employee-home']">
+        <Label text="Home"></Label>
+        <Image src="font://&#xf015;" class="fas t-36"></Image>
+    </TabStripItem>
+    <TabStripItem [nsRouterLink]="['/employee-schedule']">
+        <Label text="Schedule"></Label>
+        <Image src="font://&#xf007;" class="fas t-36"></Image>
+    </TabStripItem>
+    
+    <TabStripItem [nsRouterLink]="['/employee-inventory']">
+        <Label text="Inventory"></Label>
+        <Image src="font://&#xf00e;" class="fas t-36"></Image>
+    </TabStripItem>
+    <TabStripItem [nsRouterLink]="['/employee-payroll']">
+        <Label text="Payroll"></Label>
+        <Image src="font://&#xf00e;" class="fas t-36"></Image>
+    </TabStripItem>
+    <TabStripItem [nsRouterLink]="['/employee-profile']">
+        <Label text="Profile"></Label>
+        <Image src="font://&#xf00e;" class="fas t-36"></Image>
+    </TabStripItem>
+    
+</TabStrip>
+
+<TabContentItem>
+    <GridLayout>        
+    </GridLayout>
+</TabContentItem>
+<TabContentItem>
+    <GridLayout>        
+    </GridLayout>
+</TabContentItem>
+<TabContentItem>
+    <GridLayout>         
+    </GridLayout>
+</TabContentItem>
+<TabContentItem>
+    <GridLayout>         
+    </GridLayout>
+</TabContentItem>
+<TabContentItem>
+    <GridLayout>
+    </GridLayout>
+</TabContentItem>
+
+</BottomNavigation>
