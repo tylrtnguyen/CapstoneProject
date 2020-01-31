@@ -15,10 +15,10 @@ install:
 script:
   - git checkout -- package-lock.json
   - npm run build
-deploy:
   - pwd
+deploy:
   - provider: script
-  - script: bash deploy.sh
-  - skip_cleanup: true
+    script: bash deploy.sh
+    skip_cleanup: true
 notifications:
   slack: plus84:Vy3jZe5HC07pFAzKRrcZa9sN
