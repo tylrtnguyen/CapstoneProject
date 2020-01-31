@@ -4,7 +4,7 @@
 }
 .inventory-intro{
   padding-right: 5%;
-  
+
 }
 .inventory-image{
   padding-left:10%;
@@ -43,7 +43,7 @@ a {
   font-family: "Quicksand",sans-serif;
   font-size: 20px;
   font-weight: bold;
-  
+
 }
 a p {
   color: #FC8660;
@@ -54,4 +54,13 @@ button{
   border-radius: 11px;
   background: #FDD5C8;
 
+}
+
+@media all and (max-width:500px){
+  .inventory-page{
+    display: block;
+  }
+  .inventory-image {
+    display: none;
+  }
 }

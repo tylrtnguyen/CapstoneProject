@@ -16,7 +16,7 @@ p{
   font-size: 20px;
   color: #3B4A6B;
   letter-spacing: 0.025em;
-} 
+}
 #split-header{
   color: #FCBB47;
 }
@@ -37,4 +37,12 @@ button{
   border-radius: 11px;
   background: #FDD5C8;
 
+}
+@media all and (max-width:500px){
+  .paystub-page{
+    display: block;
+  }
+  .paystub-img img {
+    display: none;
+  }
 }

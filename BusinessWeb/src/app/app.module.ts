@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
-import {MatMenuModule,MatToolbarModule,MatGridListModule, MatGridList,MatButtonModule,MatFormFieldModule, MatInputModule} from '@angular/material';
+
+import {MatMenuModule,MatToolbarModule,MatGridListModule, MatGridList,MatButtonModule,MatFormFieldModule, MatInputModule,MatIconModule, MatIcon} from '@angular/material';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -14,6 +16,8 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { PaystubComponent } from './paystub/paystub.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,9 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     InventoryComponent,
     ScheduleComponent,
     PaystubComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    NavbarComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    NgbModule
+    NgbModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

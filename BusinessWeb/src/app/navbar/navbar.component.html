@@ -1,0 +1,42 @@
+<div class="header">
+  <nav class="nav-bar" id="navbar">
+    <nav class='navbar-left'>
+        <a href="#home"><img class='logo' src="../assets/images/restaskestLogo.png" alt='logo'></a>
+        <ul class="nav-links">
+            <li class="dropdown">
+              <a href="javascript:void(0)" class='dropbtn'>Features</a>
+            <div class="dropdown-content">
+              <ul class =dropdown-container>
+              <li><a href="#dashboard">Dashboard</a></li>
+              <li><a href="#inventory">Inventory</a></li>
+              <li><a href="#schedule">Schedule</a></li>
+              <li><a href="#paystub">Paystub </a></li>
+            </ul>
+            </div>
+          </li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+    <nav class="navbar-right">
+      <ul class="nav-links">
+
+        <li><a>Login</a></li>
+        <li><button class="btnTrial"> Start Your Free 30-Day Trial</button></li>
+
+      </ul>
+      <div id="menu-toggle">
+        <button mat-icon-button [matMenuTriggerFor] = "menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <a href="#dashboard"><button mat-menu-item> Dashboard </button> </a>
+          <a href="#inventory"><button mat-menu-item>Inventory </button></a>
+          <a href="#schedule"><button mat-menu-item> Schedule </button> </a>
+          <a href="#paystub"><button mat-menu-item> Paystub </button> </a>
+          <a href="#"><button mat-menu-item> Login </button> </a>
+        </mat-menu>
+      </div>
+    </nav>
+  </nav>
+  </div>
