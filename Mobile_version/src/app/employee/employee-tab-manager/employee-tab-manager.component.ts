@@ -13,7 +13,7 @@ export class EmployeeTabManagerComponent implements OnInit {
   ifAndroid: Boolean;
   ifIOS: Boolean;
   constructor(private page: Page, public router : Router) {
-    this.page.actionBarHidden = true;
+    // this.page.actionBarHidden = true;
   }
 
   ngOnInit() {

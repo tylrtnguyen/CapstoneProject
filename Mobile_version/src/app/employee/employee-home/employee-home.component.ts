@@ -12,7 +12,7 @@ export class EmployeeHomeComponent implements OnInit {
   ifAndroid: Boolean;
   ifIOS: Boolean;
   constructor(public router: Router, public page: Page) {
-      this.page.actionBarHidden = true;
+    //   this.page.actionBarHidden = true;
   }
 
   ngOnInit() {
@@ -25,17 +25,17 @@ export class EmployeeHomeComponent implements OnInit {
       }
   }
 
-  schedule() {
-      this.router.navigateByUrl("/employee-schedule");
-  }
-  payroll() {
-      this.router.navigateByUrl("/employee-payroll");
-  }
-  inventory() {
-      this.router.navigateByUrl("/employee-inventory");
-  }
-  profile() {
-      this.router.navigateByUrl("/employee-profile");
-  }
+//   schedule() {
+//       this.router.navigateByUrl("/employee-schedule");
+//   }
+//   payroll() {
+//       this.router.navigateByUrl("/employee-payroll");
+//   }
+//   inventory() {
+//       this.router.navigateByUrl("/employee-inventory");
+//   }
+//   profile() {
+//       this.router.navigateByUrl("/employee-profile");
+//   }
 
 }
