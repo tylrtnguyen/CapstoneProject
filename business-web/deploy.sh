@@ -1,2 +1,2 @@
 #!/bin/bash
-now dist --token=$NOW_TOKEN
+now --token=$NOW_TOKEN
