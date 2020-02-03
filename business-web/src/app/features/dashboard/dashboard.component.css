@@ -1,0 +1,24 @@
+#title{
+  font-size: 40px;
+  color: #3B4A6B;
+  letter-spacing: 0.025em;
+  font-weight: bold;
+}
+#title-split{
+  color: #FCBB47;
+}
+#content{
+  color: #3B4A6B;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+
+@media all and (max-width:500px){
+  .dashboard-page{
+    display: block;
+  }
+  img {
+    display: none;
+  }
+}

@@ -1,0 +1,66 @@
+
+.inventory-page{
+  display: inline-flex;
+}
+.inventory-intro{
+  padding-right: 5%;
+
+}
+.inventory-image{
+  padding-left:10%;
+  padding-right:50px;
+}
+img{
+  padding-right: 15%;
+  width: auto;
+  height: auto;
+  max-width: 800px;
+  max-height: 600px;
+  left: 205px;
+  top: 150px
+}
+p{
+  text-align: left;
+  font-size: 20px;
+  color: #3B4A6B;
+}
+#first-line{
+  color: #FCBB47;
+  font-size: 30px;
+  font-weight:bold;
+  font-style: normal;
+
+}
+#second-line{
+  color: #3B4A6B;
+  font-size: 30px;
+  font-weight:bold;
+  font-style: normal;
+
+}
+a {
+  text-decoration: none;
+  font-family: "Quicksand",sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+
+}
+a p {
+  color: #FC8660;
+  letter-spacing: 0.025em;
+}
+button{
+  float:left;
+  border-radius: 11px;
+  background: #FDD5C8;
+
+}
+
+@media all and (max-width:500px){
+  .inventory-page{
+    display: block;
+  }
+  .inventory-image {
+    display: none;
+  }
+}

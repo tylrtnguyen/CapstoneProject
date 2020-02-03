@@ -1,0 +1,52 @@
+.schedule-page{
+  display: inline-flex;
+}
+.schedule-intro{
+padding-right: 5%;
+padding-left: 5%;
+}
+.schedule-img{
+  padding-right: 5%;
+}
+#first-line{
+  font-size: 40px;
+  font-weight: bold;
+  font-style: normal;
+  color:#FCBB47;
+}
+#second-line{
+  font-size: 40px;
+  font-weight: bold;
+  font-style: normal;
+}
+p{
+  text-align: left;
+  font-size: 20px;
+  color: #3B4A6B;
+  letter-spacing: 0.025em;
+}
+a {
+  text-decoration: none;
+  font-family: "Quicksand",sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+
+}
+a p {
+  color: #FC8660;
+  letter-spacing: 0.025em;
+}
+button{
+  float:left;
+  border-radius: 11px;
+  background: #FDD5C8;
+
+}
+@media all and (max-width:500px){
+  .schedule-page{
+    display: block;
+  }
+  .schedule-img  {
+    display: none;
+  }
+}

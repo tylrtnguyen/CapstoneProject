@@ -1,0 +1,48 @@
+.paystub-page{
+  display: inline-flex;
+}
+.paystub-intro{
+padding-right: 10%;
+padding-left: 5%;
+}
+.paystub-img{
+  padding-right: 5%;
+  padding-left: 10%;
+}
+
+
+p{
+  text-align: left;
+  font-size: 20px;
+  color: #3B4A6B;
+  letter-spacing: 0.025em;
+}
+#split-header{
+  color: #FCBB47;
+}
+.header{
+  font-size: 40px;
+  font-weight: bold;
+  font-style: normal;
+}
+a{
+  text-decoration: none;
+}
+a p{
+  color: #FC8660;
+  letter-spacing: 0.025em;
+}
+button{
+  float:left;
+  border-radius: 11px;
+  background: #FDD5C8;
+
+}
+@media all and (max-width:500px){
+  .paystub-page{
+    display: block;
+  }
+  .paystub-img img {
+    display: none;
+  }
+}
