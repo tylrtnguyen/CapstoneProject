@@ -1,0 +1,60 @@
+.intro-content{
+  padding-top:3%;
+  padding-left:5%;
+  padding-right:5%;
+  display: inline-flex;
+}
+.text-container{
+display: block;
+float: left;
+padding: 0% auto;
+}
+.img-container{
+  display: grid;
+  float: right;
+  height: 100%;
+  
+}
+.img{
+  max-width: 95%;
+  max-height: 90vh;
+  margin:auto;
+}
+#header{
+  font-weight: bold;
+  font-size:50px;
+  color: #3B4A6B;
+  float:left;
+  margin: 10px 10px;
+}
+p{
+  font-weight: normal;
+  color: #3B4A6B;
+  font-size: 20px;
+  padding:10px 10px;
+}
+.Trialbtn{
+  cursor: pointer;
+  border: none;
+  border-radius: 40px;
+  background-color: #F0D43A !important;
+  width: auto;
+  height: 70px;
+  transition: all 0.3s ease 0s;
+  float:left;
+}
+.Text{
+  font-weight: bold;
+  font-size: 20px;
+  margin: 10px 10px;
+}
+
+.Trialbtn:hover{
+  letter-spacing: 1.5px;
+  background-color: rgb(243, 221, 93) !important;
+  transition: all 0.3s ease 0s;
+}
+
+div.text-container{
+  text-align: left;
+}

@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - 10.9.0
+
+cache: npm
+
+before_install:
+  - "npm config set spin false"
+  # Install now API (zeit)
+  - npm i -g now
+install:
+  # Install the project dependencies
+  - cd business-web
+  - npm install
+script:
+  - git checkout -- package-lock.json
+  - npm run build
+  - pwd
+deploy:
+  - provider: script
+    script: bash deploy.sh
+    skip_cleanup: true
+notifications:
+  slack: plus84:Vy3jZe5HC07pFAzKRrcZa9sN
