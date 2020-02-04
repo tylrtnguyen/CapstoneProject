@@ -13,7 +13,6 @@ install:
   - cd business-web
   - npm install
 script:
-  - git checkout -- package-lock.json
   - npm run build
   - pwd
 deploy:
