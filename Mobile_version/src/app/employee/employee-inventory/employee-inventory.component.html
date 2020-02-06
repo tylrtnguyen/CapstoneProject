@@ -2,8 +2,29 @@
     <StackLayout>
         <ns-action-bar></ns-action-bar>
     </StackLayout>
-    <StackLayout style="height: 90%;">
-        <Button text="employee-inventory works!" class="btn btn-primary"></Button>
+    <StackLayout class = "Page" style="height: 90%;" backgroundColor="lightgray">
+        <StackLayout>
+            <StackLayout height = "10%">
+                <label id="center"text = "Inventory"></label>
+            </StackLayout>
+            <StackLayout height = "10%">
+                <StackLayout orientation = "vertical">
+                    <button class = "btn-primary btn-rounded-lg" text = "Update" [nsRouterLink]="['/employee-update-inventory']"></button>
+                </StackLayout>
+            </StackLayout>
+            <GridLayout columns="*,*" rows="*,*,*,*,*"  backgroundColor="lightgray">
+                <Label id="header" text="Item" col="0" row="0" ></Label>
+                <Label id="header" text="Remaning Quantity" col="1" row="0" ></Label>
+                <Label text="{{item1}}" col="0" row="1" ></Label>
+                <Label text="{{quantity1}}" col="1" row="1" ></Label>
+                <Label text="{{item2}}" col="0" row="2" ></Label>
+                <Label text="{{quantity1}}" col="1" row="2" ></Label>
+                <Label text="{{item3}}" col="0" row="3" ></Label>
+                <Label text="{{quantity1}}" col="1" row="3" ></Label>
+                <Label text="{{item4}}" col="0" row="4" ></Label>
+                <Label text="{{quantity4}}" col="1" row="4" ></Label>
+            </GridLayout>
+        </StackLayout>
     </StackLayout>
     <StackLayout style="background-color: black;">
         <ns-employee-tab-manager></ns-employee-tab-manager>

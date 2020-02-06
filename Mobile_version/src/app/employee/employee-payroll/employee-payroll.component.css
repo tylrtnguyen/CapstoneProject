@@ -1,1 +1,18 @@
 /* Add mobile styles for the component here.  */
+label{
+    margin-left: 10%;
+    padding: 15px;
+}
+.child{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+button{
+    padding: 5px;
+    width: 40%;
+}
+label#top{
+    color: aqua;
+    font-size: 30px;
+    margin-top: 10px;
+}

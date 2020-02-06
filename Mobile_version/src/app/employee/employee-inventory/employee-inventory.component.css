@@ -1,1 +1,17 @@
 /* Add mobile styles for the component here.  */
+label{
+    text-align: center;
+}
+label#header{
+    font-weight: bold;
+    font-size: xx-large;
+}
+label#center{
+    padding: 70px 0;
+    font-weight: bold;
+    font-size: 25px;
+    color: rebeccapurple;
+}
+button{
+    width: 100%;
+}

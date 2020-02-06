@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeePayrollComponent implements OnInit {
 
+  today = new Date();
+  currentDate  = String(this.today.getMonth() + 1) + '/' + String(this.today.getDate()) + '/' + this.today.getFullYear();
+
   constructor() { }
 
   ngOnInit() {

@@ -3,7 +3,19 @@
         <ns-action-bar></ns-action-bar>
     </StackLayout>
     <StackLayout style="height: 90%;">
-        <Button text="employee-payroll works!" class="btn btn-primary"></Button>
+        <StackLayout class="child">
+            <label id="top" text="Payroll"></label>
+        </StackLayout>
+        <StackLayout class="child">
+            <label text="From: {{currentDate}}" style="font-size: 18px;"></label>
+            <label text="To: " style="font-size: 18px;"></label>
+        </StackLayout>
+        <StackLayout>
+            <StackLayout orientation="horizontal">
+                <button class="btn-rounded-lg" style="background-color:deepskyblue;" text="View"></button>
+                <button class="btn-rounded-lg" style="background-color: forestgreen;" text="Save"></button>
+            </StackLayout>
+        </StackLayout>
     </StackLayout>
     <StackLayout style="background-color: black;">
         <ns-employee-tab-manager></ns-employee-tab-manager>

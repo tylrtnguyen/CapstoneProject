@@ -19,6 +19,7 @@ import { ManagerTabManagerComponent } from "./manager/manager-tab-manager/manage
 import { EmployeeInventoryComponent } from "./employee/employee-inventory/employee-inventory.component";
 import { EmployeeProfileComponent } from "./employee/employee-profile/employee-profile.component";
 import { EmployeePayrollComponent } from "./employee/employee-payroll/employee-payroll.component";
+import { EmployeeUpdateInventoryComponent } from "./employee/employee-update-inventory/employee-update-inventory.component";
 // import { ItemDetailComponent } from "./item/item-detail.component";
 
 const routes: Routes = [
@@ -39,7 +40,8 @@ const routes: Routes = [
     { path: "manager-registration", component: ManagerRegistrationComponent},
     { path: "employee-inventory", component: EmployeeInventoryComponent},
     { path: "employee-profile", component: EmployeeProfileComponent},
-    { path: "employee-payroll", component: EmployeePayrollComponent}
+    { path: "employee-payroll", component: EmployeePayrollComponent},
+    { path: "employee-update-inventory", component: EmployeeUpdateInventoryComponent}
 
 ];
 
