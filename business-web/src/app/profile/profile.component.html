@@ -1,0 +1,33 @@
+<div id="profilePage">
+  <app-navbar></app-navbar>
+  <div class="profileForm">
+
+      <form class="profile-form" [formGroup]='profile' >
+        <h4><span>Sign up as restaurant</span> manager/owner</h4>
+        <br>
+        <igx-input-group class="form">
+          <input igxInput name ="fullname" placeholder="Enter your name" type="text" formControlName="fullname"/>
+          <label igxLabel for="fullname">Your name:</label>
+        </igx-input-group>
+        <br>
+        <igx-input-group class="form">
+          <input igxInput name="restaurant" placeholder="Enter your restaurant name" type ="text" formControlName="restaurant"/>
+          <label igxLabel for="restaurant">Enter your restaurant name:</label>
+        </igx-input-group>
+        <br>
+        <igx-select #select class="formSelect" name="pos" >
+          <label igxLabel> POS integration</label>
+          <igx-select-item value = "1">Option 1</igx-select-item>
+          <igx-select-item value = "2">Option 2</igx-select-item>
+          <igx-select-item value = "3">Option 3</igx-select-item>
+        </igx-select>
+
+        <br><br>
+        <button igxButton = "raised" igxRipple="white" (click)="checkout($event)" type="submit"> Go to last step </button>
+
+      </form>
+  </div>
+  <div *ngIf="loading"> Loading...</div>
+  <pre *ngIf="confirmation"> {{ confirmation | json }}</pre>
+
+</div>

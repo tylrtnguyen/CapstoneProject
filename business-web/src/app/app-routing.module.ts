@@ -11,11 +11,13 @@ import { ContactUsComponent } from './features/contact-us/contact-us.component';
 import { NavbarComponent } from './features/navbar/navbar.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { TrialPageComponent } from './trial-page/trial-page.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
 
   {path: 'main', component: MainPageComponent},
-  {path: 'guestTrial', component:TrialPageComponent},
+  {path: 'guestTrial', component: TrialPageComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: '', redirectTo: 'main', pathMatch: 'full'}
 ];
 

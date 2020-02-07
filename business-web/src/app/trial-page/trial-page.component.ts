@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators, Form} from '@angular/forms';
-import {Route} from '@angular/router';
+import {FormControl, FormGroupDirective, NgForm, Validators, Form, FormGroup, FormBuilder} from '@angular/forms';
+import {Route,Router} from '@angular/router';
 import {ErrorStateMatcher} from '@angular/material/core';
 
 export class customErrorMatcher implements ErrorStateMatcher{
@@ -16,10 +16,19 @@ export class customErrorMatcher implements ErrorStateMatcher{
   styleUrls: ['./trial-page.component.css']
 })
 export class TrialPageComponent implements OnInit {
+  public user: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder, private router: Router ) {
+    this.user = fb.group({
+      email : ['', Validators.required],
+      password : ['', Validators.required]
+
+    });
+   }
 
   ngOnInit() {
   }
-
+  signUp() {
+    this.router.navigate(['profile']);
+  }
 }

@@ -1,16 +1,23 @@
-<div class="register-page">
-<div id="header"> <p> <span id="orange">Sign up as restaurant</span> manager/owner </p></div>
-<div id="register">
-  <form id = "sign-up" >
-  <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input matInput placeholder="Enter your email here">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Password</mat-label>
-    <input matInput placeholder="Enter your password here">
-  </mat-form-field>
-  <button mat-raised-button type="submit">Sign up</button>
-</form>
+<div id="trialPage">
+<app-navbar></app-navbar>
+<div class="registerForm">
+
+    <form class="register-form" [formGroup]='user' >
+      <h4><span>Sign up as restaurant</span> manager/owner</h4>
+
+      <igx-input-group class="form">
+        <label igxLabel for="email">Email:</label>
+        <input igxInput name="email" type ="text" formControlName="email"/>
+
+      </igx-input-group>
+
+      <igx-input-group class="form">
+        <label igxLabel for="password">Password:</label>
+        <input igxInput name="password" type ="password" formControlName="password"/>
+      </igx-input-group>
+
+      <br><br>
+      <button igxButton = "raised" igxRipple="white" (click)="signUp()" type="submit" >Next</button>
+    </form>
 </div>
 </div>

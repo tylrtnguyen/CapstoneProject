@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import { MatMenuModule, MatToolbarModule, MatGridListModule, MatGridList, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatIcon } from '@angular/material';
 
-import {MatMenuModule,MatToolbarModule,MatGridListModule, MatGridList,MatButtonModule,MatFormFieldModule, MatInputModule,MatIconModule, MatIcon} from '@angular/material';
-
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { IgxIconModule, IgxInputGroupModule, IgxButtonModule, IgxRippleModule, IgxDatePickerModule, IgxTimePickerModule, IgxComboModule, IgxSelectModule } from "igniteui-angular";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,8 @@ import { ContactUsComponent } from './features/contact-us/contact-us.component';
 import { NavbarComponent } from './features/navbar/navbar.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { TrialPageComponent } from './trial-page/trial-page.component';
+import { ProfileComponent } from './profile/profile.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { TrialPageComponent } from './trial-page/trial-page.component';
     ContactUsComponent,
     NavbarComponent,
     MainPageComponent,
-    TrialPageComponent
+    TrialPageComponent,
+    ProfileComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +50,19 @@ import { TrialPageComponent } from './trial-page/trial-page.component';
     MatInputModule,
     NgbModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    IgxIconModule,
+    IgxInputGroupModule,
+    IgxButtonModule,
+    IgxRippleModule,
+    IgxDatePickerModule,
+    IgxTimePickerModule,
+    IgxComboModule,
+    IgxSelectModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

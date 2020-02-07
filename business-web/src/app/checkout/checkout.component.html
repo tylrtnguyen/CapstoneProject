@@ -1,0 +1,7 @@
+<button igxButton (click) = 'checkout($event)'>
+  Enter payment information (No charged action will be performed)
+
+</button>
+
+<div *ngIf="loading"> Loading...</div>
+<pre *ngIf="confirmation"> {{ confirmation | json }}</pre>

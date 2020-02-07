@@ -1,27 +1,29 @@
-#trialPage{
+#profile{
+  height: 88vh;
   display: block;
 }
 
-.registerForm{
-  padding: 15% 10%;
+.profileForm{
+  padding: 10% 10%;
   margin: 0 auto;
 }
-
-.form {
-  width: 25%;
-
+.form{
+  width: 50%;
 }
-
+.formSelect{
+  width: 25%;
+}
 h4 {
-
+  
   font-weight: bold;
   color:#3B4A6B
 }
-button{
 
+button{
   position: center;
-  float:center;
   width: 25%;
+
+  float:center;
 }
 span{
   color:#FCBB47 ;
