@@ -5,7 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { MatMenuModule, MatToolbarModule, MatGridListModule, MatGridList, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatIcon } from '@angular/material';
 
-import { IgxIconModule, IgxInputGroupModule, IgxButtonModule, IgxRippleModule, IgxDatePickerModule, IgxTimePickerModule, IgxComboModule, IgxSelectModule } from "igniteui-angular";
+import { IgxIconModule, IgxInputGroupModule, IgxButtonModule, IgxRippleModule, IgxDatePickerModule, IgxTimePickerModule, IgxComboModule, IgxSelectModule, IgxToggleModule, IgxLayoutModule } from "igniteui-angular";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,7 +21,9 @@ import { NavbarComponent } from './features/navbar/navbar.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { TrialPageComponent } from './trial-page/trial-page.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PaymentHandlerComponent } from './payment-handler/payment-handler.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
     MainPageComponent,
     TrialPageComponent,
     ProfileComponent,
-    CheckoutComponent
+    PaymentHandlerComponent,
+    CheckoutComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
     IgxTimePickerModule,
     IgxComboModule,
     IgxSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    IgxToggleModule,
+    IgxLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

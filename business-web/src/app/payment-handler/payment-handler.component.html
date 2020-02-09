@@ -1,0 +1,12 @@
+
+<div class="payment-form">
+  <div id="card-element" #cardElement>
+    <!-- this is for collecting card information -->
+  </div>
+  <div id="card-error" >
+    <p> {{cardError}}</p>
+  </div>
+  <br>
+  <button  igxButton="raised" igxButtonColor="#3B4A6B" igxButtonBackground="#F0D43A" id="payment-submit" (click) = "handleForm($event)">Pay</button>
+</div>
+

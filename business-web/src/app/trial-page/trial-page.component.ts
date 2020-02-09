@@ -16,13 +16,24 @@ export class customErrorMatcher implements ErrorStateMatcher{
   styleUrls: ['./trial-page.component.css']
 })
 export class TrialPageComponent implements OnInit {
-  public user: FormGroup;
 
+
+  matcher =new customErrorMatcher();
+
+
+
+
+  user :FormGroup;
   constructor(private fb: FormBuilder, private router: Router ) {
     this.user = fb.group({
-      email : ['', Validators.required],
-      password : ['', Validators.required]
-
+      email : ['', [
+        Validators.required,
+        Validators.email,
+      ]],
+      password : ['',[
+        Validators.required,
+        Validators.minLength(8)
+      ]]
     });
    }
 

@@ -1,20 +1,20 @@
-#profile{
-  height: 88vh;
-  display: block;
+
+
+.profile-form{
+  margin: 15% 15%;
+  justify-content: center;
 }
 
-.profileForm{
-  padding: 10% 10%;
-  margin: 0 auto;
-}
 .form{
   width: 50%;
 }
+
 .formSelect{
   width: 25%;
 }
+
 h4 {
-  
+
   font-weight: bold;
   color:#3B4A6B
 }

@@ -12,12 +12,14 @@ import { NavbarComponent } from './features/navbar/navbar.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { TrialPageComponent } from './trial-page/trial-page.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
 
   {path: 'main', component: MainPageComponent},
   {path: 'guestTrial', component: TrialPageComponent},
   {path: 'profile', component: ProfileComponent},
+  {path: 'checkout' , component:CheckoutComponent},
   {path: '', redirectTo: 'main', pathMatch: 'full'}
 ];
 

@@ -2,7 +2,5 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400&display=swap');
 html, body { height: 100%; }
-body { margin: 0; font-family: "Quicksand", "Helvetica Neue", sans-serif;overflow: hidden; line-height: 1.6;
-  height: 100vh;
-}
+body { margin: 0; font-family: "Quicksand", "Helvetica Neue", sans-serif;overflow: hidden; line-height: 1.6;}
 

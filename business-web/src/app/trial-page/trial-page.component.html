@@ -2,22 +2,23 @@
 <app-navbar></app-navbar>
 <div class="registerForm">
 
-    <form class="register-form" [formGroup]='user' >
+    <form class="register-form" [formGroup]="user"  >
       <h4><span>Sign up as restaurant</span> manager/owner</h4>
 
       <igx-input-group class="form">
         <label igxLabel for="email">Email:</label>
-        <input igxInput name="email" type ="text" formControlName="email"/>
+        <input  igxInput formControlName="email" name="email" type ="text"  #email/>
 
       </igx-input-group>
 
       <igx-input-group class="form">
         <label igxLabel for="password">Password:</label>
-        <input igxInput name="password" type ="password" formControlName="password"/>
+        <input igxInput formControlName="password" name="password"  type ="password"  #password/>
+        <igx-hint position="start">  </igx-hint>
       </igx-input-group>
 
       <br><br>
-      <button igxButton = "raised" igxRipple="white" (click)="signUp()" type="submit" >Next</button>
+      <button igxButton = "raised" igxButtonColor="#3B4A6B" igxButtonBackground="#F0D43A"  igxRipple="white" (click)="signUp()" [disabled] = " user.invalid" type="submit"  >Next</button>
     </form>
 </div>
 </div>

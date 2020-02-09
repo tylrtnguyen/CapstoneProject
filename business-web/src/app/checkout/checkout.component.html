@@ -1,7 +1,8 @@
-<button igxButton (click) = 'checkout($event)'>
-  Enter payment information (No charged action will be performed)
+<app-navbar></app-navbar>
 
-</button>
-
-<div *ngIf="loading"> Loading...</div>
-<pre *ngIf="confirmation"> {{ confirmation | json }}</pre>
+<div class="checkout-form">
+  <label><h4> Pay with your <span> credit/debit </span> card </h4></label>
+  <span><p>To complete sign up, you need to provide us your payment information. There will be no charge for using product as trial account.</p></span>
+  <br>
+  <app-payment-handler></app-payment-handler>
+</div>

@@ -1,10 +1,9 @@
-#trialPage{
-  display: block;
-}
+
 
 .registerForm{
-  padding: 15% 10%;
+  padding: 15% 15%;
   margin: 0 auto;
+  
 }
 
 .form {
@@ -22,7 +21,11 @@ button{
   position: center;
   float:center;
   width: 25%;
+
 }
 span{
   color:#FCBB47 ;
+}
+igx-hint{
+  width: 100%;
 }
