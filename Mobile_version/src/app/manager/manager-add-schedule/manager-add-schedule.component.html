@@ -12,7 +12,6 @@
     <!-- start time -->
     <Button text='Start Time' (tap)="start_time()"></Button>
     <StackLayout>
-
         <TimePicker *ngIf="show_start_time"  verticalAlignment="center"
             (loaded)="onTimeLoad($event)" (timeChange)="onStartTimeSelected($event)">
         </TimePicker>

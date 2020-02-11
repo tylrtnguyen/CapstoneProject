@@ -140,8 +140,10 @@ export class ManagerAddScheduleComponent implements OnInit {
         // console.log(`Chosen end time: ${time}`);
     }
     onSubmit() {
-        this.share.work_date = this.selected_date
+        this.share.selected_work_date = this.selected_date
         console.log(`Employees : ${this.selected_employees_final} is start working from ${this.selected_start_date} to ${this.selected_end_date} on this date ${this.selected_date} `)
+        const schedule = {nameList : this.selected_employees_final , start_time : this.selected_start_date , end_time : this.selected_end_date , date : this.selected_date }
+        this.share.add_work_schedule(schedule)
         this.router.navigateByUrl('/manager-schedule')
     }
 }
