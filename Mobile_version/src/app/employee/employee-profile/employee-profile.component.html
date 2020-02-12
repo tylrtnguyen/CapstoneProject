@@ -3,7 +3,17 @@
         <ns-action-bar></ns-action-bar>
     </StackLayout>
     <StackLayout style="height: 90%;">
-        <Button text="employee-profile works!" class="btn btn-primary"></Button>
+        <StackLayout style="height: 30%;">
+            <!-- <Image></Image> -->
+            <label class="center" id="name" text={{name}}></label>
+        </StackLayout>
+        <StackLayout>
+            <Button text = "ID:                {{id}}" width = "100%"></Button>
+            <Button text = "Email:            {{email}}" width = "100%" (tap)="changeEmail()"></Button>
+            <Button text = "Phone:           {{phone}}" width = "100%" (tap)="changePhone()"></Button>
+            <Button text = "Location:       {{location}}" width = "100%"></Button>
+            <Button text = "Department:    {{department}}" width = "100%"></Button>
+        </StackLayout>
     </StackLayout>
     <StackLayout style="background-color: black;">
         <ns-employee-tab-manager></ns-employee-tab-manager>
