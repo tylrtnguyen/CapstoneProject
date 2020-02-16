@@ -13,10 +13,17 @@ import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 export class ManagerHomeComponent implements OnInit {
     ifAndroid: Boolean;
     ifIOS: Boolean;
+    clock_data = [{name : 'Something'}]
     constructor(public router: Router, public page: Page) {
         this.page.actionBarHidden = true;
     }
 
+    dummy_data = [
+        {name : "Thanh" , age : 84},
+        {name : "Quang" , age : 84},
+        {name : "Tu" , age : 84},
+        {name : "Thong" , age : 84},
+    ]
     ngOnInit() {
         if (isAndroid) {
             this.ifAndroid = true;

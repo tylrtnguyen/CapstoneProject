@@ -1,19 +1,23 @@
 <StackLayout class='page'>
     <ns-manager-calendar></ns-manager-calendar>
 
-    <StackLayout>
-        <StackLayout style="background-color: antiquewhite ;" margin="20" height="80%">
+    <StackLayout style="margin-left: 20px; margin-right: 20px;">
+        <StackLayout style="background-color: antiquewhite ;">
             <GridLayout rows="auto" columns="*">
-                <Label row="0" horizontalAlignment="right" text="Currently Working :"></Label>
-                <Label row="0" horizontalAlignment="left" text="Number of worker : "></Label>
-                
+                <Label style='font-size: 14px' class='border-top-right-left' row="0"
+                    horizontalAlignment="left" text="Clocked In :"></Label>
+                <Label style='font-size: 14px;' class='border-top-right-left' row="0"
+                    horizontalAlignment="right" text="N0 of worker : "></Label>
             </GridLayout>
-
-            <!-- <ListView>
-                <Label text='Display the current working employee'></Label>
-                <Label text='Display the information of the employee'></Label>
-            </ListView> -->
         </StackLayout>
+        <RadListView style=' border-width: 2px; border-bottom-right-radius: 15px; border-bottom-left-radius:15px' [items]="dummy_data" >
+            <ng-template let-item="item">
+                <StackLayout  orientation="horizontal">
+                    <Label class="nameLabel" [text]="item.name"></Label>
+                    <Label class="nameLabel" [text]="item.age"></Label>
+                </StackLayout>
+            </ng-template>
+        </RadListView>
     </StackLayout>
+    <ns-manager-tab-manager></ns-manager-tab-manager>
 </StackLayout>
-<ns-manager-tab-manager></ns-manager-tab-manager>

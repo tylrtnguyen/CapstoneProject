@@ -41,6 +41,7 @@ import { EmployeeTabManagerComponent } from './employee/employee-tab-manager/emp
 import { EmployeeInventoryComponent } from './employee/employee-inventory/employee-inventory.component';
 import { EmployeeProfileComponent } from './employee/employee-profile/employee-profile.component';
 import { EmployeeUpdateInventoryComponent } from './employee/employee-update-inventory/employee-update-inventory.component';
+import { ManagerDateRangeComponent } from './manager/manager-date-range/manager-date-range.component';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -98,6 +99,7 @@ import { EmployeeUpdateInventoryComponent } from './employee/employee-update-inv
         EmployeeInventoryComponent,
         EmployeeProfileComponent,
         EmployeeUpdateInventoryComponent,
+        ManagerDateRangeComponent,
         
 
         //Share Service        

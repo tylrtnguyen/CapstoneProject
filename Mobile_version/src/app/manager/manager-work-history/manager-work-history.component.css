@@ -1,1 +1,22 @@
 /* Add mobile styles for the component here.  */
+/* Add mobile styles for the component here.  */
+.inventory-header{
+    text-align: center;
+    font-size: 32px;
+    padding: 20px;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.border-top-bottom-right{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-width: 2px;
+}
+.border-top-bottom-left{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-width: 2px;
+}

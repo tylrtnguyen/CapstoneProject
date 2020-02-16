@@ -4,3 +4,9 @@ Image {
     width: 100;
     height: 100 ;
 }
+
+.border-top-right-left{
+    border-width: 2px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}

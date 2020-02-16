@@ -89,22 +89,23 @@ export class ManagerAddScheduleComponent implements OnInit {
         this.selected_date = format_date
         
     }
-
-  
-
     show_date() {
         this.show_datepicker = !this.show_datepicker;
+        this.show_start_time = false
+        this.show_end_time = false
+      
     }
     start_time() {
         this.show_start_time = !this.show_start_time;
+        this.show_end_time = false
+        this.show_datepicker = false
     }
     end_time() {
         this.show_end_time = !this.show_end_time;
+        this.show_start_time = false
+        this.show_datepicker = false
     }
-    show_employee() {
-        this.show_employee_condition = !this.show_employee_condition;
-        this.selected_employees_final = this.temp_selected_employees;
-    }
+    
 
     public onItemSelected(args: ListViewEventData) {
         // this.selected_employees.push(this.dataItems[args.index])
@@ -140,6 +141,7 @@ export class ManagerAddScheduleComponent implements OnInit {
         // console.log(`Chosen end time: ${time}`);
     }
     onSubmit() {
+        this.selected_employees_final = this.temp_selected_employees;
         this.share.selected_work_date = this.selected_date
         console.log(`Employees : ${this.selected_employees_final} is start working from ${this.selected_start_date} to ${this.selected_end_date} on this date ${this.selected_date} `)
         const schedule = {nameList : this.selected_employees_final , start_time : this.selected_start_date , end_time : this.selected_end_date , date : this.selected_date }

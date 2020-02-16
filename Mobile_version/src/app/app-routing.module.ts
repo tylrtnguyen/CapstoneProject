@@ -20,6 +20,7 @@ import { EmployeeInventoryComponent } from "./employee/employee-inventory/employ
 import { EmployeeProfileComponent } from "./employee/employee-profile/employee-profile.component";
 import { EmployeePayrollComponent } from "./employee/employee-payroll/employee-payroll.component";
 import { EmployeeUpdateInventoryComponent } from "./employee/employee-update-inventory/employee-update-inventory.component";
+import { ManagerDateRangeComponent } from "./manager/manager-date-range/manager-date-range.component";
 // import { ItemDetailComponent } from "./item/item-detail.component";
 
 const routes: Routes = [
@@ -33,15 +34,18 @@ const routes: Routes = [
     { path: "manager-inventory", component: ManagerInventoryComponent},
     { path: "manager-employee-list", component: ManagerEmployeeListComponent },
     { path: "manager-add-schedule", component: ManagerAddScheduleComponent },
+    { path: "manager-date-range", component: ManagerDateRangeComponent},
+    { path: "manager-registration", component: ManagerRegistrationComponent},
+
     { path: "employee-home", component: EmployeeHomeComponent},
     { path: "employee-schedule", component: EmployeeScheduleViewComponent},
     { path: "registration", component: RegistrationComponent},
     { path: "employee-registration", component: EmployeeRegistrationComponent},
-    { path: "manager-registration", component: ManagerRegistrationComponent},
     { path: "employee-inventory", component: EmployeeInventoryComponent},
     { path: "employee-profile", component: EmployeeProfileComponent},
     { path: "employee-payroll", component: EmployeePayrollComponent},
-    { path: "employee-update-inventory", component: EmployeeUpdateInventoryComponent}
+    { path: "employee-update-inventory", component: EmployeeUpdateInventoryComponent},
+   
 
 ];
 

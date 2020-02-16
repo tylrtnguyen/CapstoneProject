@@ -1,0 +1,8 @@
+<GridLayout columns="*" rows='*,70'>
+    <RadCalendar #myCalendar [selectionMode]="selectionMode"></RadCalendar>
+    <StackLayout col='0' row='1'>
+        <StackLayout orientation='horizontal'>
+            <Button horizontalAlignment='center' width='93%' text='Submit' [nsRouterLink]="['/manager-work-history']"></Button>
+        </StackLayout>
+    </StackLayout>
+</GridLayout>
