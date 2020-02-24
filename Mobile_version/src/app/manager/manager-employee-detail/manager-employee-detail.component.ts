@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Employee } from "./Employee";
 import { ShareService } from "~/app/share-services/share.service";
+import { RadDataFormComponent } from "nativescript-ui-dataform/angular";
 
 @Component({
     selector: "ns-manager-employee-detail",
@@ -34,11 +35,13 @@ export class ManagerEmployeeDetailComponent implements OnInit {
             {
                 name: "wage",
                 displayName: "Wage",
+                editor: "Number",
                 index: 3
             },
             {
                 name: "dob",
                 displayName: "Date of Birth",
+                //Date Picker not current date
                 index: 4
             },
             {
@@ -58,8 +61,12 @@ export class ManagerEmployeeDetailComponent implements OnInit {
             }
         ]
     };
-    constructor(private route: ActivatedRoute, public share: ShareService, public router : Router) {}
-
+    constructor(
+        private route: ActivatedRoute,
+        public share: ShareService,
+        public router: Router
+    ) {}
+    temp_employee;
     employee_detail;
     ngOnInit() {
         const query = this.route.snapshot.params.id;
@@ -67,31 +74,77 @@ export class ManagerEmployeeDetailComponent implements OnInit {
             filter => filter.name === query
         );
         const em = this.employee_detail[0];
-        console.log(em.phone_number);
         let firstname = "";
         let lastname = "";
         [firstname, lastname] = query.split(" ");
-        console.log(typeof em.phone_number);
+ 
+        //Pre value put in
+        this.temp_employee = [
+            firstname,
+            lastname,
+            em.email,
+            parseInt(em.wage),
+            em.dob,
+            em.position,
+            em.address,
+            em.phone_number
+        ]
+
         this._employee = new Employee(
             firstname,
             lastname,
             em.email,
             parseInt(em.wage),
             em.dob,
-            em.posistion,
+            em.position,
             em.address,
             em.phone_number
         );
-        //fuck you back button demo
-        
     }
+
     get employee(): Employee {
         return this._employee;
     }
 
-    submit(){
-      console.log("Submit button pressed")
-      
-    }
 
+    @ViewChild("employee_radForm", { static: false })
+    myEmployeeDataForm: RadDataFormComponent;
+    submit() {
+        this.myEmployeeDataForm.dataForm.commitAll();
+        const em_store = this.myEmployeeDataForm.dataForm.source;
+        // console.log(JSON.stringify(em_store))
+        // console.log(this.temp_employee)
+        const em_store_arr = [
+            em_store.first_name,
+            em_store.last_name,
+            em_store.email,
+            em_store.wage,
+            em_store.dob,
+            em_store.position,
+            em_store.address,
+            em_store.phone_number
+        ];
+
+        //COMPARE PRE VALUE AND POST VALUE
+        // PRE Value
+        console.log(this.temp_employee)
+        // POST Value
+        console.log(em_store)
+
+        const check_change = this.temp_employee.filter(filter =>filter===em_store_arr)
+        console.log(check_change.length)
+        if(check_change.length == 0)
+        {
+            console.log("You have not change any data yet !")
+        }
+        else{
+            alert(
+                {
+                    title: "Employee Change Details",
+                    message: `${em_store_arr[0]} ${em_store_arr[1]} information has been updated`,
+                    okButtonText: "OK"
+                });
+        }
+        
+    }
 }
