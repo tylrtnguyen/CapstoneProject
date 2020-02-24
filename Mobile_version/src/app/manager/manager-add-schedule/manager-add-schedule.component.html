@@ -45,14 +45,14 @@
             <Button class='button_title' col='0' row='0' (tap)='show_employee()' text='Employees'></Button>
         </GridLayout>
 
-        <StackLayout class='content' >
-            <RadListView [items]="dataItems" selectionBehavior="Press" multipleSelection="true"
+        <StackLayout class='content' height=100%>
+            <RadListView [items]="dataItems" selectionBehavior="Press" multipleSelection="true" height=100%
                 (itemSelected)="onItemSelected($event)" (itemDeselected)="onItemDeselected($event)">
                 <ng-template let-item="item">
-                    <StackLayout ios:class="iosListItemStackLayout" android:class="androidListItemStackLayout">
-                        <Label ios:class="iosNameLabel" android:class="androidNameLabel" [text]="item.name"></Label>
-                        <Label ios:class="iosDescriptionLabel" android:class="androidDescriptionLabel"
-                            class="descriptionLabel" [text]="item.position"></Label>
+                    <StackLayout >
+                        <Label  [text]="item.name"></Label>
+                        <Label 
+                             [text]="item.position"></Label>
                     </StackLayout>
                 </ng-template>
             </RadListView>
@@ -61,5 +61,5 @@
 
         
     </StackLayout>
+    <ns-manager-tab-manager></ns-manager-tab-manager>
 </StackLayout>
-<ns-manager-tab-manager></ns-manager-tab-manager>

@@ -6,6 +6,7 @@ import { NativeScriptUICalendarModule } from "nativescript-ui-calendar/angular";
 import { DropDownModule } from "nativescript-drop-down/angular";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 import { NativeScriptDateTimePickerModule } from "nativescript-datetimepicker/angular";
+import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
 
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -48,7 +49,8 @@ import { ManagerDateRangeComponent } from './manager/manager-date-range/manager-
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 // Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
-// import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import { ManagerEmployeeDetailComponent } from './manager/manager-employee-detail/manager-employee-detail.component';
 
 @NgModule({
     bootstrap: [
@@ -62,7 +64,9 @@ import { ManagerDateRangeComponent } from './manager/manager-date-range/manager-
         NativeScriptUICalendarModule,
         DropDownModule,
         NativeScriptUIListViewModule,
-        NativeScriptDateTimePickerModule
+        NativeScriptDateTimePickerModule,
+        NativeScriptHttpClientModule,
+        NativeScriptUIDataFormModule
     ],
     declarations: [
 
@@ -100,6 +104,7 @@ import { ManagerDateRangeComponent } from './manager/manager-date-range/manager-
         EmployeeProfileComponent,
         EmployeeUpdateInventoryComponent,
         ManagerDateRangeComponent,
+        ManagerEmployeeDetailComponent,
         
 
         //Share Service        

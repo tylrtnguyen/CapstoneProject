@@ -1,0 +1,8 @@
+<!-- <RadDataForm tkExampleTitle tkToggleNavButton [source]="person"></RadDataForm> -->
+<StackLayout>
+    <RadDataForm [source]="employee" [metadata]="employee_meta"></RadDataForm>
+    <Button text='Submit' (tap)='submit()'></Button>
+    <Button text='Cancle' [nsRouterLink]="['/manager-home']"></Button>    
+</StackLayout>
+<ns-manager-tab-manager></ns-manager-tab-manager>
+

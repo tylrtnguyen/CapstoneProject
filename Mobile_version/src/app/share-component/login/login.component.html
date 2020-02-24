@@ -5,11 +5,11 @@
     <Label text='Welcome to the login page' style="font-size: x-large"></Label>
   </StackLayout>
   
-  <TextField hint='Your Email Address' keyboardType="email"></TextField>
+  <TextField hint='Your Email Address' keyboardType="email" ></TextField>
   <TextField hint='Password' secure='true'></TextField>
   
   <StackLayout style="margin: 100px;">
-    <Button class="btn-primary btn-rounded-lg  "  text=' Sign in as manager' [nsRouterLink]="['/manager-home']" ></Button>
+    <Button class="btn-primary btn-rounded-lg"   text=' Sign in as manager' [nsRouterLink]="['/manager-home']" ></Button>
     <Button class="btn-rounded-lg" backgroundColor="#871414" text=' Sign in as a staff member' [nsRouterLink] = "['/employee-home']"></Button>
   </StackLayout>
 </StackLayout>

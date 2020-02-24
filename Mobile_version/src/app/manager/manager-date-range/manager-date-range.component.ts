@@ -16,7 +16,6 @@ export class ManagerDateRangeComponent implements OnInit {
   @ViewChild("myCalendar", { static: false }) _calendar: RadCalendarComponent;
   ngOnInit() {
     this.page.actionBarHidden = true;
-    this._calendar.nativeElement.reload();
   }
   get selectionMode() {
     return CalendarSelectionMode.Range

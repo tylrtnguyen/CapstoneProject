@@ -1,1 +1,26 @@
 /* Add mobile styles for the component here.  */
+.border-top-bottom-right{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-width: 2px;
+}
+.border-top-bottom-left{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-width: 2px;
+}
+.border-bottom-left-right{
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-width : 2px;
+}
+.border-top-left-right{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-width : 2px;
+}
+.header{
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center; 
+}

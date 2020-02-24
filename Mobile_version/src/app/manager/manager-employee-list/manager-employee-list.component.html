@@ -1,4 +1,61 @@
 <StackLayout>
-    <Button text="manager-employee-list works!" class="btn btn-primary"></Button>
-<ns-manager-tab-manager></ns-manager-tab-manager>
+    <!-- <Label text="{{name}}"></Label>
+    <Label text="{{email}}"></Label>
+    <Label text="{{password}}"></Label>
+    <Label text="{{timestamp}}"></Label>
+    <Button text='getData' (tap)="getAPI()"></Button> -->
+    <Label text='Employees List' class='header'></Label>
+
+    <RadListView [items]="employees_info" height='100%'>
+        <ng-template let-item="item">
+            <StackLayout>
+                <StackLayout backgroundColor='#d9d9d9'
+                    style='border-radius: 15px; border-width: 3px;border-color: red; '>
+                    <GridLayout columns="100,100,*,50" rows='25' orientation='horizontal'>
+                        <Button text='Edit' col='0' row='0' (tap)='employee_detail(item)'></Button>
+                        <Button col="3" row="0" style='border-width:2px ;border-radius:15px' text='X'
+                            (tap)="confirmation(item.name)"></Button>
+                    </GridLayout>
+                    <StackLayout orientation='vertical'>
+                        <StackLayout orientation='horizontal' class='border-top-left-right'>
+                            <Label style="font-weight: bold;" text='Employee Name : '></Label>
+                            <Label  class="nameLabel" [text]="item.name"></Label>
+                            <Label style="font-weight: bold;" text='Wage : '></Label>
+                            <Label width='100%' 
+                                style="font-weight: 500; text-align: center;" class="nameLabel" [text]="item.wage">
+                            </Label>
+                        </StackLayout>
+                        <StackLayout orientation='horizontal' style='border-width: 2px;'>
+                            <Label style="font-weight: bold;" text='Email : '></Label>
+                            <Label style='text-align: center' width='100%'  class="nameLabel"
+                                [text]="item.email"></Label>
+                        </StackLayout>
+                        <StackLayout orientation='horizontal' style='border-width: 2px;'>
+                            <Label style="font-weight: bold;" text='Position : '></Label>
+                            <Label width='100%' 
+                                style="font-weight: 500; text-align: center;" class="nameLabel" [text]="item.position">
+                            </Label>
+                        </StackLayout>
+                        <StackLayout orientation='horizontal' style='border-width: 2px;'>
+                            <Label style="font-weight: bold;" text='Date of Birth : '></Label>
+                            <Label style='text-align: center    ' width='100%' 
+                                class="nameLabel" [text]="item.dob"></Label>
+                        </StackLayout>
+                        <StackLayout orientation='horizontal' style='border-width: 2px;'>
+                            <Label style="font-weight: bold;" text='Address : '></Label>
+                            <Label width='100%'  class="nameLabel" [text]="item.address">
+                            </Label>
+                        </StackLayout>
+                        <StackLayout class='border-bottom-left-right' width='100%' orientation='horizontal'>
+                            <Label style="font-weight: bold;" text='Phone Number : '></Label>
+                            <Label style='text-align: center' width='100%'  class="nameLabel"
+                                [text]="item.phone_number">
+                            </Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ng-template>
+    </RadListView>
 </StackLayout>
+<ns-manager-tab-manager></ns-manager-tab-manager>

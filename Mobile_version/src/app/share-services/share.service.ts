@@ -1,10 +1,18 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
+import { Router } from "@angular/router";
+import { RouterExtensions } from "nativescript-angular/router";
+
+
 
 @Injectable({
     providedIn: "root"
 })
 export class ShareService {
+    constructor(private router : Router,private routerExtensions: RouterExtensions){}
+    //fuck you back button
+   
+
     selected_work_date: String;
     work_schedule_data = [
         {
@@ -51,7 +59,35 @@ export class ShareService {
         }
     ];
 
-    employees = [{ name: "Thanh Quan", position: "CEO", SIN: "183982" }];
+    employees_info = [
+        {
+            name: "Thanh Quan",
+            wage: "15",
+            position: "CEO",
+            email: "vuabaybune@gmail.com",
+            address: "somewhere in toronto",
+            phone_number: "6474651767",
+            dob: "16/1/1999"
+        },
+        {
+            name: "Tu Quan",
+            wage: "15",
+            position: "CEO",
+            email: "vuabaybune@gmail.com",
+            address: "somewhere in toronto",
+            phone_number: "6474651767",
+            dob: "16/1/1999"
+        },
+        {
+            name: "Thong Quan",
+            wage: "15",
+            position: "CEO",
+            email: "vuabaybune@gmail.com",
+            address: "somewhere in toronto",
+            phone_number: "6474651767",
+            dob: "16/1/1999"
+        }
+    ];
     
     inventory = [
         {
@@ -91,6 +127,8 @@ export class ShareService {
             seller_phone_number: "6474651767"
         }
     ];
+
+    
     add_work_schedule(schedule) {
         console.log("------- Add Schedule -------");
         const template = {
@@ -106,4 +144,7 @@ export class ShareService {
         template.date = schedule.date;
         this.work_schedule_data.push(template);
     }
+
+
+    
 }
