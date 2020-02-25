@@ -1,50 +1,53 @@
-<StackLayout>
-    <StackLayout height='14%'> 
+<StackLayout height='100%'>
+    <StackLayout>
         <Label class='inventory-header'
             style="border-radius: 15px; border-width: 3px; background-color: #444444; color: aliceblue;"
             text='Inventory List'></Label>
     </StackLayout>
 
-    <RadListView [items]="inventory_data">
-        <ng-template let-item="item">
-            <StackLayout>
-                <StackLayout backgroundColor='#d9d9d9' style='border-radius: 15px; border-width: 3px;'>
-                    <StackLayout orientation='horizontal'>
-                        <StackLayout class='border-top-bottom-left' width='75%' orientation='horizontal'>
-                            <Label style="font-weight: bold;" text='Product Name : '></Label>
-                            <Label class="nameLabel" [text]="item.product_name"></Label>
+    <StackLayout height='80%'>
+        <RadListView [items]="inventory_data" height=100%>
+            <ng-template let-item="item">
+                <StackLayout>
+                    <StackLayout backgroundColor='#d9d9d9' style='border-radius: 15px; border-width: 3px;'>
+                        <StackLayout orientation='horizontal'>
+                            <StackLayout class='border-top-bottom-left' width='75%' orientation='horizontal'>
+                                <Label style="font-weight: bold;" text='Product Name : '></Label>
+                                <Label class="nameLabel" [text]="item.product_name"></Label>
+                            </StackLayout>
+                            <StackLayout class='border-top-bottom-right' width='25%' orientation='horizontal'>
+                                <Label style="font-weight: 500; text-align: center;" class="nameLabel"
+                                    [text]="item.quantity"></Label>
+                            </StackLayout>
                         </StackLayout>
-                        <StackLayout class='border-top-bottom-right' width='25%' orientation='horizontal'>
-                            <Label style="font-weight: 500; text-align: center;" class="nameLabel" [text]="item.quantity"></Label>
+                        <StackLayout orientation='horizontal'>
+                            <StackLayout class='border-top-bottom-left' width='35%' orientation='horizontal'>
+                                <Label text='EXP:'></Label>
+                                <Label class="nameLabel" [text]="item.exp"></Label>
+                            </StackLayout>
+                            <StackLayout class='border-top-bottom-right' width='100%' orientation='horizontal'>
+                                <Label text='Distrubitor'></Label>
+                                <Label class="nameLabel" [text]="item.seller"></Label>
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
-                    <StackLayout orientation='horizontal'>
-                        <StackLayout class='border-top-bottom-left' width='35%' orientation='horizontal'>
-                            <Label text='EXP:'></Label>
-                            <Label class="nameLabel" [text]="item.exp"></Label>
-                        </StackLayout>
-                        <StackLayout class='border-top-bottom-right' width='100%' orientation='horizontal'>
-                            <Label text='Distrubitor'></Label>
-                            <Label class="nameLabel" [text]="item.seller"></Label>
-                        </StackLayout>
-                    </StackLayout>
-                    <GridLayout columns="90" rows="30" height='10%'>
-                        <Label row="0" col="0" height='30vh'
-                            style='border-top-left-radius: 15px;border-top-right-radius: 15px ; border-width: 2px;'
-                            text='Describsion : '></Label>
-                    </GridLayout>
-                    <StackLayout
-                        style='border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; border-width: 2px;'
-                        height='80vh' orientation='horizontal'>
+                        <GridLayout columns="90" rows="30" height='10%'>
+                            <Label row="0" col="0" height='30vh'
+                                style='border-top-left-radius: 15px;border-top-right-radius: 15px ; border-width: 2px;'
+                                text='Describsion : '></Label>
+                        </GridLayout>
+                        <StackLayout
+                            style='border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; border-width: 2px;'
+                            height='80vh' orientation='horizontal'>
 
 
-                        <Label width='100%' height='100%' class="nameLabel" [text]="item.desc"></Label>
+                            <Label width='100%' height='100%' class="nameLabel" [text]="item.desc"></Label>
 
+                        </StackLayout>
                     </StackLayout>
                 </StackLayout>
-            </StackLayout>
-        </ng-template>
-    </RadListView>
-    <ns-manager-tab-manager *ngIf='isIOS'></ns-manager-tab-manager>
+            </ng-template>
+        </RadListView>
+    </StackLayout>
+    <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
 </StackLayout>
-<ns-manager-tab-manager></ns-manager-tab-manager>
+<ns-manager-tab-manager *ngIf='ifAndroid'></ns-manager-tab-manager>

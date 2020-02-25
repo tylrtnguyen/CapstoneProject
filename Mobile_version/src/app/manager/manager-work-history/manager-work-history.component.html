@@ -1,3 +1,4 @@
+
 <StackLayout>
     <StackLayout orientation='horizontal'>
         <Button style='border-radius: 15px;' text='Pick A Date Range' [nsRouterLink]="['/manager-date-range']"></Button>
@@ -45,5 +46,6 @@
         <Label style='margin-left: 10%;' col='0' row='1' text='31.72h'></Label>
         <Label style='margin-right: 10%;' col='1' row='1' text='721.00$' horizontalAlignment="right"></Label>
     </GridLayout>
-    <ns-manager-tab-manager></ns-manager-tab-manager>
+    <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
 </StackLayout>
+<ns-manager-tab-manager *ngIf='ifAndroid'></ns-manager-tab-manager>

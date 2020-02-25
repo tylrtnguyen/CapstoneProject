@@ -7,7 +7,7 @@
     </GridLayout>
 
 
-    <RadListView [items]="temp_dataItems" height='75%'>
+    <RadListView [items]="temp_dataItems" height='61%'>
         <ng-template let-item="item">
             <StackLayout>
                 <StackLayout backgroundColor='#d9d9d9' style='border-radius: 15px; border-width: 3px;'>
@@ -42,6 +42,6 @@
             </StackLayout>
         </ng-template>
     </RadListView>
-    <!-- <ns-manager-tab-manager></ns-manager-tab-manager> -->
+    <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
 </StackLayout>
-<ns-manager-tab-manager></ns-manager-tab-manager>
+<ns-manager-tab-manager *ngIf='ifAndroid'></ns-manager-tab-manager>

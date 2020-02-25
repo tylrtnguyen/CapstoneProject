@@ -5,6 +5,7 @@ import { CalendarSelectionMode } from "nativescript-ui-calendar";
 import * as applicationModule from "tns-core-modules/application";
 import { RadCalendarComponent } from "nativescript-ui-calendar/angular";
 import { RouterExtensions } from "nativescript-angular/router";
+import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 
 @Component({
   selector: 'ns-manager-date-range',
@@ -14,7 +15,16 @@ import { RouterExtensions } from "nativescript-angular/router";
 export class ManagerDateRangeComponent implements OnInit {
   constructor(private routerExtensions: RouterExtensions , private page : Page) { }
   @ViewChild("myCalendar", { static: false }) _calendar: RadCalendarComponent;
+  ifAndroid: Boolean;
+    ifIOS: Boolean;
   ngOnInit() {
+    if (isAndroid) {
+      this.ifAndroid = true;
+      this.ifIOS = false;
+  } else if (isIOS) {
+      this.ifIOS = true;
+      this.ifAndroid = false;
+  }
     this.page.actionBarHidden = true;
   }
   get selectionMode() {

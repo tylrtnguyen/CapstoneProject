@@ -6,7 +6,7 @@
     <Button text='getData' (tap)="getAPI()"></Button> -->
     <Label text='Employees List' class='header'></Label>
 
-    <RadListView [items]="employees_info" height='100%'>
+    <RadListView [items]="employees_info" height='90%'>
         <ng-template let-item="item">
             <StackLayout>
                 <StackLayout backgroundColor='#d9d9d9'
@@ -57,5 +57,6 @@
             </StackLayout>
         </ng-template>
     </RadListView>
+    <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
 </StackLayout>
-<ns-manager-tab-manager></ns-manager-tab-manager>
+<ns-manager-tab-manager *ngIf='ifAndroid'></ns-manager-tab-manager>

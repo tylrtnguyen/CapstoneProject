@@ -3,17 +3,27 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { confirm } from "tns-core-modules/ui/dialogs";
 import { Router } from "@angular/router";
 import { ShareService} from "../../share-services/share.service";
+import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
+
 @Component({
     selector: "ns-manager-employee-list",
     templateUrl: "./manager-employee-list.component.html",
     styleUrls: ["./manager-employee-list.component.css"]
 })
 export class ManagerEmployeeListComponent implements OnInit {
-   
+    ifAndroid: Boolean;
+    ifIOS: Boolean;
     employees_info = []
 
     constructor(private http: HttpClient,private router : Router,public share : ShareService) {}
     ngOnInit() {
+        if (isAndroid) {
+            this.ifAndroid = true;
+            this.ifIOS = false;
+        } else if (isIOS) {
+            this.ifIOS = true;
+            this.ifAndroid = false;
+        }
         this.employees_info = this.share.employees_info
     }
 

@@ -5,5 +5,6 @@
         <Button col='1' row='0' text='Submit' (tap)='submit()'></Button>
         <Button col='2' row='0' text='Cancle' [nsRouterLink]="['/manager-home']"></Button>
     </GridLayout>
+    <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
 </StackLayout>
-<ns-manager-tab-manager></ns-manager-tab-manager>
+<ns-manager-tab-manager *ngIf='ifAndroid'></ns-manager-tab-manager>

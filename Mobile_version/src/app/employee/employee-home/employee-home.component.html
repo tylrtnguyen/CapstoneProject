@@ -1,20 +1,11 @@
-<!-- <ns-action-bar></ns-action-bar>
-<StackLayout class='page'>
-    <StackLayout>
-        <StackLayout>
-            <label text = 'test'></label>
-        </StackLayout>
-    </StackLayout>
-    <ns-employee-tab-manager></ns-employee-tab-manager>
-</StackLayout> -->
+
 <StackLayout class="Page">
     <StackLayout>
         <ns-action-bar></ns-action-bar>
     </StackLayout>
-    <StackLayout style="height: 90%;">
+    <StackLayout style="height: 92%;">
         <Button text="employee-home works!" class="btn btn-primary"></Button>
     </StackLayout>
-    <StackLayout style="background-color: black;">
-        <ns-employee-tab-manager></ns-employee-tab-manager>
-    </StackLayout>
+    <ns-employee-tab-manager *ngIf='ifIOS'></ns-employee-tab-manager>
 </StackLayout>
+<ns-employee-tab-manager *ngIf='ifAndroid'></ns-employee-tab-manager>

@@ -12,9 +12,19 @@ declare var java
     styleUrls: ["./manager-add-schedule.component.css"]
 })
 export class ManagerAddScheduleComponent implements OnInit {
+    ifAndroid: Boolean;
+    ifIOS: Boolean;
     constructor(public share : ShareService , public router :Router) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        if (isAndroid) {
+            this.ifAndroid = true;
+            this.ifIOS = false;
+        } else if (isIOS) {
+            this.ifIOS = true;
+            this.ifAndroid = false;
+        }
+    }
 
     dataItems = [
         {

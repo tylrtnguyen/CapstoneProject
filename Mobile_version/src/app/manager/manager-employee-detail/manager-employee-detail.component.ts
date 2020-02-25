@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Employee } from "./Employee";
 import { ShareService } from "~/app/share-services/share.service";
 import { RadDataFormComponent } from "nativescript-ui-dataform/angular";
+import { Page } from "tns-core-modules/ui/page";
+import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 
 @Component({
     selector: "ns-manager-employee-detail",
@@ -11,6 +13,8 @@ import { RadDataFormComponent } from "nativescript-ui-dataform/angular";
 })
 export class ManagerEmployeeDetailComponent implements OnInit {
     private _employee: Employee;
+    ifAndroid: Boolean;
+    ifIOS: Boolean;
     employee_meta = {
         isReadOnly: false,
         commitMode: "Immediate",
@@ -69,6 +73,13 @@ export class ManagerEmployeeDetailComponent implements OnInit {
     temp_employee;
     employee_detail;
     ngOnInit() {
+        if (isAndroid) {
+            this.ifAndroid = true;
+            this.ifIOS = false;
+        } else if (isIOS) {
+            this.ifIOS = true;
+            this.ifAndroid = false;
+        }
         const query = this.route.snapshot.params.id;
         this.employee_detail = this.share.employees_info.filter(
             filter => filter.name === query

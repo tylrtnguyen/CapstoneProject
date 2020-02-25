@@ -1,8 +1,13 @@
-<GridLayout columns="*" rows='*,70'>
-    <RadCalendar #myCalendar [selectionMode]="selectionMode"></RadCalendar>
-    <StackLayout col='0' row='1'>
-        <StackLayout orientation='horizontal'>
-            <Button horizontalAlignment='center' width='93%' text='Submit' [nsRouterLink]="['/manager-work-history']"></Button>
+<StackLayout>
+    <GridLayout columns="*" rows='*,70' height=93%>
+        <RadCalendar #myCalendar [selectionMode]="selectionMode"></RadCalendar>
+        <StackLayout col='0' row='1'>
+            <StackLayout orientation='horizontal'>
+                <Button horizontalAlignment='center' width='93%' text='Submit'
+                    [nsRouterLink]="['/manager-work-history']"></Button>
+            </StackLayout>
         </StackLayout>
-    </StackLayout>
-</GridLayout>
+    </GridLayout>
+    <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
+</StackLayout>
+<ns-manager-tab-manager *ngIf='ifAndroid'></ns-manager-tab-manager>
