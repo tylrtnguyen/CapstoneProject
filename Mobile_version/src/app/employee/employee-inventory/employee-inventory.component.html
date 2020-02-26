@@ -1,32 +1,30 @@
 <StackLayout class="Page">
-    <StackLayout>
-        <ns-action-bar></ns-action-bar>
+    <ns-action-bar></ns-action-bar>
+    <StackLayout orientation='horizontal'>
+        <Label text='Inventory' style=" font:24px;margin-left: 5% ;margin-top : 5% ;font-family: Oxanium ; letter-spacing: 0.5px;"></Label>
     </StackLayout>
-    <StackLayout class = "Page" style="height: 90%;" backgroundColor="lightgray">
-        <StackLayout>
-            <StackLayout height = "10%">
-                <label id="center"text = "Inventory"></label>
-            </StackLayout>
-            <StackLayout height = "10%">
-                <StackLayout orientation = "vertical">
-                    <button class = "btn-primary btn-rounded-lg" text = "Update" [nsRouterLink]="['/employee-update-inventory']"></button>
+    <GridLayout height='5%' columns="auto,*,auto" rows="auto,auto" style=' margin-left: 5%; margin-right: 5%; margin-top:2%; border-width: 2px ; border-radius: 15px;'> 
+        <Label width='40%' style="margin-left: 5%; font:14px ;font-family: Oxanium ; letter-spacing: 0.5px;" col='0' row='0' text='Item Name' ></Label>
+        <Label width='40%' style='margin-left: 5%; font:14px ;font-family: Oxanium ; letter-spacing: 0.5px;' col='2' row='0' text=' Quantity' ></Label>
+    </GridLayout>
+    <RadListView [items]="inventory_data" height='75%'>
+        <ng-template let-item="item">
+            <StackLayout>
+                <StackLayout backgroundColor='#d9d9d9' style='border-radius: 15px; border-width: 3px;'>
+                    <StackLayout orientation='horizontal'>
+                        <StackLayout class='border-top-bottom-left' width='50%' orientation='horizontal'>
+                            <Label style="font-weight: bold;" text='Date : '></Label>
+                            <Label class="nameLabel" [text]="item.name"></Label>
+                        </StackLayout>
+                        <StackLayout class='border-top-bottom-left' width='50%' orientation='horizontal'>
+                            <Label style="font-weight: bold;" text='Quantity : '></Label>
+                            <Label class="nameLabel" [text]="item.quantity"></Label>
+                        </StackLayout>
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
-            <GridLayout columns="*,*" rows="*,*,*,*,*"  backgroundColor="lightgray">
-                <Label id="header" text="Item" col="0" row="0" ></Label>
-                <Label id="header" text="Remaning Quantity" col="1" row="0" ></Label>
-                <Label text="{{item1}}" col="0" row="1" ></Label>
-                <Label text="{{quantity1}}" col="1" row="1" ></Label>
-                <Label text="{{item2}}" col="0" row="2" ></Label>
-                <Label text="{{quantity1}}" col="1" row="2" ></Label>
-                <Label text="{{item3}}" col="0" row="3" ></Label>
-                <Label text="{{quantity1}}" col="1" row="3" ></Label>
-                <Label text="{{item4}}" col="0" row="4" ></Label>
-                <Label text="{{quantity4}}" col="1" row="4" ></Label>
-            </GridLayout>
-        </StackLayout>
-    </StackLayout>
-    <StackLayout style="background-color: black;">
-        <ns-employee-tab-manager></ns-employee-tab-manager>
-    </StackLayout>
+        </ng-template>
+    </RadListView>
+    <ns-employee-tab-manager *ngIf='ifIOS'></ns-employee-tab-manager>
 </StackLayout>
+<ns-employee-tab-manager *ngIf='ifAndroid'></ns-employee-tab-manager>

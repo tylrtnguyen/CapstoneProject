@@ -1,5 +1,7 @@
 <!-- <RadDataForm tkExampleTitle tkToggleNavButton [source]="person"></RadDataForm> -->
 <StackLayout>
+    <ns-action-bar></ns-action-bar>
+
     <RadDataForm #employee_radForm [source]="employee" [metadata]="employee_meta"></RadDataForm>
     <GridLayout columns='*,200,200,*' rows='100'>
         <Button col='1' row='0' text='Submit' (tap)='submit()'></Button>

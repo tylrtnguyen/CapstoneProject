@@ -22,5 +22,7 @@
         <Button text = "Confirm" width = "50%" col="0" row="5"></Button>
         <Button text = "Cancel" width = "50%" col="1" row="5"></Button>
     </GridLayout>
-    
+    <ns-employee-tab-manager *ngIf='ifIOS'></ns-employee-tab-manager>
+
 </StackLayout>
+<ns-employee-tab-manager *ngIf='ifAndroid'></ns-employee-tab-manager>

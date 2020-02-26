@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as dialogs from "tns-core-modules/ui/dialogs";
+import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 
 
 @Component({
@@ -8,6 +9,8 @@ import * as dialogs from "tns-core-modules/ui/dialogs";
   styleUrls: ['./employee-profile.component.css']
 })
 export class EmployeeProfileComponent implements OnInit {
+  ifAndroid: Boolean;
+  ifIOS: Boolean;
   id = '123456'
   name = 'Tu Nguyen'
   email = 'nvatu129@test.test'
@@ -19,6 +22,13 @@ export class EmployeeProfileComponent implements OnInit {
 
 
   ngOnInit() {
+    if (isAndroid) {
+      this.ifAndroid = true;
+      this.ifIOS = false;
+  } else if (isIOS) {
+      this.ifIOS = true;
+      this.ifAndroid = false;
+  }
   }
   changeEmail() {
     dialogs.prompt({

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListPicker } from "tns-core-modules/ui/list-picker";
 import { EventData } from "tns-core-modules/data/observable";
+import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 
 @Component({
   selector: 'ns-employee-update-inventory',
@@ -8,6 +9,8 @@ import { EventData } from "tns-core-modules/data/observable";
   styleUrls: ['./employee-update-inventory.component.css']
 })
 export class EmployeeUpdateInventoryComponent implements OnInit {
+  ifAndroid: Boolean;
+  ifIOS: Boolean;
 
   item1 = "Canned Chilli (cans)"
   item2 = "Wild Rice (lbs)"
@@ -26,6 +29,13 @@ export class EmployeeUpdateInventoryComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if (isAndroid) {
+      this.ifAndroid = true;
+      this.ifIOS = false;
+  } else if (isIOS) {
+      this.ifIOS = true;
+      this.ifAndroid = false;
+  } 
   }
 
 }

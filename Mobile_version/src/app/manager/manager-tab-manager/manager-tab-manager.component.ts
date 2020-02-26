@@ -13,7 +13,6 @@ export class ManagerTabManagerComponent implements OnInit {
   ifAndroid: Boolean;
   ifIOS: Boolean;
   constructor(private page: Page, public router : Router) {
-    this.page.actionBarHidden = true;
   }
 
   ngOnInit() {

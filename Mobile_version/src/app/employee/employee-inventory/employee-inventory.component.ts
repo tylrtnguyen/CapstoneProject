@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 
 @Component({
   selector: 'ns-employee-inventory',
@@ -6,18 +7,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee-inventory.component.css']
 })
 export class EmployeeInventoryComponent implements OnInit {
-  item1 = "Canned Chilli (cans)"
-  item2 = "Wild Rice (lbs)"
-  item3 = "Canned Red Beans (cans)"
-  item4 = "Canned Italian Tomato (cans)"
-
-  quantity1 = 18
-  quantity2 = 40
-  quantity3 = 16
-  quantity4 = 12
+  ifAndroid: Boolean;
+  ifIOS: Boolean;
+  inventory_data = [
+    {
+      name: 'Something',
+      quantity : 12
+    },
+    {
+      name: 'Something1',
+      quantity : 123
+    },
+    {
+      name: 'Something2',
+      quantity : 124
+    },
+    {
+      name: 'Something3',
+      quantity : 125
+    },
+    {
+      name: 'Something4',
+      quantity : 126
+    },
+  ]
   constructor() { }
 
   ngOnInit() {
+    if (isAndroid) {
+      this.ifAndroid = true;
+      this.ifIOS = false;
+  } else if (isIOS) {
+      this.ifIOS = true;
+      this.ifAndroid = false;
+  }
   }
 
 }

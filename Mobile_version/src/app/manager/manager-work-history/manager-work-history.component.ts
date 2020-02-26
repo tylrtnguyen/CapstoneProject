@@ -10,7 +10,6 @@ export class ManagerWorkHistoryComponent implements OnInit {
     ifAndroid: Boolean;
     ifIOS: Boolean;
     constructor(public page: Page) {
-        this.page.actionBarHidden = true;
     }
     selected_date_range = 'Sat Feb 15 2019'
 

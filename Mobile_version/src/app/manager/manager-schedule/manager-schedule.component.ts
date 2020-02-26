@@ -30,7 +30,6 @@ export class ManagerScheduleComponent implements OnInit {
     }
 
     constructor(public router: Router,public page: Page , public share : ShareService) {
-        this.page.actionBarHidden = true;
     }
 
     ngOnInit() {

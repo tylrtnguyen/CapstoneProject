@@ -15,7 +15,6 @@ export class ManagerHomeComponent implements OnInit {
     ifIOS: Boolean;
     clock_data = [{name : 'Something'}]
     constructor(public router: Router, public page: Page) {
-        this.page.actionBarHidden = true;
     }
 
     dummy_data = [
