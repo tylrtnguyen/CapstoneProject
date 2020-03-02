@@ -15,7 +15,7 @@ import { ShareService } from "../../share-services/share.service";
 })
 export class ManagerCalendarComponent implements OnInit {
     current_date;
-    location: String = "Click to choose your inital location";
+    location: String = "Choose your location";
     height: String;
 
     @Output() timeEvent = new EventEmitter<string>();
@@ -43,11 +43,15 @@ export class ManagerCalendarComponent implements OnInit {
         };
         //getter and setter using promise
         action(options).then(result => {
-            this.location = result;
-            console.log("Remove Multiple Restaurant Function Please");
+            console.log(result)
+            if(result === 'Cancel'){
+                this.location = options.title
+            }else{
+                this.location = result;
+            }
+            
         });
 
-        // << action-dialog-code
     }
 
   

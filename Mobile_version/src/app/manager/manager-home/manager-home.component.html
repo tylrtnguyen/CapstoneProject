@@ -1,21 +1,21 @@
-<StackLayout class='page'>
-    <ns-action-bar></ns-action-bar>
-
+<StackLayout >
+    <ns-action-bar [Title]="title"></ns-action-bar>
     <ns-manager-calendar></ns-manager-calendar>
     <StackLayout style="margin-left: 20px; margin-right: 20px;" height='63%'>
-        <StackLayout style="background-color: antiquewhite ;">
+        <StackLayout>
             <GridLayout rows="auto" columns="*">
-                <Label style='font-size: 14px' class='border-top-right-left' row="0"
-                    horizontalAlignment="left" text="Clocked In :"></Label>
-                <Label style='font-size: 14px;' class='border-top-right-left' row="0"
-                    horizontalAlignment="right" text="N0 of worker : "></Label>
+                <Label class='clock-in' row="0" horizontalAlignment="left" text="Clocked In :"></Label>
+                <Image class='images-worker' horizontalAlignment="right" row="0" [src]="'~/app/images/peoples.png'">
+                </Image>
+                <Label text={{num_worker}} horizontalAlignment="right" class='num-worker'></Label>
             </GridLayout>
         </StackLayout>
-        <RadListView style=' border-width: 2px; border-bottom-right-radius: 15px; border-bottom-left-radius:15px' [items]="dummy_data" >
+        <RadListView class="employee-list" [items]="dummy_data" height='70%'>
             <ng-template let-item="item">
-                <StackLayout  orientation="horizontal">
-                    <Label class="nameLabel" [text]="item.name"></Label>
-                    <Label class="nameLabel" [text]="item.age"></Label>
+                <StackLayout orientation="horizontal">
+                    <GridLayout columns='100 , * ,100'>
+                        <Label col='1' class="employee-label" [text]="item.name"></Label>
+                    </GridLayout>
                 </StackLayout>
             </ng-template>
         </RadListView>

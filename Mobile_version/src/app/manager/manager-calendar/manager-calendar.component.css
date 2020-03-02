@@ -1,1 +1,10 @@
 /* Add mobile styles for the component here.  */
+.location-choice{
+    margin-bottom: 20;
+    border-radius: 15px;
+    border-width: 2px;
+    font: 14;
+    letter-spacing: 0.2;
+    font-weight: 500;
+    
+}

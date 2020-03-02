@@ -7,13 +7,11 @@ import { DropDownModule } from "nativescript-drop-down/angular";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 import { NativeScriptDateTimePickerModule } from "nativescript-datetimepicker/angular";
 import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
-
+import {ModalDialogService} from "nativescript-angular/modal-dialog";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { LoginComponent } from './share-component/login/login.component';
-import { WelcomeComponent } from './share-component/welcome/welcome.component';
-import { RegistrationComponent } from './share-component/registration/registration.component';
 
 //MANAGER COMPONENT
 import { ManagerHomeComponent } from './manager/manager-home/manager-home.component';
@@ -23,11 +21,9 @@ import { ManagerWorkHistoryComponent } from './manager/manager-work-history/mana
 import { ManagerEmployeeListComponent } from './manager/manager-employee-list/manager-employee-list.component';
 import { ManagerAddEmployeeComponent } from './manager/manager-add-employee/manager-add-employee.component';
 import { ManagerSettingsComponent } from './manager/manager-settings/manager-settings.component';
-import { ManagerWorkHistoryDetailComponent } from './manager/manager-work-history-detail/manager-work-history-detail.component';
 import { ProfileComponent } from './share-component/profile/profile.component';
 import { EmployeeHomeComponent } from './employee/employee-home/employee-home.component';
 import { EmployeeScheduleViewComponent } from './employee/employee-schedule-view/employee-schedule-view.component';
-import { InventoryComponent } from './share-component/inventory/inventory.component';
 import { EmployeeSettingComponent } from './employee/employee-setting/employee-setting.component';
 import { EmployeePayrollComponent } from './employee/employee-payroll/employee-payroll.component';
 import { ActionBarComponent } from './share-component/action-bar/action-bar.component';
@@ -40,7 +36,6 @@ import { ManagerRegistrationComponent } from './manager/manager-registration/man
 import { ManagerTabManagerComponent } from './manager/manager-tab-manager/manager-tab-manager.component';
 import { EmployeeTabManagerComponent } from './employee/employee-tab-manager/employee-tab-manager.component';
 import { EmployeeInventoryComponent } from './employee/employee-inventory/employee-inventory.component';
-import { EmployeeProfileComponent } from './employee/employee-profile/employee-profile.component';
 import { EmployeeUpdateInventoryComponent } from './employee/employee-update-inventory/employee-update-inventory.component';
 import { ManagerDateRangeComponent } from './manager/manager-date-range/manager-date-range.component';
 
@@ -51,6 +46,7 @@ import { ManagerDateRangeComponent } from './manager/manager-date-range/manager-
 // Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import { ManagerEmployeeDetailComponent } from './manager/manager-employee-detail/manager-employee-detail.component';
+import { ForgotPasswordComponent } from './share-component/forgot-password/forgot-password.component';
 
 @NgModule({
     bootstrap: [
@@ -66,17 +62,15 @@ import { ManagerEmployeeDetailComponent } from './manager/manager-employee-detai
         NativeScriptUIListViewModule,
         NativeScriptDateTimePickerModule,
         NativeScriptHttpClientModule,
-        NativeScriptUIDataFormModule
+        NativeScriptUIDataFormModule,
+        
     ],
     declarations: [
 
         //Share Component
         AppComponent,
         LoginComponent,
-        WelcomeComponent,
         ProfileComponent,
-        InventoryComponent,
-        RegistrationComponent,
 
         //Manager Component
         ManagerHomeComponent,
@@ -86,7 +80,6 @@ import { ManagerEmployeeDetailComponent } from './manager/manager-employee-detai
         ManagerEmployeeListComponent,
         ManagerAddEmployeeComponent,
         ManagerSettingsComponent,
-        ManagerWorkHistoryDetailComponent,
 
         //Employee Component
         EmployeeHomeComponent,
@@ -101,15 +94,16 @@ import { ManagerEmployeeDetailComponent } from './manager/manager-employee-detai
         ManagerTabManagerComponent,
         EmployeeTabManagerComponent,
         EmployeeInventoryComponent,
-        EmployeeProfileComponent,
         EmployeeUpdateInventoryComponent,
         ManagerDateRangeComponent,
         ManagerEmployeeDetailComponent,
-        
+        ManagerAddEmployeeComponent,
+        ForgotPasswordComponent
 
         //Share Service        
     ],
-    providers: [ShareService],
+    entryComponents : [ManagerAddEmployeeComponent,ForgotPasswordComponent],
+    providers: [ShareService,ModalDialogService],
     schemas: [
         NO_ERRORS_SCHEMA
     ]

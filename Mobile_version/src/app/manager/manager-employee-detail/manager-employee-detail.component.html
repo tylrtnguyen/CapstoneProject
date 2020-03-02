@@ -4,8 +4,8 @@
 
     <RadDataForm #employee_radForm [source]="employee" [metadata]="employee_meta"></RadDataForm>
     <GridLayout columns='*,200,200,*' rows='100'>
-        <Button col='1' row='0' text='Submit' (tap)='submit()'></Button>
-        <Button col='2' row='0' text='Cancle' [nsRouterLink]="['/manager-home']"></Button>
+        <Button class='btn' col='1' row='0' text='Submit' (tap)='submit()'></Button>
+        <Button class='btn' col='2' row='0' text='Cancle' [nsRouterLink]="['/manager-home']"></Button>
     </GridLayout>
     <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
 </StackLayout>

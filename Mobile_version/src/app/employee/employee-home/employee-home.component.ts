@@ -11,6 +11,7 @@ import { Page } from "tns-core-modules/ui/page";
 export class EmployeeHomeComponent implements OnInit {
   ifAndroid: Boolean;
   ifIOS: Boolean;
+  title = 'Employee Name Home'
   constructor(public router: Router, public page: Page) {
     //   this.page.actionBarHidden = true;
   }

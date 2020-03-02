@@ -1,1 +1,25 @@
-<Button text="profile works!" class="btn btn-primary"></Button>
+<StackLayout class="Page">
+    <ns-action-bar [Title]='title' [isLogout]='logout'></ns-action-bar>
+    <StackLayout style="height: 90%;">
+        <!-- Header -->
+        <StackLayout style="height: 30%;">
+            <Image [src]="'~/app/images/avatar.png'" height='80%'></Image>
+            <label class="employee-name" id="name" text={{name}}></label>
+        </StackLayout>
+        <!-- Employee Information -->
+        <StackLayout class='info-box' height='65%'>
+            <TextField class='info-text' text="Full Name   : {{name}}"  textWrap = "true" editable= "false" ></TextField>
+            <TextField class='info-text' text="Email   : {{email}}"  textWrap = "true" editable= "{{false}}" ></TextField>
+            <TextField class='info-text' text="Address   : {{address}}"  textWrap = "true" editable= "false" ></TextField>
+            <TextField class='info-text' text="Date of Birth   : {{dob}}"  textWrap = "true" editable= "false" ></TextField>
+            <TextField class='info-text' text="Wage   : {{wage}}"  textWrap = "true" editable= "false" ></TextField>
+            <TextField class='info-text' text="Position   : {{position}}"  textWrap = "true" editable= "false" ></TextField>
+
+        </StackLayout>
+    </StackLayout>
+    <ns-employee-tab-manager *ngIf='!system()'></ns-employee-tab-manager>
+    <ns-manager-tab-manager *ngIf='system()'></ns-manager-tab-manager>
+
+</StackLayout>
+<ns-employee-tab-manager *ngIf='!system()'></ns-employee-tab-manager>
+<ns-manager-tab-manager *ngIf='system()'></ns-manager-tab-manager>

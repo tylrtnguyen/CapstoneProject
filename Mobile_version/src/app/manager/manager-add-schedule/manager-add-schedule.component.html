@@ -4,15 +4,15 @@
 
     <StackLayout height='92%'>
 
-        <Button style='border-width: 2px; border-radius: 15px;' text='Add Schedule' (tap)=onSubmit()></Button>
+        <Button class='submit' [style.background-color]="valid==false ? 'red': '#6ea6da'" text='Add Schedule' (tap)=onSubmit()></Button>
         <StackLayout orientation='horizontal' >
             <GridLayout columns="150" rows="50,50,50">
                 <!-- start date -->
-                <Button class='button_title' col='0' row='0' text='Start Date' (tap)='show_date()'></Button>
+                <Button class='button_title' [style.border-color]="valid==false ? 'red': '#666e6c'" col='0' row='0' text='Start Date' (tap)='show_date()'></Button>
                 <!-- start time -->
-                <Button class='button_title' col='0' row='1' text='Start Time' (tap)="start_time()"></Button>
+                <Button class='button_title' [style.border-color]="valid==false ? 'red': '#666e6c'" col='0' row='1' text='Start Time' (tap)="start_time()"></Button>
                 <!-- end time -->
-                <Button class='button_title' col='0' row='2' text='End Time' (tap)="end_time()"></Button>
+                <Button class='button_title' [style.border-color]="valid==false ? 'red': '#666e6c'" col='0' row='2' text='End Time' (tap)="end_time()"></Button>
             </GridLayout>
 
             <GridLayout rows='200' columns='*'>
@@ -43,12 +43,12 @@
 
         <!-- Employee List -->
 
-        <GridLayout columns='150' rows='50'>
-            <Button class='button_title' col='0' row='0' (tap)='show_employee()' text='Employees'></Button>
+        <GridLayout columns='150' rows='50' >
+            <Button class='employee-title' [style.border-color]="valid==false ? 'red': '#666e6c'" col='0' row='0'  text='Employees'></Button>
         </GridLayout>
 
-        <StackLayout class='content' height=100%>
-            <RadListView [items]="dataItems" selectionBehavior="Press" multipleSelection="true" height=100%
+        <StackLayout [style.border-color]="valid==false ? 'red': '#666e6c'" class='content' height=100%>
+            <RadListView  [items]="dataItems" selectionBehavior="Press" multipleSelection="true" height=100%
                 (itemSelected)="onItemSelected($event)" (itemDeselected)="onItemDeselected($event)">
                 <ng-template let-item="item">
                     <StackLayout >

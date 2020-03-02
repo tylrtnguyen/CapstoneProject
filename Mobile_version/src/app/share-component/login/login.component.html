@@ -1,4 +1,4 @@
-<StackLayout class='page'>
+<!-- <StackLayout class='page'>
   <StackLayout style="margin: 100px;">
     <Label text='ResTaskest' style="font-size: 50">  </Label>
     <Label text='Welcome to the login page' style="font-size: x-large"></Label>
@@ -11,4 +11,36 @@
     <Button class="btn-primary btn-rounded-lg"   text=' Sign in as manager' [nsRouterLink]="['/manager-home']" ></Button>
     <Button class="btn-rounded-lg" backgroundColor="#871414" text=' Sign in as a staff member' [nsRouterLink] = "['/employee-home']"></Button>
   </StackLayout>
-</StackLayout>
+</StackLayout> -->
+<FlexboxLayout class="page">
+	<StackLayout class="form">
+		<Image class="logo" src="~/images/logo.png"></Image>
+		<Label class="header" text="ResTaskest"></Label>
+		<Label class="small-header" text='Restaurant Management is simple with us' ></Label>
+
+		<StackLayout class="input-field">
+			<TextField class="input" hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none" [(ngModel)]="user.email" returnKeyType="next" ></TextField>
+			<StackLayout class="hr-light"></StackLayout>
+		</StackLayout>
+
+		<StackLayout class="input-field">
+			<TextField #password class="input" hint="Password" secure="true" [(ngModel)]="user.password" [returnKeyType]="isLoggingIn ? 'done' : 'next'" ></TextField>
+			<StackLayout class="hr-light"></StackLayout>
+		</StackLayout>
+
+		<StackLayout *ngIf="!isLoggingIn" class="input-field">
+			<TextField #confirmPassword class="input" hint="Confirm password" secure="true" [(ngModel)]="user.confirmPassword" returnKeyType="done"></TextField>
+			<StackLayout class="hr-light"></StackLayout>
+		</StackLayout>
+
+		<Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" (tap)="submit()" class="btn btn-primary "></Button>
+		<Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label" (tap)="forgotPassword()"></Label>
+	</StackLayout>
+
+	<Label class="login-label sign-up-label" (tap)="toggleForm()">
+		<FormattedString>
+			<Span [text]="isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'"></Span>
+			<Span [text]="isLoggingIn ? 'Sign up' : ''" class="bold"></Span>
+		</FormattedString>
+	</Label>
+</FlexboxLayout>

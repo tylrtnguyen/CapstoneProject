@@ -20,7 +20,16 @@
     border-width : 2px;
 }
 .header{
-    font-size: 18px;
-    font-weight: 600;
-    text-align: center; 
+    font: 18px; text-align: center; margin-top: 2%;
+    letter-spacing: 0.5px;
+    
+    font-weight: 400;
+}
+.edit-btn{
+    background-color: aquamarine;
+    text-align: center;
+    font: 18px;
+    font-weight: 500;
+    letter-spacing: 0.1;
+    
 }

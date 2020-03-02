@@ -9,6 +9,7 @@ import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 export class EmployeeInventoryComponent implements OnInit {
   ifAndroid: Boolean;
   ifIOS: Boolean;
+  title = ' Employee Name Inventory Report'
   inventory_data = [
     {
       name: 'Something',

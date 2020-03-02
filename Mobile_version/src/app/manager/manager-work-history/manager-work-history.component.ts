@@ -9,6 +9,7 @@ import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 export class ManagerWorkHistoryComponent implements OnInit {
     ifAndroid: Boolean;
     ifIOS: Boolean;
+    title='Work History'
     constructor(public page: Page) {
     }
     selected_date_range = 'Sat Feb 15 2019'

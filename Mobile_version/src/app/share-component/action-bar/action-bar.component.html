@@ -1,6 +1,6 @@
-<ActionBar class='action-bar' title="ResTaskkest">
+<ActionBar  title="{{Title}}" >
   <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="goBack()" backgroundColor=red></NavigationButton>
-  <GridLayout columns="*,40" horizontalAlignment=right>
-    <Image (tap)="profile()" col='1' src="~/app/images/profile.png" class="action-image" ></Image>
-  </GridLayout>
+  <ActionItem *ngIf="!isLogout" icon="~/app/images/profile_XL.png" class="fas" ios.position="right" (tap)="profile()" ></ActionItem>
+  <ActionItem *ngIf="isLogout" icon="~/app/images/logout.png" class="fas" ios.position="right" (tap)="logout()" ></ActionItem>
+
 </ActionBar>

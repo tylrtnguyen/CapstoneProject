@@ -1,1 +1,4 @@
-<Button text="manager-add-employee works!" class="btn btn-primary"></Button>
+<StackLayout>
+    <RadDataForm #employee_radForm [source]="employee" [metadata]="employee_meta"></RadDataForm>
+    <Button text='Add Employee' (tap)='submit()'></Button>
+</StackLayout>>

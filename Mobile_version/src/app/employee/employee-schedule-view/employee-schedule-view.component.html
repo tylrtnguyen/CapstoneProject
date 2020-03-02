@@ -1,7 +1,5 @@
 <StackLayout class="Page">
-    <StackLayout>
-        <ns-action-bar></ns-action-bar>
-    </StackLayout>
+        <ns-action-bar [Title]='title'></ns-action-bar>
     <StackLayout style="height: 14%;">
         <label class="center" style="color: darkgreen; font-size: 28px;" text="Your schedule for this week"></label>
         <label class="center" style="font-size: x-large;" text="{{Week_begin}} -> {{Week_end}}"></label>

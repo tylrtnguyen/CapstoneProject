@@ -10,6 +10,7 @@ import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 export class EmployeeScheduleViewComponent implements OnInit {
     ifAndroid: Boolean;
     ifIOS: Boolean;
+    title='Employee Name Schedule'
 
     Day = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
     Month = [

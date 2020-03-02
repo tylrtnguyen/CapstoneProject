@@ -1,5 +1,5 @@
 <StackLayout height='100%'>
-    <ns-action-bar></ns-action-bar>
+    <ns-action-bar [Title]='title'></ns-action-bar>
 
     <StackLayout>
         <Label class='inventory-header'
@@ -11,7 +11,7 @@
         <RadListView [items]="inventory_data" height=100%>
             <ng-template let-item="item">
                 <StackLayout>
-                    <StackLayout backgroundColor='#d9d9d9' style='border-radius: 15px; border-width: 3px;'>
+                    <StackLayout  style='border-radius: 15px; border-width: 3px;'>
                         <StackLayout orientation='horizontal'>
                             <StackLayout class='border-top-bottom-left' width='75%' orientation='horizontal'>
                                 <Label style="font-weight: bold;" text='Product Name : '></Label>

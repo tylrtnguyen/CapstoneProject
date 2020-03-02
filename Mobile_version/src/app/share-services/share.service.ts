@@ -2,16 +2,30 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { Router } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
-
-
+import { Employee } from "./Employee";
 
 @Injectable({
     providedIn: "root"
 })
 export class ShareService {
-    constructor(private router : Router,private routerExtensions: RouterExtensions){}
+    constructor(
+        private router: Router,
+        private routerExtensions: RouterExtensions
+    ) {}
     //fuck you back button
-   
+
+    currentUser ;
+    isLogin = false;
+    Login(user){
+        console.log('Share Service currently log in:' + JSON.stringify(user) );
+        this.currentUser = user
+        this.isLogin = true;
+    }
+    Logout()
+    {
+        console.log("Share Service log out : " )
+        this.isLogin = !this.isLogin
+    }
 
     selected_work_date: String;
     work_schedule_data = [
@@ -61,34 +75,52 @@ export class ShareService {
 
     employees_info = [
         {
-            name: "Thanh Quan",
+            first_name: "Thanh",
+            last_name: "Quan",
             wage: "15",
             position: "CEO",
             email: "vuabaybune@gmail.com",
+            password: "Thanhquan123",
             address: "somewhere in toronto",
-            phone_number: "6474651767",
             dob: "16/1/1999"
         },
         {
-            name: "Tu Quan",
+            first_name: "Tu",
+            last_name: "Quan",
             wage: "15",
             position: "CEO",
-            email: "vuabaybune@gmail.com",
+            email: "tuquan@gmail.com",
+            password: "Thanhquan123",
             address: "somewhere in toronto",
-            phone_number: "6474651767",
             dob: "16/1/1999"
         },
         {
-            name: "Thong Quan",
+            first_name: "Thong",
+            last_name: "Quan",
             wage: "15",
             position: "CEO",
-            email: "vuabaybune@gmail.com",
+            email: "thongquan@gmail.com",
+            password: "Thanhquan123",
             address: "somewhere in toronto",
-            phone_number: "6474651767",
             dob: "16/1/1999"
         }
     ];
-    
+
+    add_employee(employee) {
+        const template = {
+            first_name: employee[0],
+            last_name: employee[1],
+            wage: employee[2],
+            position: employee[3],
+            email: employee[4],
+            password: employee[5],
+            address: employee[6],
+            dob: employee[7]
+        };
+        this.employees_info.push(template);
+        console.log("Share service : " + JSON.stringify(this.employees_info))
+    }
+
     inventory = [
         {
             product_id: "0000001",
@@ -128,7 +160,6 @@ export class ShareService {
         }
     ];
 
-    
     add_work_schedule(schedule) {
         console.log("------- Add Schedule -------");
         const template = {
@@ -144,7 +175,4 @@ export class ShareService {
         template.date = schedule.date;
         this.work_schedule_data.push(template);
     }
-
-
-    
 }

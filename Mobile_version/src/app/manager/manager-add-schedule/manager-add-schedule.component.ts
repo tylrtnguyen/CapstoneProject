@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import {Router} from "@angular/router"
+import { Router } from "@angular/router";
 import { DatePicker } from "tns-core-modules/ui/date-picker";
 import { ListViewEventData, RadListView } from "nativescript-ui-listview";
 import { TimePicker } from "tns-core-modules/ui/time-picker/time-picker";
 import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
-import {ShareService} from '../../share-services/share.service'
-declare var java
+import { ShareService } from "../../share-services/share.service";
+import * as Toast from "nativescript-toast";
+declare var java;
 @Component({
     selector: "ns-manager-add-schedule",
     templateUrl: "./manager-add-schedule.component.html",
@@ -14,7 +15,8 @@ declare var java
 export class ManagerAddScheduleComponent implements OnInit {
     ifAndroid: Boolean;
     ifIOS: Boolean;
-    constructor(public share : ShareService , public router :Router) {}
+    valid : Boolean;
+    constructor(public share: ShareService, public router: Router) {}
 
     ngOnInit() {
         if (isAndroid) {
@@ -94,28 +96,25 @@ export class ManagerAddScheduleComponent implements OnInit {
         // const datePicker = args.object as DatePicker;
     }
     onDateChanged(args) {
-        const format_date = args.value.toString().substring(0,15)
-        console.log(format_date)
-        this.selected_date = format_date
-        
+        const format_date = args.value.toString().substring(0, 15);
+        console.log(format_date);
+        this.selected_date = format_date;
     }
     show_date() {
         this.show_datepicker = !this.show_datepicker;
-        this.show_start_time = false
-        this.show_end_time = false
-      
+        this.show_start_time = false;
+        this.show_end_time = false;
     }
     start_time() {
         this.show_start_time = !this.show_start_time;
-        this.show_end_time = false
-        this.show_datepicker = false
+        this.show_end_time = false;
+        this.show_datepicker = false;
     }
     end_time() {
         this.show_end_time = !this.show_end_time;
-        this.show_start_time = false
-        this.show_datepicker = false
+        this.show_start_time = false;
+        this.show_datepicker = false;
     }
-    
 
     public onItemSelected(args: ListViewEventData) {
         // this.selected_employees.push(this.dataItems[args.index])
@@ -140,7 +139,6 @@ export class ManagerAddScheduleComponent implements OnInit {
         const timePicker = args.object;
         if (isAndroid) {
             timePicker.android.setIs24HourView(java.lang.Boolean.TRUE);
-            
         }
     }
     onEndTimeSelected(args) {
@@ -151,11 +149,33 @@ export class ManagerAddScheduleComponent implements OnInit {
         // console.log(`Chosen end time: ${time}`);
     }
     onSubmit() {
-        this.selected_employees_final = this.temp_selected_employees;
-        this.share.selected_work_date = this.selected_date
-        console.log(`Employees : ${this.selected_employees_final} is start working from ${this.selected_start_date} to ${this.selected_end_date} on this date ${this.selected_date} `)
-        const schedule = {nameList : this.selected_employees_final , start_time : this.selected_start_date , end_time : this.selected_end_date , date : this.selected_date }
-        this.share.add_work_schedule(schedule)
-        this.router.navigateByUrl('/manager-schedule')
+        if (
+            this.selected_employees_final.length == 0 &&
+            typeof this.selected_start_date === "undefined" &&
+            typeof this.selected_end_date === "undefined" &&
+            typeof this.selected_date === "undefined"
+        ) {
+            this.valid = false;
+            Toast.makeText(
+                "Please assign all information needed"
+            ).show();
+
+        } else {
+            this.valid = true;
+
+            this.selected_employees_final = this.temp_selected_employees;
+            this.share.selected_work_date = this.selected_date;
+            console.log(
+                `Employees : ${this.selected_employees_final} is start working from ${this.selected_start_date} to ${this.selected_end_date} on this date ${this.selected_date} `
+            );
+            const schedule = {
+                nameList: this.selected_employees_final,
+                start_time: this.selected_start_date,
+                end_time: this.selected_end_date,
+                date: this.selected_date
+            };
+            this.share.add_work_schedule(schedule);
+            this.router.navigateByUrl("/manager-schedule");
+        }
     }
 }

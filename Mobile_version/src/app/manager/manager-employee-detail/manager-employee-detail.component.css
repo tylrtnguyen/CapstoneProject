@@ -1,1 +1,8 @@
 /* Add mobile styles for the component here.  */
+.btn{
+    border-radius: 15px;
+    border-width: 2px;
+    font: 14px;
+    font-weight: 500;
+    letter-spacing: 0.3;
+}

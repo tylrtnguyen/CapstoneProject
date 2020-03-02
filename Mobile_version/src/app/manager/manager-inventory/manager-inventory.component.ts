@@ -10,6 +10,7 @@ import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 export class ManagerInventoryComponent implements OnInit {
     ifIOS: boolean;
     ifAndroid: boolean;
+    title='Inventory'
     inventory_data = [
         {
             product_name: "Pork meat",

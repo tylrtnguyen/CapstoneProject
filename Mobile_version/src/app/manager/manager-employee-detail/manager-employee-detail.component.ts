@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Employee } from "./Employee";
+import { Employee } from "../../share-services/Employee";
 import { ShareService } from "~/app/share-services/share.service";
 import { RadDataFormComponent } from "nativescript-ui-dataform/angular";
 import { Page } from "tns-core-modules/ui/page";
@@ -17,24 +17,49 @@ export class ManagerEmployeeDetailComponent implements OnInit {
     ifIOS: Boolean;
     employee_meta = {
         isReadOnly: false,
-        commitMode: "Immediate",
-        validationMode: "Immediate",
+        commitMode: "manual",
+        validationMode: "immediate",
         propertyAnnotations: [
             {
                 name: "first_name",
                 displayName: "First Name",
-                index: 0
+                index: 0,
+                validators: [
+                    { name: "NonEmpty" },
+                    { name: "MaximumLength", params: { length: 50 , errorMessage:
+                        "Ensure your name is in the right format"} }
+                ]
             },
             {
                 name: "last_name",
                 displayName: "Last Name",
-                index: 1
+                index: 1,
+                validators: [
+                    { name: "NonEmpty" },
+                    { name: "MaximumLength", params: { length: 50 , errorMessage:
+                        "Ensure your name is in the right format"} }
+                ]
             },
             {
                 name: "email",
                 displayName: "E-Mail",
                 index: 2,
-                editor: "Email"
+                editor: "Email",
+                validators: [
+                    {
+                        name: "RegEx",
+                        params: {
+                            regEx:
+                                "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$",
+
+                            errorMessage:
+                                "Please provide your @employee.com email."
+                        }
+                    },
+                    { name: "NonEmpty" },
+                    { name: "MinimumLength", params: { length: 10 } },
+                    { name: "MaximumLength", params: { length: 200 } }
+                ]
             },
             {
                 name: "wage",
@@ -45,23 +70,38 @@ export class ManagerEmployeeDetailComponent implements OnInit {
             {
                 name: "dob",
                 displayName: "Date of Birth",
-                //Date Picker not current date
-                index: 4
+                index: 4,
+                validators: [
+                    {
+                        name: "RegEx",
+                        params: {
+                            regEx:
+                                "^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$",
+                            errorMessage: "Date Format : Date/Month/Year"
+                        }
+                    },
+                    { name: "NonEmpty" },
+                    { name: "MaximumLength", params: { length: 11 } }
+                ]
             },
             {
                 name: "position",
                 displayName: "Position",
-                index: 5
+                index: 5,
+                validators: [
+                    { name: "NonEmpty" },
+                    { name: "MinimumLength", params: { length: 3 } }
+                ]
             },
             {
                 name: "address",
                 displayName: "address",
-                index: 6
-            },
-            {
-                name: "phone_number",
-                displayName: "Phone Number",
-                index: 7
+                index: 6,
+                validators: [
+                    { name: "NonEmpty" },
+                    { name: "MinimumLength", params: { length: 3 } },
+                    { name: "MaxiumLength", params: { length: 100 } }
+                ]
             }
         ]
     };
@@ -82,34 +122,30 @@ export class ManagerEmployeeDetailComponent implements OnInit {
         }
         const query = this.route.snapshot.params.id;
         this.employee_detail = this.share.employees_info.filter(
-            filter => filter.name === query
+            filter => filter.first_name + " " +filter.last_name === query
         );
         const em = this.employee_detail[0];
-        let firstname = "";
-        let lastname = "";
-        [firstname, lastname] = query.split(" ");
- 
+
+
         //Pre value put in
         this.temp_employee = [
-            firstname,
-            lastname,
+            em.first_name,
+            em.last_name,
             em.email,
             parseInt(em.wage),
             em.dob,
             em.position,
-            em.address,
-            em.phone_number
-        ]
+            em.address
+        ];
 
         this._employee = new Employee(
-            firstname,
-            lastname,
+            em.first_name,
+            em.last_name,
             em.email,
             parseInt(em.wage),
             em.dob,
             em.position,
-            em.address,
-            em.phone_number
+            em.address
         );
     }
 
@@ -117,14 +153,12 @@ export class ManagerEmployeeDetailComponent implements OnInit {
         return this._employee;
     }
 
-
     @ViewChild("employee_radForm", { static: false })
     myEmployeeDataForm: RadDataFormComponent;
     submit() {
         this.myEmployeeDataForm.dataForm.commitAll();
         const em_store = this.myEmployeeDataForm.dataForm.source;
-        // console.log(JSON.stringify(em_store))
-        // console.log(this.temp_employee)
+
         const em_store_arr = [
             em_store.first_name,
             em_store.last_name,
@@ -132,30 +166,20 @@ export class ManagerEmployeeDetailComponent implements OnInit {
             em_store.wage,
             em_store.dob,
             em_store.position,
-            em_store.address,
-            em_store.phone_number
+            em_store.address
         ];
 
-        //COMPARE PRE VALUE AND POST VALUE
-        // PRE Value
-        console.log(this.temp_employee)
-        // POST Value
-        console.log(em_store)
-
-        const check_change = this.temp_employee.filter(filter =>filter===em_store_arr)
-        console.log(check_change.length)
-        if(check_change.length == 0)
-        {
-            console.log("You have not change any data yet !")
+        //Compare pre value and post value
+        const check_change = this.temp_employee.filter(
+            filter => filter === em_store_arr
+        );
+        if (check_change.length == 0) {
+        } else {
+            alert({
+                title: "Employee Change Details",
+                message: `${em_store_arr[0]} ${em_store_arr[1]} information has been updated`,
+                okButtonText: "OK"
+            });
         }
-        else{
-            alert(
-                {
-                    title: "Employee Change Details",
-                    message: `${em_store_arr[0]} ${em_store_arr[1]} information has been updated`,
-                    okButtonText: "OK"
-                });
-        }
-        
     }
 }

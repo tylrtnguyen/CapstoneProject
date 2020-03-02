@@ -1,12 +1,45 @@
 
 
 Image {
-    width: 100;
-    height: 100 ;
+    width: 20;
+    height: 20 ;
 }
 
-.border-top-right-left{
-    border-width: 2px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+
+
+
+.clock-in{
+    font: 14px;
+    font-weight: 600;
+    margin-left: 11%;
+    margin-top: 3%;
+    margin-bottom: 3%;
 }
+.images-worker{
+    font: 14px;
+    font-weight: 600;
+    margin-right: 18%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+.num-worker{
+    font: 14px;
+    font-weight: 600;
+    margin-right: 15%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+.employee-list{
+    border-radius: 15px;
+    border-width: 2px;
+    background-color: azure;
+    font: 14px;
+    font-weight: 600;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.employee-label{
+    horizontal-alignment:center
+}
+
+

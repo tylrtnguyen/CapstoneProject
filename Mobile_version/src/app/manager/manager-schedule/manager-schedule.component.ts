@@ -13,7 +13,7 @@ export class ManagerScheduleComponent implements OnInit {
     message: String;
     ifAndroid: Boolean;
     ifIOS: Boolean;
-
+    title = 'Schedule'
     temp_dataItems = [];
     receive_current_time($event) {
         this.message = $event;

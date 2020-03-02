@@ -13,6 +13,8 @@ import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 export class ManagerHomeComponent implements OnInit {
     ifAndroid: Boolean;
     ifIOS: Boolean;
+    title='Manager Home'
+    num_worker = 1;
     clock_data = [{name : 'Something'}]
     constructor(public router: Router, public page: Page) {
     }

@@ -1,5 +1,5 @@
 <StackLayout>
-    <ns-action-bar></ns-action-bar>
+    <ns-action-bar [Title]='title'></ns-action-bar>
 
     <ns-manager-calendar (timeEvent)='receive_current_time($event)'></ns-manager-calendar>
     <GridLayout columns="200,*,200" rows='55'  orientation='horizontal'>
