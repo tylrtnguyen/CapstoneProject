@@ -1,17 +1,18 @@
 <StackLayout height='100%'>
     <ns-action-bar [Title]='title'></ns-action-bar>
 
-    <StackLayout>
-        <Label class='inventory-header'
-            style="border-radius: 15px; border-width: 3px; background-color: #444444; color: aliceblue;"
-            text='Inventory List'></Label>
-    </StackLayout>
 
-    <StackLayout height='80%'>
+
+    <StackLayout height='100%'>
         <RadListView [items]="inventory_data" height=100%>
             <ng-template let-item="item">
                 <StackLayout>
-                    <StackLayout  style='border-radius: 15px; border-width: 3px;'>
+                    <StackLayout style='border-radius: 15px; border-width: 3px;'>
+                        <GridLayout columns="100,100,*,50" rows='25' orientation='horizontal'>
+                            <Button class='edit-btn' text='Edit' col='0' row='0' (tap)='employee_detail(item)'></Button>
+                            <Button col="3" row="0" style='border-width:2px ;border-radius:15px' text='X'
+                                (tap)="confirmation(item.name)"></Button>
+                        </GridLayout>
                         <StackLayout orientation='horizontal'>
                             <StackLayout class='border-top-bottom-left' width='75%' orientation='horizontal'>
                                 <Label style="font-weight: bold;" text='Product Name : '></Label>

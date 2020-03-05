@@ -3,8 +3,8 @@
 
     <ns-manager-calendar (timeEvent)='receive_current_time($event)'></ns-manager-calendar>
     <GridLayout columns="200,*,200" rows='55'  orientation='horizontal'>
-        <Button col="0" row="0" style='border-width:2px ;border-radius:15px' text='Add Schedule' [nsRouterLink]="['/manager-add-schedule']"></Button>
-        <Button col="2" row="0" style='border-width:2px ;border-radius:15px' text='Publish Schedule'></Button>
+        <Button col="0" row="0" class='btn-primary' text='Add Schedule' [nsRouterLink]="['/manager-add-schedule']"></Button>
+        <Button col="2" row="0" class='btn-secondary' text='Publish Schedule'></Button>
     </GridLayout>
 
 

@@ -1,10 +1,12 @@
 /* Add mobile styles for the component here.  */
-.location-choice{
+
+
+.btn-location{
+    letter-spacing: 0.3px;
     margin-bottom: 20;
     border-radius: 15px;
     border-width: 2px;
     font: 14;
-    letter-spacing: 0.2;
     font-weight: 500;
-    
+    background-color: #eae7dc;
 }

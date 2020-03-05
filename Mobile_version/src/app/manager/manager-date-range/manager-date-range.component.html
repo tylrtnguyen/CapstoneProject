@@ -6,7 +6,7 @@
         <StackLayout col='0' row='1'>
             <StackLayout orientation='horizontal'>
                 <Button horizontalAlignment='center' width='93%' text='Submit'
-                    [nsRouterLink]="['/manager-work-history']"></Button>
+                    (tap)='onSubmit()'></Button>
             </StackLayout>
         </StackLayout>
     </GridLayout>

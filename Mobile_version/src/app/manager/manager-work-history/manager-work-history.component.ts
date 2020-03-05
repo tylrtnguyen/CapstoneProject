@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Page } from "tns-core-modules/ui/page";
 import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
+import { ShareService } from "~/app/share-services/share.service";
 @Component({
     selector: "ns-manager-work-history",
     templateUrl: "./manager-work-history.component.html",
@@ -10,7 +11,7 @@ export class ManagerWorkHistoryComponent implements OnInit {
     ifAndroid: Boolean;
     ifIOS: Boolean;
     title='Work History'
-    constructor(public page: Page) {
+    constructor(public page: Page,public share:ShareService) {
     }
     selected_date_range = 'Sat Feb 15 2019'
 
@@ -45,6 +46,10 @@ export class ManagerWorkHistoryComponent implements OnInit {
         }
     ];
     ngOnInit() {
+        if(typeof this.share.dateRange !== "undefined")
+        {
+            console.log(`Start searching from ${this.share.dateRange.startDate} to ${this.share.dateRange.endDate}`)
+        }
         if (isAndroid) {
             this.ifAndroid = true;
             this.ifIOS = false;

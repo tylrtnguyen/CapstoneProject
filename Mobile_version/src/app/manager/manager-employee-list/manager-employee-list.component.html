@@ -4,6 +4,7 @@
         <Label col='0' row='0' text='Employees List' class='header' class='header'></Label>
         <Image col='1' row='0' [src]="'~/app/images/add.png'" decodeWidth="40" decodeHeight="40" (tap)='addEmployee()'></Image>
     </GridLayout>
+
     <RadListView [items]="employees_info" height='80%'>
         <ng-template let-item="item">
             <StackLayout>

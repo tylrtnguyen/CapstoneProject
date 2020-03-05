@@ -125,16 +125,21 @@ color: #871414;
 }
 
 .btn-primary {
-background-color: #444444;
+    background-color: #D51A1A;
+    border-radius: 15px;
+    letter-spacing: 0.2px;
+    font-weight: 400;
+    color: white;
 }
 
-.btn-primary {
-border-color: #444444;
+.btn-secondary {
+    background-color: #30bcff;
+    border-radius: 15px;
+    letter-spacing: 0.2px;
+    font-weight: 400;
+    color: #000000;
 }
 
-.btn-primary {
-color: #cccccc;
-}
 
 .btn-outline {
 border-color: #871414;

@@ -1,33 +1,51 @@
-import { Injectable } from "@angular/core";
+import { Injectable, ViewContainerRef } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { Router } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
 import { Employee } from "./Employee";
+import { DateRange } from "nativescript-ui-calendar";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
     providedIn: "root"
 })
 export class ShareService {
-    constructor(
-        private router: Router,
-        private routerExtensions: RouterExtensions
-    ) {}
-    //fuck you back button
+    constructor(private http: HttpClient) {}
 
-    currentUser ;
+    //fuck you back button
+    dateRange: DateRange;
+    currentUser;
     isLogin = false;
-    Login(user){
-        console.log('Share Service currently log in:' + JSON.stringify(user) );
-        this.currentUser = user
+    server_employee_list ;
+    selected_work_date: String;
+    url = `https://restaskest-api.herokuapp.com/api/`;
+
+
+    Login(user) {
+        console.log("Share Service currently log in:" + JSON.stringify(user));
+        this.currentUser = user;
         this.isLogin = true;
     }
-    Logout()
-    {
-        console.log("Share Service log out : " )
-        this.isLogin = !this.isLogin
+    Logout() {
+        console.log("Share Service log out : ");
+        this.isLogin = !this.isLogin;
     }
 
-    selected_work_date: String;
+    APIHeader() {
+        var token = {
+            token:
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4MzQ0NDUxMiwiZXhwIjoxNTgzNDQ4MTEyfQ.Ixzk9UdLUCxE1DCRHI_3-cFMJZewZAxVj6HEsrLyA64",
+            expiresIn: "3600s",
+            status: "Logged In"
+        };
+        let header = new HttpHeaders({
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json"
+        });
+        return header
+
+    }
+
     work_schedule_data = [
         {
             name: "Thanh Quan",
@@ -118,7 +136,7 @@ export class ShareService {
             dob: employee[7]
         };
         this.employees_info.push(template);
-        console.log("Share service : " + JSON.stringify(this.employees_info))
+        console.log("Share service : " + JSON.stringify(this.employees_info));
     }
 
     inventory = [
