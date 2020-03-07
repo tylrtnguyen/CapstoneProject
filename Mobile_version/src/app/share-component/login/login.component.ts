@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, ViewContainerRef } from "@angular/core";
+import {
+    Component,
+    OnInit,
+    ViewChild,
+    ElementRef,
+    ViewContainerRef
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { Page } from "tns-core-modules/ui/page/page";
 import { alert, prompt } from "tns-core-modules/ui/dialogs";
@@ -7,6 +13,7 @@ import * as Toast from "nativescript-toast";
 import { ForgotPasswordComponent } from "../forgot-password/forgot-password.component";
 import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { ShareService } from "~/app/share-services/share.service";
+import { HttpClient } from "@angular/common/http";
 @Component({
     selector: "ns-login",
     templateUrl: "./login.component.html",
@@ -15,19 +22,41 @@ import { ShareService } from "~/app/share-services/share.service";
 export class LoginComponent implements OnInit {
     isLoggingIn = true;
     user: User;
-    
+
     @ViewChild("password", { static: false }) password: ElementRef;
     @ViewChild("confirmPassword", { static: false })
     confirmPassword: ElementRef;
 
-    constructor(private page: Page, private router: Router,public modal : ModalDialogService,private vcRef:ViewContainerRef, public share:ShareService) {
+    constructor(
+        private page: Page,
+        private router: Router,
+        public modal: ModalDialogService,
+        private vcRef: ViewContainerRef,
+        public share: ShareService,
+        private http: HttpClient
+    ){
         this.page.actionBarHidden = true;
         this.user = new User();
-        // this.user.email = "foo2@foo.com";
-        // this.user.password = "foo";
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.http.get(this.share.url+"employee", {headers: this.share.APIHeader()}).subscribe(
+            result =>{
+                this.share.employees_info = result['data'];
+            },
+            error => {
+                console.log(error)
+            }
+        )
+        this.http.get(this.share.url+"manager", {headers: this.share.APIHeader()}).subscribe(
+            result =>{
+                this.share.managers_info = result['data'];
+            },
+            error => {
+                console.log(error)
+            }
+        )
+    }
     toggleForm() {
         this.isLoggingIn = !this.isLoggingIn;
     }
@@ -39,7 +68,6 @@ export class LoginComponent implements OnInit {
             ).show();
             return;
         }
-
         if (this.isLoggingIn) {
             this.login();
         } else {
@@ -48,34 +76,38 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
+        const matchEmployeeEmail = this.share.employees_info.filter(
+            key => key.email === this.user.email
+        );
+        const matchManagerEmail = this.share.managers_info.filter(
+            key => key.email === this.user.email
+        );
+        console.log(matchEmployeeEmail)
+        console.log(matchManagerEmail)
 
-         
-        const matchEmail = this.share.employees_info.filter(key=>key.email === this.user.email)
-        console.log("Match or not : " + JSON.stringify(matchEmail))
-        if(matchEmail.length ==0)
-        {
-            console.log("There is no match email")
-        }
-        else if( matchEmail.length > 0)
-        {
-            console.log("There is a match  : " + JSON.stringify(matchEmail))
-            this.share.Login(matchEmail)
-            this.router.navigateByUrl('/manager-home')
-        }
-        else{
-            console.log("Something went wrong")
-        }
-        if(this.user.email === 'vuabaybune@gmail.com' && this.user.password === 'Thanhquan123')
-        {
-            console.log("Log in as manager")
-            this.router.navigateByUrl('/manager-home')
-        }
-        else if(this.user.email === 'employee@gmail.com' && this.user.password === 'employee123')
-        {
-            console.log("Log in as employee")
-            this.router.navigateByUrl('/employee-home')
-        }
 
+        if (matchEmployeeEmail.length == 0 && matchManagerEmail.length == 0) {
+            console.log("There is no match email");
+            Toast.makeText('Wrong email or password !!!').show();
+        } else if (matchEmployeeEmail.length > 0) {
+            console.log("There is a match  : " + JSON.stringify(matchEmployeeEmail));
+            if(this.user.password === matchEmployeeEmail[0].password){
+                this.share.Login(matchEmployeeEmail);
+                this.router.navigateByUrl("/employee-home");
+            }else{
+                Toast.makeText('Wrong password !!!!').show()
+            }
+        } else if (matchManagerEmail.length > 0) {
+            console.log("There is a match  : " + JSON.stringify(matchManagerEmail));
+            if(this.user.password === matchManagerEmail[0].password){
+                this.share.Login(matchManagerEmail);
+                this.router.navigateByUrl("/manager-home");
+            }else{
+                Toast.makeText('Wrong password !!!!').show()
+            }
+        } else {
+            console.log("Something went wrong");
+        }
     }
 
     register() {
@@ -91,13 +123,11 @@ export class LoginComponent implements OnInit {
     }
 
     forgotPassword() {
-       
         let options = {
             context: {},
             fullscreen: false,
-            animation:true,
-            viewContainerRef: this.vcRef,
-            
+            animation: true,
+            viewContainerRef: this.vcRef
         };
         this.modal.showModal(ForgotPasswordComponent, options).then(result => {
             console.log(result);
@@ -112,6 +142,4 @@ export class LoginComponent implements OnInit {
             this.confirmPassword.nativeElement.focus();
         }
     }
-
-   
 }

@@ -34,7 +34,7 @@ export class ShareService {
     APIHeader() {
         var token = {
             token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4MzQ0NDUxMiwiZXhwIjoxNTgzNDQ4MTEyfQ.Ixzk9UdLUCxE1DCRHI_3-cFMJZewZAxVj6HEsrLyA64",
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzZlNTUxN2U0MGI1NTk3MTIyMSIsImlhdCI6MTU4MzYwNzcxMywiZXhwIjoxNTgzNjExMzEzfQ.B51mRs95-AdvmBf9lOlVjaHegyp0--zs-aqztV_Dpxw",
             expiresIn: "3600s",
             status: "Logged In"
         };
@@ -91,37 +91,38 @@ export class ShareService {
         }
     ];
 
+    managers_info = [];
     employees_info = [
-        {
-            first_name: "Thanh",
-            last_name: "Quan",
-            wage: "15",
-            position: "CEO",
-            email: "vuabaybune@gmail.com",
-            password: "Thanhquan123",
-            address: "somewhere in toronto",
-            dob: "16/1/1999"
-        },
-        {
-            first_name: "Tu",
-            last_name: "Quan",
-            wage: "15",
-            position: "CEO",
-            email: "tuquan@gmail.com",
-            password: "Thanhquan123",
-            address: "somewhere in toronto",
-            dob: "16/1/1999"
-        },
-        {
-            first_name: "Thong",
-            last_name: "Quan",
-            wage: "15",
-            position: "CEO",
-            email: "thongquan@gmail.com",
-            password: "Thanhquan123",
-            address: "somewhere in toronto",
-            dob: "16/1/1999"
-        }
+        // {
+        //     first_name: "Thanh",
+        //     last_name: "Quan",
+        //     wage: "15",
+        //     position: "CEO",
+        //     email: "vuabaybune@gmail.com",
+        //     password: "Thanhquan123",
+        //     address: "somewhere in toronto",
+        //     dob: "16/1/1999"
+        // },
+        // {
+        //     first_name: "Tu",
+        //     last_name: "Quan",
+        //     wage: "15",
+        //     position: "CEO",
+        //     email: "tuquan@gmail.com",
+        //     password: "Thanhquan123",
+        //     address: "somewhere in toronto",
+        //     dob: "16/1/1999"
+        // },
+        // {
+        //     first_name: "Thong",
+        //     last_name: "Quan",
+        //     wage: "15",
+        //     position: "CEO",
+        //     email: "thongquan@gmail.com",
+        //     password: "Thanhquan123",
+        //     address: "somewhere in toronto",
+        //     dob: "16/1/1999"
+        // }
     ];
 
     add_employee(employee) {

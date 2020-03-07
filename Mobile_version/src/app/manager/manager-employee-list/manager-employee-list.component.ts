@@ -35,8 +35,8 @@ export class ManagerEmployeeListComponent implements OnInit {
         }
         this.http.get(this.share.url+"employee", { headers: this.share.APIHeader() }).subscribe(
             result => {
-                this.employees_info = result.data;
-                console.log(`This is the employee info ${JSON.stringify(result.data)}`)
+                this.employees_info = result['data'];
+                console.log(`This is the employee info ${JSON.stringify(result['data'])}`)
             },
             error => {
                 console.log(error);
