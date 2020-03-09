@@ -34,34 +34,42 @@ export class LoginComponent implements OnInit {
         private vcRef: ViewContainerRef,
         public share: ShareService,
         private http: HttpClient
-    ){
+    ) {
         this.page.actionBarHidden = true;
         this.user = new User();
     }
 
     ngOnInit() {
-        this.http.get(this.share.url+"employee", {headers: this.share.APIHeader()}).subscribe(
-            result =>{
-                this.share.employees_info = result['data'];
-            },
-            error => {
-                console.log(error)
-            }
-        )
-        this.http.get(this.share.url+"manager", {headers: this.share.APIHeader()}).subscribe(
-            result =>{
-                this.share.managers_info = result['data'];
-            },
-            error => {
-                console.log(error)
-            }
-        )
+        this.http
+            .get(this.share.url + "employee", {
+                headers: this.share.APIHeader()
+            })
+            .subscribe(
+                result => {
+                    this.share.employees_info = result["data"];
+                },
+                error => {
+                    console.log(error);
+                }
+            );
+        this.http
+            .get(this.share.url + "manager", {
+                headers: this.share.APIHeader()
+            })
+            .subscribe(
+                result => {
+                    this.share.managers_info = result["data"];
+                },
+                error => {
+                    console.log(error);
+                }
+            );
     }
     toggleForm() {
         this.isLoggingIn = !this.isLoggingIn;
     }
 
-    submit() {
+    submit(isManager: Boolean) {
         if (!this.user.email || !this.user.password) {
             Toast.makeText(
                 "Please provide both an email address and password"
@@ -69,51 +77,56 @@ export class LoginComponent implements OnInit {
             return;
         }
         if (this.isLoggingIn) {
-            this.login();
+            if (isManager) {
+                this.loginManger();
+            } else {
+                this.loginEmployee();
+            }
         } else {
             this.register();
         }
     }
 
-    login() {
-        const matchEmployeeEmail = this.share.employees_info.filter(
-            key => key.email === this.user.email
-        );
-        const matchManagerEmail = this.share.managers_info.filter(
-            key => key.email === this.user.email
-        );
-        console.log(matchEmployeeEmail)
-        console.log(matchManagerEmail)
+    loginManger() {
+        this.http
+            .post(
+                this.share.urlLoginManager,
+                { email: this.user.email, password: this.user.password },
+                { headers: this.share.APIHeader() }
+            )
+            .subscribe(
+                result => {
+                    this.share.currentUser = result;
+                    this.router.navigateByUrl('/manager-home')
+                },
+                error => {
+                    console.log(JSON.stringify(error));
+                }
+            );
+    }
 
-
-        if (matchEmployeeEmail.length == 0 && matchManagerEmail.length == 0) {
-            console.log("There is no match email");
-            Toast.makeText('Wrong email or password !!!').show();
-        } else if (matchEmployeeEmail.length > 0) {
-            console.log("There is a match  : " + JSON.stringify(matchEmployeeEmail));
-            if(this.user.password === matchEmployeeEmail[0].password){
-                this.share.Login(matchEmployeeEmail);
-                this.router.navigateByUrl("/employee-home");
-            }else{
-                Toast.makeText('Wrong password !!!!').show()
-            }
-        } else if (matchManagerEmail.length > 0) {
-            console.log("There is a match  : " + JSON.stringify(matchManagerEmail));
-            if(this.user.password === matchManagerEmail[0].password){
-                this.share.Login(matchManagerEmail);
-                this.router.navigateByUrl("/manager-home");
-            }else{
-                Toast.makeText('Wrong password !!!!').show()
-            }
-        } else {
-            console.log("Something went wrong");
-        }
+    loginEmployee() {
+        this.http
+            .post(
+                this.share.urlLoginEmployee,
+                { email: this.user.email, password: this.user.password },
+                { headers: this.share.APIHeader() }
+            )
+            .subscribe(
+                result => {
+                    this.share.currentUser = result;
+                    this.router.navigateByUrl('/employee-home')
+                },
+                error => {
+                    console.log(error);
+                }
+            );
     }
 
     register() {
         if (this.user.password != this.user.confirmPassword) {
             Toast.makeText(
-                "Your password does not match , please try again !",
+                "Your password does not match, please try again !",
                 "short"
             ).show();
 

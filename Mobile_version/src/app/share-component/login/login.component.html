@@ -20,7 +20,8 @@
 			<StackLayout class="hr-light"></StackLayout>
 		</StackLayout>
 
-		<Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" (tap)="submit()" class="btn btn-primary "></Button>
+		<Button [text]="isLoggingIn ? 'Log In as Manager' : 'Sign Up'" (tap)="submit(true)" class="btn btn-primary "></Button>
+		<Button text = 'Log In as Employee' (tap)="submit(false)" class="btn btn-primary " *ngIf="isLoggingIn" ></Button>
 		<Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label" (tap)="forgotPassword()"></Label>
 	</StackLayout>
 

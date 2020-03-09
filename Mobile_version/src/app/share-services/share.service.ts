@@ -12,38 +12,37 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class ShareService {
     constructor(private http: HttpClient) {}
 
-    //fuck you back button
+    //back button
     dateRange: DateRange;
     currentUser;
     isLogin = false;
-    server_employee_list ;
+    server_employee_list;
     selected_work_date: String;
     url = `https://restaskest-api.herokuapp.com/api/`;
+    urlLoginManager = `https://restaskest-api.herokuapp.com/login/manager`
+    urlLoginEmployee = `https://restaskest-api.herokuapp.com/login/employee`
 
 
-    Login(user) {
-        console.log("Share Service currently log in:" + JSON.stringify(user));
-        this.currentUser = user;
-        this.isLogin = true;
-    }
+
+    
+    
     Logout() {
-        console.log("Share Service log out : ");
+        console.log("Share Service log out: ");
         this.isLogin = !this.isLogin;
     }
 
     APIHeader() {
         var token = {
             token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzZlNTUxN2U0MGI1NTk3MTIyMSIsImlhdCI6MTU4MzYwNzcxMywiZXhwIjoxNTgzNjExMzEzfQ.B51mRs95-AdvmBf9lOlVjaHegyp0--zs-aqztV_Dpxw",
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzZlNTUxN2U0MGI1NTk3MTIyMSIsImlhdCI6MTU4Mzc3NDAzNCwiZXhwIjoxNTgzNzc3NjM0fQ.6MPYMQIqzpJ_mLZ2KKIWtE3WuF7-G54uRsu5CI5qre0",
             expiresIn: "3600s",
             status: "Logged In"
         };
         let header = new HttpHeaders({
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token.token,
             "Content-Type": "application/json"
         });
-        return header
-
+        return header   
     }
 
     work_schedule_data = [
