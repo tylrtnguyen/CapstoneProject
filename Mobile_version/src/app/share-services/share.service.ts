@@ -87,37 +87,38 @@ export class ShareService {
         }
     ];
 
+    managers_info = [];
     employees_info = [
-        {
-            first_name: "Thanh",
-            last_name: "Quan",
-            wage: "15",
-            position: "CEO",
-            email: "vuabaybune@gmail.com",
-            password: "Thanhquan123",
-            address: "somewhere in toronto",
-            dob: "16/1/1999"
-        },
-        {
-            first_name: "Tu",
-            last_name: "Quan",
-            wage: "15",
-            position: "CEO",
-            email: "tuquan@gmail.com",
-            password: "Thanhquan123",
-            address: "somewhere in toronto",
-            dob: "16/1/1999"
-        },
-        {
-            first_name: "Thong",
-            last_name: "Quan",
-            wage: "15",
-            position: "CEO",
-            email: "thongquan@gmail.com",
-            password: "Thanhquan123",
-            address: "somewhere in toronto",
-            dob: "16/1/1999"
-        }
+        // {
+        //     first_name: "Thanh",
+        //     last_name: "Quan",
+        //     wage: "15",
+        //     position: "CEO",
+        //     email: "vuabaybune@gmail.com",
+        //     password: "Thanhquan123",
+        //     address: "somewhere in toronto",
+        //     dob: "16/1/1999"
+        // },
+        // {
+        //     first_name: "Tu",
+        //     last_name: "Quan",
+        //     wage: "15",
+        //     position: "CEO",
+        //     email: "tuquan@gmail.com",
+        //     password: "Thanhquan123",
+        //     address: "somewhere in toronto",
+        //     dob: "16/1/1999"
+        // },
+        // {
+        //     first_name: "Thong",
+        //     last_name: "Quan",
+        //     wage: "15",
+        //     position: "CEO",
+        //     email: "thongquan@gmail.com",
+        //     password: "Thanhquan123",
+        //     address: "somewhere in toronto",
+        //     dob: "16/1/1999"
+        // }
     ];
 
     add_employee(employee) {
