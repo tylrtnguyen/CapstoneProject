@@ -3,6 +3,8 @@ import { async } from '@angular/core/testing';
 import {Router, Route} from '@angular/router';
 import {FormControl, FormGroupDirective, NgForm, Validators, Form, FormGroup, FormBuilder} from '@angular/forms';
 import { promise } from 'protractor';
+import { AutoPositionStrategy } from 'igniteui-angular';
+import {ManagerService} from '../../services/manger/manager.service';
 
 declare var  Stripe : stripe.StripeStatic;
 
@@ -12,10 +14,18 @@ declare var  Stripe : stripe.StripeStatic;
   styleUrls: ['./payment-handler.component.css']
 })
 export class PaymentHandlerComponent implements OnInit {
+  public checkoutForm :FormGroup;
 
-  @Input() amount; // amount of product
+  @Input() amount = 0; // amount of product
   @Input() description; // description of product
   @ViewChild('cardElement',{static:true}) cardElement: ElementRef;
+
+
+  elementClasses = {
+    focus: 'focused',
+    empty: 'empty',
+    invalid: 'invalid',
+  }
 
   stripe;
   card;
@@ -25,12 +35,31 @@ export class PaymentHandlerComponent implements OnInit {
   confirmation: any;
   loading = false;
 
-  constructor() { }
+  constructor(private fb:FormBuilder, private managerService: ManagerService) {
+    this.checkoutForm = fb.group({
+      fullname : ['',[Validators.required]],
+      email : ['',[Validators.required]],
+      phone : ['',[Validators.required]],
+      address : ['',[Validators.required]],
+      city : ['',[Validators.required]],
+      state : ['',[Validators.required]],
+      zip : ['',[Validators.required]],
+    });
+
+   }
 
   ngOnInit() {
 
     this.stripe = Stripe('pk_test_C753uGy3APeqonNZTgHpHdOl00pdcyuNoM');
-    const element = this.stripe.elements();
+    const element = this.stripe.elements({
+      fonts: [
+        {
+        cssSrc: 'https://fonts.googleapis.com/css?family=Source+Code+Pro',
+        },
+
+      ],
+      locale : 'auto'
+    });
 
     this.card = element.create('card');
     this.card.mount(this.cardElement.nativeElement);
@@ -67,5 +96,7 @@ export class PaymentHandlerComponent implements OnInit {
       this.loading = false;
       }
     }
+
+
 }
 

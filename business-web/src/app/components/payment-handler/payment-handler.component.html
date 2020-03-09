@@ -1,0 +1,67 @@
+<form clas="checkout-form" [formGroup]='checkoutForm'>
+<mat-grid-list cols="4" rowHeight="2:1">
+  <mat-grid-tile colspan="4">
+    <mat-form-field id="full-width">
+    <mat-label>Buyer: </mat-label>
+    <input matInput name="fullname" type="text" placeholder="Your full name" formControlName="fullname" >
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
+    <mat-form-field id="half-width" >
+    <mat-label>Email: </mat-label>
+    <input matInput name="email" type="text" placeholder="Your email" formControlName="email">
+  </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
+    <mat-form-field id="half-width">
+    <mat-label>Phone: </mat-label>
+    <input matInput name="phone" type ="text" placeholder="Your phone number" formControlName="phone">
+  </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4">
+    <mat-form-field id="full-width">
+    <mat-label>Address: </mat-label>
+    <input matInput name="address" type="text" placeholder="Your address" formControlName="address">
+  </mat-form-field>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="1">
+    <mat-form-field id="small-box">
+    <mat-label>City: </mat-label>
+    <input matInput name="city" type="text" placeholder="" formControlName="city">
+  </mat-form-field>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="1">
+    <mat-form-field id="small-box">
+    <mat-label>State: </mat-label>
+    <input matInput name="state" type="text" placeholder="" formControlName="state">
+  </mat-form-field>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="2">
+    <mat-form-field id="small-box">
+    <mat-label>Postal Code: </mat-label>
+    <input matInput name="zip" type="text" placeholder="" formControlName="zip">
+  </mat-form-field>
+
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="4">
+    <div id="card-element" #cardElement>
+      <!-- this is for collecting card information -->
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4">
+
+  <button  igxButton="raised" igxButtonColor="#3B4A6B" igxButtonBackground="#F0D43A" id="payment-submit" (click) = "handleForm($event)">Pay {{amount}}$CAD</button>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4">
+    <div id="card-error" >
+      <p> {{cardError}}</p>
+    </div>
+    </mat-grid-tile>
+</mat-grid-list>
+
+</form>
+

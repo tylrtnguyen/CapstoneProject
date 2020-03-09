@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { MatMenuModule, MatToolbarModule, MatGridListModule, MatGridList, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatIcon } from '@angular/material';
+import { MatMenuModule, MatListModule,MatToolbarModule, MatGridListModule, MatGridList, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatIcon, MatList, MatSelectModule, MatStepperModule } from '@angular/material';
 
 import { IgxIconModule, IgxInputGroupModule, IgxButtonModule, IgxRippleModule, IgxDatePickerModule, IgxTimePickerModule, IgxComboModule, IgxSelectModule, IgxToggleModule, IgxLayoutModule } from "igniteui-angular";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -11,18 +12,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MainlandingComponent } from './features/mainlanding/mainlanding.component';
-import { DashboardComponent } from './features/dashboard/dashboard.component';
-import { InventoryComponent } from './features/inventory/inventory.component';
-import { ScheduleComponent } from './features/schedule/schedule.component';
-import { PaystubComponent } from './features/paystub/paystub.component';
-import { ContactUsComponent } from './features/contact-us/contact-us.component';
-import { NavbarComponent } from './features/navbar/navbar.component';
-import { MainPageComponent } from './main-page/main-page.component';
-import { TrialPageComponent } from './trial-page/trial-page.component';
-import { ProfileComponent } from './profile/profile.component';
-import { PaymentHandlerComponent } from './payment-handler/payment-handler.component';
-import { CheckoutComponent } from './checkout/checkout.component';
+import { MainlandingComponent } from './components/features/mainlanding/mainlanding.component';
+import { DashboardComponent } from './components/features/dashboard/dashboard.component';
+import { InventoryComponent } from './components/features/inventory/inventory.component';
+import { ScheduleComponent } from './components/features/schedule/schedule.component';
+import { PaystubComponent } from './components/features/paystub/paystub.component';
+import { ContactUsComponent } from './components/features/contact-us/contact-us.component';
+import { NavbarComponent } from './components/features/navbar/navbar.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { TrialPageComponent } from './components/trial-page/trial-page.component';
+import { PaymentHandlerComponent } from './components/payment-handler/payment-handler.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 @NgModule({
@@ -37,7 +37,6 @@ import { CheckoutComponent } from './checkout/checkout.component';
     NavbarComponent,
     MainPageComponent,
     TrialPageComponent,
-    ProfileComponent,
     PaymentHandlerComponent,
     CheckoutComponent,
 
@@ -52,8 +51,11 @@ import { CheckoutComponent } from './checkout/checkout.component';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatListModule,
+    MatSelectModule,
     NgbModule,
     MatIconModule,
+    MatStepperModule,
     FormsModule,
     IgxIconModule,
     IgxInputGroupModule,
@@ -65,7 +67,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     IgxSelectModule,
     ReactiveFormsModule,
     IgxToggleModule,
-    IgxLayoutModule
+    IgxLayoutModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
