@@ -8,6 +8,7 @@ import { ShareService } from "~/app/share-services/share.service";
 import { RadDataFormComponent } from "nativescript-ui-dataform/angular";
 import { Page } from "tns-core-modules/ui/page";
 import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
+import { Router } from "@angular/router";
 @Component({
     selector: "ns-manager-add-employee",
     templateUrl: "./manager-add-employee.component.html",
@@ -16,7 +17,7 @@ import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 export class ManagerAddEmployeeComponent implements OnInit {
     private _employee: Employee;
 
-    constructor(public params: ModalDialogParams, public share: ShareService) {}
+    constructor(public params: ModalDialogParams, public share: ShareService,private router : Router) {}
     @ViewChild("employee_radForm", { static: false })
     myEmployeeDataForm: RadDataFormComponent;
     ngOnInit() {
@@ -80,21 +81,21 @@ export class ManagerAddEmployeeComponent implements OnInit {
                 displayName: "Date of Birth",
                 index: 4,
                 validators: [
-                    {
-                        name: "RegEx",
-                        params: {
-                            regEx:
-                                "^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$",
-                            errorMessage: "Date Format : Date/Month/Year"
-                        }
-                    },
+                    // {
+                    //     name: "RegEx",
+                    //     params: {
+                    //         regEx:
+                    //             "^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$",
+                    //         errorMessage: "Date Format : Date/Month/Year"
+                    //     }
+                    // },
                     { name: "NonEmpty" },
                     { name: "MaximumLength", params: { length: 11 } }
                 ]
             },
             {
-                name: "position",
-                displayName: "Position",
+                name: "gender",
+                displayName: "Gender",
                 index: 5,
                 validators: [
                     { name: "NonEmpty" },
@@ -124,15 +125,12 @@ export class ManagerAddEmployeeComponent implements OnInit {
             em_store.email,
             em_store.wage,
             em_store.dob,
-            em_store.position,
+            em_store.gender,
             em_store.address,
             temp_password
         ];
-        
         this.share.add_employee(em_store_arr)
-        
+
     }
-    close(response: string) {
-        this.params.closeCallback(response);
-    }
+
 }

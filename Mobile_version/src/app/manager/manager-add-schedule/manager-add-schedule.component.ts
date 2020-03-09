@@ -28,9 +28,12 @@ export class ManagerAddScheduleComponent implements OnInit {
         }
     }
 
+    //change it to get employee from database
     dataItems = [
         {
+            //http get employee id from Schedule databse then http get employee firstName lastName from Employee database.
             name: "Thanh Quan",
+            //htttp get from schedule
             start_time: "15:00",
             end_time: "17:00",
             position: "Manager",
@@ -168,6 +171,7 @@ export class ManagerAddScheduleComponent implements OnInit {
             console.log(
                 `Employees : ${this.selected_employees_final} is start working from ${this.selected_start_date} to ${this.selected_end_date} on this date ${this.selected_date} `
             );
+            //change this to schedule database
             const schedule = {
                 nameList: this.selected_employees_final,
                 start_time: this.selected_start_date,

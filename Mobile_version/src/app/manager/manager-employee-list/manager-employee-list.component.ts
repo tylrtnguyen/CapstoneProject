@@ -7,6 +7,8 @@ import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { ManagerAddEmployeeComponent } from "../manager-add-employee/manager-add-employee.component";
 import { TitleCasePipe } from "@angular/common";
+import * as Toast from "nativescript-toast";
+
 @Component({
     selector: "ns-manager-employee-list",
     templateUrl: "./manager-employee-list.component.html",
@@ -33,32 +35,63 @@ export class ManagerEmployeeListComponent implements OnInit {
             this.ifIOS = true;
             this.ifAndroid = false;
         }
-        this.http.get(this.share.url+"employee", { headers: this.share.APIHeader() }).subscribe(
-            result => {
-                this.employees_info = result['data'];
-                console.log(`This is the employee info ${JSON.stringify(result['data'])}`)
-            },
-            error => {
-                console.log(error);
-            }
-        );
+        this.http
+            .get(this.share.url + "employee", {
+                headers: this.share.APIHeader()
+            })
+            .subscribe(
+                result => {
+                    this.employees_info = result["data"];
+                },
+                error => {
+                    console.log(error);
+                }
+            );
     }
 
     confirmation(data) {
         console.log("Confirmation");
         let options = {
             title: "Delete Employee",
-            message: `Are you sure you want to delete this employee ${data}?`,
+            message: `Are you sure you want to delete this employee ${data.fName}?`,
             okButtonText: "Yes",
             cancelButtonText: "No"
         };
 
         confirm(options).then((result: boolean) => {
-            const new_list = this.share.employees_info.filter(
-                filter => filter.first_name + " " + filter.last_name !== data
-            );
-            this.share.employees_info = new_list;
-            this.employees_info = this.share.employees_info;
+            if (result) {
+                var new_list = [];
+                this.http
+                    .delete(this.share.url + `employee/${data._id}`, {
+                        headers: this.share.APIHeader()
+                    })
+                    .subscribe(
+                        result => {
+                            // new_list = result['data'];
+                            this.http
+                                .get(this.share.url + "employee", {
+                                    headers: this.share.APIHeader()
+                                })
+                                .subscribe(
+                                    result => {
+                                        this.employees_info = result["data"];
+                                    },
+                                    error => {
+                                        console.log(
+                                            "GET REQUEST ERROR : " + error
+                                        );
+                                    }
+                                );
+                        },
+                        error => {
+                            console.log(error);
+                        }
+                    );
+            }
+            else{
+                console.log("You don't want to erase this employee from our database");
+                
+            }
         });
     }
 
