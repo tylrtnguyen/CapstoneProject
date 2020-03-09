@@ -13,15 +13,15 @@
                     <GridLayout columns="100,100,*,50" rows='25' orientation='horizontal'>
                         <Button class='edit-btn' text='Edit' col='0' row='0' (tap)='employee_detail(item)'></Button>
                         <Button col="3" row="0" style='border-width:2px ;border-radius:15px' text='X'
-                            (tap)="confirmation(item.name)"></Button>
+                            (tap)="confirmation(item)"></Button>
                     </GridLayout>
                     <StackLayout orientation='vertical'>
                         <StackLayout orientation='horizontal' class='border-top-left-right'>
                             <Label style="font-weight: bold;" text='Employee Name : '></Label>
-                            <Label class="nameLabel" text="{{item.first_name}}  {{item.last_name}}"></Label>
+                            <Label class="nameLabel" text="{{item.fName}}  {{item.lName}}"></Label>
                             <Label style="font-weight: bold;" text='Wage : '></Label>
                             <Label width=100%  style="font-weight: 500; text-align: center;" class="nameLabel"
-                                [text]="item.wage">
+                                [text]="item.wages">
                             </Label>
                         </StackLayout>
                         <StackLayout orientation='horizontal' style='border-width: 2px;'>
@@ -30,15 +30,15 @@
                                 [text]="item.email"></Label>
                         </StackLayout>
                         <StackLayout orientation='horizontal' style='border-width: 2px;'>
-                            <Label style="font-weight: bold;" text='Position : '></Label>
+                            <Label style="font-weight: bold;" text='Join Date : '></Label>
                             <Label width='100%' style="font-weight: 500; text-align: center;" class="nameLabel"
-                                [text]="item.position">
+                                [text]="item.JoinDate">
                             </Label>
                         </StackLayout>
                         <StackLayout orientation='horizontal' style='border-width: 2px;'>
                             <Label style="font-weight: bold;" text='Date of Birth : '></Label>
                             <Label style='text-align: center    ' width='100%' class="nameLabel"
-                                [text]="item.dob"></Label>
+                                [text]="item.DOB"></Label>
                         </StackLayout>
                         <StackLayout orientation='horizontal' style='border-width: 2px;'>
                             <Label style="font-weight: bold;" text='Address : '></Label>

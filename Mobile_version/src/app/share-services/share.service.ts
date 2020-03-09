@@ -10,16 +10,15 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
     providedIn: "root"
 })
 export class ShareService {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient,public router : Router) {}
 
     //fuck you back button
     dateRange: DateRange;
     currentUser;
     isLogin = false;
-    server_employee_list ;
+    server_employee_list;
     selected_work_date: String;
     url = `https://restaskest-api.herokuapp.com/api/`;
-
 
     Login(user) {
         console.log("Share Service currently log in:" + JSON.stringify(user));
@@ -34,16 +33,13 @@ export class ShareService {
     APIHeader() {
         var token = {
             token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4MzQ0NDUxMiwiZXhwIjoxNTgzNDQ4MTEyfQ.Ixzk9UdLUCxE1DCRHI_3-cFMJZewZAxVj6HEsrLyA64",
-            expiresIn: "3600s",
-            status: "Logged In"
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4Mzc3Mzg2NCwiZXhwIjoxNTgzNzc3NDY0fQ.pKfVAQX6YSI4ToQGVfzfJ2sZwhwqKezgCO3wYlmkifs"
         };
         let header = new HttpHeaders({
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token.token,
             "Content-Type": "application/json"
         });
-        return header
-
+        return header;
     }
 
     work_schedule_data = [
@@ -125,18 +121,32 @@ export class ShareService {
     ];
 
     add_employee(employee) {
-        const template = {
-            first_name: employee[0],
-            last_name: employee[1],
-            wage: employee[2],
-            position: employee[3],
-            email: employee[4],
-            password: employee[5],
-            address: employee[6],
-            dob: employee[7]
-        };
-        this.employees_info.push(template);
-        console.log("Share service : " + JSON.stringify(this.employees_info));
+
+
+        this.http
+            .post(
+                this.url + "employee",
+                {
+                    fName: employee[0],
+                    lName: employee[1],
+                    email: employee[2],
+                    wages: employee[3],
+                    DOB: employee[4],
+                    gender: employee[5],
+                    address: employee[6],
+                    isPermanent : false,
+                    password: "123456789"
+                },
+                { headers: this.APIHeader() }
+            )
+            .subscribe(
+                result => {
+                    this.router.navigateByUrl("/manager-employee-list");
+                },
+                error => {
+                    console.log("POST REQUEST ERROR : " + error);
+                }
+            );
     }
 
     inventory = [
