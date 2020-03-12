@@ -4,19 +4,19 @@
 
 
     <StackLayout height='100%'>
-        <RadListView [items]="inventory_data" height=100%>
+        <RadListView [items]="material" height=100%>
             <ng-template let-item="item">
                 <StackLayout>
                     <StackLayout style='border-radius: 15px; border-width: 3px;'>
                         <GridLayout columns="100,100,*,50" rows='25' orientation='horizontal'>
-                            <Button class='edit-btn' text='Edit' col='0' row='0' (tap)='employee_detail(item)'></Button>
+                            <Button class='edit-btn' text='Edit' col='0' row='0' (tap)='edit_item(item)'></Button>
                             <Button col="3" row="0" style='border-width:2px ;border-radius:15px' text='X'
-                                (tap)="confirmation(item.name)"></Button>
+                                (tap)="delete_item(item.name)"></Button>
                         </GridLayout>
                         <StackLayout orientation='horizontal'>
                             <StackLayout class='border-top-bottom-left' width='75%' orientation='horizontal'>
                                 <Label style="font-weight: bold;" text='Product Name : '></Label>
-                                <Label class="nameLabel" [text]="item.product_name"></Label>
+                                <Label class="nameLabel" [text]="item.name"></Label>
                             </StackLayout>
                             <StackLayout class='border-top-bottom-right' width='25%' orientation='horizontal'>
                                 <Label style="font-weight: 500; text-align: center;" class="nameLabel"
@@ -24,27 +24,10 @@
                             </StackLayout>
                         </StackLayout>
                         <StackLayout orientation='horizontal'>
-                            <StackLayout class='border-top-bottom-left' width='35%' orientation='horizontal'>
-                                <Label text='EXP:'></Label>
-                                <Label class="nameLabel" [text]="item.exp"></Label>
+                            <StackLayout class='border-top-bottom-left' width='100%' orientation='horizontal'>
+                                <Label text='Status:'></Label>
+                                <Label class="nameLabel" [text]="item.stockStatus"></Label>
                             </StackLayout>
-                            <StackLayout class='border-top-bottom-right' width='100%' orientation='horizontal'>
-                                <Label text='Distrubitor'></Label>
-                                <Label class="nameLabel" [text]="item.seller"></Label>
-                            </StackLayout>
-                        </StackLayout>
-                        <GridLayout columns="90" rows="30" height='10%'>
-                            <Label row="0" col="0" height='30vh'
-                                style='border-top-left-radius: 15px;border-top-right-radius: 15px ; border-width: 2px;'
-                                text='Describsion : '></Label>
-                        </GridLayout>
-                        <StackLayout
-                            style='border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; border-width: 2px;'
-                            height='80vh' orientation='horizontal'>
-
-
-                            <Label width='100%' height='100%' class="nameLabel" [text]="item.desc"></Label>
-
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>

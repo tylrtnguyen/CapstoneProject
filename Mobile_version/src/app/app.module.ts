@@ -47,6 +47,7 @@ import { ManagerDateRangeComponent } from './manager/manager-date-range/manager-
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import { ManagerEmployeeDetailComponent } from './manager/manager-employee-detail/manager-employee-detail.component';
 import { ForgotPasswordComponent } from './share-component/forgot-password/forgot-password.component';
+import { ManagerInventoryDetailComponent } from './manager/manager-inventory-detail/manager-inventory-detail.component';
 
 @NgModule({
     bootstrap: [
@@ -98,11 +99,12 @@ import { ForgotPasswordComponent } from './share-component/forgot-password/forgo
         ManagerDateRangeComponent,
         ManagerEmployeeDetailComponent,
         ManagerAddEmployeeComponent,
-        ForgotPasswordComponent
+        ForgotPasswordComponent,
+        ManagerInventoryDetailComponent,
 
         //Share Service        
     ],
-    entryComponents : [ManagerAddEmployeeComponent,ForgotPasswordComponent],
+    entryComponents : [ManagerAddEmployeeComponent,ForgotPasswordComponent,ManagerInventoryDetailComponent,ManagerEmployeeDetailComponent],
     providers: [ShareService,ModalDialogService],
     schemas: [
         NO_ERRORS_SCHEMA

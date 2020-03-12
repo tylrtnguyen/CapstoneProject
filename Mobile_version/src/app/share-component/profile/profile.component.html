@@ -10,16 +10,19 @@
         <StackLayout class='info-box' height='65%'>
             <TextField class='info-text' text="Full Name   : {{name}}"  textWrap = "true" editable= "false" ></TextField>
             <TextField class='info-text' text="Email   : {{email}}"  textWrap = "true" editable= "{{false}}" ></TextField>
-            <TextField class='info-text' text="Address   : {{address}}"  textWrap = "true" editable= "false" ></TextField>
-            <TextField class='info-text' text="Date of Birth   : {{dob}}"  textWrap = "true" editable= "false" ></TextField>
-            <TextField class='info-text' text="Wage   : {{wage}}"  textWrap = "true" editable= "false" ></TextField>
-            <TextField class='info-text' text="Position   : {{position}}"  textWrap = "true" editable= "false" ></TextField>
+            <TextField class='info-text' *ngIf="this.share.currentUser.role==='manager' "  text="Restaurants Name  : {{restaurants}}"  textWrap = "true" editable= "false" ></TextField>
+            <TextField class='info-text' *ngIf="this.share.currentUser.role==='manager' "  text="Restaurants Address  : {{restaurant_address}}"  textWrap = "true" editable= "false" ></TextField>
+            <TextField class='info-text' *ngIf="this.share.currentUser.role==='manager' "  text="Restaurants POS  : {{pos}}"  textWrap = "true" editable= "false" ></TextField>
+
+            <TextField class='info-text' *ngIf="this.share.currentUser.role==='employee' " text="Address   : {{address}}"  textWrap = "true" editable= "false" ></TextField>
+            <TextField class='info-text' *ngIf="this.share.currentUser.role==='employee' " text="Date of Birth   : {{dob}}"  textWrap = "true" editable= "false" ></TextField>
+            <TextField class='info-text' *ngIf="this.share.currentUser.role==='employee' " text="Wage   : {{wage}}"  textWrap = "true" editable= "false" ></TextField>
 
         </StackLayout>
     </StackLayout>
-    <ns-employee-tab-manager *ngIf='!system()'></ns-employee-tab-manager>
-    <ns-manager-tab-manager *ngIf='system()'></ns-manager-tab-manager>
+    <!-- <ns-employee-tab-manager *ngIf='!system()'></ns-employee-tab-manager>
+    <ns-manager-tab-manager *ngIf='system()'></ns-manager-tab-manager> -->
 
 </StackLayout>
-<ns-employee-tab-manager *ngIf='!system()'></ns-employee-tab-manager>
-<ns-manager-tab-manager *ngIf='system()'></ns-manager-tab-manager>
+<!-- <ns-employee-tab-manager *ngIf='!system()'></ns-employee-tab-manager>
+<ns-manager-tab-manager *ngIf='system()'></ns-manager-tab-manager> -->

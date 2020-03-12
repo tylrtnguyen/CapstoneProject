@@ -3,12 +3,13 @@ import {
     ModalDialogService,
     ModalDialogParams
 } from "nativescript-angular/modal-dialog";
-import { Employee } from "../../share-services/Employee";
+import { Employee } from "../../model/Employee";
 import { ShareService } from "~/app/share-services/share.service";
 import { RadDataFormComponent } from "nativescript-ui-dataform/angular";
 import { Page } from "tns-core-modules/ui/page";
 import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 import { Router } from "@angular/router";
+import { HttpClient } from "@angular/common/http";
 @Component({
     selector: "ns-manager-add-employee",
     templateUrl: "./manager-add-employee.component.html",
@@ -17,11 +18,17 @@ import { Router } from "@angular/router";
 export class ManagerAddEmployeeComponent implements OnInit {
     private _employee: Employee;
 
-    constructor(public params: ModalDialogParams, public share: ShareService,private router : Router) {}
+    constructor(
+        public params: ModalDialogParams,
+        public share: ShareService,
+        private router: Router,
+        public modal: ModalDialogService,
+        private http : HttpClient
+    ) {}
     @ViewChild("employee_radForm", { static: false })
     myEmployeeDataForm: RadDataFormComponent;
     ngOnInit() {
-        this._employee = new Employee("", "", "", null, "", "", "");
+        this._employee = new Employee("", "", "", null, "", "", "","");
     }
     get employee(): Employee {
         return this._employee;
@@ -77,9 +84,18 @@ export class ManagerAddEmployeeComponent implements OnInit {
                 index: 3
             },
             {
+                name: "department",
+                displayName: "Department",
+                index: 4,
+                validators: [
+                    { name: "NonEmpty" },
+                    { name: "MinimumLength", params: { length: 3 } }
+                ]
+            },
+            {
                 name: "dob",
                 displayName: "Date of Birth",
-                index: 4,
+                index: 5,
                 validators: [
                     // {
                     //     name: "RegEx",
@@ -96,7 +112,7 @@ export class ManagerAddEmployeeComponent implements OnInit {
             {
                 name: "gender",
                 displayName: "Gender",
-                index: 5,
+                index: 6,
                 validators: [
                     { name: "NonEmpty" },
                     { name: "MinimumLength", params: { length: 3 } }
@@ -105,7 +121,7 @@ export class ManagerAddEmployeeComponent implements OnInit {
             {
                 name: "address",
                 displayName: "address",
-                index: 6,
+                index: 7,
                 validators: [
                     { name: "NonEmpty" },
                     { name: "MinimumLength", params: { length: 3 } },
@@ -118,19 +134,31 @@ export class ManagerAddEmployeeComponent implements OnInit {
         console.log("Create a new user");
         this.myEmployeeDataForm.dataForm.commitAll();
         const em_store = this.myEmployeeDataForm.dataForm.source;
-        const temp_password = em_store.dob
-        const em_store_arr = [
-            em_store.first_name,
-            em_store.last_name,
-            em_store.email,
-            em_store.wage,
-            em_store.dob,
-            em_store.gender,
-            em_store.address,
-            temp_password
-        ];
-        this.share.add_employee(em_store_arr)
-
+        console.log(JSON.stringify(em_store))
+        this.http
+            .post(
+                this.share.url + "employee",
+                {
+                    fName: em_store.first_name,
+                    lName: em_store.last_name,
+                    email: em_store.email,
+                    department: em_store.department,
+                    wages: em_store.wage,
+                    DOB: em_store.dob,
+                    gender: em_store.gender,
+                    address:  em_store.address,
+                    isPermanent: false,
+                    password: "123456789"
+                },
+                { headers: this.share.APIHeader() }
+            )
+            .subscribe(
+                result => {
+                    this.params.closeCallback()
+                },
+                error => {
+                    console.log("POST REQUEST ERROR : " + JSON.stringify(error));
+                }
+            );
     }
-
 }

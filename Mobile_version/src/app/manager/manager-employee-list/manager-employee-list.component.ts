@@ -8,6 +8,7 @@ import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { ManagerAddEmployeeComponent } from "../manager-add-employee/manager-add-employee.component";
 import { TitleCasePipe } from "@angular/common";
 import * as Toast from "nativescript-toast";
+import { ManagerEmployeeDetailComponent } from "../manager-employee-detail/manager-employee-detail.component";
 
 @Component({
     selector: "ns-manager-employee-list",
@@ -87,10 +88,10 @@ export class ManagerEmployeeListComponent implements OnInit {
                             console.log(error);
                         }
                     );
-            }
-            else{
-                console.log("You don't want to erase this employee from our database");
-                
+            } else {
+                console.log(
+                    "You don't want to erase this employee from our database"
+                );
             }
         });
     }
@@ -99,18 +100,48 @@ export class ManagerEmployeeListComponent implements OnInit {
         console.log("Taped add button");
         let options = {
             context: {},
-            fullscreen: true,
+            fullscreen: false,
             viewContainerRef: this.vcRef
         };
         this.modal
             .showModal(ManagerAddEmployeeComponent, options)
             .then(result => {
-                console.log(result);
+                this.http
+                    .get(this.share.url + "employee", {
+                        headers: this.share.APIHeader()
+                    })
+                    .subscribe(
+                        result => {
+                            this.employees_info = result["data"];
+                        },
+                        error => {
+                            console.log("GET REQUEST ERROR : " + error);
+                        }
+                    );
             });
     }
 
     employee_detail(data) {
-        const full_name = data.first_name + " " + data.last_name;
-        this.router.navigate(["/manager-employee-detail", full_name]);
+        let options = {
+            context: {data : data},
+            fullscreen: false,
+            viewContainerRef: this.vcRef
+        };
+        this.modal
+            .showModal(ManagerEmployeeDetailComponent, options)
+            .then(result => {
+                this.http
+                    .get(this.share.url + "employee", {
+                        headers: this.share.APIHeader()
+                    })
+                    .subscribe(
+                        result => {
+                            this.employees_info = result["data"];
+                        },
+                        error => {
+                            console.log("GET REQUEST ERROR : " + error);
+                        }
+                    );
+            });
     }
 }

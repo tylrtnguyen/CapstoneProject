@@ -19,6 +19,7 @@ export class ActionBarComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.isLogout)
+    console.log(`this is the user data ${JSON.stringify(this.share.currentUser)}`)
   }
 
   goBack(){

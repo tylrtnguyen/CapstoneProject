@@ -8,7 +8,7 @@ import {
 import { Router } from "@angular/router";
 import { Page } from "tns-core-modules/ui/page/page";
 import { alert, prompt } from "tns-core-modules/ui/dialogs";
-import { User } from "../../share-services/User";
+import { User } from "../../model/User";
 import * as Toast from "nativescript-toast";
 import { ForgotPasswordComponent } from "../forgot-password/forgot-password.component";
 import { ModalDialogService } from "nativescript-angular/modal-dialog";

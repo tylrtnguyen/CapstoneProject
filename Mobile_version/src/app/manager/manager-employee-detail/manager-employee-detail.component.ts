@@ -1,10 +1,15 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Employee } from "../../share-services/Employee";
+import { Employee } from "../../model/Employee";
 import { ShareService } from "~/app/share-services/share.service";
 import { RadDataFormComponent } from "nativescript-ui-dataform/angular";
 import { Page } from "tns-core-modules/ui/page";
 import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
+import {
+    ModalDialogService,
+    ModalDialogParams
+} from "nativescript-angular/modal-dialog";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
     selector: "ns-manager-employee-detail",
@@ -13,12 +18,13 @@ import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 })
 export class ManagerEmployeeDetailComponent implements OnInit {
     private _employee: Employee;
+    public data;
     ifAndroid: Boolean;
     ifIOS: Boolean;
     employee_meta = {
         isReadOnly: false,
         commitMode: "manual",
-        validationMode: "immediate",
+        validationMode: "lostFocus",
         propertyAnnotations: [
             {
                 name: "first_name",
@@ -26,8 +32,7 @@ export class ManagerEmployeeDetailComponent implements OnInit {
                 index: 0,
                 validators: [
                     { name: "NonEmpty" },
-                    { name: "MaximumLength", params: { length: 50 , errorMessage:
-                        "Ensure your name is in the right format"} }
+                    { name: "MaximumLength", params: { length: 50 } }
                 ]
             },
             {
@@ -36,8 +41,7 @@ export class ManagerEmployeeDetailComponent implements OnInit {
                 index: 1,
                 validators: [
                     { name: "NonEmpty" },
-                    { name: "MaximumLength", params: { length: 50 , errorMessage:
-                        "Ensure your name is in the right format"} }
+                    { name: "MaximumLength", params: { length: 50 } }
                 ]
             },
             {
@@ -68,26 +72,35 @@ export class ManagerEmployeeDetailComponent implements OnInit {
                 index: 3
             },
             {
-                name: "dob",
-                displayName: "Date of Birth",
+                name: "department",
+                displayName: "Department",
                 index: 4,
                 validators: [
-                    {
-                        name: "RegEx",
-                        params: {
-                            regEx:
-                                "^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$",
-                            errorMessage: "Date Format : Date/Month/Year"
-                        }
-                    },
+                    { name: "NonEmpty" },
+                    { name: "MinimumLength", params: { length: 3 } }
+                ]
+            },
+            {
+                name: "dob",
+                displayName: "Date of Birth",
+                index: 5,
+                validators: [
+                    // {
+                    //     name: "RegEx",
+                    //     params: {
+                    //         regEx:
+                    //             "^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$",
+                    //         errorMessage: "Date Format : Date/Month/Year"
+                    //     }
+                    // },
                     { name: "NonEmpty" },
                     { name: "MaximumLength", params: { length: 11 } }
                 ]
             },
             {
-                name: "position",
-                displayName: "Position",
-                index: 5,
+                name: "gender",
+                displayName: "Gender",
+                index: 6,
                 validators: [
                     { name: "NonEmpty" },
                     { name: "MinimumLength", params: { length: 3 } }
@@ -96,7 +109,7 @@ export class ManagerEmployeeDetailComponent implements OnInit {
             {
                 name: "address",
                 displayName: "address",
-                index: 6,
+                index: 7,
                 validators: [
                     { name: "NonEmpty" },
                     { name: "MinimumLength", params: { length: 3 } },
@@ -106,12 +119,12 @@ export class ManagerEmployeeDetailComponent implements OnInit {
         ]
     };
     constructor(
+        public params: ModalDialogParams,
         private route: ActivatedRoute,
         public share: ShareService,
-        public router: Router
+        public router: Router,
+        public http: HttpClient
     ) {}
-    temp_employee;
-    employee_detail;
     ngOnInit() {
         if (isAndroid) {
             this.ifAndroid = true;
@@ -120,32 +133,17 @@ export class ManagerEmployeeDetailComponent implements OnInit {
             this.ifIOS = true;
             this.ifAndroid = false;
         }
-        const query = this.route.snapshot.params.id;
-        this.employee_detail = this.share.employees_info.filter(
-            filter => filter.first_name + " " +filter.last_name === query
-        );
-        const em = this.employee_detail[0];
-
-
-        //Pre value put in
-        this.temp_employee = [
-            em.first_name,
-            em.last_name,
-            em.email,
-            parseInt(em.wage),
-            em.dob,
-            em.position,
-            em.address
-        ];
-
+        this.data = this.params.context.data;
+        console.log(JSON.stringify(this.params.context.data));
         this._employee = new Employee(
-            em.first_name,
-            em.last_name,
-            em.email,
-            parseInt(em.wage),
-            em.dob,
-            em.position,
-            em.address
+            this.data.fName,
+            this.data.lName,
+            this.data.email,
+            this.data.wages,
+            this.data.department,
+            this.data.DOB,
+            this.data.gender,
+            this.data.address
         );
     }
 
@@ -158,28 +156,28 @@ export class ManagerEmployeeDetailComponent implements OnInit {
     submit() {
         this.myEmployeeDataForm.dataForm.commitAll();
         const em_store = this.myEmployeeDataForm.dataForm.source;
-
-        const em_store_arr = [
-            em_store.first_name,
-            em_store.last_name,
-            em_store.email,
-            em_store.wage,
-            em_store.dob,
-            em_store.position,
-            em_store.address
-        ];
-
-        //Compare pre value and post value
-        const check_change = this.temp_employee.filter(
-            filter => filter === em_store_arr
-        );
-        if (check_change.length == 0) {
-        } else {
-            alert({
-                title: "Employee Change Details",
-                message: `${em_store_arr[0]} ${em_store_arr[1]} information has been updated`,
-                okButtonText: "OK"
-            });
-        }
+        
+        this.http
+            .put(
+                this.share.url + `employee/${this.data._id}`,
+                {
+                    fName: em_store.first_name,
+                    lName: em_store.last_name,
+                    email: em_store.email,
+                    department: em_store.department,
+                    wages: em_store.wage,
+                    DOB: em_store.dob,
+                    gender: em_store.gender,
+                    address:  em_store.address,
+                },
+                { headers: this.share.APIHeader() }
+            )
+            .subscribe(
+                result => this.params.closeCallback(),
+                error => console.log(error)
+            );
+    }
+    cancel(){
+        this.params.closeCallback()
     }
 }

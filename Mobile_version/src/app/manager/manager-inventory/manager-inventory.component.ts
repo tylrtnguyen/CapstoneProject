@@ -1,6 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { ShareService } from "~/app/share-services/share.service";
 import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
+import { HttpClient } from "@angular/common/http";
+import { ModalDialogService } from "nativescript-angular/modal-dialog";
+import { confirm } from "tns-core-modules/ui/dialogs";
+import { Router } from "@angular/router";
+import { ManagerInventoryDetailComponent } from "../manager-inventory-detail/manager-inventory-detail.component";
 
 @Component({
     selector: "ns-manager-inventory",
@@ -10,38 +15,15 @@ import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 export class ManagerInventoryComponent implements OnInit {
     ifIOS: boolean;
     ifAndroid: boolean;
-    title='Inventory'
-    inventory_data = [
-        {
-            product_name: "Pork meat",
-            quantity: 1000,
-            exp: "Dec/21/2020",
-            seller: "100% Pig Farm",
-            desc: "Shitty pig meat"
-        },
-        {
-            product_name: "Cow meat",
-            quantity: 11,
-            exp: "Dec/21/2020",
-            seller: "100% Cow Farm",
-            desc: "Shitty cow meat"
-        },
-        {
-            product_name: "Dog meat",
-            quantity: 12,
-            exp: "Dec/21/2020",
-            seller: "100% Dog Farm",
-            desc: "Shitty dog meat"
-        },
-        {
-            product_name: "Bat meat",
-            quantity: 13,
-            exp: "Dec/21/2020",
-            seller: "100% Bat Farm",
-            desc: "Shitty bat coronovirus meat"
-        }
-    ];
-    constructor(public share: ShareService) {}
+    title = "Inventory";
+    material = [];
+    constructor(
+        public share: ShareService,
+        private http: HttpClient,
+        public modal: ModalDialogService,
+        private vcRef: ViewContainerRef,
+        private router: Router
+    ) {}
     inventory = [];
     ngOnInit() {
         if (isAndroid) {
@@ -51,5 +33,80 @@ export class ManagerInventoryComponent implements OnInit {
             this.ifIOS = true;
             this.ifAndroid = false;
         }
+        this.http
+            .get(this.share.url + "material", {
+                headers: this.share.APIHeader()
+            })
+            .subscribe(
+                result => {
+                    this.material = result["data"];
+                },
+                error => console.log(error)
+            );
+    }
+    edit_item(data) {
+        console.log("Taped add button");
+        let options = {
+            context: { data: data },
+            fullscreen: false,
+            viewContainerRef: this.vcRef
+        };
+        this.modal
+            .showModal(ManagerInventoryDetailComponent, options)
+            .then(result => {
+                this.http
+                    .get(this.share.url + "material", {
+                        headers: this.share.APIHeader()
+                    })
+                    .subscribe(
+                        result => {
+                            this.material = result["data"];
+                        },
+                        error => {
+                            console.log("GET REQUEST ERROR : " + error);
+                        }
+                    );
+            });
+    }
+    delete_item(data) {
+        console.log("Confirmation");
+        let options = {
+            title: "Delete Employee",
+            message: `Are you sure you want to delete this employee ${data.name}?`,
+            okButtonText: "Yes",
+            cancelButtonText: "No"
+        };
+
+        confirm(options).then((result: boolean) => {
+            if (result) {
+                this.http
+                    .delete(this.share.url + `material/${data._id}`, {
+                        headers: this.share.APIHeader()
+                    })
+                    .subscribe(
+                        result => {
+                            this.http
+                                .get(this.share.url + "material", {
+                                    headers: this.share.APIHeader()
+                                })
+                                .subscribe(
+                                    result => {
+                                        this.material = result["data"];
+                                    },
+                                    error => {
+                                        console.log(
+                                            "GET REQUEST ERROR : " + error
+                                        );
+                                    }
+                                );
+                        },
+                        error => console.log(error)
+                    );
+            } else {
+                console.log(
+                    "You don't want to erase this material from our database"
+                );
+            }
+        });
     }
 }

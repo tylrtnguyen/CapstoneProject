@@ -2,7 +2,7 @@ import { Injectable, ViewContainerRef } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { Router } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
-import { Employee } from "./Employee";
+import { Employee } from "../model/Employee";
 import { DateRange } from "nativescript-ui-calendar";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
@@ -34,7 +34,7 @@ export class ShareService {
     APIHeader() {
         var token = {
             token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4Mzc3Mzg2NCwiZXhwIjoxNTgzNzc3NDY0fQ.pKfVAQX6YSI4ToQGVfzfJ2sZwhwqKezgCO3wYlmkifs"
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4Mzk4NTc2NywiZXhwIjoxNTgzOTg5MzY3fQ.CXyZw3GDS_h37RDWQWEozK9r8Nw1fqPVSqBH3dDikVY"
         };
         let header = new HttpHeaders({
             Authorization: "Bearer " + token.token,
@@ -90,36 +90,36 @@ export class ShareService {
 
     managers_info = [];
     employees_info = [
-        // {
-        //     first_name: "Thanh",
-        //     last_name: "Quan",
-        //     wage: "15",
-        //     position: "CEO",
-        //     email: "vuabaybune@gmail.com",
-        //     password: "Thanhquan123",
-        //     address: "somewhere in toronto",
-        //     dob: "16/1/1999"
-        // },
-        // {
-        //     first_name: "Tu",
-        //     last_name: "Quan",
-        //     wage: "15",
-        //     position: "CEO",
-        //     email: "tuquan@gmail.com",
-        //     password: "Thanhquan123",
-        //     address: "somewhere in toronto",
-        //     dob: "16/1/1999"
-        // },
-        // {
-        //     first_name: "Thong",
-        //     last_name: "Quan",
-        //     wage: "15",
-        //     position: "CEO",
-        //     email: "thongquan@gmail.com",
-        //     password: "Thanhquan123",
-        //     address: "somewhere in toronto",
-        //     dob: "16/1/1999"
-        // }
+        {
+            first_name: "Thanh",
+            last_name: "Quan",
+            wage: "15",
+            position: "CEO",
+            email: "vuabaybune@gmail.com",
+            password: "Thanhquan123",
+            address: "somewhere in toronto",
+            dob: "16/1/1999"
+        },
+        {
+            first_name: "Tu",
+            last_name: "Quan",
+            wage: "15",
+            position: "CEO",
+            email: "tuquan@gmail.com",
+            password: "Thanhquan123",
+            address: "somewhere in toronto",
+            dob: "16/1/1999"
+        },
+        {
+            first_name: "Thong",
+            last_name: "Quan",
+            wage: "15",
+            position: "CEO",
+            email: "thongquan@gmail.com",
+            password: "Thanhquan123",
+            address: "somewhere in toronto",
+            dob: "16/1/1999"
+        }
     ];
 
     add_employee(employee) {
