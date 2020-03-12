@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Page } from "tns-core-modules/ui/page";
 import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
+import { ShareService } from "~/app/share-services/share.service";
+import { HttpClient } from "@angular/common/http";
 
 // import { ActionBarComponent } from "~/app/share-component/action-bar/action-bar.component";
 
@@ -13,18 +15,17 @@ import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 export class ManagerHomeComponent implements OnInit {
     ifAndroid: Boolean;
     ifIOS: Boolean;
-    title='Manager Home'
-    num_worker = 1;
-    clock_data = [{name : 'Something'}]
-    constructor(public router: Router, public page: Page) {
-    }
+    title = "Manager Home";
+    num_worker = 0;
+    clock_data = [{ name: "Something" }];
+    constructor(
+        public router: Router,
+        public page: Page,
+        public share: ShareService,
+        public http: HttpClient
+    ) {}
 
-    dummy_data = [
-        {name : "Thanh" , age : 84},
-        {name : "Quang" , age : 84},
-        {name : "Tu" , age : 84},
-        {name : "Thong" , age : 84},
-    ]
+    dummy_data = [];
     ngOnInit() {
         if (isAndroid) {
             this.ifAndroid = true;
@@ -33,6 +34,32 @@ export class ManagerHomeComponent implements OnInit {
             this.ifIOS = true;
             this.ifAndroid = false;
         }
+        this.http
+            .get(this.share.url + "schedule", {
+                headers: this.share.APIHeader()
+            })
+            .subscribe(
+                result => {
+                    const date = new Date();
+                    const schedule = result["data"];
+                    var systemDate = date.toISOString().substr(0, 10);
+                    for(var i = 0 ; i < schedule.length ; i++)
+                    {
+                        const today_employee = schedule[i].employee
+                        const today = schedule[i].workDays[0].date.substr(0,10)
+                        if(today === systemDate )
+                        {
+                            this.http.get(this.share.url+`employee/${today_employee}`,{headers:this.share.APIHeader()}).subscribe(
+                                result=>{
+                                    this.dummy_data.push(result['data'])
+                                    this.num_worker = this.dummy_data.length
+                                }
+                            )
+                        }
+                    }
+                },
+                error => console.log(error)
+            );
     }
 
     schedule() {

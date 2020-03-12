@@ -40,30 +40,6 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.http
-            .get(this.share.url + "employee", {
-                headers: this.share.APIHeader()
-            })
-            .subscribe(
-                result => {
-                    this.share.employees_info = result["data"];
-                },
-                error => {
-                    console.log(error);
-                }
-            );
-        this.http
-            .get(this.share.url + "manager", {
-                headers: this.share.APIHeader()
-            })
-            .subscribe(
-                result => {
-                    this.share.managers_info = result["data"];
-                },
-                error => {
-                    console.log(error);
-                }
-            );
     }
     toggleForm() {
         this.isLoggingIn = !this.isLoggingIn;

@@ -15,7 +15,6 @@ export class ProfileComponent implements OnInit {
     ifIOS: Boolean;
     user: User;
 
-    c = this.share.employees_info[0];
     name;
     wage;
     email;

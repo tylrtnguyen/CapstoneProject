@@ -23,12 +23,12 @@ export class ManagerAddEmployeeComponent implements OnInit {
         public share: ShareService,
         private router: Router,
         public modal: ModalDialogService,
-        private http : HttpClient
+        private http: HttpClient
     ) {}
     @ViewChild("employee_radForm", { static: false })
     myEmployeeDataForm: RadDataFormComponent;
     ngOnInit() {
-        this._employee = new Employee("", "", "", null, "", "", "","");
+        this._employee = new Employee("", "", "", null, "", "", "", "");
     }
     get employee(): Employee {
         return this._employee;
@@ -43,6 +43,14 @@ export class ManagerAddEmployeeComponent implements OnInit {
                 displayName: "First Name",
                 index: 0,
                 validators: [
+                    {
+                        name: "RegEx",
+                        params: {
+                            regEx: "^[a-zA-Z]+$",
+
+                            errorMessage: "Ensure your name format is correct"
+                        }
+                    },
                     { name: "NonEmpty" },
                     { name: "MaximumLength", params: { length: 50 } }
                 ]
@@ -52,6 +60,14 @@ export class ManagerAddEmployeeComponent implements OnInit {
                 displayName: "Last Name",
                 index: 1,
                 validators: [
+                    {
+                        name: "RegEx",
+                        params: {
+                            regEx: "^[a-zA-Z]+$",
+
+                            errorMessage: "Ensure your name format is correct"
+                        }
+                    },
                     { name: "NonEmpty" },
                     { name: "MaximumLength", params: { length: 50 } }
                 ]
@@ -114,6 +130,14 @@ export class ManagerAddEmployeeComponent implements OnInit {
                 displayName: "Gender",
                 index: 6,
                 validators: [
+                    {
+                        name: "RegEx",
+                        params: {
+                            regEx: "^[a-zA-Z]+$",
+
+                            errorMessage: "Ensure your name format is correct"
+                        }
+                    },
                     { name: "NonEmpty" },
                     { name: "MinimumLength", params: { length: 3 } }
                 ]
@@ -131,34 +155,41 @@ export class ManagerAddEmployeeComponent implements OnInit {
         ]
     };
     submit() {
-        console.log("Create a new user");
-        this.myEmployeeDataForm.dataForm.commitAll();
-        const em_store = this.myEmployeeDataForm.dataForm.source;
-        console.log(JSON.stringify(em_store))
-        this.http
-            .post(
-                this.share.url + "employee",
-                {
-                    fName: em_store.first_name,
-                    lName: em_store.last_name,
-                    email: em_store.email,
-                    department: em_store.department,
-                    wages: em_store.wage,
-                    DOB: em_store.dob,
-                    gender: em_store.gender,
-                    address:  em_store.address,
-                    isPermanent: false,
-                    password: "123456789"
-                },
-                { headers: this.share.APIHeader() }
-            )
-            .subscribe(
-                result => {
-                    this.params.closeCallback()
-                },
-                error => {
-                    console.log("POST REQUEST ERROR : " + JSON.stringify(error));
+        this.myEmployeeDataForm.dataForm
+            .validateAndCommitAll()
+            .then(result => {
+                if (result) {
+                    const em_store = this.myEmployeeDataForm.dataForm.source;
+                    this.http
+                        .post(
+                            this.share.url + "employee",
+                            {
+                                fName: em_store.first_name,
+                                lName: em_store.last_name,
+                                email: em_store.email,
+                                department: em_store.department,
+                                wages: em_store.wage,
+                                DOB: em_store.dob,
+                                gender: em_store.gender,
+                                address: em_store.address,
+                                isPermanent: false,
+                                password: "123456789"
+                            },
+                            { headers: this.share.APIHeader() }
+                        )
+                        .subscribe(
+                            result => {
+                                this.params.closeCallback();
+                            },
+                            error => {
+                                console.log(
+                                    "POST REQUEST ERROR : " +
+                                        JSON.stringify(error)
+                                );
+                            }
+                        );
                 }
-            );
+            })
+            .catch(err => {});
     }
 }

@@ -31,6 +31,14 @@ export class ManagerEmployeeDetailComponent implements OnInit {
                 displayName: "First Name",
                 index: 0,
                 validators: [
+                    {
+                        name: "RegEx",
+                        params: {
+                            regEx: "^[a-zA-Z]+$",
+
+                            errorMessage: "Ensure your name format is correct"
+                        }
+                    },
                     { name: "NonEmpty" },
                     { name: "MaximumLength", params: { length: 50 } }
                 ]
@@ -40,6 +48,14 @@ export class ManagerEmployeeDetailComponent implements OnInit {
                 displayName: "Last Name",
                 index: 1,
                 validators: [
+                    {
+                        name: "RegEx",
+                        params: {
+                            regEx: "^[a-zA-Z]+$",
+
+                            errorMessage: "Ensure your name format is correct"
+                        }
+                    },
                     { name: "NonEmpty" },
                     { name: "MaximumLength", params: { length: 50 } }
                 ]
@@ -102,6 +118,14 @@ export class ManagerEmployeeDetailComponent implements OnInit {
                 displayName: "Gender",
                 index: 6,
                 validators: [
+                    {
+                        name: "RegEx",
+                        params: {
+                            regEx: "^[a-zA-Z]+$",
+
+                            errorMessage: "Ensure your name format is correct"
+                        }
+                    },
                     { name: "NonEmpty" },
                     { name: "MinimumLength", params: { length: 3 } }
                 ]
@@ -154,30 +178,35 @@ export class ManagerEmployeeDetailComponent implements OnInit {
     @ViewChild("employee_radForm", { static: false })
     myEmployeeDataForm: RadDataFormComponent;
     submit() {
-        this.myEmployeeDataForm.dataForm.commitAll();
-        const em_store = this.myEmployeeDataForm.dataForm.source;
-        
-        this.http
-            .put(
-                this.share.url + `employee/${this.data._id}`,
-                {
-                    fName: em_store.first_name,
-                    lName: em_store.last_name,
-                    email: em_store.email,
-                    department: em_store.department,
-                    wages: em_store.wage,
-                    DOB: em_store.dob,
-                    gender: em_store.gender,
-                    address:  em_store.address,
-                },
-                { headers: this.share.APIHeader() }
-            )
-            .subscribe(
-                result => this.params.closeCallback(),
-                error => console.log(error)
-            );
+        this.myEmployeeDataForm.dataForm
+            .validateAndCommitAll()
+            .then(result => {
+                if (result) {
+                    const em_store = this.myEmployeeDataForm.dataForm.source;
+                    this.http
+                        .put(
+                            this.share.url + `employee/${this.data._id}`,
+                            {
+                                fName: em_store.first_name,
+                                lName: em_store.last_name,
+                                email: em_store.email,
+                                department: em_store.department,
+                                wages: em_store.wage,
+                                DOB: em_store.dob,
+                                gender: em_store.gender,
+                                address: em_store.address
+                            },
+                            { headers: this.share.APIHeader() }
+                        )
+                        .subscribe(
+                            result => this.params.closeCallback(),
+                            error => console.log(error)
+                        );
+                }
+            })
+            .catch(err => {});
     }
-    cancel(){
-        this.params.closeCallback()
+    cancel() {
+        this.params.closeCallback();
     }
 }

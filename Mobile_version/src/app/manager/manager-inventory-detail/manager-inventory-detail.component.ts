@@ -17,7 +17,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class ManagerInventoryDetailComponent implements OnInit {
     private _material: Material;
-    private data ;
+    private data;
     constructor(
         public params: ModalDialogParams,
         public share: ShareService,
@@ -74,19 +74,30 @@ export class ManagerInventoryDetailComponent implements OnInit {
         ]
     };
     submit() {
-        this.MaterialRadDataForm.dataForm.commitAll();
-        const em_store = this.MaterialRadDataForm.dataForm.source;
-        this.http.put(
-            this.share.url + `material/${this.data._id}`,
-            {
-                name: em_store.name,
-                quantity: em_store.quantity,
-                stockStatus: em_store.stockStatus
-            },
-            { headers: this.share.APIHeader() }
-        ).subscribe(
-          result=>this.params.closeCallback(),
-          error=>console.log(error)
-        );
+        this.MaterialRadDataForm.dataForm
+            .validateAndCommitAll()
+            .then(result => {
+                if (result) {
+                    const em_store = this.MaterialRadDataForm.dataForm.source;
+                    this.http
+                        .put(
+                            this.share.url + `material/${this.data._id}`,
+                            {
+                                name: em_store.name,
+                                quantity: em_store.quantity,
+                                stockStatus: em_store.stockStatus
+                            },
+                            { headers: this.share.APIHeader() }
+                        )
+                        .subscribe(
+                            result => this.params.closeCallback(),
+                            error => console.log(error)
+                        );
+                }
+                
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 }

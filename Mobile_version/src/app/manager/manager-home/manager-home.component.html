@@ -13,8 +13,9 @@
         <RadListView class="employee-list" [items]="dummy_data" height='70%'>
             <ng-template let-item="item">
                 <StackLayout orientation="horizontal">
-                    <GridLayout columns='100 , * ,100'>
-                        <Label col='1' class="employee-label" [text]="item.name"></Label>
+                    <GridLayout columns='100 ,100, * ,100'>
+                        <Label col='0' class="employee-label" [text]="item.fName"></Label>
+                        <Label col='1' class="employee-label" [text]="item.lName"></Label>
                     </GridLayout>
                 </StackLayout>
             </ng-template>
