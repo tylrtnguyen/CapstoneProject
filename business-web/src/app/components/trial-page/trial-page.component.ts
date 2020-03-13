@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators, Form, FormGroup, FormBuilder} from '@angular/forms';
 import {Route, Router} from '@angular/router';
 import {ErrorStateMatcher} from '@angular/material/core';
-import {User} from '../../user';
 import {ManagerService} from '../../services/manger/manager.service';
 import {RestaurantService} from '../../services/restaurant/restaurant.service';
 import {PosIntegration} from '../../pos-integration';
@@ -21,7 +20,7 @@ export class customErrorMatcher implements ErrorStateMatcher{
 })
 export class TrialPageComponent implements OnInit {
 
-  newUser: User;
+  
   matcher = new customErrorMatcher();
   loading = false;
   user: FormGroup;

@@ -21,7 +21,8 @@
     <nav class="navbar-right">
       <ul class="nav-links">
 
-        <li><a>Login</a></li>
+        <li *ngIf="!isLogin"><a routerLink ='/login' >Login</a></li>
+        <li *ngIf="isLogin"><a (click)="logOut()" >Log out</a></li>
         <li><a routerLink="/signup" > <button  class="btnTrial"> Start Your Free 30-Day Trial</button></a></li>
 
       </ul>
