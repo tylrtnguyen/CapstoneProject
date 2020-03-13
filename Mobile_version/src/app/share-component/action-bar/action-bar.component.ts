@@ -18,8 +18,6 @@ export class ActionBarComponent implements OnInit {
   constructor(private router:Router,private routerExtensions: RouterExtensions,private location : Location, private share: ShareService) { }
 
   ngOnInit() {
-    console.log(this.isLogout)
-    console.log(`this is the user data ${JSON.stringify(this.share.currentUser)}`)
   }
 
   goBack(){

@@ -2,45 +2,28 @@
     <ns-action-bar [Title]='title'></ns-action-bar>
 
     <ns-manager-calendar (timeEvent)='receive_current_time($event)'></ns-manager-calendar>
-    <GridLayout columns="200,*,200" rows='55'  orientation='horizontal'>
-        <Button col="0" row="0" class='btn-primary' text='Add Schedule' [nsRouterLink]="['/manager-add-schedule']"></Button>
+    <GridLayout columns="200,*,200" rows='55' orientation='horizontal'>
+        <Button col="0" row="0" class='btn-primary' text='Add Schedule'
+            [nsRouterLink]="['/manager-add-schedule']"></Button>
         <Button col="2" row="0" class='btn-secondary' text='Publish Schedule'></Button>
     </GridLayout>
 
 
-    <RadListView [items]="temp_dataItems" height='61%'>
+    <RadListView [items]="today_schedule" height='61%'>
         <ng-template let-item="item">
-            <StackLayout>
-                <StackLayout backgroundColor='#d9d9d9' style='border-radius: 15px; border-width: 3px;'>
-                    <StackLayout orientation='horizontal'>
-                        <StackLayout class='border-top-bottom-left' width='50%' orientation='horizontal'>
-                            <Label style="font-weight: bold;" text='Staff Name : '></Label>
-                            <Label class="nameLabel" [text]="item.name"></Label>
-                        </StackLayout>
-                        <StackLayout class='border-top-bottom-right' width='50%' orientation='horizontal'>
-                            <Label style="font-weight: bold;" text='Position : '></Label>
-                            <Label style="font-weight: 500; text-align: center;" class="nameLabel"
-                                [text]="item.position"></Label>
-                        </StackLayout>
+                <StackLayout orientation='horizontal'>
+                    <StackLayout class='border-top-bottom-left' width='50%' orientation='horizontal'>
+                        <Label style="font-weight: bold;" text='Staff Name : '></Label>
+                        <Label class="nameLabel" [text]="item.name"></Label>
                     </StackLayout>
-                    <StackLayout orientation='horizontal'>
-                        <StackLayout class='border-top-bottom-left' width='50%' orientation='horizontal'>
-                            <Label style="font-weight: bold;" text='Start Time : '></Label>
-                            <Label class="nameLabel" [text]="item.start_time"></Label>
-                        </StackLayout>
-                        <StackLayout class='border-top-bottom-right' width='50%' orientation='horizontal'>
-                            <Label text='End Time'></Label>
-                            <Label class="nameLabel" [text]="item.end_time"></Label>
-                        </StackLayout>
-                    </StackLayout>
-                    <StackLayout orientation='horizontal'>
-                        <StackLayout class='border-top-bottom-left' width='100%' orientation='horizontal'>
-                            <Label style="font-weight: bold;" text='Date : '></Label>
-                            <Label class="nameLabel" [text]="item.date"></Label>
-                        </StackLayout>
+                    <StackLayout class='border-top-bottom-right' width='50%' orientation='horizontal'>
+                        <Label style="font-weight: bold;" text='Work Time : '></Label>
+                        <Label class="nameLabel" [text]="item.startTime"></Label>
+                        <Label class="nameLabel" [text]="item.endTime"></Label>
+                        <Label style="font-weight: bold;" text='Date : '></Label>
+                        <Label class="nameLabel" [text]="item.selectedDate"></Label>
                     </StackLayout>
                 </StackLayout>
-            </StackLayout>
         </ng-template>
     </RadListView>
     <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>

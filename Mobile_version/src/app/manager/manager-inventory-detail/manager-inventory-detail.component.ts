@@ -45,7 +45,7 @@ export class ManagerInventoryDetailComponent implements OnInit {
         propertyAnnotations: [
             {
                 name: "name",
-                displayName: "Material Name : ",
+                displayName: "Material: ",
                 index: 0,
                 validators: [
                     { name: "NonEmpty" },

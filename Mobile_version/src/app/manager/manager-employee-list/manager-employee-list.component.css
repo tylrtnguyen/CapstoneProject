@@ -1,4 +1,5 @@
 /* Add mobile styles for the component here.  */
+
 .border-top-bottom-right{
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -19,17 +20,33 @@
     border-top-right-radius: 15px;
     border-width : 2px;
 }
-.header{
-    font: 18px; text-align: center; margin-top: 2%;
-    letter-spacing: 0.5px;
-    
-    font-weight: 400;
+.header-container{
+    background-color: #443b3b;
+    color: rgb(245, 131, 131);
 }
-.edit-btn{
-    background-color: aquamarine;
-    text-align: center;
-    font: 18px;
-    font-weight: 500;
+.header-title{
+    font: 22px; text-align: center; margin-top: 1%;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    text-decoration: underline;
+}
+.employee-option{
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    border-width: 2px;
+    margin:0;
+    padding: 15px;
+    background-color: rgb(250, 84, 84);
+    color: white;
+}
+.vertical_title{
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.2;
+}
+.vertical_text{
+    font-weight: 400;
+    font-size: 14px;
     letter-spacing: 0.1;
-    
+    text-align: center;
 }

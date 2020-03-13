@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
     providedIn: "root"
 })
 export class ShareService {
-    constructor(private http: HttpClient,public router : Router) {}
+    constructor(private http: HttpClient, public router: Router) {}
 
     //back button
     dateRange: DateRange;
@@ -18,10 +18,9 @@ export class ShareService {
     isLogin = false;
     selected_work_date: String;
     url = `https://restaskest-api.herokuapp.com/api/`;
-    urlLoginManager = `https://restaskest-api.herokuapp.com/login/manager`
-    urlLoginEmployee = `https://restaskest-api.herokuapp.com/login/employee`
-    
-    
+    urlLoginManager = `https://restaskest-api.herokuapp.com/login/manager`;
+    urlLoginEmployee = `https://restaskest-api.herokuapp.com/login/employee`;
+
     Logout() {
         console.log("Share Service log out: ");
         this.isLogin = !this.isLogin;
@@ -30,13 +29,13 @@ export class ShareService {
     APIHeader() {
         var token = {
             token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NDA0Njk3OSwiZXhwIjoxNTg0MDUwNTc5fQ.7IMe_f6oVXAt-JC_1Ik4pK-_yGww3SHF8CH96v194ec"
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NDA2OTE0MywiZXhwIjoxNTg0MDcyNzQzfQ.fZ9WoFtnwHnS-mjuidewGmYV6KDE0dRr-jSLZ9jFNVU"
         };
         let header = new HttpHeaders({
             Authorization: "Bearer " + token.token,
             "Content-Type": "application/json"
         });
-        return header   
+        return header;
     }
 
     work_schedule_data = [
@@ -83,7 +82,6 @@ export class ShareService {
             date: "Wed Jan 22 2020"
         }
     ];
-
 
     add_work_schedule(schedule) {
         console.log("------- Add Schedule -------");

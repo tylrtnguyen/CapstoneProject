@@ -3,30 +3,32 @@
 
 
 
-    <StackLayout height='100%'>
+    <StackLayout height='90%'>
         <RadListView [items]="material" height=100%>
             <ng-template let-item="item">
                 <StackLayout>
-                    <StackLayout style='border-radius: 15px; border-width: 3px;'>
-                        <GridLayout columns="100,100,*,50" rows='25' orientation='horizontal'>
-                            <Button class='edit-btn' text='Edit' col='0' row='0' (tap)='edit_item(item)'></Button>
-                            <Button col="3" row="0" style='border-width:2px ;border-radius:15px' text='X'
+                    <StackLayout class='container'>
+                        <GridLayout columns="48,100,*,50" rows='25' orientation='horizontal'>
+                            <Image [src]="'~/app/images/edit.png'" decodeWidth="40" decodeHeight="40" (tap)='edit_item(item)'>
+                            </Image>
+
+                            <Button col="3" row="0" class='del-button' text='X'
                                 (tap)="delete_item(item.name)"></Button>
                         </GridLayout>
                         <StackLayout orientation='horizontal'>
                             <StackLayout class='border-top-bottom-left' width='75%' orientation='horizontal'>
-                                <Label style="font-weight: bold;" text='Product Name : '></Label>
-                                <Label class="nameLabel" [text]="item.name"></Label>
+                                <Label class="title" text='MATERIAL: '></Label>
+                                <Label class="description" [text]="item.name"></Label>
                             </StackLayout>
                             <StackLayout class='border-top-bottom-right' width='25%' orientation='horizontal'>
-                                <Label style="font-weight: 500; text-align: center;" class="nameLabel"
+                                <Label class="title"
                                     [text]="item.quantity"></Label>
                             </StackLayout>
                         </StackLayout>
                         <StackLayout orientation='horizontal'>
-                            <StackLayout class='border-top-bottom-left' width='100%' orientation='horizontal'>
-                                <Label text='Status:'></Label>
-                                <Label class="nameLabel" [text]="item.stockStatus"></Label>
+                            <StackLayout width='100%' orientation='horizontal' >
+                                <Label class="title" text='Status:'></Label>
+                                <Label class="description" [text]="item.stockStatus"></Label>
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>

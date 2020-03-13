@@ -47,14 +47,19 @@ export class ManagerHomeComponent implements OnInit {
                     {
                         const today_employee = schedule[i].employee
                         const today = schedule[i].workDays[0].date.substr(0,10)
+
                         if(today === systemDate )
                         {
                             this.http.get(this.share.url+`employee/${today_employee}`,{headers:this.share.APIHeader()}).subscribe(
                                 result=>{
                                     this.dummy_data.push(result['data'])
                                     this.num_worker = this.dummy_data.length
-                                }
+                                },
+                                error=>console.log(error)
                             )
+                        }
+                        else{
+                            this.num_worker = 0;
                         }
                     }
                 },

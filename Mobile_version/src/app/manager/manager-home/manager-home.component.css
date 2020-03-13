@@ -8,12 +8,16 @@ Image {
 
 
 
-.clock-in{
-    font: 14px;
-    font-weight: 600;
+.today-employee{
+    font: 16px;
+    font-weight: 300;
+    font-family: 'Bellota';
+    font-style: italic;
     margin-left: 11%;
     margin-top: 3%;
     margin-bottom: 3%;
+    text-decoration: underline;
+    letter-spacing: 0.3px;
 }
 .images-worker{
     font: 14px;
@@ -30,16 +34,25 @@ Image {
     margin-bottom: 3%;
 }
 .employee-list{
+    font-family: 'Bellota';
+    font-style: italic;
     border-radius: 15px;
     border-width: 2px;
-    background-color: azure;
-    font: 14px;
-    font-weight: 600;
+    font: 22px;
+    font-weight: 300;
     margin-left: 5%;
     margin-right: 5%;
 }
-.employee-label{
-    horizontal-alignment:center
+.empty-employee{
+    font-family: 'Bellota';
+    font-style: italic;
+    border-width: 2px;
+    font: 22px;
+    font-weight: 300;
+    opacity: 0.5;
+    padding-top:30%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
 }
-
 

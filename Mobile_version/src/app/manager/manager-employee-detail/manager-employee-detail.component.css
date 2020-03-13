@@ -1,8 +1,27 @@
 /* Add mobile styles for the component here.  */
-.btn{
+
+
+DataFormEditorLabel {
+    font-family: "Zefani Stencil";
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1;
+
+}
+
+DataFormEditorCore {
+    font-family: "Zefani Stencil";
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5;
+}
+
+button {
     border-radius: 15px;
     border-width: 2px;
     font: 14px;
     font-weight: 500;
     letter-spacing: 0.3;
+    margin: 5%;
 }

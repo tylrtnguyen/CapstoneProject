@@ -43,7 +43,7 @@ export class ManagerCalendarComponent implements OnInit {
         };
         //getter and setter using promise
         action(options).then(result => {
-            console.log(result)
+
             if(result === 'Cancel'){
                 this.location = options.title
             }else{
@@ -98,7 +98,6 @@ export class ManagerCalendarComponent implements OnInit {
     calendar_size() {
         if (isIOS) {
             this.height = "15%";
-            console.log("This is IOS");
         }
 
     }

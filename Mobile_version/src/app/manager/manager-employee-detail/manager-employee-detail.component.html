@@ -3,9 +3,9 @@
     <ns-action-bar></ns-action-bar>
 
     <RadDataForm #employee_radForm [source]="employee" [metadata]="employee_meta"></RadDataForm>
-    <GridLayout columns='*,200,200,*' rows='100'>
-        <Button class='btn' col='1' row='0' text='Submit' (tap)='submit()'></Button>
-        <Button class='btn' col='2' row='0' text='Cancle' (tap)="cancel()"></Button>
+    <GridLayout columns='*,150,150,*' rows='100'>
+    <Button style="background-color:#4346f8 ; color: white;" col='1' row='0' text='Submit' (tap)='submit()'></Button>
+        <Button style="background-color:#d8bf4e" col='2' row='0' text='Cancle' (tap)="cancel()"></Button>
     </GridLayout>
     <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
 </StackLayout>

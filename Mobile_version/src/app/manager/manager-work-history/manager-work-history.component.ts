@@ -46,18 +46,7 @@ export class ManagerWorkHistoryComponent implements OnInit {
         }
     ];
     ngOnInit() {
-        this.http
-            .get(this.share.url + "employee", {
-                headers: this.share.APIHeader()
-            })
-            .subscribe(
-                result => {
-                    this.share.employees_info = result['data']
-                },
-                error => { 
-                    console.log(error) 
-                }
-            );
+       
         if (typeof this.share.dateRange !== "undefined") {
             console.log(
                 `Start searching from ${this.share.dateRange.startDate} to ${this.share.dateRange.endDate}`

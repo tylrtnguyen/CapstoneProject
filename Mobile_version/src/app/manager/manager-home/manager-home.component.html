@@ -4,13 +4,13 @@
     <StackLayout style="margin-left: 20px; margin-right: 20px;" height='63%'>
         <StackLayout>
             <GridLayout rows="auto" columns="*">
-                <Label class='clock-in' row="0" horizontalAlignment="left" text="Clocked In :"></Label>
+                <Label class='today-employee' row="0" horizontalAlignment="left" text="TODAY EMPLOYEE"></Label>
                 <Image class='images-worker' horizontalAlignment="right" row="0" [src]="'~/app/images/peoples.png'">
                 </Image>
                 <Label text={{num_worker}} horizontalAlignment="right" class='num-worker'></Label>
             </GridLayout>
         </StackLayout>
-        <RadListView class="employee-list" [items]="dummy_data" height='70%'>
+        <RadListView *ngIf='num_worker!=0' class="employee-list" [items]="dummy_data" height='70%'>
             <ng-template let-item="item">
                 <StackLayout orientation="horizontal">
                     <GridLayout columns='100 ,100, * ,100'>
@@ -20,6 +20,11 @@
                 </StackLayout>
             </ng-template>
         </RadListView>
+        <StackLayout class="empty-employee" height='70%'>
+            <Image width=50% height=50% horizontalAlignment="center" row="0" [src]="'~/app/images/wave.png'">
+            </Image>
+            <Label text='The calm before the storm'></Label>
+        </StackLayout>
     </StackLayout>
     <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
 </StackLayout>
