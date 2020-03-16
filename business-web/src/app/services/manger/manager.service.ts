@@ -38,7 +38,7 @@ export class ManagerService {
           {
             const id = res.userId;
             const expiresInDuration = res.expiresIn;
-            this.setAuthTimer(expiresInDuration );
+            this.setAuthTimer(expiresInDuration);
             this.isAuthenticated = true;
             this.authStatusListener.next(true);
             const now = new Date();
@@ -124,7 +124,8 @@ export class ManagerService {
   private getAuthData(){
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expiration');
-    if(!token || !expirationDate){
+    if(!token || !expirationDate)
+    {
       return;
     }
     return{

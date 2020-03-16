@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   ]);
   passwordFormControl =  new FormControl('' , [
     Validators.required,
-    Validators.minLength(6),
+    Validators.minLength(8),
   ]);
 
   constructor(private fb: FormBuilder,  private router: Router, private managerSerivce : ManagerService) {
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       ]],
       password : ['',[
         Validators.required,
-        Validators.minLength(6)
+        Validators.minLength(8)
       ]]
     })
 

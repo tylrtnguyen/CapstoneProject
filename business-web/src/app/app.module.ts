@@ -24,7 +24,8 @@ import { TrialPageComponent } from './components/trial-page/trial-page.component
 import { PaymentHandlerComponent } from './components/payment-handler/payment-handler.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { LoginComponent } from './components/login/login.component';
-
+import {ManagerService} from './services/manger/manager.service';
+import { ErrorInterceptor } from './error-interceptor';
 
 @NgModule({
   declarations: [
@@ -71,9 +72,10 @@ import { LoginComponent } from './components/login/login.component';
     IgxToggleModule,
     IgxLayoutModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+
   ],
-  providers: [],
+  providers: [ManagerService, {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

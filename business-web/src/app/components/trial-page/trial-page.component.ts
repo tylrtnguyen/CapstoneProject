@@ -20,7 +20,7 @@ export class customErrorMatcher implements ErrorStateMatcher{
 })
 export class TrialPageComponent implements OnInit {
 
-  
+
   matcher = new customErrorMatcher();
   loading = false;
   user: FormGroup;
@@ -39,11 +39,11 @@ export class TrialPageComponent implements OnInit {
       ]],
       password : ['',[
         Validators.required,
-        Validators.minLength(6)
+        Validators.minLength(8)
       ]],
       confirm : ['',[
         Validators.required,
-        Validators.minLength(6)
+        Validators.minLength(8)
       ]],
       fName:['',[Validators.required]],
       lName:['',[Validators.required]],
