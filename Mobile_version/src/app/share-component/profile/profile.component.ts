@@ -22,14 +22,20 @@ export class ProfileComponent implements OnInit {
     dob;
     restaurants;
     restaurant_address;
-    pos ;
+    pos;
 
     logout = true;
     title = "";
     constructor(public share: ShareService, private http: HttpClient) {}
 
     ngOnInit() {
-        this.system();
+        if (isAndroid) {
+            this.ifAndroid = true;
+            this.ifIOS = false;
+        } else if (isIOS) {
+            this.ifIOS = true;
+            this.ifAndroid = false;
+        }
         if (this.share.currentUser.role === "manager") {
             this.http
                 .get(
@@ -52,10 +58,13 @@ export class ProfileComponent implements OnInit {
                             )
                             .subscribe(
                                 result => {
-                                    console.log(JSON.stringify(result['data'].name))
-                                    this.restaurants = result['data'].name;
-                                    this.restaurant_address = result['data'].address;
-                                    this.pos = result['data'].pos
+                                    console.log(
+                                        JSON.stringify(result["data"].name)
+                                    );
+                                    this.restaurants = result["data"].name;
+                                    this.restaurant_address =
+                                        result["data"].address;
+                                    this.pos = result["data"].pos;
                                 },
                                 error => console.log(error)
                             );
@@ -70,28 +79,18 @@ export class ProfileComponent implements OnInit {
                     { headers: this.share.APIHeader() }
                 )
                 .subscribe(
-                    result =>
-                        console.log(
-                            `EMPLOYEE INFO : ${JSON.stringify(result)}`
-                        ),
+                    result => {
+                        const user = result["data"];
+                        this.name = user.fName + user.lName;
+                        this.wage = user.wages;
+                        this.email = user.email;
+                        this.address = user.address;
+                        this.dob = user.DOB;
+                    },
                     error => console.log(error)
                 );
         }
 
         // console.log(this.share.currentUser[0].email);
-    }
-
-    system() {
-        if (isAndroid) {
-            this.ifAndroid = true;
-            this.ifIOS = false;
-        } else if (isIOS) {
-            this.ifIOS = true;
-            this.ifAndroid = false;
-        }
-        // if(this.share.employees_info[0].email ==='tutester@gmail.com'){
-        //   return true
-        // }
-        // return false
     }
 }

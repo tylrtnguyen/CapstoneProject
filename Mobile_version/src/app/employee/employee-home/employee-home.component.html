@@ -1,7 +1,7 @@
 <StackLayout class="Page">
     <ns-action-bar [Title]='title'></ns-action-bar>
 
-    <StackLayout class='container'>
+    <StackLayout *ngIf='share.currentUserSchedule != false' class='container'>
         <RadListView [items]="share.currentUserSchedule">
             <ng-template let-item="item">
                 <GridLayout columns='150,50,*,150' rows='50,50,50,50'>
@@ -16,6 +16,9 @@
                 </GridLayout>
             </ng-template>
         </RadListView>
+    </StackLayout>
+    <StackLayout *ngIf='share.currentUserSchedule == false' class='container'>
+        <Label text='You dont have any schedule today '></Label>
     </StackLayout>
     <StackLayout orientation='horizontal'>
         <Button class='btn btn-secondary' text='Clockin' (tap)='share.clockInChecker()'></Button>

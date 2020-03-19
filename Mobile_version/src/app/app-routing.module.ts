@@ -33,7 +33,6 @@ const routes: Routes = [
     { path: "manager-employee-list", component: ManagerEmployeeListComponent },
     { path: "manager-add-schedule", component: ManagerAddScheduleComponent },
     { path: "manager-date-range", component: ManagerDateRangeComponent},
-    { path: "manager-registration", component: ManagerRegistrationComponent},
     { path: "manager-employee-detail/:id", component: ManagerEmployeeDetailComponent},
 
     { path: "employee-home", component: EmployeeHomeComponent},

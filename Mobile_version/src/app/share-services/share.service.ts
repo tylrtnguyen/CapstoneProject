@@ -37,7 +37,7 @@ export class ShareService {
     APIHeader() {
         var token = {
             token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NDY1MDU5NCwiZXhwIjoxNTg0NjU0MTk0fQ.1uki9OZeEqo-s72NNoVTGUlUGnxJzHa9rvqX2MYux20"
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NDY1NzkxNCwiZXhwIjoxNTg0NjYxNTE0fQ.KsIdcLRAPdbezNGEhre1-ihUnmC7i4gW64Fed83fD3Q"
         };
         let header = new HttpHeaders({
             Authorization: "Bearer " + token.token,
@@ -46,6 +46,18 @@ export class ShareService {
         return header;
     }
 
+    register(email, address) {
+        // this.http
+        //     .post(this.url + "employee", {
+                
+        //     }, { headers: this.APIHeader() })
+        //     .subscribe(
+        //         result => {
+
+        //         },
+        //         error => console.log(error)
+        //     );
+    }
     numDayinWeek() {
         var start = 0;
         var today = new Date();
@@ -242,17 +254,21 @@ export class ShareService {
     }
 
     get_current_user_schedule(userID) {
-        this.http
-            .get(this.url + "schedule", { headers: this.APIHeader() })
-            .subscribe(result => {
-                const tempdate = new Date();
-                const date = tempdate.toISOString().substr(0, 10);
-                this.currentUserSchedule = result["data"].filter(
-                    key =>
-                        key.employee === userID &&
-                        key.workDays[0].date.substr(0, 10) === date
-                );
-            });
+        if (userID == undefined) {
+            this.currentUserSchedule = false;
+        } else {
+            this.http
+                .get(this.url + "schedule", { headers: this.APIHeader() })
+                .subscribe(result => {
+                    const tempdate = new Date();
+                    const date = tempdate.toISOString().substr(0, 10);
+                    this.currentUserSchedule = result["data"].filter(
+                        key =>
+                            key.employee === userID &&
+                            key.workDays[0].date.substr(0, 10) === date
+                    );
+                });
+        }
     }
 
     clockInChecker() {
@@ -271,7 +287,7 @@ export class ShareService {
     }
     clockOutChecker() {
         var outHour = this.currentUserSchedule[0].workDays[0].outHour;
-        console.log(outHour)
+        console.log(outHour);
         if (outHour === "" || outHour == undefined) {
             this.clockout();
         } else {
@@ -306,7 +322,7 @@ export class ShareService {
             )
             .subscribe(
                 result => {
-                    this.get_current_user_schedule("5e7292840f25ad00176c5c9c");
+                    this.get_current_user_schedule(this.currentUser.userId);
                 },
                 error => console.log(error)
             );
@@ -337,7 +353,7 @@ export class ShareService {
             )
             .subscribe(
                 result => {
-                    this.get_current_user_schedule("5e7292840f25ad00176c5c9c");
+                    this.get_current_user_schedule(this.currentUser.userId);
                 },
                 error => console.log(error)
             );

@@ -20,9 +20,9 @@
 
         </StackLayout>
     </StackLayout>
-    <!-- <ns-employee-tab-manager *ngIf='!system()'></ns-employee-tab-manager>
-    <ns-manager-tab-manager *ngIf='system()'></ns-manager-tab-manager> -->
+    <ns-employee-tab-manager *ngIf='this.share.currentUser.role === "employee" && ifIOS '></ns-employee-tab-manager>
+    <ns-manager-tab-manager *ngIf='this.share.currentUser.role === "manager" && ifIOS'></ns-manager-tab-manager>
 
 </StackLayout>
-<!-- <ns-employee-tab-manager *ngIf='!system()'></ns-employee-tab-manager>
-<ns-manager-tab-manager *ngIf='system()'></ns-manager-tab-manager> -->
+<ns-employee-tab-manager *ngIf='this.share.currentUser.role === "employee" && ifAndroid'></ns-employee-tab-manager>
+<ns-manager-tab-manager *ngIf='this.share.currentUser.role === "manager" && ifAndroid'></ns-manager-tab-manager>

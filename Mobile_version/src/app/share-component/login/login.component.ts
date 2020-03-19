@@ -21,11 +21,9 @@ import { HttpClient } from "@angular/common/http";
 })
 export class LoginComponent implements OnInit {
     isLoggingIn = true;
+    manager_id: String;
     user: User;
-
     @ViewChild("password", { static: false }) password: ElementRef;
-    @ViewChild("confirmPassword", { static: false })
-    confirmPassword: ElementRef;
 
     constructor(
         private page: Page,
@@ -39,14 +37,13 @@ export class LoginComponent implements OnInit {
         this.user = new User();
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
     toggleForm() {
         this.isLoggingIn = !this.isLoggingIn;
     }
 
     submit(isManager: Boolean) {
-        if (!this.user.email || !this.user.password) {
+        if ((!this.user.email || !this.user.password)) {
             Toast.makeText(
                 "Please provide both an email address and password"
             ).show();
@@ -54,16 +51,16 @@ export class LoginComponent implements OnInit {
         }
         if (this.isLoggingIn) {
             if (isManager) {
-                this.loginManger();
+                this.loginManager();
             } else {
                 this.loginEmployee();
             }
         } else {
-            this.register();
+            console.log('something went wrong')
         }
     }
 
-    loginManger() {
+    loginManager() {
         this.http
             .post(
                 this.share.urlLoginManager,
@@ -73,10 +70,13 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 result => {
                     this.share.currentUser = result;
-                    this.router.navigateByUrl('/manager-home')
+                    this.router.navigateByUrl("/manager-home");
                 },
                 error => {
-                    console.log(JSON.stringify(error));
+                    Toast.makeText(
+                        "Email or password is incorrect",
+                        "short"
+                    ).show();
                 }
             );
     }
@@ -91,24 +91,15 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 result => {
                     this.share.currentUser = result;
-                    this.router.navigateByUrl('/employee-home')
+                    this.router.navigateByUrl("/employee-home");
                 },
                 error => {
-                    console.log(error);
+                    Toast.makeText(
+                        "Email or password is incorrect",
+                        "short"
+                    ).show();
                 }
             );
-    }
-
-    register() {
-        if (this.user.password != this.user.confirmPassword) {
-            Toast.makeText(
-                "Your password does not match, please try again !",
-                "short"
-            ).show();
-
-            return;
-        }
-        console.log("Register clicked");
     }
 
     forgotPassword() {
@@ -125,10 +116,5 @@ export class LoginComponent implements OnInit {
 
     focusPassword() {
         this.password.nativeElement.focus();
-    }
-    focusConfirmPassword() {
-        if (!this.isLoggingIn) {
-            this.confirmPassword.nativeElement.focus();
-        }
     }
 }
