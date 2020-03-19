@@ -1,21 +1,29 @@
-import { Injectable, ViewContainerRef } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { Router } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
 import { Employee } from "../model/Employee";
 import { DateRange } from "nativescript-ui-calendar";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { ModalDialogService } from "nativescript-angular/modal-dialog";
+import { confirm } from "tns-core-modules/ui/dialogs";
 
 @Injectable({
     providedIn: "root"
 })
 export class ShareService {
-    constructor(private http: HttpClient, public router: Router) {}
+    constructor(
+        private http: HttpClient,
+        public router: Router,
+        public modal: ModalDialogService
+    ) {}
 
     //back button
     dateRange: DateRange;
     currentUser;
     currentUserSchedule;
+    clockinTime: String;
+    clockoutTime: String;
     isLogin = false;
     selected_work_date: String;
     url = `https://restaskest-api.herokuapp.com/api/`;
@@ -23,14 +31,13 @@ export class ShareService {
     urlLoginEmployee = `https://restaskest-api.herokuapp.com/login/employee`;
     today_workers: number;
     Logout() {
-        console.log("Share Service log out: ");
         this.isLogin = !this.isLogin;
     }
 
     APIHeader() {
         var token = {
             token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NDU3NTQ4NiwiZXhwIjoxNTg0NTc5MDg2fQ.xK3CY7EBtjxj3UAVfDsRMtXMAg5BLqulY6vq54-6OqM"
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NDY1MDU5NCwiZXhwIjoxNTg0NjU0MTk0fQ.1uki9OZeEqo-s72NNoVTGUlUGnxJzHa9rvqX2MYux20"
         };
         let header = new HttpHeaders({
             Authorization: "Bearer " + token.token,
@@ -71,9 +78,9 @@ export class ShareService {
                 headers: this.APIHeader()
             })
             .subscribe(
-                result => {               
+                result => {
                     const employee_schedule = result["data"].filter(
-                        key => key.employee === this.currentUser.userId 
+                        key => key.employee === this.currentUser.userId
                     );
                     for (var i = 0; i < employee_schedule.length; i++) {
                         const currentDate = new Date(
@@ -247,8 +254,38 @@ export class ShareService {
                 );
             });
     }
+
+    clockInChecker() {
+        var inHour = this.currentUserSchedule[0].workDays[0].inHour;
+        console.log(inHour);
+        if (inHour === "") {
+            this.clockin();
+        } else {
+            let options = {
+                title: "Already Clocked in",
+                okButtonText: "Got it"
+            };
+
+            confirm(options).then((result: boolean) => {});
+        }
+    }
+    clockOutChecker() {
+        var outHour = this.currentUserSchedule[0].workDays[0].outHour;
+        console.log(outHour)
+        if (outHour === "" || outHour == undefined) {
+            this.clockout();
+        } else {
+            let options = {
+                title: "Already Clocked Out",
+                okButtonText: "Got it"
+            };
+            confirm(options).then((result: boolean) => {});
+        }
+    }
+
     clockin() {
         var today = new Date();
+        var hour = today.getHours();
         this.http
             .put(
                 this.url + `schedule/${this.currentUserSchedule[0]._id}`,
@@ -260,7 +297,7 @@ export class ShareService {
                                 .workDays[0].assignedStartHour,
                             assignedStopHour: this.currentUserSchedule[0]
                                 .workDays[0].assignedStopHour,
-                            inHour: 14
+                            inHour: hour
                         }
                     ],
                     employee: this.currentUser.userId
@@ -269,8 +306,38 @@ export class ShareService {
             )
             .subscribe(
                 result => {
-                    console.log(result)
-                    console.log("Clock in successfully");
+                    this.get_current_user_schedule("5e7292840f25ad00176c5c9c");
+                },
+                error => console.log(error)
+            );
+    }
+
+    clockout() {
+        var today = new Date();
+        var hour = today.getHours();
+        this.http
+            .put(
+                this.url + `schedule/${this.currentUserSchedule[0]._id}`,
+                {
+                    workDays: [
+                        {
+                            date: today,
+                            assignedStartHour: this.currentUserSchedule[0]
+                                .workDays[0].assignedStartHour,
+                            assignedStopHour: this.currentUserSchedule[0]
+                                .workDays[0].assignedStopHour,
+                            inHour: this.currentUserSchedule[0].workDays[0]
+                                .inHour,
+                            outHour: hour
+                        }
+                    ],
+                    employee: this.currentUser.userId
+                },
+                { headers: this.APIHeader() }
+            )
+            .subscribe(
+                result => {
+                    this.get_current_user_schedule("5e7292840f25ad00176c5c9c");
                 },
                 error => console.log(error)
             );

@@ -13,16 +13,13 @@
                     <Label col='0' row='3' [text]="item.workDays[0].inHour"></Label>
                     <Label col='3' row='2' text='Clock out at'></Label>
                     <Label col='3' row='3' [text]="item.workDays[0].outHour"></Label>
-
                 </GridLayout>
             </ng-template>
         </RadListView>
     </StackLayout>
     <StackLayout orientation='horizontal'>
-        <Button class='btn btn-secondary' text='Clockin'
-            (tap)='share.clockin()'></Button>
-        <Button class='btn btn-primary' text='Clockout'
-            (tap)='share.clockout()'></Button>
+        <Button class='btn btn-secondary' text='Clockin' (tap)='share.clockInChecker()'></Button>
+        <Button class='btn btn-primary' text='Clockout' (tap)='share.clockOutChecker()'></Button>
     </StackLayout>
     <ns-employee-tab-manager *ngIf='ifIOS'></ns-employee-tab-manager>
 </StackLayout>
