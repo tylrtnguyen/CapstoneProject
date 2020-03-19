@@ -18,8 +18,7 @@
             <GridLayout rows='200' columns='*'>
                 <!-- start date -->
                 <StackLayout row='0' columns='0' *ngIf="show_datepicker" class='content'>
-                    <DatePicker [minDate]="minDate" [maxDate]="maxDate" (dateChange)="onDateChanged($event)"
-                        (loaded)="onDatePickerLoaded($event)" verticalAlignment="center">
+                    <DatePicker [minDate]="minDate" [maxDate]="maxDate" (dateChange)="onDateChanged($event)" verticalAlignment="center">
                     </DatePicker>
                 </StackLayout>
 

@@ -1,9 +1,28 @@
-
 <StackLayout class="Page">
     <ns-action-bar [Title]='title'></ns-action-bar>
 
-    <StackLayout style="height: 92%;">
-        <Button text="employee-home works!" class="btn btn-primary"></Button>
+    <StackLayout class='container'>
+        <RadListView [items]="share.currentUserSchedule">
+            <ng-template let-item="item">
+                <GridLayout columns='150,50,*,150' rows='50,50,50,50'>
+                    <Label col='0' row='0' text='Assigned Start Time'></Label>
+                    <Label col='0' row='1' [text]="item.workDays[0].assignedStartHour"></Label>
+                    <Label col='3' row='0' text='Assigned End Time'></Label>
+                    <Label col='3' row='1' [text]="item.workDays[0].assignedStopHour"></Label>
+                    <Label col='0' row='2' text='Your start time'></Label>
+                    <Label col='0' row='3' [text]="item.workDays[0].inHour"></Label>
+                    <Label col='3' row='2' text='Clock out at'></Label>
+                    <Label col='3' row='3' [text]="item.workDays[0].outHour"></Label>
+
+                </GridLayout>
+            </ng-template>
+        </RadListView>
+    </StackLayout>
+    <StackLayout orientation='horizontal'>
+        <Button class='btn btn-secondary' text='Clockin'
+            (tap)='share.clockin()'></Button>
+        <Button class='btn btn-primary' text='Clockout'
+            (tap)='share.clockout()'></Button>
     </StackLayout>
     <ns-employee-tab-manager *ngIf='ifIOS'></ns-employee-tab-manager>
 </StackLayout>

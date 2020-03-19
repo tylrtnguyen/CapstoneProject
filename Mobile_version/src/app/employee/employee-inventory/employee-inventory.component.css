@@ -40,3 +40,26 @@ button{
     border-bottom-left-radius: 15px;
     border-width: 2px;
 }
+
+.container{
+    border-radius: 15px;
+     border-width: 3px;
+}
+.del-button{
+    border-width:2px ;
+    border-radius:15px;
+    background-color:#f84242;
+    color:white;
+}
+.title{
+    font-family: 'Open Sans';
+    font-size: large;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+.description{
+    font-family: "Zefani Stencil";
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}

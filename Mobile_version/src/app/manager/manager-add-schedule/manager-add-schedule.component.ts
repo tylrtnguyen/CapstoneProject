@@ -6,6 +6,7 @@ import { TimePicker } from "tns-core-modules/ui/time-picker/time-picker";
 import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 import { ShareService } from "../../share-services/share.service";
 import * as Toast from "nativescript-toast";
+import { HttpClient } from "@angular/common/http";
 declare var java;
 @Component({
     selector: "ns-manager-add-schedule",
@@ -15,8 +16,12 @@ declare var java;
 export class ManagerAddScheduleComponent implements OnInit {
     ifAndroid: Boolean;
     ifIOS: Boolean;
-    valid : Boolean;
-    constructor(public share: ShareService, public router: Router) {}
+    valid: Boolean;
+    constructor(
+        public share: ShareService,
+        public router: Router,
+        public http: HttpClient
+    ) {}
 
     ngOnInit() {
         if (isAndroid) {
@@ -26,58 +31,15 @@ export class ManagerAddScheduleComponent implements OnInit {
             this.ifIOS = true;
             this.ifAndroid = false;
         }
+        this.share.get_employee_list(this.dataItems);
+        console.log(this.dataItems);
     }
 
     //change it to get employee from database
-    dataItems = [
-        {
-            //http get employee id from Schedule databse then http get employee firstName lastName from Employee database.
-            name: "Thanh Quan",
-            //htttp get from schedule
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "Manager",
-            date: "Tuesday 21 1 2020"
-        },
-        {
-            name: "Thay Ba",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "Manager",
-            date: "Wednesday 22 1 2020"
-        },
-        {
-            name: "Tu Nguyen",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "Janitor",
-            date: "Tuesday 21 1 2020"
-        },
-        {
-            name: "Thanh Dep Trai",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "CEO",
-            date: "Wednesday 22 1 2020"
-        },
-        {
-            name: "Quang Pham",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "Striper 1",
-            date: "Wednesday 22 1 2020"
-        },
-        {
-            name: "Thong Nguyen",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "Striper 2",
-            date: "Wednesday 22 1 2020"
-        }
-    ];
+    dataItems = [];
 
-    temp_selected_employees = [];
-    selected_employees_final = [];
+    employee_list_final = [];
+
     selected_start_date: String;
     selected_end_date: String;
     selected_date: String;
@@ -94,10 +56,6 @@ export class ManagerAddScheduleComponent implements OnInit {
     current_year = this.today.getFullYear();
     current_hour = this.today.getHours();
     current_minute = this.today.getMinutes();
-
-    onDatePickerLoaded(args) {
-        // const datePicker = args.object as DatePicker;
-    }
     onDateChanged(args) {
         const format_date = args.value.toString().substring(0, 15);
         console.log(format_date);
@@ -119,15 +77,17 @@ export class ManagerAddScheduleComponent implements OnInit {
         this.show_datepicker = false;
     }
 
+    //get list of employee
     public onItemSelected(args: ListViewEventData) {
         // this.selected_employees.push(this.dataItems[args.index])
-        let name = this.dataItems[args.index].name;
-        this.temp_selected_employees.push(name);
+        let id = this.dataItems[args.index].id;
+        console.log(this.dataItems[args.index].id);
+        this.employee_list_final.push(id);
     }
     public onItemDeselected(args: ListViewEventData) {
-        let name = this.dataItems[args.index].name;
-        this.temp_selected_employees = this.temp_selected_employees.filter(
-            employee => employee != name
+        let id = this.dataItems[args.index].id;
+        this.employee_list_final = this.employee_list_final.filter(
+            employee => employee != id
         );
     }
     todayObj: Date = new Date();
@@ -153,32 +113,27 @@ export class ManagerAddScheduleComponent implements OnInit {
     }
     onSubmit() {
         if (
-            this.selected_employees_final.length == 0 &&
+            this.employee_list_final.length == 0 &&
             typeof this.selected_start_date === "undefined" &&
             typeof this.selected_end_date === "undefined" &&
             typeof this.selected_date === "undefined"
         ) {
             this.valid = false;
-            Toast.makeText(
-                "Please assign all information needed"
-            ).show();
-
+            Toast.makeText("Please assign all information needed").show();
         } else {
             this.valid = true;
-
-            this.selected_employees_final = this.temp_selected_employees;
             this.share.selected_work_date = this.selected_date;
             console.log(
-                `Employees : ${this.selected_employees_final} is start working from ${this.selected_start_date} to ${this.selected_end_date} on this date ${this.selected_date} `
+                `Employees ID NUMBER : ${this.employee_list_final} is start working from ${this.selected_start_date} to ${this.selected_end_date} on this date ${this.selected_date} `
             );
             //change this to schedule database
             const schedule = {
-                nameList: this.selected_employees_final,
+                nameList: this.employee_list_final,
                 start_time: this.selected_start_date,
                 end_time: this.selected_end_date,
                 date: this.selected_date
             };
-            this.share.add_work_schedule(schedule);
+            console.log(schedule);
             this.router.navigateByUrl("/manager-schedule");
         }
     }

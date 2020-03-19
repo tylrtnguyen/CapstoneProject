@@ -7,18 +7,24 @@
         <Label width='40%' style="margin-left: 5%; font:14px ;font-family: Oxanium ; letter-spacing: 0.5px;" col='0' row='0' text='Item Name' ></Label>
         <Label width='40%' style='margin-left: 5%; font:14px ;font-family: Oxanium ; letter-spacing: 0.5px;' col='2' row='0' text=' Quantity' ></Label>
     </GridLayout>
-    <RadListView [items]="inventory_data" height='75%'>
+    <RadListView [items]="inventory_data" height=75%>
         <ng-template let-item="item">
             <StackLayout>
-                <StackLayout backgroundColor='#d9d9d9' style='border-radius: 15px; border-width: 3px;'>
+                <StackLayout  class='container'>
                     <StackLayout orientation='horizontal'>
-                        <StackLayout class='border-top-bottom-left' width='50%' orientation='horizontal'>
-                            <Label style="font-weight: bold;" text='Date : '></Label>
-                            <Label class="nameLabel" [text]="item.name"></Label>
+                        <StackLayout class='border-top-bottom-left' width='75%' orientation='horizontal'>
+                            <Label class="title" text='MATERIAL: '></Label>
+                            <Label class="description" [text]="item.name"></Label>
                         </StackLayout>
-                        <StackLayout class='border-top-bottom-left' width='50%' orientation='horizontal'>
-                            <Label style="font-weight: bold;" text='Quantity : '></Label>
-                            <Label class="nameLabel" [text]="item.quantity"></Label>
+                        <StackLayout class='border-top-bottom-right' width='25%' orientation='horizontal'>
+                            <Label class="title"
+                                [text]="item.quantity"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout orientation='horizontal'>
+                        <StackLayout width='100%' orientation='horizontal' >
+                            <Label class="title" text='Status:'></Label>
+                            <Label class="description" [text]="item.stockStatus"></Label>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>

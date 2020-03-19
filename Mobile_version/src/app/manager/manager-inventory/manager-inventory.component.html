@@ -7,11 +7,10 @@
         <RadListView [items]="material" height=100%>
             <ng-template let-item="item">
                 <StackLayout>
-                    <StackLayout class='container'>
+                    <StackLayout  class='container'>
                         <GridLayout columns="48,100,*,50" rows='25' orientation='horizontal'>
                             <Image [src]="'~/app/images/edit.png'" decodeWidth="40" decodeHeight="40" (tap)='edit_item(item)'>
                             </Image>
-
                             <Button col="3" row="0" class='del-button' text='X'
                                 (tap)="delete_item(item.name)"></Button>
                         </GridLayout>

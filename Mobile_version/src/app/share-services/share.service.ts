@@ -15,12 +15,13 @@ export class ShareService {
     //back button
     dateRange: DateRange;
     currentUser;
+    currentUserSchedule;
     isLogin = false;
     selected_work_date: String;
     url = `https://restaskest-api.herokuapp.com/api/`;
     urlLoginManager = `https://restaskest-api.herokuapp.com/login/manager`;
     urlLoginEmployee = `https://restaskest-api.herokuapp.com/login/employee`;
-
+    today_workers: number;
     Logout() {
         console.log("Share Service log out: ");
         this.isLogin = !this.isLogin;
@@ -29,7 +30,7 @@ export class ShareService {
     APIHeader() {
         var token = {
             token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NDA2OTE0MywiZXhwIjoxNTg0MDcyNzQzfQ.fZ9WoFtnwHnS-mjuidewGmYV6KDE0dRr-jSLZ9jFNVU"
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NDU3NTQ4NiwiZXhwIjoxNTg0NTc5MDg2fQ.xK3CY7EBtjxj3UAVfDsRMtXMAg5BLqulY6vq54-6OqM"
         };
         let header = new HttpHeaders({
             Authorization: "Bearer " + token.token,
@@ -38,64 +39,240 @@ export class ShareService {
         return header;
     }
 
-    work_schedule_data = [
-        {
-            name: "Thanh Quan",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "Manager",
-            date: "Tue Jan 21 2020"
-        },
-        {
-            name: "Thay Ba",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "Manager",
-            date: "Tue Jan 21 2020"
-        },
-        {
-            name: "Tu Nguyen",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "Janitor",
-            date: "Tue Jan 21 2020"
-        },
-        {
-            name: "Thanh Dep Trai",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "CEO",
-            date: "Wed Jan 22 2020"
-        },
-        {
-            name: "Quang Pham",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "Striper 1",
-            date: "Wed Jan 22 2020"
-        },
-        {
-            name: "Thong Nguyen",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "Striper 2",
-            date: "Wed Jan 22 2020"
-        }
-    ];
+    numDayinWeek() {
+        var start = 0;
+        var today = new Date();
+        var day = today.getDay() - start;
+        var date = today.getDate() - day;
+        var Week_begin = new Date(today.setDate(date));
+        var Week_end = new Date(today.setDate(date + 6));
+        return [Week_begin, Week_end];
+    }
+    get_employee_list(list) {
+        this.http
+            .get(this.url + "employee", { headers: this.APIHeader() })
+            .subscribe(
+                result => {
+                    result["data"].map(key => {
+                        list.push({
+                            id: key._id,
+                            name: key.fName + " " + key.lName
+                        });
+                    });
+                },
+                error => console.log(error)
+            );
+    }
 
-    add_work_schedule(schedule) {
-        console.log("------- Add Schedule -------");
-        const template = {
-            name: "",
-            start_time: "",
-            end_time: "",
-            position: "Temp Position",
-            date: ""
-        };
-        template.name = schedule.nameList[0];
-        template.start_time = schedule.start_time.substring(0, 5); // remove last 2 digit
-        template.end_time = schedule.end_time.substring(0, 5); // remove last 2 digit
-        template.date = schedule.date;
-        this.work_schedule_data.push(template);
+    //get the schedule for this specific employee
+    get_employee_schedule_by_week(list) {
+        this.http
+            .get(this.url + "schedule", {
+                headers: this.APIHeader()
+            })
+            .subscribe(
+                result => {               
+                    const employee_schedule = result["data"].filter(
+                        key => key.employee === this.currentUser.userId 
+                    );
+                    for (var i = 0; i < employee_schedule.length; i++) {
+                        const currentDate = new Date(
+                            employee_schedule[i].workDays[0].date
+                        );
+                        if (
+                            currentDate > this.numDayinWeek()[0] &&
+                            currentDate < this.numDayinWeek()[1]
+                        ) {
+                            list.push({
+                                date: employee_schedule[i].workDays[0].date,
+                                startTime:
+                                    employee_schedule[i].workDays[0]
+                                        .assignedStartHour,
+                                endTime:
+                                    employee_schedule[i].workDays[0]
+                                        .assignedStopHour
+                            });
+                        }
+                    }
+                },
+                error => console.log(error)
+            );
+    }
+
+    //get the list of employee schedule for today only
+    getEmployeeName_baseon_Schedule(list, num_worker = 0) {
+        this.http
+            .get(this.url + "schedule", {
+                headers: this.APIHeader()
+            })
+            .subscribe(
+                result => {
+                    const date = new Date();
+                    const schedule = result["data"];
+                    var systemDate = date.toISOString().substr(0, 10);
+                    for (var i = 0; i < schedule.length; i++) {
+                        const today_employee = schedule[i].employee;
+                        const today = schedule[i].workDays[0].date.substr(
+                            0,
+                            10
+                        );
+
+                        if (today === systemDate) {
+                            this.http
+                                .get(this.url + `employee/${today_employee}`, {
+                                    headers: this.APIHeader()
+                                })
+                                .subscribe(
+                                    result => {
+                                        list.push(result["data"]);
+                                        num_worker = list.length;
+                                    },
+                                    error => console.log(error)
+                                );
+                        } else {
+                            num_worker = 0;
+                        }
+                    }
+                },
+                error => console.log(error)
+            );
+    }
+
+    //get Employee name and schedule base on today
+    get_today_EmployeeName_Schedule(list) {
+        this.http
+            .get(this.url + "schedule", {
+                headers: this.APIHeader()
+            })
+            .subscribe(
+                result => {
+                    const date = new Date();
+                    const schedule = result["data"];
+                    var systemDate = date.toISOString().substr(0, 10);
+                    for (var i = 0; i < schedule.length; i++) {
+                        const today_employee = schedule[i].employee;
+                        const today_workTime = schedule[i].workDays;
+                        const today_date = schedule[i].workDays[0].date.substr(
+                            0,
+                            10
+                        );
+                        if (today_date === systemDate) {
+                            this.http
+                                .get(this.url + `employee/${today_employee}`, {
+                                    headers: this.APIHeader()
+                                })
+                                .subscribe(
+                                    result => {
+                                        list.push({
+                                            name:
+                                                result["data"].fName +
+                                                result["data"].lName,
+                                            startTime:
+                                                today_workTime[0]
+                                                    .assignedStartHour,
+                                            endTime:
+                                                today_workTime[0]
+                                                    .assignedStopHour,
+                                            selectedDate: today_date
+                                        });
+                                    },
+                                    error => console.log(error)
+                                );
+                        } else {
+                        }
+                    }
+                },
+                error => console.log(error)
+            );
+    }
+
+    get_EmployeeName_Schedule_by_Date(list, selected_date) {
+        const tempdate = new Date(selected_date);
+        const date = tempdate.toISOString().substr(0, 10);
+        this.http
+            .get(this.url + "schedule", {
+                headers: this.APIHeader()
+            })
+            .subscribe(
+                result => {
+                    const schedule = result["data"];
+                    for (var i = 0; i < schedule.length; i++) {
+                        const today_employee = schedule[i].employee;
+                        const today_workTime = schedule[i].workDays;
+                        const today_date = schedule[i].workDays[0].date.substr(
+                            0,
+                            10
+                        );
+                        if (today_date === date) {
+                            this.http
+                                .get(this.url + `employee/${today_employee}`, {
+                                    headers: this.APIHeader()
+                                })
+                                .subscribe(
+                                    result => {
+                                        list.push({
+                                            name:
+                                                result["data"].fName +
+                                                result["data"].lName,
+                                            startTime:
+                                                today_workTime[0]
+                                                    .assignedStartHour,
+                                            endTime:
+                                                today_workTime[0]
+                                                    .assignedStopHour,
+                                            selectedDate: today_date
+                                        });
+                                        this.today_workers = list.length;
+                                    },
+                                    error => console.log(error)
+                                );
+                        } else {
+                        }
+                    }
+                },
+                error => console.log(error)
+            );
+    }
+
+    get_current_user_schedule(userID) {
+        this.http
+            .get(this.url + "schedule", { headers: this.APIHeader() })
+            .subscribe(result => {
+                const tempdate = new Date();
+                const date = tempdate.toISOString().substr(0, 10);
+                this.currentUserSchedule = result["data"].filter(
+                    key =>
+                        key.employee === userID &&
+                        key.workDays[0].date.substr(0, 10) === date
+                );
+            });
+    }
+    clockin() {
+        var today = new Date();
+        this.http
+            .put(
+                this.url + `schedule/${this.currentUserSchedule[0]._id}`,
+                {
+                    workDays: [
+                        {
+                            date: today,
+                            assignedStartHour: this.currentUserSchedule[0]
+                                .workDays[0].assignedStartHour,
+                            assignedStopHour: this.currentUserSchedule[0]
+                                .workDays[0].assignedStopHour,
+                            inHour: 14
+                        }
+                    ],
+                    employee: this.currentUser.userId
+                },
+                { headers: this.APIHeader() }
+            )
+            .subscribe(
+                result => {
+                    console.log(result)
+                    console.log("Clock in successfully");
+                },
+                error => console.log(error)
+            );
     }
 }
