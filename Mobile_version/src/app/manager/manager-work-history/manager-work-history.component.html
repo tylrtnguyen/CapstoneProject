@@ -3,11 +3,12 @@
     <ns-action-bar [Title]='title'></ns-action-bar>
 
     <StackLayout orientation='horizontal'>
-        <Button style='border-radius: 15px;' text='Pick A Date Range' [nsRouterLink]="['/manager-date-range']"></Button>
-        <Label style='border-width: 2px; border-radius: 15px; margin: 3%; width:60%; text-align: center; font-weight: 800;' text='{{selected_date_range}}'></Label>
+        <Button style='border-radius: 15px;' text='Pick A Date Range' [nsRouterLink]="['/manager-date-range']"  ></Button>
+        <Label style='border-width: 2px; border-radius: 15px; margin: 3%; width:60%; text-align: center; font-weight: 800;' text='{{selecteddate}}'></Label>
     </StackLayout>
-   
-    <RadListView [items]="work_history" height='70%'>
+    <RadListView [items]="radlist" height='70%' pullToRefresh="true" (pullToRefreshInitiated)="onPullToRefreshInitiated($event)">
+
+
         <ng-template let-item="item">
             <StackLayout>
                 <StackLayout style='border-radius: 15px; border-width: 3px;'>
@@ -17,11 +18,11 @@
                             <Label class="nameLabel" [text]="item.name"></Label>
                         </StackLayout>
                         <StackLayout class='border-top-bottom-right' width='50%' orientation='horizontal'>
-                            <Label style="font-weight: bold;" text='Position : '></Label>
-                            <Label style="font-weight: 500; text-align: center;" class="nameLabel" [text]="item.position"></Label>
+                            <Label style="font-weight: bold;" text='Total Hour : '></Label>
+                            <Label style="font-weight: 500; text-align: center;" class="nameLabel" [text]="item.total"></Label>
                         </StackLayout>
                     </StackLayout>
-                    <StackLayout orientation='horizontal'>
+                    <!-- <StackLayout orientation='horizontal'>
                         <StackLayout class='border-top-bottom-left' width='50%' orientation='horizontal'>
                             <Label style="font-weight: bold;" text='Total Earning : '></Label>
                             <Label class="nameLabel" [text]="item.total_earning"></Label>
@@ -36,7 +37,7 @@
                             <Label style="font-weight: bold;" text='Date : '></Label>
                             <Label class="nameLabel" [text]="item.date"></Label>
                         </StackLayout>
-                    </StackLayout>
+                    </StackLayout> -->
                 </StackLayout>
             </StackLayout>
         </ng-template>
@@ -45,8 +46,8 @@
     <GridLayout columns="auto,*,auto" rows="auto,auto" style=' margin-left: 5%; margin-right: 5%; margin-top:2%; border-width: 2px ; border-radius: 15px;'> 
         <Label style='margin-left: 10%;' col='0' row='0' text='Total hour'></Label>
         <Label style='margin-right: 10%;' col='1' row='0' text=' Total Labour Cost' horizontalAlignment="right"></Label>
-        <Label style='margin-left: 10%;' col='0' row='1' text='31.72h'></Label>
-        <Label style='margin-right: 10%;' col='1' row='1' text='721.00$' horizontalAlignment="right"></Label>
+        <Label style='margin-left: 10%;' col='0' row='1' [text]='total_hour'></Label>
+        <Label style='margin-right: 10%;' col='1' row='1' [text]='cost' horizontalAlignment="right"></Label>
     </GridLayout>
     <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
 </StackLayout>

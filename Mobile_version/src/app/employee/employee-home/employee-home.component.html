@@ -20,9 +20,9 @@
     <StackLayout *ngIf='share.currentUserSchedule == false' class='container'>
         <Label text='You dont have any schedule today '></Label>
     </StackLayout>
-    <StackLayout orientation='horizontal'>
-        <Button class='btn btn-secondary' text='Clockin' (tap)='share.clockInChecker()'></Button>
-        <Button class='btn btn-primary' text='Clockout' (tap)='share.clockOutChecker()'></Button>
+    <StackLayout class='clock-container' orientation='horizontal'>
+        <Button width='45%' class='btn btn-secondary' text='CLOCK IN' (tap)='share.clockInChecker()'></Button>
+        <Button width='45%' class='btn btn-primary' text='CLOCK OUT' (tap)='share.clockOutChecker()'></Button>
     </StackLayout>
     <ns-employee-tab-manager *ngIf='ifIOS'></ns-employee-tab-manager>
 </StackLayout>

@@ -7,6 +7,7 @@ import { DateRange } from "nativescript-ui-calendar";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { confirm } from "tns-core-modules/ui/dialogs";
+import * as Toast from "nativescript-toast";
 
 @Injectable({
     providedIn: "root"
@@ -26,10 +27,12 @@ export class ShareService {
     clockoutTime: String;
     isLogin = false;
     selected_work_date: String;
-    url = `https://restaskest-api.herokuapp.com/api/`;
-    urlLoginManager = `https://restaskest-api.herokuapp.com/login/manager`;
-    urlLoginEmployee = `https://restaskest-api.herokuapp.com/login/employee`;
+    url = `https://restaskest84.appspot.com/api/`;
+    urlLoginManager = `https://restaskest84.appspot.com/login/manager`;
+    urlLoginEmployee = `https://restaskest84.appspot.com/login/employee`;
     today_workers: number;
+    employee_info = [];
+    total_hour = [];
     Logout() {
         this.isLogin = !this.isLogin;
     }
@@ -37,7 +40,7 @@ export class ShareService {
     APIHeader() {
         var token = {
             token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NDY1NzkxNCwiZXhwIjoxNTg0NjYxNTE0fQ.KsIdcLRAPdbezNGEhre1-ihUnmC7i4gW64Fed83fD3Q"
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NDkxNzMwOCwiZXhwIjoxNTg0OTIwOTA4fQ.fkrtBqlLgsrHkp4MPHuQ5R_HNJ656oOtTIbZXdvwGCw"
         };
         let header = new HttpHeaders({
             Authorization: "Bearer " + token.token,
@@ -46,18 +49,6 @@ export class ShareService {
         return header;
     }
 
-    register(email, address) {
-        // this.http
-        //     .post(this.url + "employee", {
-                
-        //     }, { headers: this.APIHeader() })
-        //     .subscribe(
-        //         result => {
-
-        //         },
-        //         error => console.log(error)
-        //     );
-    }
     numDayinWeek() {
         var start = 0;
         var today = new Date();
@@ -272,20 +263,27 @@ export class ShareService {
     }
 
     clockInChecker() {
-        var inHour = this.currentUserSchedule[0].workDays[0].inHour;
-        console.log(inHour);
-        if (inHour === "") {
-            this.clockin();
+        if (this.currentUserSchedule.length === 0) {
+            console.log("nothing");
         } else {
-            let options = {
-                title: "Already Clocked in",
-                okButtonText: "Got it"
-            };
+            var inHour = this.currentUserSchedule[0].workDays[0].inHour;
+            console.log(inHour);
+            if (inHour === "") {
+                this.clockin();
+            } else {
+                let options = {
+                    title: "Already Clocked in",
+                    okButtonText: "Got it"
+                };
 
-            confirm(options).then((result: boolean) => {});
+                confirm(options).then((result: boolean) => {});
+            }
         }
     }
     clockOutChecker() {
+        if (this.currentUserSchedule.length == 0) {
+            Toast.makeText("You have no schedule today to clock out", "short");
+        }
         var outHour = this.currentUserSchedule[0].workDays[0].outHour;
         console.log(outHour);
         if (outHour === "" || outHour == undefined) {
@@ -354,6 +352,32 @@ export class ShareService {
             .subscribe(
                 result => {
                     this.get_current_user_schedule(this.currentUser.userId);
+                },
+                error => console.log(error)
+            );
+    }
+
+    getTotaWageslbyDateRage(startDate, endDate, total) {
+        const employee_id = [];
+        this.http
+            .get(this.url + "employee", { headers: this.APIHeader() })
+            .subscribe(
+                result => {
+                    result["data"].map(key => employee_id.push(key._id));
+                    for (var i = 0; i < employee_id.length; i++) {
+                        this.http
+                            .get(
+                                this.url +
+                                    `schedule/workhours/${employee_id[i]}/${startDate}/${endDate}`,
+                                { headers: this.APIHeader() }
+                            )
+                            .subscribe(
+                                result => {
+                                    total.push(result["data"]);
+                                },
+                                error => console.log(error)
+                            );
+                    }
                 },
                 error => console.log(error)
             );

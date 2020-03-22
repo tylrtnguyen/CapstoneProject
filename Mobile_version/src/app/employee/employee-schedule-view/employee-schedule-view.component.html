@@ -1,25 +1,21 @@
 <StackLayout class="Page">
     <ns-action-bar [Title]='title'></ns-action-bar>
     <StackLayout style="height: 14%;">
-        <label class="center" style="color: darkgreen; font-size: 28px;" text="Your schedule for this week"></label>
+        <label class="center" style="color: rgb(100, 0, 17); font-size: 28px;" text="Your schedule for this week"></label>
         <label class="center" style="font-size: x-large;" text="{{firstday}} -> {{lastday}}"></label>
     </StackLayout>
     <RadListView [items]="employee_weekly_schedule" height='67%'>
         <ng-template let-item="item">
-            <GridLayout class='detail' columns="25,100,*,100,100" rows='50' orientation='horizontal'>
+            <StackLayout  style="margin-top: 20%;">
+            <GridLayout  class='detail' columns="25,100,*,100,100" rows='50' orientation='horizontal'>
                 <Label col='1'  [text]="item.date.toString().substr(0,10)"></Label>
                 <Label col='3'  [text]="item.startTime"></Label>
                 <Label col='4'  [text]="item.endTime"></Label>
             </GridLayout>
+        </StackLayout>
         </ng-template>
     </RadListView>
 
-    <!-- <GridLayout heihgt=20% columns="auto,*,auto" rows="auto,auto" style=' margin-left: 5%; margin-right: 5%; margin-top:2%; border-width: 2px ; border-radius: 15px;'> 
-        <Label style='margin-left: 10%;' col='0' row='0' text='Total hour'></Label>
-        <Label style='margin-right: 10%;' col='2' row='0' text=' Total Earning' horizontalAlignment="right"></Label>
-        <Label style='margin-left: 10%;' col='0' row='1' text='31.72h'></Label>
-        <Label style='margin-right: 10%;' col='2' row='1' text='721.00$' horizontalAlignment="right"></Label>
-    </GridLayout> -->
     <ns-employee-tab-manager *ngIf='ifIOS'></ns-employee-tab-manager>
 </StackLayout>
 <ns-employee-tab-manager *ngIf='ifAndroid'></ns-employee-tab-manager>

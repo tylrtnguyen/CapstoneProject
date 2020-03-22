@@ -36,8 +36,6 @@ export class ManagerScheduleComponent implements OnInit {
             this.ifAndroid = false;
         }
         this.share.get_today_EmployeeName_Schedule(this.today_schedule)
-        console.log(this.today_schedule.length)
-
     }
 
     

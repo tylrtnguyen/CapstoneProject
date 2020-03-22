@@ -40,8 +40,8 @@ export class ManagerAddScheduleComponent implements OnInit {
 
     employee_list_final = [];
 
-    selected_start_date: String;
-    selected_end_date: String;
+    selected_start_time: String;
+    selected_end_time: String;
     selected_date: String;
 
     minDate: Date = new Date(1975, 0, 29);
@@ -95,7 +95,7 @@ export class ManagerAddScheduleComponent implements OnInit {
     onStartTimeSelected(args) {
         const time = args.value;
         const time_only = time.toString().substring(16, 24);
-        this.selected_start_date = time_only;
+        this.selected_start_time = time_only;
         // console.log(`Chosen start time: ${time.substring(4,9)}`);
     }
     onTimeLoad(args) {
@@ -108,14 +108,14 @@ export class ManagerAddScheduleComponent implements OnInit {
         const tp = args.object as TimePicker;
         const time = args.value;
         const time_only = time.toString().substring(16, 24);
-        this.selected_end_date = time_only;
+        this.selected_end_time = time_only;
         // console.log(`Chosen end time: ${time}`);
     }
     onSubmit() {
         if (
-            this.employee_list_final.length == 0 &&
-            typeof this.selected_start_date === "undefined" &&
-            typeof this.selected_end_date === "undefined" &&
+            this.employee_list_final.length == 0 ||
+            typeof this.selected_start_time === "undefined" ||
+            typeof this.selected_end_time === "undefined" ||
             typeof this.selected_date === "undefined"
         ) {
             this.valid = false;
@@ -123,17 +123,46 @@ export class ManagerAddScheduleComponent implements OnInit {
         } else {
             this.valid = true;
             this.share.selected_work_date = this.selected_date;
-            console.log(
-                `Employees ID NUMBER : ${this.employee_list_final} is start working from ${this.selected_start_date} to ${this.selected_end_date} on this date ${this.selected_date} `
-            );
-            //change this to schedule database
-            const schedule = {
-                nameList: this.employee_list_final,
-                start_time: this.selected_start_date,
-                end_time: this.selected_end_date,
-                date: this.selected_date
-            };
-            console.log(schedule);
+
+            for (var i = 0; i < this.employee_list_final.length; i++) {
+                console.log("Start" + this.selected_start_time.substr(0, 2));
+                console.log("End " + this.selected_end_time.substr(0, 2));
+                console.log("Employee " + this.employee_list_final[i]);
+                console.log("Selected Date " + this.selected_date);
+
+                this.http
+                    .post(
+                        this.share.url + "schedule",
+                        {
+                            workDays: [
+                                {
+                                    date: this.selected_date,
+                                    assignedStartHour: this.selected_start_time.substr(
+                                        0,
+                                        2
+                                    ),
+                                    assignedStopHour: this.selected_end_time.substr(
+                                        0,
+                                        2
+                                    )
+                                }
+                            ],
+                            employee: this.employee_list_final[i]
+                        },
+                        { headers: this.share.APIHeader() }
+                    )
+                    .subscribe(
+                        result => {
+                            console.log(result);
+                        },
+                        error =>
+                            Toast.makeText(
+                                "An employee has already work this day, please don't overwork your employee",
+                                "short"
+                            )
+                    );
+            }
+
             this.router.navigateByUrl("/manager-schedule");
         }
     }
