@@ -40,7 +40,7 @@ export class ShareService {
     APIHeader() {
         var token = {
             token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NDkxNzMwOCwiZXhwIjoxNTg0OTIwOTA4fQ.fkrtBqlLgsrHkp4MPHuQ5R_HNJ656oOtTIbZXdvwGCw"
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NTE3NjI4NSwiZXhwIjoxNTg1MTc5ODg1fQ.yfREcE3gVwgX2SfLSyZXLIt45ug8IGTTM44AMkgdMGo"
         };
         let header = new HttpHeaders({
             Authorization: "Bearer " + token.token,
@@ -223,6 +223,7 @@ export class ShareService {
                                         list.push({
                                             name:
                                                 result["data"].fName +
+                                                " \t " +
                                                 result["data"].lName,
                                             startTime:
                                                 today_workTime[0]
@@ -246,6 +247,7 @@ export class ShareService {
 
     get_current_user_schedule(userID) {
         if (userID == undefined) {
+            console.log("Fail");
             this.currentUserSchedule = false;
         } else {
             this.http
@@ -253,6 +255,7 @@ export class ShareService {
                 .subscribe(result => {
                     const tempdate = new Date();
                     const date = tempdate.toISOString().substr(0, 10);
+                    console.log(date);
                     this.currentUserSchedule = result["data"].filter(
                         key =>
                             key.employee === userID &&
@@ -264,11 +267,10 @@ export class ShareService {
 
     clockInChecker() {
         if (this.currentUserSchedule.length === 0) {
-            console.log("nothing");
         } else {
             var inHour = this.currentUserSchedule[0].workDays[0].inHour;
             console.log(inHour);
-            if (inHour === "") {
+            if (inHour === "" || inHour == undefined) {
                 this.clockin();
             } else {
                 let options = {

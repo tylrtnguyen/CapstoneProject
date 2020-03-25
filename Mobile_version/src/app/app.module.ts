@@ -5,10 +5,9 @@ import { NativeScriptFormsModule  } from "nativescript-angular/forms"
 import { NativeScriptUICalendarModule } from "nativescript-ui-calendar/angular";
 import { DropDownModule } from "nativescript-drop-down/angular";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
-import { NativeScriptDateTimePickerModule } from "nativescript-datetimepicker/angular";
 import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
 import {ModalDialogService} from "nativescript-angular/modal-dialog";
-
+import { NativeScriptUIChartModule } from "nativescript-ui-chart/angular";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { LoginComponent } from './share-component/login/login.component';
@@ -20,7 +19,6 @@ import { ManagerAddScheduleComponent } from './manager/manager-add-schedule/mana
 import { ManagerWorkHistoryComponent } from './manager/manager-work-history/manager-work-history.component';
 import { ManagerEmployeeListComponent } from './manager/manager-employee-list/manager-employee-list.component';
 import { ManagerAddEmployeeComponent } from './manager/manager-add-employee/manager-add-employee.component';
-import { ManagerSettingsComponent } from './manager/manager-settings/manager-settings.component';
 import { ProfileComponent } from './share-component/profile/profile.component';
 import { EmployeeHomeComponent } from './employee/employee-home/employee-home.component';
 import { EmployeeScheduleViewComponent } from './employee/employee-schedule-view/employee-schedule-view.component';
@@ -55,13 +53,13 @@ import { ManagerInventoryDetailComponent } from './manager/manager-inventory-det
     ],
     imports: [
         NativeScriptModule,
+        NativeScriptUIChartModule,
         AppRoutingModule,
         NativeScriptRouterModule,
         NativeScriptFormsModule,
         NativeScriptUICalendarModule,
         DropDownModule,
         NativeScriptUIListViewModule,
-        NativeScriptDateTimePickerModule,
         NativeScriptHttpClientModule,
         NativeScriptUIDataFormModule,
         
@@ -80,7 +78,6 @@ import { ManagerInventoryDetailComponent } from './manager/manager-inventory-det
         ManagerWorkHistoryComponent,
         ManagerEmployeeListComponent,
         ManagerAddEmployeeComponent,
-        ManagerSettingsComponent,
 
         //Employee Component
         EmployeeHomeComponent,

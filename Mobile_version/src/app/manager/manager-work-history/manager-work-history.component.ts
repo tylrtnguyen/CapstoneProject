@@ -17,6 +17,8 @@ export class ManagerWorkHistoryComponent implements OnInit {
     cost: Number;
     total_hour: Number;
     selecteddate: String;
+    radlist = [];
+    emptylist =["Please select a date range."]
     constructor(
         public page: Page,
         public share: ShareService,
@@ -24,7 +26,7 @@ export class ManagerWorkHistoryComponent implements OnInit {
         private _changeDetectionRef: ChangeDetectorRef
     ) {}
 
-    radlist = [];
+    
     ngOnInit() {
         if (isAndroid) {
             this.ifAndroid = true;

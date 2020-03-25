@@ -28,7 +28,7 @@ export class ManagerAddEmployeeComponent implements OnInit {
     @ViewChild("employee_radForm", { static: false })
     myEmployeeDataForm: RadDataFormComponent;
     ngOnInit() {
-        this._employee = new Employee("", "", "", null, "", "", "", "");
+        this._employee = new Employee();
     }
     get employee(): Employee {
         return this._employee;
@@ -94,15 +94,24 @@ export class ManagerAddEmployeeComponent implements OnInit {
                 ]
             },
             {
+                name: "password",
+                displayName: "Password",
+                index: 3,
+                validators: [
+                    { name: "NonEmpty" },
+                    { name: "MinimumLength", params: { length: 3 } }
+                ]
+            },
+            {
                 name: "wage",
                 displayName: "Wage",
                 editor: "Number",
-                index: 3
+                index: 4
             },
             {
                 name: "department",
                 displayName: "Department",
-                index: 4,
+                index: 5,
                 validators: [
                     { name: "NonEmpty" },
                     { name: "MinimumLength", params: { length: 3 } }
@@ -111,7 +120,7 @@ export class ManagerAddEmployeeComponent implements OnInit {
             {
                 name: "dob",
                 displayName: "Date of Birth",
-                index: 5,
+                index: 6,
                 validators: [
                     // {
                     //     name: "RegEx",
@@ -128,7 +137,7 @@ export class ManagerAddEmployeeComponent implements OnInit {
             {
                 name: "gender",
                 displayName: "Gender",
-                index: 6,
+                index: 7,
                 validators: [
                     {
                         name: "RegEx",
@@ -144,8 +153,8 @@ export class ManagerAddEmployeeComponent implements OnInit {
             },
             {
                 name: "address",
-                displayName: "address",
-                index: 7,
+                displayName: "Address",
+                index: 8,
                 validators: [
                     { name: "NonEmpty" },
                     { name: "MinimumLength", params: { length: 3 } },
@@ -173,7 +182,7 @@ export class ManagerAddEmployeeComponent implements OnInit {
                                 gender: em_store.gender,
                                 address: em_store.address,
                                 isPermanent: false,
-                                password: "123456789"
+                                password: em_store.password
                             },
                             { headers: this.share.APIHeader() }
                         )

@@ -82,15 +82,20 @@ export class ManagerEmployeeDetailComponent implements OnInit {
                 ]
             },
             {
+                name: "password",
+                displayName: "Password",
+                index: 3
+            },
+            {
                 name: "wage",
                 displayName: "Wage",
                 editor: "Number",
-                index: 3
+                index: 4
             },
             {
                 name: "department",
                 displayName: "Department",
-                index: 4,
+                index: 5,
                 validators: [
                     { name: "NonEmpty" },
                     { name: "MinimumLength", params: { length: 3 } }
@@ -99,7 +104,7 @@ export class ManagerEmployeeDetailComponent implements OnInit {
             {
                 name: "dob",
                 displayName: "Date of Birth",
-                index: 5,
+                index: 6,
                 validators: [
                     // {
                     //     name: "RegEx",
@@ -116,7 +121,7 @@ export class ManagerEmployeeDetailComponent implements OnInit {
             {
                 name: "gender",
                 displayName: "Gender",
-                index: 6,
+                index: 7,
                 validators: [
                     {
                         name: "RegEx",
@@ -133,7 +138,7 @@ export class ManagerEmployeeDetailComponent implements OnInit {
             {
                 name: "address",
                 displayName: "address",
-                index: 7,
+                index: 8,
                 validators: [
                     { name: "NonEmpty" },
                     { name: "MinimumLength", params: { length: 3 } },
@@ -167,7 +172,7 @@ export class ManagerEmployeeDetailComponent implements OnInit {
             this.data.department,
             this.data.DOB,
             this.data.gender,
-            this.data.address
+            this.data.address,
         );
     }
 
@@ -194,7 +199,7 @@ export class ManagerEmployeeDetailComponent implements OnInit {
                                 wages: em_store.wage,
                                 DOB: em_store.dob,
                                 gender: em_store.gender,
-                                address: em_store.address
+                                address: em_store.address,
                             },
                             { headers: this.share.APIHeader() }
                         )

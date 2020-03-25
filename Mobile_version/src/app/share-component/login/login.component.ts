@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     }
 
     submit(isManager: Boolean) {
-        if ((!this.user.email || !this.user.password)) {
+        if (!this.user.email || !this.user.password) {
             Toast.makeText(
                 "Please provide both an email address and password"
             ).show();
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
                 this.loginEmployee();
             }
         } else {
-            console.log('something went wrong')
+            console.log("something went wrong");
         }
     }
 

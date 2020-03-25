@@ -1,7 +1,7 @@
 
 .container{
     border-radius: 15px;
-     border-width: 3px;
+    border-width: 10px;
 }
 .del-button{
     border-width:2px ;
@@ -10,11 +10,15 @@
     color:white;
 }
 .border-top-bottom-right{
+    background-color: #443b3b;
+    color:white;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     border-width: 3px;
 }
 .border-top-bottom-left{
+    background-color: #d42c2c;
+    color: white;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     border-width: 3px;
@@ -31,4 +35,8 @@
     font-size: 15px;
     font-weight: 400;
     letter-spacing: 0.3px;
+}
+.status{
+    border-radius: 15px;
+    border-width: 2px;  
 }

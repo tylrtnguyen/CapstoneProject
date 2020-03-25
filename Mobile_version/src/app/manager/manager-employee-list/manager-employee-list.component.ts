@@ -100,7 +100,7 @@ export class ManagerEmployeeListComponent implements OnInit {
         console.log("Taped add button");
         let options = {
             context: {},
-            fullscreen: false,
+            fullscreen: true,
             viewContainerRef: this.vcRef
         };
         this.modal
@@ -124,7 +124,7 @@ export class ManagerEmployeeListComponent implements OnInit {
     employee_detail(data) {
         let options = {
             context: {data : data},
-            fullscreen: false,
+            fullscreen: true,
             viewContainerRef: this.vcRef
         };
         this.modal

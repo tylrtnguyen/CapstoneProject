@@ -68,8 +68,8 @@ export class ManagerInventoryComponent implements OnInit {
                     );
             });
     }
+
     delete_item(data) {
-        console.log("Confirmation");
         let options = {
             title: "Delete Employee",
             message: `Are you sure you want to delete this employee ${data.name}?`,

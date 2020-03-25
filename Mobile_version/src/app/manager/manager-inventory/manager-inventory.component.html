@@ -6,13 +6,13 @@
     <StackLayout height='90%'>
         <RadListView [items]="material" height=100%>
             <ng-template let-item="item">
-                <StackLayout>
-                    <StackLayout  class='container'>
+                <StackLayout >
+                    <StackLayout class='container'>
                         <GridLayout columns="48,100,*,50" rows='25' orientation='horizontal'>
-                            <Image [src]="'~/app/images/edit.png'" decodeWidth="40" decodeHeight="40" (tap)='edit_item(item)'>
+                            <Image [src]="'~/app/images/edit.png'" decodeWidth="40" decodeHeight="40"
+                                (tap)='edit_item(item)'>
                             </Image>
-                            <Button col="3" row="0" class='del-button' text='X'
-                                (tap)="delete_item(item.name)"></Button>
+                            <Button col="3" row="0" class='del-button' text='X' (tap)="delete_item(item.name)"></Button>
                         </GridLayout>
                         <StackLayout orientation='horizontal'>
                             <StackLayout class='border-top-bottom-left' width='75%' orientation='horizontal'>
@@ -20,12 +20,12 @@
                                 <Label class="description" [text]="item.name"></Label>
                             </StackLayout>
                             <StackLayout class='border-top-bottom-right' width='25%' orientation='horizontal'>
-                                <Label class="title"
-                                    [text]="item.quantity"></Label>
+                                <Label class="title" [text]="item.quantity"></Label>
                             </StackLayout>
                         </StackLayout>
                         <StackLayout orientation='horizontal'>
-                            <StackLayout width='100%' orientation='horizontal' >
+                            <StackLayout class='status' width='100%'
+                                orientation='horizontal'>
                                 <Label class="title" text='Status:'></Label>
                                 <Label class="description" [text]="item.stockStatus"></Label>
                             </StackLayout>
