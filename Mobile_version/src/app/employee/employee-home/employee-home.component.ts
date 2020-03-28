@@ -34,6 +34,6 @@ export class EmployeeHomeComponent implements OnInit {
             this.ifAndroid = false;
         }
         
-        this.share.get_current_user_schedule(this.share.currentUser.userId);
+        this.share.get_current_user_schedule("5e7cf1fd38c4c10008964120");
     }
 }

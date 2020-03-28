@@ -1,13 +1,10 @@
 <StackLayout class="Page">
     <ns-action-bar [Title]='title'></ns-action-bar>
     <StackLayout orientation='horizontal'>
-        <Label text='Inventory' style=" font:24px;margin-left: 5% ;margin-top : 5% ;font-family: Oxanium ; letter-spacing: 0.5px;"></Label>
+        <Label class='header-label' text='Inventory' ></Label>
     </StackLayout>
-    <GridLayout height='5%' columns="auto,*,auto" rows="auto,auto" style=' margin-left: 5%; margin-right: 5%; margin-top:2%; border-width: 2px ; border-radius: 15px;'> 
-        <Label width='40%' style="margin-left: 5%; font:14px ;font-family: Oxanium ; letter-spacing: 0.5px;" col='0' row='0' text='Item Name' ></Label>
-        <Label width='40%' style='margin-left: 5%; font:14px ;font-family: Oxanium ; letter-spacing: 0.5px;' col='2' row='0' text=' Quantity' ></Label>
-    </GridLayout>
-    <RadListView [items]="inventory_data" height=75%>
+    
+    <RadListView style="border-width: 2px;" [items]="inventory_data" height=75%>
         <ng-template let-item="item">
             <StackLayout>
                 <StackLayout  class='container'>

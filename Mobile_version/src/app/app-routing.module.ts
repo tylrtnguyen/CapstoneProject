@@ -23,7 +23,7 @@ import { ProfileComponent } from "./share-component/profile/profile.component";
 // import { ItemDetailComponent } from "./item/item-detail.component";
 
 const routes: Routes = [
-    { path: "", redirectTo: "/login", pathMatch: "full" },
+    { path: "", redirectTo: "/employee-home", pathMatch: "full" },
     { path: "login", component: LoginComponent },
     { path: "manager-home", component: ManagerHomeComponent },
     { path: "manager-tab", component: ManagerTabManagerComponent },

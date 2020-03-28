@@ -1,16 +1,8 @@
-/* Add mobile styles for the component here.  */
-label{
-    text-align: center;
-}
-label#header{
-    font-weight: bold;
-    font-size: xx-large;
-}
-label#center{
-    padding: 70px 0;
-    font-weight: bold;
-    font-size: 25px;
-    color: rebeccapurple;
+.header-label{
+    font:30rem;
+    margin-left: 5%;
+    letter-spacing: 0.5px;
+    margin-bottom: 2%;
 }
 button{
     width: 100%;
@@ -31,11 +23,15 @@ button{
 }
 
 .border-top-bottom-right{
+    background-color: #443b3b;
+    color: white;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     border-width: 2px;
 }
 .border-top-bottom-left{
+    background-color: #f84242;
+    color: white;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     border-width: 2px;

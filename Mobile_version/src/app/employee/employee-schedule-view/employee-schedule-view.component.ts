@@ -30,4 +30,19 @@ export class EmployeeScheduleViewComponent implements OnInit {
         this.lastday = this.share.numDayinWeek()[1].toString().substr(0,15);
         this.share.get_employee_schedule_by_week(this.employee_weekly_schedule)
     }
+    timeperiod(time)
+    {
+        if(time < 12)
+        {
+            return "AM";
+        }
+        else if(time >= 12)
+        {
+            return "PM";
+        }
+        else{
+            return null;
+        }
+        
+    }
 }

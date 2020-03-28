@@ -40,7 +40,7 @@ export class ShareService {
     APIHeader() {
         var token = {
             token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NTE3NjI4NSwiZXhwIjoxNTg1MTc5ODg1fQ.yfREcE3gVwgX2SfLSyZXLIt45ug8IGTTM44AMkgdMGo"
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NTM1OTM3NiwiZXhwIjoxNTg1MzYyOTc2fQ.fSVnn-05fkWJJogoGvhnJIJXfccYfYbDBnmENfU3Ud4"
         };
         let header = new HttpHeaders({
             Authorization: "Bearer " + token.token,
@@ -246,6 +246,7 @@ export class ShareService {
     }
 
     get_current_user_schedule(userID) {
+        console.log(userID);
         if (userID == undefined) {
             console.log("Fail");
             this.currentUserSchedule = false;
@@ -255,12 +256,12 @@ export class ShareService {
                 .subscribe(result => {
                     const tempdate = new Date();
                     const date = tempdate.toISOString().substr(0, 10);
-                    console.log(date);
                     this.currentUserSchedule = result["data"].filter(
                         key =>
-                            key.employee === userID &&
-                            key.workDays[0].date.substr(0, 10) === date
+                        key.employee === userID &&
+                        key.workDays[0].date.substr(0, 10) === date
                     );
+                    console.log(this.currentUserSchedule);
                 });
         }
     }
@@ -284,18 +285,18 @@ export class ShareService {
     }
     clockOutChecker() {
         if (this.currentUserSchedule.length == 0) {
-            Toast.makeText("You have no schedule today to clock out", "short");
-        }
-        var outHour = this.currentUserSchedule[0].workDays[0].outHour;
-        console.log(outHour);
-        if (outHour === "" || outHour == undefined) {
-            this.clockout();
         } else {
-            let options = {
-                title: "Already Clocked Out",
-                okButtonText: "Got it"
-            };
-            confirm(options).then((result: boolean) => {});
+            var outHour = this.currentUserSchedule[0].workDays[0].outHour;
+            console.log(outHour);
+            if (outHour === "" || outHour == undefined) {
+                this.clockout();
+            } else {
+                let options = {
+                    title: "Already Clocked Out",
+                    okButtonText: "Got it"
+                };
+                confirm(options).then((result: boolean) => {});
+            }
         }
     }
 

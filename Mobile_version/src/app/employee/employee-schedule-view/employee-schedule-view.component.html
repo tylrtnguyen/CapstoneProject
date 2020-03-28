@@ -1,16 +1,20 @@
 <StackLayout class="Page">
     <ns-action-bar [Title]='title'></ns-action-bar>
-    <StackLayout style="height: 14%;">
-        <label class="center" style="color: rgb(100, 0, 17); font-size: 28px;" text="Your schedule for this week"></label>
-        <label class="center" style="font-size: x-large;" text="{{firstday}} -> {{lastday}}"></label>
+    <StackLayout class='header' style="height: 14%;">
+        <label class="center" style="color: rgb(100, 0, 17); font-size: 28px;" text="Weekly Schedule"></label>
+        <label class="center" style="font-size: 20rem;" text="{{firstday}} to {{lastday}}"></label>
     </StackLayout>
-    <RadListView [items]="employee_weekly_schedule" height='67%'>
+    <RadListView [items]="employee_weekly_schedule" height='75%'>
         <ng-template let-item="item">
             <StackLayout  style="margin-top: 20%;">
-            <GridLayout  class='detail' columns="25,100,*,100,100" rows='50' orientation='horizontal'>
-                <Label col='1'  [text]="item.date.toString().substr(0,10)"></Label>
-                <Label col='3'  [text]="item.startTime"></Label>
-                <Label col='4'  [text]="item.endTime"></Label>
+            <StackLayout  class='detail-header' orientation='horizontal'>
+                <Label class='content' style='font-size: 17px;'  text='Date : {{item.date.toString().substr(0,10)}} ' ></Label>
+            </StackLayout>
+            <GridLayout columns='200,*,200' rows='30,30' class='detail-content'>
+                <Label class='content' col='0' row='0' text='Start Time '></Label>
+                <Label class='content' col='2' row='0' text='Stop Time '></Label>
+                <Label class='content' col='0' row='1' text="{{item.startTime}} {{timeperiod(item.startTime)}}"></Label>
+                <Label class='content' col='2' row='1' text="{{item.endTime}} {{timeperiod(item.endTime)}}"></Label>
             </GridLayout>
         </StackLayout>
         </ng-template>
