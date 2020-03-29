@@ -1,91 +1,42 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { action } from "tns-core-modules/ui/dialogs";
-
+import { Page } from "tns-core-modules/ui/page";
+import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
+import { ShareService } from "~/app/share-services/share.service";
+import { HttpClient } from "@angular/common/http";
 @Component({
     selector: "ns-manager-schedule",
     templateUrl: "./manager-schedule.component.html",
     styleUrls: ["./manager-schedule.component.css"]
 })
 export class ManagerScheduleComponent implements OnInit {
-    message: String;
-    dataItems = [
-        {
-            name: "Thanh Quan",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "Manager",
-            date: "Tue Jan 21 2020"
-        },
-        {
-            name: "Thay Ba",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "Manager",
-            date: "Tue Jan 21 2020"
-        },
-        {
-            name: "Tu Nguyen",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "Janitor",
-            date: "Tue Jan 21 2020"
-        },
-        {
-            name: "Thanh Dep Trai",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "CEO",
-            date: "Wed Jan 22 2020"
-        },
-        {
-            name: "Quang Pham",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "Striper 1",
-            date: "Wed Jan 22 2020"
-        },
-        {
-            name: "Thong Nguyen",
-            start_time: "15:00",
-            end_time: "17:00",
-            position: "Striper 2",
-            date: "Wed Jan 22 2020"
-        }
-    ];
-    temp_dataItems = [];
+    ifAndroid: Boolean;
+    ifIOS: Boolean;
+    title = "Schedule";
+    today_schedule = [];
+    num_worker = 0;
     receive_current_time($event) {
-        this.message = $event;
-        this.filter();
+        this.today_schedule = [];
+        this.share.get_EmployeeName_Schedule_by_Date(this.today_schedule,$event)
+    }
+    constructor(
+        public router: Router,
+        public page: Page,
+        public share: ShareService,
+        public http: HttpClient
+    ) {}
+
+    ngOnInit() {
+        if (isAndroid) {
+            this.ifAndroid = true;
+            this.ifIOS = false;
+        } else if (isIOS) {
+            this.ifIOS = true;
+            this.ifAndroid = false;
+        }
+        this.share.get_today_EmployeeName_Schedule(this.today_schedule)
     }
 
-    filter() {
-        console.log(this.message);
-        const filtered_word = this.dataItems.filter(
-            employee => employee.date === this.message
-        );
-        console.log(filtered_word);
-        this.temp_dataItems = filtered_word;
-    }
-
-    constructor(public router: Router) {}
-
-    ngOnInit() {}
-
-    home() {
-        this.router.navigateByUrl("/manager-home");
-    }
-    work_history() {
-        this.router.navigateByUrl("/manager-work-history");
-    }
-    inventory() {
-        this.router.navigateByUrl("/manager-inventory");
-    }
-    employee() {
-        this.router.navigateByUrl("/manager-employee-list");
-    }
-
-
-
-
+    
 }

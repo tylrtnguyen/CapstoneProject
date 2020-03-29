@@ -1,12 +1,29 @@
-<TabView selectedIndex="0" (selectedIndexChanged)="onSelectedIndexchanged($event)">
-    <StackLayout *tabItem="{title: 'First Tab', iconSource: 'res://icon'}">
-        <StackLayout>
-            <Label text="First Tab" textWrap="true" class="m-15 h2 text-left" color="blue"></Label>
-        </StackLayout>
+<StackLayout class="Page">
+    <ns-action-bar [Title]='title'></ns-action-bar>
+    <StackLayout class='clock-container' orientation='horizontal'>
+        <Button width='45%' class='btn btn-secondary' style="margin-top: 10%;" text='CLOCK IN' (tap)='share.clockInChecker()'></Button>
+        <Button width='45%' class='btn btn-primary' style="margin-top: 10%;" text='CLOCK OUT' (tap)='share.clockOutChecker()'></Button>
     </StackLayout>
-    <StackLayout *tabItem="{title: 'Second Tab', iconSource: 'res://icon'}">
-        <StackLayout>
-            <Label text="Second Tab" textWrap="true" class="m-15 h2 text-left" color="blue"></Label>
-        </StackLayout>
+    <StackLayout height='50%' *ngIf='share.currentUserSchedule != false' class='container'>
+        <RadListView [items]="share.currentUserSchedule">
+            <ng-template let-item="item">
+                <GridLayout columns='200,*,*,200' rows='50,50,50,50'>
+                    <Label class='label' col='0' row='0' text='Assigned Start Time'></Label>
+                    <Label col='0' row='1' [text]="item.workDays[0].assignedStartHour"></Label>
+                    <Label class='label' col='3' row='0' text='Assigned End Time'></Label>
+                    <Label col='3' row='1' [text]="item.workDays[0].assignedStopHour"></Label>
+                    <Label class='label' col='0' row='2' text='Your start time'></Label>
+                    <Label col='0' row='3' [text]="item.workDays[0].inHour"></Label>
+                    <Label class='label' col='3' row='2' text='Clock out at'></Label>
+                    <Label col='3' row='3' [text]="item.workDays[0].outHour"></Label>
+                </GridLayout>
+            </ng-template>
+        </RadListView>
     </StackLayout>
-</TabView>
+    <StackLayout *ngIf='share.currentUserSchedule == false' class='container'>
+        <Image [src]="'~/app/images/wave.png'" width='60%' height="60%" class="fas t-36"></Image>
+        <Label class='text' text="It's a sunny day not to work."></Label>
+    </StackLayout>
+    <ns-employee-tab-manager *ngIf='ifIOS'></ns-employee-tab-manager>
+</StackLayout>
+<ns-employee-tab-manager *ngIf='ifAndroid'></ns-employee-tab-manager>

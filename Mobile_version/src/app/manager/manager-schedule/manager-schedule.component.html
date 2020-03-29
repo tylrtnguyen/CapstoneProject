@@ -1,18 +1,30 @@
-
 <StackLayout>
-    
+    <ns-action-bar [Title]='title'></ns-action-bar>
+
     <ns-manager-calendar (timeEvent)='receive_current_time($event)'></ns-manager-calendar>
-    <Button text='Add' [nsRouterLink]="['/manager-add-schedule']"></Button>
-        <Button text='Publish'></Button>
-    <RadListView [items]="temp_dataItems">
+
+    <Button class='btn-primary' text='Add Schedule' [nsRouterLink]="['/manager-add-schedule']"></Button>
+
+
+    <RadListView *ngIf="today_schedule.length !== 0" [items]="today_schedule" height='61%'>
         <ng-template let-item="item">
-            <StackLayout orientation="vertical">
-                <Label class="nameLabel" [text]="item.name"></Label>
-                <Label class="nameLabel" [text]="item.start_time"></Label>
-                <Label class="nameLabel" [text]="item.end_time"></Label>
-                <Label class="nameLabel" [text]="item.position"></Label>
-                <Label class="nameLabel" [text]="item.date"></Label>
+            <StackLayout orientation='horizontal'>
+                <StackLayout class='border-top-bottom-left' width='60%' orientation='horizontal'>
+                    <Label style="font-weight: bold;" text='Name : '></Label>
+                    <Label class="nameLabel" [text]="item.name"></Label>
+                </StackLayout>
+                <StackLayout class='border-top-bottom-right' width='40%' orientation='horizontal'>
+                    <Label style="font-weight: bold;" text='Work Time : '></Label>
+                    <Label class="nameLabel" [text]="item.startTime + ' : ' + item.endTime"></Label>
+                </StackLayout>
             </StackLayout>
         </ng-template>
     </RadListView>
+    <StackLayout *ngIf="today_schedule.length === 0" class="empty-employee" height='61%'>
+        <Image width=50% height=50% horizontalAlignment="center" row="0" [src]="'~/app/images/sweeping.png'">
+        </Image>
+        <Label text='Nobody is working today'></Label>
+    </StackLayout>
+    <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
 </StackLayout>
+<ns-manager-tab-manager *ngIf='ifAndroid'></ns-manager-tab-manager>

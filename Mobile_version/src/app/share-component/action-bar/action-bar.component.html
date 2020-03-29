@@ -1,8 +1,6 @@
-<ActionBar class='action-bar' title="ResTaskkest">
-    <StackLayout orientation="horizontal"
-      ios:horizontalAlignment="center"
-      android:horizontalAlignment="left">
-      <Image src="../images/back_arrow_white.png" ></Image>
-      <Label text="ResTaskkest" class="action-label"></Label>
-    </StackLayout>
+<ActionBar  title="{{Title}}" >
+  <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="goBack()" backgroundColor=red></NavigationButton>
+  <ActionItem *ngIf="!isLogout" icon="~/app/images/profile_XL.png" class="fas" ios.position="right" (tap)="profile()" ></ActionItem>
+  <ActionItem *ngIf="isLogout" icon="~/app/images/logout.png" class="fas" ios.position="right" (tap)="logout()" ></ActionItem>
+
 </ActionBar>

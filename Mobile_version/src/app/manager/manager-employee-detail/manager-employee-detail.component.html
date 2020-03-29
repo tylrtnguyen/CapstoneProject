@@ -1,0 +1,13 @@
+<!-- <RadDataForm tkExampleTitle tkToggleNavButton [source]="person"></RadDataForm> -->
+<StackLayout>
+    <ns-action-bar></ns-action-bar>
+    <GridLayout style="background-color: #443b3b" columns='200,*,200' rows='100'>
+        <Button style="background-color:#4346f8 ; color: white;" col='0' row='0' text='Submit'
+            (tap)='submit()'></Button>
+        <Button style="background-color:#d8bf4e" col='2' row='0' text='Cancle' (tap)="cancel()"></Button>
+    </GridLayout>
+    <RadDataForm #employee_radForm [source]="employee" [metadata]="employee_meta"></RadDataForm>
+
+    <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
+</StackLayout>
+<ns-manager-tab-manager *ngIf='ifAndroid'></ns-manager-tab-manager>

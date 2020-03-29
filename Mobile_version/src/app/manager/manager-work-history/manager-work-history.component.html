@@ -1,1 +1,49 @@
-<Label text='something stupid'></Label>
+<StackLayout>
+    <ns-action-bar [Title]='title'></ns-action-bar>
+
+    <StackLayout height="10%" orientation='horizontal'>
+        <Button class='date-range-picker' text='Pick A Date Range' [nsRouterLink]="['/manager-date-range']"></Button>
+        <Label class='current-range'
+            style='border-width: 2px; border-radius: 15px; margin: 3%; width:60%; text-align: center; font-weight: 800;'
+            text='{{selecteddate}}'></Label>
+    </StackLayout>
+    <!-- INIT VIEW -->
+    <RadListView class='empty-list' *ngIf='radlist.length === 0' [items]="emptylist" height='70%' pullToRefresh="true"
+        (pullToRefreshInitiated)="onPullToRefreshInitiated($event)">
+        <ng-template let-item="item">
+            <StackLayout>
+                <Label [text]="item"></Label>
+                <Image width="50%" height="50%" [src]="'~/app/images/calendar.png'" ></Image>
+            </StackLayout>
+        </ng-template>
+    </RadListView>
+    <!-- RELOAD VIEW -->
+    <RadListView *ngIf='radlist.length !== 0' [items]="radlist" height='70%' pullToRefresh="true"
+        (pullToRefreshInitiated)="onPullToRefreshInitiated($event)">
+        <ng-template let-item="item">
+            <StackLayout>
+                <StackLayout style='border-radius: 15px; border-width: 3px;'>
+                    <StackLayout orientation='horizontal'>
+                        <StackLayout class='border-top-bottom-left' width='80%' orientation='horizontal'>
+                            <Label style="font-weight: bold;" text='Staff Name : '></Label>
+                            <Label class="nameLabel" [text]="item.name"></Label>
+                        </StackLayout>
+                        <StackLayout class='border-top-bottom-right' width='20%' orientation='horizontal'>
+                            <Label style="font-weight: 500; text-align: center;" class="nameLabel"
+                                [text]="item.total"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ng-template>
+    </RadListView>
+
+    <GridLayout class='summary' height='10%' columns="auto,*,auto" rows="auto,auto">
+        <Label style='margin-left: 10%; font-weight: 600;' col='0' row='0' text='Total hour'></Label>
+        <Label style='margin-right: 10%; font-weight: 600;' col='1' row='0' text=' Total Labour Cost' horizontalAlignment="right"></Label>
+        <Label style='margin-left: 10%;' col='0' row='1' [text]="total_hour + ' hours'"></Label>
+        <Label style='margin-right: 10%;' col='1' row='1' [text]="cost + '$CAD'" horizontalAlignment="right"></Label>
+    </GridLayout>
+    <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
+</StackLayout>
+<ns-manager-tab-manager *ngIf='ifAndroid'></ns-manager-tab-manager>

@@ -1,15 +1,25 @@
-<ns-action-bar></ns-action-bar>
-<StackLayout class='page'>
-  <StackLayout style="margin: 100px;">
-    <Label text='ResTaskest' style="font-size: 50">  </Label>
-    <Label text='Welcome to the login page' style="font-size: x-large"></Label>
-  </StackLayout>
-  
-  <TextField hint='Your Email Address' keyboardType="email"></TextField>
-  <TextField hint='Password' secure='true'></TextField>
-  
-  <StackLayout style="margin: 100px;">
-    <Button class="btn-primary btn-rounded-lg  "  text=' Sign in as manager' [nsRouterLink]="['/manager-home']" ></Button>
-    <Button class="btn-rounded-lg" backgroundColor="#871414" text=' Sign in as a staff member' [nsRouterLink] = "['/employee-home']"></Button>
-  </StackLayout>
-</StackLayout>
+<FlexboxLayout class="page">
+	<StackLayout class="form">
+		<Label class="header" text="ResTaskest"></Label>
+		<Label class="small-header" text='Restaurant Management made simple'></Label>
+
+		<StackLayout class="input-field">
+			<TextField type='email' email=true required class="input" hint="Email" keyboardType="email"
+				autocorrect="false" autocapitalizationType="none" [(ngModel)]="user.email" returnKeyType="next">
+			</TextField>
+			<StackLayout class="hr-light"></StackLayout>
+		</StackLayout>
+
+		<StackLayout class="input-field">
+			<TextField #password class="input" required hint="Password" secure="true" [(ngModel)]="user.password"
+				[returnKeyType]="isLoggingIn ? 'done' : 'next'"></TextField>
+			<StackLayout class="hr-light"></StackLayout>
+		</StackLayout>
+
+		<Button [text]="isLoggingIn ? 'Log In as Manager' : 'Sign Up'" (tap)="submit(true)"
+			class="btn btn-primary "></Button>
+		<Button text='Log In as Employee' (tap)="submit(false)" class="btn btn-primary "></Button>
+		<Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label" (tap)="forgotPassword()"></Label>
+	</StackLayout>
+
+</FlexboxLayout>

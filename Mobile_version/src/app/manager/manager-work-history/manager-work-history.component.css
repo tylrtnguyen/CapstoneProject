@@ -1,1 +1,62 @@
 /* Add mobile styles for the component here.  */
+/* Add mobile styles for the component here.  */
+.inventory-header{
+    text-align: center;
+    font-size: 32px;
+    padding: 20px;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.border-top-bottom-right{
+    background-color:#443b3b;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-width: 2px;
+    color:white;
+
+}
+.border-top-bottom-left{
+    background-color:#f84242;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-width: 2px;
+    color:white;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1;
+}
+.date-range-picker{
+    border-radius: 15px;
+    border-width: 5px;
+    background-color:#f84242;
+    font-size: 14px;
+    font-weight: 400;
+    color:white;
+}
+.current-range{
+    border-radius: 15px;
+    border-width: 5px;
+    background-color:#443b3b;
+    font-size: 14px;
+    font-weight: 400;
+    color:white;
+    padding: 14%;
+}
+.empty-list{
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 1;
+    text-align: center;
+}
+.summary{
+    margin-left: 2%; 
+    margin-right: 2%; 
+    border-width: 7px ;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+}

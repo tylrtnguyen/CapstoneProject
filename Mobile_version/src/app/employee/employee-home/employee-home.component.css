@@ -1,0 +1,20 @@
+.container{
+    
+    font-size: 14px;
+    font-weight: 500;
+    height:75%;
+    margin-top:5%;
+    padding: 5%;
+    text-align: center;
+
+}
+
+.text{
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+.label{
+    font-size: 16px;
+    font-weight: 400;
+}

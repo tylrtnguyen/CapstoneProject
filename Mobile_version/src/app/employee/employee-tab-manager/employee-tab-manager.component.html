@@ -1,0 +1,88 @@
+<ScrollView height='7%' orientation="horizontal" *ngIf='ifIOS'
+    style='border-width: 2px; border-top-left-radius: 15px; border-top-right-radius: 15px;'>
+    <GridLayout columns="100,100,100,100,100 ">
+        <Button style="background: url(~/app/images/home.png)" col='0' width='50' backgroundColor='red' text='1'
+            [nsRouterLink]="['/employee-home']"></Button>
+        <!-- <Button style="background: url(~/app/images/profile.png)" col='1' width='50' text='2'
+            [nsRouterLink]="['/employee-profile']"></Button> -->
+        <Button style="background: url(~/app/images/schedule.png)" col='1' width='50' text='3'
+            [nsRouterLink]="['/employee-schedule']"></Button>
+        <Button style="background: url(~/app/images/inventory.png)" col='2' width='50' text='4'
+            [nsRouterLink]="['/employee-inventory']"></Button>
+        <Button style="background: url(~/app/images/payroll.png)" col='3' width='50' text='5'
+            [nsRouterLink]="['/employee-payroll']"></Button>
+    </GridLayout>
+
+</ScrollView>
+
+
+<BottomNavigation selectedIndex="0" *ngIf='ifAndroid'>
+
+    <TabStrip>
+        <TabStripItem [nsRouterLink]="['/employee-home']">
+            <Label text="Home"></Label>
+            <Image [src]="'~/app/images/home.png'" decodeWidth="40" decodeHeight="40" class="fas t-36"></Image>
+        </TabStripItem>
+        <TabStripItem [nsRouterLink]="['/employee-schedule']">
+            <Label text="Schedule"></Label>
+            <Image [src]="'~/app/images/schedule.png'" decodeWidth="40" decodeHeight="40" class="fas t-36"></Image>
+        </TabStripItem>
+
+        <TabStripItem [nsRouterLink]="['/employee-inventory']">
+            <Label text="Inventory"></Label>
+            <Image [src]="'~/app/images/inventory.png'" decodeWidth="40" decodeHeight="40" class="fas t-36"></Image>
+        </TabStripItem>
+        <TabStripItem [nsRouterLink]="['/employee-payroll']">
+            <Label text="Payroll"></Label>
+            <Image [src]="'~/app/images/payroll.png'" decodeWidth="40" decodeHeight="40" class="fas t-36"></Image>
+        </TabStripItem>
+       
+
+    </TabStrip>
+
+    <!-- <TabStrip>
+        <TabStripItem [nsRouterLink]="['/manager-home']">
+            <Label text="Home"></Label>
+            <Image [src]="'~/app/images/home.png'" decodeWidth="40" decodeHeight="40"></Image>
+        </TabStripItem>
+        <TabStripItem [nsRouterLink]="['/manager-schedule']">
+            <Label text="Scheudle"></Label>
+            <Image [src]="'~/app/images/schedule.png'" decodeWidth="20" decodeHeight="20"></Image>
+        </TabStripItem>
+        <TabStripItem [nsRouterLink]="['/manager-work-history']">
+            <Label text="Work History"></Label>
+            <Image [src]="'~/app/images/work_history.png'" decodeWidth="20" decodeHeight="20"></Image>
+        </TabStripItem>
+        <TabStripItem [nsRouterLink]="['/manager-inventory']">
+            <Label text="Inventory"></Label>
+            <Image [src]="'~/app/images/inventory.png'" decodeWidth="20" decodeHeight="20"></Image>
+        </TabStripItem>
+        <TabStripItem [nsRouterLink]="['/manager-employee-list']">
+            <Label text="Employee"></Label>
+            <Image [src]="'~/app/images/employees.png'" decodeWidth="20" decodeHeight="20"></Image>
+        </TabStripItem>
+
+    </TabStrip> -->
+
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+
+</BottomNavigation>

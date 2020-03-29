@@ -14,7 +14,6 @@ export class EmployeeRegistrationComponent implements OnInit {
   ngOnInit() {
   }
   showDialog(){
-    //    okButtonText: "Your button text"
     dialogs.alert({
       title: "Alert",
       message: this.message,

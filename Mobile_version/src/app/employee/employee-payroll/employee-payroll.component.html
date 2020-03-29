@@ -1,1 +1,24 @@
-<Button text="employee-payroll works!" class="btn btn-primary"></Button>
+<StackLayout class="Page">
+    
+        <ns-action-bar [Title]='title'></ns-action-bar>
+    
+    <StackLayout style="height: 90%;">
+        <StackLayout class="child">
+            <label id="top" text="Payroll"></label>
+        </StackLayout>
+        <StackLayout class="child">
+            <label text="From: {{currentDate}}" style="font-size: 18px;"></label>
+            <label text="To: " style="font-size: 18px;"></label>
+        </StackLayout>
+        <StackLayout>
+            <StackLayout orientation="horizontal">
+                <button class="btn-rounded-lg" style="background-color:deepskyblue;" text="View"></button>
+                <button class="btn-rounded-lg" style="background-color: forestgreen;" text="Save"></button>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+    <ns-employee-tab-manager *ngIf='ifIOS'></ns-employee-tab-manager>
+
+</StackLayout>
+<ns-employee-tab-manager *ngIf='ifAndroid'></ns-employee-tab-manager>
+
