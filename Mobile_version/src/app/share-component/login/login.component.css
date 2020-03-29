@@ -1,5 +1,6 @@
 /* Add mobile styles for the component here.  */
 .page {
+    font-size: 16px;
     align-items: center;
     flex-direction: column;
   }
@@ -10,28 +11,24 @@
     vertical-align: middle;
   }
   
-  .logo {
-    margin-bottom: 12;
-    height: 90;
-    font-weight: bold;
-  }
+
+
   .header {
-    horizontal-align: center;
-    font-size: 32;
+    margin-top: 0;
+    font-size: 28rem;
     font-weight: 1000;
     letter-spacing: 0.5;
-    margin-bottom: 5;
+   
     text-align: center;
     color: #D51A1A;
     text-decoration: underline;
 }
 .small-header{
-  horizontal-align: center;
   letter-spacing: 0.2;
-  font: 12;
+  font: 14rem;
   text-align: center;
-  font-weight: 400;
-  margin-bottom: 70;
+  font-weight: 600;
+  margin-bottom: 10%;
 }
   
   .input-field {

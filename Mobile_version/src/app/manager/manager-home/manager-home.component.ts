@@ -27,18 +27,18 @@ export class ManagerHomeComponent implements OnInit {
 
     //we don't have money to buy a pos api data so dummy data it's
     sale_data = [
-        { month: "January", money: 7 },
-        { month: "Feburary", money: 15 },
-        { month: "March", money: 30 },
-        { month: "April", money: 19 },
+        { month: "Jan", money: 7 },
+        { month: "Feb", money: 15 },
+        { month: "Mar", money: 30 },
+        { month: "Apr", money: 19 },
         { month: "May", money: 20 },
-        { month: "June", money: 22 },
-        { month: "July", money: 21 },
-        { month: "August", money: 25 },
-        { month: "Septemper", money: 21 },
-        { month: "October", money: 22 },
-        { month: "November", money: 15 },
-        { month: "December", money: 27 }
+        { month: "Jun", money: 22 },
+        { month: "Jul", money: 21 },
+        { month: "Aug", money: 25 },
+        { month: "Sep", money: 21 },
+        { month: "Oct", money: 22 },
+        { month: "Nov", money: 15 },
+        { month: "Dec", money: 27 }
     ];
 
 

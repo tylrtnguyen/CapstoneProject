@@ -8,9 +8,7 @@
     letter-spacing: 0.2
 }
 .info-box{
-    margin-top: 2%;
-    margin-right:10%;
-    margin-left:10%;
+    margin: 2%;
     border-radius: 15px;
     border-width: 2px;
     padding-top: 50%;
