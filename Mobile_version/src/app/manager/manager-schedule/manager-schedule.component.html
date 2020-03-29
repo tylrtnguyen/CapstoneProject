@@ -6,7 +6,7 @@
     <Button class='btn-primary' text='Add Schedule' [nsRouterLink]="['/manager-add-schedule']"></Button>
 
 
-    <RadListView *ngIf="!empty" [items]="today_schedule" height='61%'>
+    <RadListView *ngIf="today_schedule.length !== 0" [items]="today_schedule" height='61%'>
         <ng-template let-item="item">
             <StackLayout orientation='horizontal'>
                 <StackLayout class='border-top-bottom-left' width='60%' orientation='horizontal'>
@@ -20,10 +20,10 @@
             </StackLayout>
         </ng-template>
     </RadListView>
-    <StackLayout *ngIf="empty" class="empty-employee" height='61%'>
-        <Image width=50% height=50% horizontalAlignment="center" row="0" [src]="'~/app/images/wave.png'">
+    <StackLayout *ngIf="today_schedule.length === 0" class="empty-employee" height='61%'>
+        <Image width=50% height=50% horizontalAlignment="center" row="0" [src]="'~/app/images/sweeping.png'">
         </Image>
-        <Label text='Empty List'></Label>
+        <Label text='Nobody is working today'></Label>
     </StackLayout>
     <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
 </StackLayout>

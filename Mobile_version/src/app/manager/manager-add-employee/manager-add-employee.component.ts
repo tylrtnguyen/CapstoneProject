@@ -17,7 +17,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class ManagerAddEmployeeComponent implements OnInit {
     private _employee: Employee;
-
+    private gender  = ['Male','Female']
     constructor(
         public params: ModalDialogParams,
         public share: ShareService,
@@ -121,34 +121,20 @@ export class ManagerAddEmployeeComponent implements OnInit {
                 name: "dob",
                 displayName: "Date of Birth",
                 index: 6,
+                editor : "DatePicker",
                 validators: [
-                    // {
-                    //     name: "RegEx",
-                    //     params: {
-                    //         regEx:
-                    //             "^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$",
-                    //         errorMessage: "Date Format : Date/Month/Year"
-                    //     }
-                    // },
+                    
                     { name: "NonEmpty" },
-                    { name: "MaximumLength", params: { length: 11 } }
                 ]
             },
             {
                 name: "gender",
                 displayName: "Gender",
                 index: 7,
-                validators: [
-                    {
-                        name: "RegEx",
-                        params: {
-                            regEx: "^[a-zA-Z]+$",
-
-                            errorMessage: "Ensure your name format is correct"
-                        }
-                    },
+                editor : "Picker",
+                valuesProvider: this.gender,
+                validators: [         
                     { name: "NonEmpty" },
-                    { name: "MinimumLength", params: { length: 3 } }
                 ]
             },
             {

@@ -28,32 +28,6 @@ export class ManagerCalendarComponent implements OnInit {
         
     }
 
-    //drop down box alike
-    displayActionDialog() {
-        // >> action-dialog-code
-        let options = {
-            title: "Choose your location",
-            cancelButtonText: "Cancel",
-            actions: [
-                "Hell Kitchen",
-                "Restaurant number 2",
-                "Restaurant number 3",
-                "Restaurant number 4"
-            ]
-        };
-        //getter and setter using promise
-        action(options).then(result => {
-
-            if(result === 'Cancel'){
-                this.location = options.title
-            }else{
-                this.location = result;
-            }
-            
-        });
-
-    }
-
   
 
    

@@ -40,7 +40,7 @@ export class ShareService {
     APIHeader() {
         var token = {
             token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NTM1OTM3NiwiZXhwIjoxNTg1MzYyOTc2fQ.fSVnn-05fkWJJogoGvhnJIJXfccYfYbDBnmENfU3Ud4"
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NTQ1NTUxOCwiZXhwIjoxNTg1NDU5MTE4fQ.V2Uq-9B5q1BNkev_5QiovODvs9ocvGpc-84sHQ6_-K4"
         };
         let header = new HttpHeaders({
             Authorization: "Bearer " + token.token,

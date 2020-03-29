@@ -19,6 +19,7 @@ import { HttpClient } from "@angular/common/http";
 export class ManagerEmployeeDetailComponent implements OnInit {
     private _employee: Employee;
     public data;
+    private gender  = ['Male','Female']
     ifAndroid: Boolean;
     ifIOS: Boolean;
     employee_meta = {
@@ -105,15 +106,8 @@ export class ManagerEmployeeDetailComponent implements OnInit {
                 name: "dob",
                 displayName: "Date of Birth",
                 index: 6,
+                editor : "DatePicker",
                 validators: [
-                    // {
-                    //     name: "RegEx",
-                    //     params: {
-                    //         regEx:
-                    //             "^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$",
-                    //         errorMessage: "Date Format : Date/Month/Year"
-                    //     }
-                    // },
                     { name: "NonEmpty" },
                     { name: "MaximumLength", params: { length: 11 } }
                 ]
@@ -122,6 +116,8 @@ export class ManagerEmployeeDetailComponent implements OnInit {
                 name: "gender",
                 displayName: "Gender",
                 index: 7,
+                editor : "Picker",
+                valuesProvider: this.gender,
                 validators: [
                     {
                         name: "RegEx",
