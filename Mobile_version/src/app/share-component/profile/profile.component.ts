@@ -58,9 +58,6 @@ export class ProfileComponent implements OnInit {
                             )
                             .subscribe(
                                 result => {
-                                    console.log(
-                                        JSON.stringify(result["data"].name)
-                                    );
                                     this.restaurants = result["data"].name;
                                     this.restaurant_address =
                                         result["data"].address;
@@ -90,7 +87,5 @@ export class ProfileComponent implements OnInit {
                     error => console.log(error)
                 );
         }
-
-        // console.log(this.share.currentUser[0].email);
     }
 }

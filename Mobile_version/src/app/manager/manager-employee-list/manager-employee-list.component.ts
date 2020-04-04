@@ -51,7 +51,6 @@ export class ManagerEmployeeListComponent implements OnInit {
     }
 
     confirmation(data) {
-        console.log("Confirmation");
         let options = {
             title: "Delete Employee",
             message: `Are you sure you want to delete this employee ${data.fName}?`,
@@ -97,7 +96,6 @@ export class ManagerEmployeeListComponent implements OnInit {
     }
 
     addEmployee() {
-        console.log("Taped add button");
         let options = {
             context: {},
             fullscreen: true,

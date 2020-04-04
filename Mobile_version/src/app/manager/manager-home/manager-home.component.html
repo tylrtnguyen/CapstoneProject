@@ -1,7 +1,7 @@
 <StackLayout>
     <ns-action-bar [Title]="title"></ns-action-bar>
-    <TabView selectedIndex="0">
-        <StackLayout *tabItem="{title: 'Sales', iconSource: '~/app/images/growth.png'}">
+    <TabView selectedTabTextColor="#fa5454" tabTextColor='white'  tabBackgroundColor="#443b3b" tabTextFontSize="16" selectedIndex="0">
+        <StackLayout *tabItem="{title: 'Sales', iconSource: '~/app/images/growth.png'}" >
             <RadCartesianChart height='90%'>
                 <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
                 <LinearAxis tkCartesianVerticalAxis></LinearAxis>
@@ -9,7 +9,7 @@
                 </BarSeries>
             </RadCartesianChart>
         </StackLayout>
-        <StackLayout *tabItem="{title: 'Resources', iconSource: '~/app/images/pie_chart.png'}">
+        <StackLayout *tabItem="{title: 'Resources', iconSource: '~/app/images/pie_chart.png'}" > 
             <RadPieChart allowAnimation="true" row="0">
                 <PieSeries tkPieSeries
                     selectionMode="DataPoint"

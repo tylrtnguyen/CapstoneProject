@@ -20,13 +20,11 @@ export class ManagerTabManagerComponent implements OnInit {
     {
       this.ifAndroid = true
       this.ifIOS = false
-      console.log("this is android")
     }
     else if(isIOS)
     {
       this.ifIOS = true
       this.ifAndroid = false
-      console.log('this is ios')
     }
   }
 
@@ -34,8 +32,5 @@ export class ManagerTabManagerComponent implements OnInit {
     let newIndex = args.newIndex;
     return newIndex
 }
-  route_link(){
-    console.log('Route demo')
-    this.router.navigateByUrl('/manager-schedule')
-  }
+
 }

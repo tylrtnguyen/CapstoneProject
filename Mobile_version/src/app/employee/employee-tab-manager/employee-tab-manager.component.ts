@@ -21,13 +21,11 @@ export class EmployeeTabManagerComponent implements OnInit {
     {
       this.ifAndroid = true
       this.ifIOS = false
-      console.log("this is android")
     }
     else if(isIOS)
     {
       this.ifIOS = true
       this.ifAndroid = false
-      console.log('this is ios')
     }
   }
 

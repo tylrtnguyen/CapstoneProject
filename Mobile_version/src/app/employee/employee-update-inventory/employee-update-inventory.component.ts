@@ -24,7 +24,6 @@ export class EmployeeUpdateInventoryComponent implements OnInit {
   public years: Array<number> = [1980, 1990, 2000, 2010, 2020];
   public onSelectedIndexChanged(args: EventData) {
     const picker = <ListPicker>args.object;
-    console.log(`index: ${picker.selectedIndex}; item" ${this.years[picker.selectedIndex]}`);
 }
   constructor() { }
 

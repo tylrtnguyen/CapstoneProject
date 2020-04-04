@@ -11,7 +11,7 @@ import { ObservableArray } from "tns-core-modules/data/observable-array";
 @Component({
     selector: "ns-manager-home",
     templateUrl: "./manager-home.component.html",
-    styleUrls: ["./manager-home.component.css"]
+    styleUrls: ["./manager-home.component.css"],
 })
 export class ManagerHomeComponent implements OnInit {
     ifAndroid: Boolean;
@@ -38,11 +38,10 @@ export class ManagerHomeComponent implements OnInit {
         { month: "Sep", money: 21 },
         { month: "Oct", money: 22 },
         { month: "Nov", money: 15 },
-        { month: "Dec", money: 27 }
+        { month: "Dec", money: 27 },
     ];
 
-
-    material = [ ];
+    material = [];
 
     ngOnInit() {
         if (isAndroid) {
@@ -54,13 +53,13 @@ export class ManagerHomeComponent implements OnInit {
         }
         this.http
             .get(this.share.url + "material", {
-                headers: this.share.APIHeader()
+                headers: this.share.APIHeader(),
             })
             .subscribe(
-                result => {
+                (result) => {
                     this.material = result["data"];
                 },
-                error => console.log(error)
+                (error) => console.log(error)
             );
     }
 }

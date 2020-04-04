@@ -45,7 +45,6 @@ export class ManagerInventoryComponent implements OnInit {
             );
     }
     edit_item(data) {
-        console.log("Taped add button");
         let options = {
             context: { data: data },
             fullscreen: false,
@@ -63,7 +62,6 @@ export class ManagerInventoryComponent implements OnInit {
                             this.material = result["data"];
                         },
                         error => {
-                            console.log("GET REQUEST ERROR : " + error);
                         }
                     );
             });

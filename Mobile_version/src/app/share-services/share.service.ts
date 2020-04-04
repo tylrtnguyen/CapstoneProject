@@ -8,9 +8,10 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { confirm } from "tns-core-modules/ui/dialogs";
 import * as Toast from "nativescript-toast";
+var moment = require("moment");
 
 @Injectable({
-    providedIn: "root"
+    providedIn: "root",
 })
 export class ShareService {
     constructor(
@@ -27,9 +28,9 @@ export class ShareService {
     clockoutTime: String;
     isLogin = false;
     selected_work_date: String;
-    url = `https://restaskest84.appspot.com/api/`;
-    urlLoginManager = `https://restaskest84.appspot.com/login/manager`;
-    urlLoginEmployee = `https://restaskest84.appspot.com/login/employee`;
+    url = `http://restaskest-api.herokuapp.com/api/`;
+    urlLoginManager = `http://restaskest-api.herokuapp.com/login/manager`;
+    urlLoginEmployee = `http://restaskest-api.herokuapp.com/login/employee`;
     today_workers: number;
     employee_info = [];
     total_hour = [];
@@ -40,37 +41,34 @@ export class ShareService {
     APIHeader() {
         var token = {
             token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NTUxNjc5NCwiZXhwIjoxNTg1NTIwMzk0fQ.in1I2Ba88HJm8FnZhRD3DM8Da15PWK_qJphYRTCklVQ"
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNDRkNzUzNTUxN2U0MGI1NTk3MTIyMCIsImlhdCI6MTU4NjAzMjQ0OCwiZXhwIjoxNTg2MDM2MDQ4fQ.Ntbu-rI8DyCPz5CecdxMztin9E5-K4f1tVvTQjU-AaM",
         };
         let header = new HttpHeaders({
             Authorization: "Bearer " + token.token,
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         });
         return header;
     }
 
     numDayinWeek() {
-        var start = 0;
-        var today = new Date();
-        var day = today.getDay() - start;
-        var date = today.getDate() - day;
-        var Week_begin = new Date(today.setDate(date));
-        var Week_end = new Date(today.setDate(date + 6));
+        const Week_begin = moment().startOf("week");
+        const Week_end = moment().endOf("week");
         return [Week_begin, Week_end];
     }
     get_employee_list(list) {
         this.http
             .get(this.url + "employee", { headers: this.APIHeader() })
             .subscribe(
-                result => {
-                    result["data"].map(key => {
+                (result) => {
+                    result["data"].map((key) => {
                         list.push({
                             id: key._id,
-                            name: key.fName + " " + key.lName
+                            name: key.fName + " " + key.lName,
+                            position: key.department,
                         });
                     });
                 },
-                error => console.log(error)
+                (error) => console.log(error)
             );
     }
 
@@ -78,20 +76,20 @@ export class ShareService {
     get_employee_schedule_by_week(list) {
         this.http
             .get(this.url + "schedule", {
-                headers: this.APIHeader()
+                headers: this.APIHeader(),
             })
             .subscribe(
-                result => {
+                (result) => {
                     const employee_schedule = result["data"].filter(
-                        key => key.employee === this.currentUser.userId
+                        (key) => key.employee === this.currentUser.userId
                     );
                     for (var i = 0; i < employee_schedule.length; i++) {
                         const currentDate = new Date(
                             employee_schedule[i].workDays[0].date
                         );
                         if (
-                            currentDate > this.numDayinWeek()[0] &&
-                            currentDate < this.numDayinWeek()[1]
+                            currentDate >= this.numDayinWeek()[0] &&
+                            currentDate <= this.numDayinWeek()[1]
                         ) {
                             list.push({
                                 date: employee_schedule[i].workDays[0].date,
@@ -100,12 +98,14 @@ export class ShareService {
                                         .assignedStartHour,
                                 endTime:
                                     employee_schedule[i].workDays[0]
-                                        .assignedStopHour
+                                        .assignedStopHour,
                             });
+                        } else {
+                            console.log("Something is wrong");
                         }
                     }
                 },
-                error => console.log(error)
+                (error) => console.log(error)
             );
     }
 
@@ -113,10 +113,10 @@ export class ShareService {
     getEmployeeName_baseon_Schedule(list, num_worker = 0) {
         this.http
             .get(this.url + "schedule", {
-                headers: this.APIHeader()
+                headers: this.APIHeader(),
             })
             .subscribe(
-                result => {
+                (result) => {
                     const date = new Date();
                     const schedule = result["data"];
                     var systemDate = date.toISOString().substr(0, 10);
@@ -130,21 +130,21 @@ export class ShareService {
                         if (today === systemDate) {
                             this.http
                                 .get(this.url + `employee/${today_employee}`, {
-                                    headers: this.APIHeader()
+                                    headers: this.APIHeader(),
                                 })
                                 .subscribe(
-                                    result => {
+                                    (result) => {
                                         list.push(result["data"]);
                                         num_worker = list.length;
                                     },
-                                    error => console.log(error)
+                                    (error) => console.log(error)
                                 );
                         } else {
                             num_worker = 0;
                         }
                     }
                 },
-                error => console.log(error)
+                (error) => console.log(error)
             );
     }
 
@@ -152,10 +152,10 @@ export class ShareService {
     get_today_EmployeeName_Schedule(list) {
         this.http
             .get(this.url + "schedule", {
-                headers: this.APIHeader()
+                headers: this.APIHeader(),
             })
             .subscribe(
-                result => {
+                (result) => {
                     const date = new Date();
                     const schedule = result["data"];
                     var systemDate = date.toISOString().substr(0, 10);
@@ -169,10 +169,10 @@ export class ShareService {
                         if (today_date === systemDate) {
                             this.http
                                 .get(this.url + `employee/${today_employee}`, {
-                                    headers: this.APIHeader()
+                                    headers: this.APIHeader(),
                                 })
                                 .subscribe(
-                                    result => {
+                                    (result) => {
                                         list.push({
                                             name:
                                                 result["data"].fName +
@@ -183,16 +183,16 @@ export class ShareService {
                                             endTime:
                                                 today_workTime[0]
                                                     .assignedStopHour,
-                                            selectedDate: today_date
+                                            selectedDate: today_date,
                                         });
                                     },
-                                    error => console.log(error)
+                                    (error) => console.log(error)
                                 );
                         } else {
                         }
                     }
                 },
-                error => console.log(error)
+                (error) => console.log(error)
             );
     }
 
@@ -201,10 +201,10 @@ export class ShareService {
         const date = tempdate.toISOString().substr(0, 10);
         this.http
             .get(this.url + "schedule", {
-                headers: this.APIHeader()
+                headers: this.APIHeader(),
             })
             .subscribe(
-                result => {
+                (result) => {
                     const schedule = result["data"];
                     for (var i = 0; i < schedule.length; i++) {
                         const today_employee = schedule[i].employee;
@@ -216,10 +216,10 @@ export class ShareService {
                         if (today_date === date) {
                             this.http
                                 .get(this.url + `employee/${today_employee}`, {
-                                    headers: this.APIHeader()
+                                    headers: this.APIHeader(),
                                 })
                                 .subscribe(
-                                    result => {
+                                    (result) => {
                                         list.push({
                                             name:
                                                 result["data"].fName +
@@ -231,37 +231,34 @@ export class ShareService {
                                             endTime:
                                                 today_workTime[0]
                                                     .assignedStopHour,
-                                            selectedDate: today_date
+                                            selectedDate: today_date,
                                         });
                                         this.today_workers = list.length;
                                     },
-                                    error => console.log(error)
+                                    (error) => console.log(error)
                                 );
                         } else {
                         }
                     }
                 },
-                error => console.log(error)
+                (error) => console.log(error)
             );
     }
 
     get_current_user_schedule(userID) {
-        console.log(userID);
         if (userID == undefined) {
-            console.log("Fail");
             this.currentUserSchedule = false;
         } else {
             this.http
                 .get(this.url + "schedule", { headers: this.APIHeader() })
-                .subscribe(result => {
+                .subscribe((result) => {
                     const tempdate = new Date();
                     const date = tempdate.toISOString().substr(0, 10);
                     this.currentUserSchedule = result["data"].filter(
-                        key =>
-                        key.employee === userID &&
-                        key.workDays[0].date.substr(0, 10) === date
+                        (key) =>
+                            key.employee === userID &&
+                            key.workDays[0].date.substr(0, 10) === date
                     );
-                    console.log(this.currentUserSchedule);
                 });
         }
     }
@@ -270,13 +267,12 @@ export class ShareService {
         if (this.currentUserSchedule.length === 0) {
         } else {
             var inHour = this.currentUserSchedule[0].workDays[0].inHour;
-            console.log(inHour);
             if (inHour === "" || inHour == undefined) {
                 this.clockin();
             } else {
                 let options = {
                     title: "Already Clocked in",
-                    okButtonText: "Got it"
+                    okButtonText: "Got it",
                 };
 
                 confirm(options).then((result: boolean) => {});
@@ -287,13 +283,13 @@ export class ShareService {
         if (this.currentUserSchedule.length == 0) {
         } else {
             var outHour = this.currentUserSchedule[0].workDays[0].outHour;
-            console.log(outHour);
+
             if (outHour === "" || outHour == undefined) {
                 this.clockout();
             } else {
                 let options = {
                     title: "Already Clocked Out",
-                    okButtonText: "Got it"
+                    okButtonText: "Got it",
                 };
                 confirm(options).then((result: boolean) => {});
             }
@@ -314,18 +310,18 @@ export class ShareService {
                                 .workDays[0].assignedStartHour,
                             assignedStopHour: this.currentUserSchedule[0]
                                 .workDays[0].assignedStopHour,
-                            inHour: hour
-                        }
+                            inHour: hour,
+                        },
                     ],
-                    employee: this.currentUser.userId
+                    employee: this.currentUser.userId,
                 },
                 { headers: this.APIHeader() }
             )
             .subscribe(
-                result => {
+                (result) => {
                     this.get_current_user_schedule(this.currentUser.userId);
                 },
-                error => console.log(error)
+                (error) => console.log(error)
             );
     }
 
@@ -345,18 +341,18 @@ export class ShareService {
                                 .workDays[0].assignedStopHour,
                             inHour: this.currentUserSchedule[0].workDays[0]
                                 .inHour,
-                            outHour: hour
-                        }
+                            outHour: hour,
+                        },
                     ],
-                    employee: this.currentUser.userId
+                    employee: this.currentUser.userId,
                 },
                 { headers: this.APIHeader() }
             )
             .subscribe(
-                result => {
+                (result) => {
                     this.get_current_user_schedule(this.currentUser.userId);
                 },
-                error => console.log(error)
+                (error) => console.log(error)
             );
     }
 
@@ -365,8 +361,8 @@ export class ShareService {
         this.http
             .get(this.url + "employee", { headers: this.APIHeader() })
             .subscribe(
-                result => {
-                    result["data"].map(key => employee_id.push(key._id));
+                (result) => {
+                    result["data"].map((key) => employee_id.push(key._id));
                     for (var i = 0; i < employee_id.length; i++) {
                         this.http
                             .get(
@@ -375,14 +371,14 @@ export class ShareService {
                                 { headers: this.APIHeader() }
                             )
                             .subscribe(
-                                result => {
+                                (result) => {
                                     total.push(result["data"]);
                                 },
-                                error => console.log(error)
+                                (error) => console.log(error)
                             );
                     }
                 },
-                error => console.log(error)
+                (error) => console.log(error)
             );
     }
 }

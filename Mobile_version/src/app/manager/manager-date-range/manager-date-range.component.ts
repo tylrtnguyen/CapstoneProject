@@ -50,7 +50,6 @@ export class ManagerDateRangeComponent implements OnInit {
                 firstSelectedDate,
                 lastSelectedDate
             ));
-            console.log("you have selected a date range of : " + dateRange);
             this.share.dateRange = dateRange;
             const total_hour = [];
             const employee_list = [];

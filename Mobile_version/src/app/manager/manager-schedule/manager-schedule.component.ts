@@ -37,6 +37,16 @@ export class ManagerScheduleComponent implements OnInit {
         }
         this.share.get_today_EmployeeName_Schedule(this.today_schedule)
     }
+    timeFormat(time)
+    {
+        if(time < 12)
+        {
+            return "AM"
+        }
+        else{
+            return "PM"
+        }
+    }
 
     
 }

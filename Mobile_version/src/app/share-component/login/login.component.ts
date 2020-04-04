@@ -3,7 +3,7 @@ import {
     OnInit,
     ViewChild,
     ElementRef,
-    ViewContainerRef
+    ViewContainerRef,
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { Page } from "tns-core-modules/ui/page/page";
@@ -14,15 +14,19 @@ import { ForgotPasswordComponent } from "../forgot-password/forgot-password.comp
 import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { ShareService } from "~/app/share-services/share.service";
 import { HttpClient } from "@angular/common/http";
+import { ActivityIndicator } from "tns-core-modules/ui/activity-indicator";
+
 @Component({
     selector: "ns-login",
     templateUrl: "./login.component.html",
-    styleUrls: ["./login.component.css"]
+    styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
     isLoggingIn = true;
     manager_id: String;
     user: User;
+    isBusy: boolean = false;
+
     @ViewChild("password", { static: false }) password: ElementRef;
 
     constructor(
@@ -50,11 +54,16 @@ export class LoginComponent implements OnInit {
             return;
         }
         if (this.isLoggingIn) {
-            if (isManager) {
-                this.loginManager();
-            } else {
-                this.loginEmployee();
-            }
+            this.isBusy = true;
+            setTimeout(() => {
+                if (isManager) {
+                    this.isBusy = false;
+                    this.loginManager();
+                } else {
+                    this.isBusy = false;
+                    this.loginEmployee();
+                }
+            }, 1000);
         } else {
             console.log("something went wrong");
         }
@@ -68,11 +77,12 @@ export class LoginComponent implements OnInit {
                 { headers: this.share.APIHeader() }
             )
             .subscribe(
-                result => {
+                (result) => {
                     this.share.currentUser = result;
                     this.router.navigateByUrl("/manager-home");
                 },
-                error => {
+                (error) => {
+                    console.log(error);
                     Toast.makeText(
                         "Email or password is incorrect",
                         "short"
@@ -89,11 +99,11 @@ export class LoginComponent implements OnInit {
                 { headers: this.share.APIHeader() }
             )
             .subscribe(
-                result => {
+                (result) => {
                     this.share.currentUser = result;
                     this.router.navigateByUrl("/employee-home");
                 },
-                error => {
+                (error) => {
                     Toast.makeText(
                         "Email or password is incorrect",
                         "short"
@@ -107,11 +117,12 @@ export class LoginComponent implements OnInit {
             context: {},
             fullscreen: false,
             animation: true,
-            viewContainerRef: this.vcRef
+            viewContainerRef: this.vcRef,
         };
-        this.modal.showModal(ForgotPasswordComponent, options).then(result => {
-            console.log(result);
-        });
+        this.modal
+            .showModal(ForgotPasswordComponent, options)
+            .then((result) => {
+            });
     }
 
     focusPassword() {

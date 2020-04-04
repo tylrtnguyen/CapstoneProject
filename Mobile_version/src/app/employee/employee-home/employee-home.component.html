@@ -1,8 +1,9 @@
 <StackLayout class="Page">
     <ns-action-bar [Title]='title'></ns-action-bar>
-    <StackLayout class='clock-container' orientation='horizontal'>
-        <Button width='45%' class='btn btn-secondary' style="margin-top: 10%;" text='CLOCK IN' (tap)='share.clockInChecker()'></Button>
-        <Button width='45%' class='btn btn-primary' style="margin-top: 10%;" text='CLOCK OUT' (tap)='share.clockOutChecker()'></Button>
+    <Label class='header' text='Today work information'></Label>
+    <StackLayout orientation='horizontal'>
+        <Button width='45%' class='btn btn-secondary'  text='CLOCK IN' (tap)='share.clockInChecker()'></Button>
+        <Button width='45%' class='btn btn-primary'  text='CLOCK OUT' (tap)='share.clockOutChecker()'></Button>
     </StackLayout>
     <StackLayout height='50%' *ngIf='share.currentUserSchedule != false' class='container'>
         <RadListView [items]="share.currentUserSchedule">

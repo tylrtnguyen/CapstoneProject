@@ -1,18 +1,12 @@
-/* Add mobile styles for the component here.  */
-label{
-    margin-left: 10%;
-    padding: 15px;
+.header{
+    text-align: center;
+    font-size: 32px;
+    margin-top: 10%;
+    text-decoration: underline;    
+    letter-spacing: 0.2px;
 }
-.child{
-    margin-left: 10%;
-    margin-right: 10%;
-}
-button{
-    padding: 5px;
-    width: 40%;
-}
-label#top{
-    color: aqua;
-    font-size: 30px;
-    margin-top: 10px;
+.description{
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 0.3px;
 }

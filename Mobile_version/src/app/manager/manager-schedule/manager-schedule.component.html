@@ -14,8 +14,7 @@
                     <Label class="nameLabel" [text]="item.name"></Label>
                 </StackLayout>
                 <StackLayout class='border-top-bottom-right' width='40%' orientation='horizontal'>
-                    <Label style="font-weight: bold;" text='Work Time : '></Label>
-                    <Label class="nameLabel" [text]="item.startTime + ' : ' + item.endTime"></Label>
+                    <Label class="nameLabel" [text]="item.startTime + timeFormat(item.startTime) + ' : ' + item.endTime + timeFormat(item.endTime)"></Label>
                 </StackLayout>
             </StackLayout>
         </ng-template>

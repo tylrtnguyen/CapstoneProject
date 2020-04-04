@@ -1,16 +1,27 @@
 /* Add mobile styles for the component here.  */
 .button_title{
     border-width: 2px;
-    border-radius: 15px;
     margin:3%;
-    border-color: #666e6c;
+    color: white;
+    background-color: #443b3b;
 }
 .employee-title{
     border-width: 2px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     margin:3%;
-    border-color: #666e6c;
+    background-color: #443b3b;
+    color: white;
+}
+.employee-detail{
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+
+}
+.container{
+    border-width: 2px;
+    border-color: #443b3b;
 }
 .content{
     border-bottom-left-radius: 15px;
@@ -22,6 +33,9 @@
 .submit{
     border-width: 2px; 
     border-radius: 15px; 
-    background-color: #6ea6da;
     color: whitesmoke;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    
 }

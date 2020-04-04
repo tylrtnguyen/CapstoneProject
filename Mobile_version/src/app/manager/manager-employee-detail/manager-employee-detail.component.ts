@@ -159,7 +159,6 @@ export class ManagerEmployeeDetailComponent implements OnInit {
             this.ifAndroid = false;
         }
         this.data = this.params.context.data;
-        console.log(JSON.stringify(this.params.context.data));
         this._employee = new Employee(
             this.data.fName,
             this.data.lName,

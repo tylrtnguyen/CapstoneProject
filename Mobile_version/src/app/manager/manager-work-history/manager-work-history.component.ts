@@ -44,8 +44,7 @@ export class ManagerWorkHistoryComponent implements OnInit {
             var today = new Date();
             this.selecteddate = today.toUTCString();
         } else {
-            console.log("Test !!!")
-            this.selecteddate =
+             this.selecteddate =
                 this.share.dateRange.startDate.toString().substr(0, 10) +
                 this.share.dateRange.endDate.toString().substr(0, 10);
         }

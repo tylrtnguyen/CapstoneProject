@@ -32,7 +32,6 @@ export class ManagerAddScheduleComponent implements OnInit {
             this.ifAndroid = false;
         }
         this.share.get_employee_list(this.dataItems);
-        console.log(this.dataItems);
     }
 
     //change it to get employee from database
@@ -58,7 +57,6 @@ export class ManagerAddScheduleComponent implements OnInit {
     current_minute = this.today.getMinutes();
     onDateChanged(args) {
         const format_date = args.value.toString().substring(0, 15);
-        console.log(format_date);
         this.selected_date = format_date;
     }
     show_date() {
@@ -81,7 +79,6 @@ export class ManagerAddScheduleComponent implements OnInit {
     public onItemSelected(args: ListViewEventData) {
         // this.selected_employees.push(this.dataItems[args.index])
         let id = this.dataItems[args.index].id;
-        console.log(this.dataItems[args.index].id);
         this.employee_list_final.push(id);
     }
     public onItemDeselected(args: ListViewEventData) {
@@ -96,7 +93,6 @@ export class ManagerAddScheduleComponent implements OnInit {
         const time = args.value;
         const time_only = time.toString().substring(16, 24);
         this.selected_start_time = time_only;
-        // console.log(`Chosen start time: ${time.substring(4,9)}`);
     }
     onTimeLoad(args) {
         const timePicker = args.object;
@@ -109,7 +105,6 @@ export class ManagerAddScheduleComponent implements OnInit {
         const time = args.value;
         const time_only = time.toString().substring(16, 24);
         this.selected_end_time = time_only;
-        // console.log(`Chosen end time: ${time}`);
     }
     onSubmit() {
         if (
@@ -125,11 +120,6 @@ export class ManagerAddScheduleComponent implements OnInit {
             this.share.selected_work_date = this.selected_date;
 
             for (var i = 0; i < this.employee_list_final.length; i++) {
-                console.log("Start" + this.selected_start_time.substr(0, 2));
-                console.log("End " + this.selected_end_time.substr(0, 2));
-                console.log("Employee " + this.employee_list_final[i]);
-                console.log("Selected Date " + this.selected_date);
-
                 this.http
                     .post(
                         this.share.url + "schedule",
@@ -153,7 +143,6 @@ export class ManagerAddScheduleComponent implements OnInit {
                     )
                     .subscribe(
                         result => {
-                            console.log(result);
                         },
                         error =>
                             Toast.makeText(

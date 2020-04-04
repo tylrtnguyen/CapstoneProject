@@ -20,6 +20,8 @@
 			class="btn btn-primary "></Button>
 		<Button text='Log In as Employee' (tap)="submit(false)" class="btn btn-primary "></Button>
 		<Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label" (tap)="forgotPassword()"></Label>
+		<ActivityIndicator [busy]="isBusy"></ActivityIndicator>
+
 	</StackLayout>
 
 </FlexboxLayout>
