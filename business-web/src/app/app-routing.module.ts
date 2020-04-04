@@ -13,14 +13,20 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { TrialPageComponent } from './components/trial-page/trial-page.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { LoginComponent } from './components/login/login.component';
-
+import {PricingComponent} from './components/pricing/pricing.component';
+import {NotFoundPageComponent} from './components/not-found-page/not-found-page.component';
+import {RedirectService} from './services/Redirect/redirect.service';
 const routes: Routes = [
 
   {path: 'main', component: MainPageComponent},
   {path: 'signup', component: TrialPageComponent},
   {path: 'checkout' , component: CheckoutComponent},
-  {path: 'login', component:LoginComponent},
-  {path: '', redirectTo: 'main', pathMatch: 'full'}
+  {path: 'pricing' , component: PricingComponent},
+  {path: 'login', component: LoginComponent},
+  {path: '', redirectTo: 'main', pathMatch: 'full'},
+  // Not Found page with external link redirection
+  { path: 'not-found', component: NotFoundPageComponent, canActivate: [ RedirectService ] },
+  { path: '**', redirectTo: 'not-found' },
 ];
 
 @NgModule({

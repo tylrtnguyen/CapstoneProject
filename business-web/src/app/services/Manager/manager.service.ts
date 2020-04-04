@@ -10,7 +10,7 @@ import { stringify } from 'querystring';
   providedIn: 'root'
 })
 export class ManagerService {
-  private uri ="http://restaskest-api.herokuapp.com";
+  private uri ="https://restaskest84.appspot.com";
   // tslint:disable-next-line: max-line-length
   private token : string;
   private tokenTimer: any;

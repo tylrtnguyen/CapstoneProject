@@ -4,7 +4,7 @@ import {Router, Route} from '@angular/router';
 import {FormControl, FormGroupDirective, NgForm, Validators, Form, FormGroup, FormBuilder} from '@angular/forms';
 import { promise } from 'protractor';
 import { AutoPositionStrategy } from 'igniteui-angular';
-import {ManagerService} from '../../services/manger/manager.service';
+import {ManagerService} from '../../services/Manager/manager.service';
 
 declare var  Stripe : stripe.StripeStatic;
 
@@ -62,7 +62,7 @@ export class PaymentHandlerComponent implements OnInit {
     });
 
     this.card = element.create('card');
-    this.card.mount(this.cardElement.nativeElement);
+    this.card.mount(this.cardElement.nativeElement)
 
     this.card.addEventListener('change', ({error}) =>{
       this.cardError = error && error.message;
@@ -74,26 +74,15 @@ export class PaymentHandlerComponent implements OnInit {
   async handleForm(e) {
     e.preventDefault();
 
-    const {source, error} = await this.stripe.createSource(this.card);
+    const {token, error} = await this.stripe.createToken(this.card);
 
     if (error) {
         const cardError = error.message;
 
     } else {
 
-      this.loading = true;
-      const user = {'email':'trithanhhandsome@gmail.com','name':'QuanTriThanh'};
-      this.confirmation = new Promise((resolve)=>{
-          setTimeout(()=>{
-            resolve("Success!!");
-          },250);
-      })
-      this.confirmation.then((result) => {
-          console.log(result);
-      }).catch((err) => {
-        console.log(err);
-      });
-      this.loading = false;
+      console.log("Successfully", token);
+
       }
     }
 

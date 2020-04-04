@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators, Form, FormGroup, FormBuilder} from '@angular/forms';
 import {Route, Router} from '@angular/router';
 import {ErrorStateMatcher} from '@angular/material/core';
-import {ManagerService} from '../../services/manger/manager.service';
-import {RestaurantService} from '../../services/restaurant/restaurant.service';
+import {ManagerService} from '../../services/Manager/manager.service';
 import {PosIntegration} from '../../pos-integration';
 
 export class customErrorMatcher implements ErrorStateMatcher{
@@ -31,7 +30,7 @@ export class TrialPageComponent implements OnInit {
     {value: 'Lightspeed', view:'Lightspeed'}
   ];
 
-  constructor(private fb: FormBuilder, private router: Router, private managerService: ManagerService , private restaurantService : RestaurantService ) {
+  constructor(private fb: FormBuilder, private router: Router, private managerService: ManagerService  ) {
     this.user = fb.group({
       email : ['', [
         Validators.required,

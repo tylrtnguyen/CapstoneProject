@@ -14,28 +14,25 @@
             </ul>
             </div>
           </li>
-          <li><a href="#">Pricing</a></li>
-          <li><a href="#contact">Contact Us</a></li>
+          <li><a routerLink="/pricing">Pricing</a></li>
+          <li><a href="main#contact">Contact Us</a></li>
         </ul>
     </nav>
     <nav class="navbar-right">
       <ul class="nav-links">
-
-        <li *ngIf="!isLogin"><a routerLink ='/login' >Login</a></li>
-        <li *ngIf="isLogin"><a (click)="logOut()" >Log out</a></li>
+        <li *ngIf="!isLogin"><a routerLink="/redirect" [queryParams]="{url:'https://restaskest.now.sh/'}" >Login</a></li>
         <li><a routerLink="/signup" > <button  class="btnTrial"> Start Your Free 30-Day Trial</button></a></li>
-
       </ul>
       <div id="menu-toggle">
         <button mat-icon-button [matMenuTriggerFor] = "menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <a href="#dashboard"><button mat-menu-item> Dashboard </button> </a>
-          <a href="#inventory"><button mat-menu-item>Inventory </button></a>
-          <a href="#schedule"><button mat-menu-item> Schedule </button> </a>
-          <a href="#paystub"><button mat-menu-item> Paystub </button> </a>
-          <a href="#"><button mat-menu-item> Login </button> </a>
+          <a href="main#dashboard"><button mat-menu-item> Dashboard </button> </a>
+          <a href="main#inventory"><button mat-menu-item>Inventory </button></a>
+          <a href="main#schedule"><button mat-menu-item> Schedule </button> </a>
+          <a href="main#paystub"><button mat-menu-item> Paystub </button> </a>
+          <a routerLink="/login"><button mat-menu-item> Login </button> </a>
         </mat-menu>
       </div>
     </nav>

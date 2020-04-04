@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import {MatProgressSpinnerModule, MatMenuModule, MatListModule,MatToolbarModule, MatGridListModule, MatGridList, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatIcon, MatList, MatSelectModule, MatStepperModule } from '@angular/material';
+import {MatProgressSpinnerModule, MatMenuModule ,MatCardModule,MatListModule,MatToolbarModule, MatGridListModule, MatGridList, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatIcon, MatList, MatSelectModule, MatStepperModule } from '@angular/material';
 
 import { IgxIconModule, IgxInputGroupModule, IgxButtonModule, IgxRippleModule, IgxDatePickerModule, IgxTimePickerModule, IgxComboModule, IgxSelectModule, IgxToggleModule, IgxLayoutModule } from "igniteui-angular";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -24,8 +24,10 @@ import { TrialPageComponent } from './components/trial-page/trial-page.component
 import { PaymentHandlerComponent } from './components/payment-handler/payment-handler.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { LoginComponent } from './components/login/login.component';
-import {ManagerService} from './services/manger/manager.service';
+import {ManagerService} from './services/Manager/manager.service';
 import { ErrorInterceptor } from './error-interceptor';
+import { PricingComponent } from './components/pricing/pricing.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,10 @@ import { ErrorInterceptor } from './error-interceptor';
     PaymentHandlerComponent,
     CheckoutComponent,
     LoginComponent,
+
+    PricingComponent,
+
+    NotFoundPageComponent,
 
   ],
   imports: [
@@ -73,6 +79,8 @@ import { ErrorInterceptor } from './error-interceptor';
     IgxLayoutModule,
     HttpClientModule,
     MatProgressSpinnerModule,
+    MatCardModule,
+
 
   ],
   providers: [ManagerService, {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],

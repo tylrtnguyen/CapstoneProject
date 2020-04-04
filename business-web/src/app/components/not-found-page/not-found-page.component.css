@@ -1,0 +1,14 @@
+#content{
+  display: block;
+  flex-direction: row;
+  padding: 10%;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  color: #3B4A6B;
+  font-weight: bold;
+}
+#img-container{
+  margin: 0 40%;
+}
+

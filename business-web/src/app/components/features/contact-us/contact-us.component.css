@@ -1,24 +1,20 @@
 #contact-page{
   display:block;
-
   width: auto;
-  height: 70vh;
+  height: 100vh;
 
 }
 .title p {
   font-size: 30px;
   font-weight: bold;
   color: #FCBB47;
-
 }
 .title #line-2{
   font-size: 35px;
   color: #3B4A6B;
 }
 mat-form-field{
-
   width: 100%;
-
 }
 a{
   text-decoration: none;
@@ -35,4 +31,15 @@ button{
   border-radius: 20px;
   background: #F0D43A;
 
+}
+#title{
+  font-size: 20px;
+  color: #3B4A6B;
+  font-weight: bold;
+}
+#list-content{
+  list-style: none;
+}
+.footer{
+  width: 100%;
 }

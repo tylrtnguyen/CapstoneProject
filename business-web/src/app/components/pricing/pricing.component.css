@@ -1,0 +1,44 @@
+.pricing{
+  margin: auto;
+  padding-top: 10%;
+  justify-content: center;
+  text-align: center;
+}
+#title{
+  font-size: 35px;
+  font-weight: bold;
+  color: #F0D43A;
+
+}
+#header-1{
+  font: 30px;
+  font-weight: bold;
+  color: #3B4A6B;
+}
+#header-2{
+  font-size: 20px;
+  font-weight: bold;
+  color: #3B4A6B;
+}
+#list-features{
+  list-style: none;
+  text-align: left;
+  color: #3B4A6B;
+  font-weight: bold;
+  font-size: 20px;
+}
+mat-card{
+  width: 70%;
+  height: auto;
+}
+mat-icon{
+  color:#F0D43A;
+}
+#list-features mat-list-item {
+  color: #3B4A6B;
+  font-weight: 400;
+  font-size: 15px;
+}
+button{
+  width:70%
+}

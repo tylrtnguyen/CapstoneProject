@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, FormControlName, Validators,FormControl} from '@angular/forms';
 import {Route, Router} from '@angular/router';
 import {ErrorStateMatcher} from '@angular/material/core';
-import {ManagerService} from '../../services/manger/manager.service';
+import {ManagerService} from '../../services/Manager/manager.service';
 import {Subscription} from 'rxjs';
 
 @Component({
