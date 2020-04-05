@@ -13,6 +13,7 @@ import {Subscription} from 'rxjs';
 export class LoginComponent implements OnInit {
   isLoading : Boolean = false;
   login : FormGroup;
+
   private authStatusSub : Subscription;
   emailFormControl =  new FormControl('' , [
     Validators.required,
@@ -24,16 +25,16 @@ export class LoginComponent implements OnInit {
   ]);
 
   constructor(private fb: FormBuilder,  private router: Router, private managerSerivce : ManagerService) {
-    this.login = fb.group({
-      email : ['',[
-        Validators.required,
-        Validators.email
-      ]],
-      password : ['',[
-        Validators.required,
-        Validators.minLength(8)
-      ]]
-    })
+    // this.login = fb.group({
+    //   email : ['',[
+    //     Validators.required,
+    //     Validators.email
+    //   ]],
+    //   password : ['',[
+    //     Validators.required,
+    //     Validators.minLength(8)
+    //   ]]
+    // })
 
    }
 

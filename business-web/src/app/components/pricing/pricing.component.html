@@ -15,7 +15,7 @@
           <mat-list-item> <mat-icon matListIcon>check_box </mat-icon>Free mobile apps</mat-list-item>
         </mat-list>
       </mat-card-content>
-        <mat-card-actions> <button routerLink="/signup" mat-button color ="primary"> Start Trial </button> </mat-card-actions>
+        <mat-card-actions> <button (click)="choosePlan(small)" mat-button color ="primary"> Choose Plan </button> </mat-card-actions>
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile role="listitem">
@@ -33,14 +33,14 @@
           <mat-list-item> <mat-icon matListIcon>check_box </mat-icon>POS Integration</mat-list-item>
         </mat-list>
       </mat-card-content>
-        <mat-card-actions> <button routerLink="/signup" mat-button color ="primary"> Start Trial </button> </mat-card-actions>
+        <mat-card-actions> <button (click)="choosePlan(medium)" mat-button color ="primary"> Choose Plan </button> </mat-card-actions>
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile role="listitem">
       <mat-card>
-        <mat-card-title id="header-1"> Medium </mat-card-title>
+        <mat-card-title id="header-1"> Large </mat-card-title>
         <mat-card-content>
-        <span id="header-2" >$15.99/Month</span>
+        <span id="header-2" >$26.99/Month</span>
         <mat-list id="list-features">
           <span>Includes:</span>
           <mat-list-item> <mat-icon matListIcon>check_box </mat-icon>All features included in Medium </mat-list-item>
@@ -49,7 +49,7 @@
           <mat-list-item> <mat-icon matListIcon>check_box </mat-icon>Free mobile Apps</mat-list-item>
         </mat-list>
       </mat-card-content>
-        <mat-card-actions> <button routerLink="/signup" mat-button color ="primary"> Start Trial </button> </mat-card-actions>
+        <mat-card-actions> <button (click)="choosePlan(large)" mat-button color ="primary"> Choose Plan </button> </mat-card-actions>
       </mat-card>
     </mat-grid-tile>
 

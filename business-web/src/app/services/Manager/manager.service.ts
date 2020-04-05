@@ -10,7 +10,7 @@ import { stringify } from 'querystring';
   providedIn: 'root'
 })
 export class ManagerService {
-  private uri ="https://restaskest84.appspot.com";
+  private uri ="https://restaskest-api.herokuapp.com";
   // tslint:disable-next-line: max-line-length
   private token : string;
   private tokenTimer: any;
@@ -29,6 +29,7 @@ export class ManagerService {
       email,
       password,
     }
+
     return this.http.post<{token: string, expiresIn: number, role: string, userId: string}>(`${this.uri}/login/manager`,credentials,{headers:{'Content-Type':'application/json'}}).subscribe(res=>{
         const token = res.token;
         this.token = token;
@@ -86,7 +87,7 @@ export class ManagerService {
         email,
         password,
         restaurantName : name,
-        restaurantAddress:address,
+        restaurantAddress: address,
         pos
       }
       return  this.http.post<any>(`${this.uri}/register`, manager_to_add, {headers: {'Content-Type':'application/json'}}).subscribe(res => {

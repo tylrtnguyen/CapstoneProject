@@ -16,6 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import {PricingComponent} from './components/pricing/pricing.component';
 import {NotFoundPageComponent} from './components/not-found-page/not-found-page.component';
 import {RedirectService} from './services/Redirect/redirect.service';
+
 const routes: Routes = [
 
   {path: 'main', component: MainPageComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'checkout' , component: CheckoutComponent},
   {path: 'pricing' , component: PricingComponent},
   {path: 'login', component: LoginComponent},
+ 
   {path: '', redirectTo: 'main', pathMatch: 'full'},
   // Not Found page with external link redirection
   { path: 'not-found', component: NotFoundPageComponent, canActivate: [ RedirectService ] },

@@ -8,7 +8,9 @@ import {PosIntegration} from '../../pos-integration';
 export class customErrorMatcher implements ErrorStateMatcher{
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty ||   control.touched || isSubmitted));
+    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
+    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
+    return (invalidCtrl || invalidParent || isSubmitted);
   }
 }
 
@@ -38,44 +40,32 @@ export class TrialPageComponent implements OnInit {
       ]],
       password : ['',[
         Validators.required,
-        Validators.minLength(8)
+        Validators.minLength(8),
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.{8,})')
       ]],
-      confirm : ['',[
-        Validators.required,
-        Validators.minLength(8)
-      ]],
-      fName:['',[Validators.required]],
-      lName:['',[Validators.required]],
-    });
-    this.profile = fb.group({
+      confirm : [''],
+      fName: ['', [ Validators.required]],
+      lName: ['', [ Validators.required]],
+    }, {validator: this.checkingPassword });
 
+    this.profile = fb.group({
       restaurant: ['', Validators.required],
-      address :['',Validators.required],
-      pos : ['',Validators.required],
+      address :['', Validators.required],
+      pos : ['', Validators.required],
      });
    }
 
   ngOnInit() {
   }
 
-  checkingPassword = (password, confirm) => {
-    if (password == confirm) {
-      this.matchingPass = true;
-      return true;
-    }
-    else {
-        this.matchingPass = false;
-        return false;
-    }
+  checkingPassword(group: FormGroup) {
+      let password = group.get('password').value;
+      let confirm = group.get('confirm').value;
+
+      return password === confirm ? null : { notSame : true }
   }
 
   onClick(fName,lName,restaurant,address,pos,email,password,confirm) {
-
-
-      if (this.checkingPassword(password.value, confirm.value))
-      {
-          this.managerService.register(fName.value,lName.value,email.value,password.value,restaurant.value,address.value,pos.value);
-
-      }
+      this.managerService.register(fName.value,lName.value,email.value,password.value,restaurant.value,address.value,pos.value);
   }
 }
