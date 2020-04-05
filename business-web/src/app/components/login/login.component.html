@@ -2,6 +2,7 @@
 <div id="form-container">
 <h4><span>Sign in as restaurant</span> manager/owner</h4>
 <br>
+
 <form id="login-form">
   <mat-form-field id='form-full-width'>
     <mat-label>Email:</mat-label>
@@ -17,13 +18,19 @@
   <mat-form-field id='form-full-width'>
     <mat-label>Password:</mat-label>
     <input matInput name="password" [formControl]='passwordFormControl' type="password" #password>
-    
+
     <mat-error *ngIf="passwordFormControl.hasError('required')">
       Password is <strong> required</strong>
     </mat-error>
   </mat-form-field>
   <br><br>
+
   <button *ngIf="!isLoading" mat-raised-button color="primary" type="submit" (click)='onLogin(email,password)'>Login</button> <mat-spinner *ngIf='isLoading' id="spinner"></mat-spinner>
 
 </form>
+<div>
+  <p id="signup" >  Don't have your account?</p>
+  <a mat-button  routerLink="/signup" > Start your 30-Day free trial </a>
+</div>
+
 </div>

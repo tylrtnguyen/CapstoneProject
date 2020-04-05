@@ -4,6 +4,10 @@ import {Route, Router} from '@angular/router';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {ManagerService} from '../../services/Manager/manager.service';
 import {PosIntegration} from '../../pos-integration';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { DialogComponent } from '../features/dialog/dialog.component';
 
 export class customErrorMatcher implements ErrorStateMatcher{
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -12,6 +16,10 @@ export class customErrorMatcher implements ErrorStateMatcher{
     const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
     return (invalidCtrl || invalidParent || isSubmitted);
   }
+}
+
+export interface DialogData {
+  message: string;
 }
 
 @Component({
@@ -27,12 +35,13 @@ export class TrialPageComponent implements OnInit {
   user: FormGroup;
   profile: FormGroup;
   matchingPass: Boolean;
+  message: string;
   posLists: PosIntegration[] = [
     {value: 'TouchBistro' , view:'Touch Bistro'},
     {value: 'Lightspeed', view:'Lightspeed'}
   ];
 
-  constructor(private fb: FormBuilder, private router: Router, private managerService: ManagerService  ) {
+  constructor(private fb: FormBuilder, private router: Router, private managerService: ManagerService, private snackBar: MatSnackBar, private dialog: MatDialog  ) {
     this.user = fb.group({
       email : ['', [
         Validators.required,
@@ -41,7 +50,7 @@ export class TrialPageComponent implements OnInit {
       password : ['',[
         Validators.required,
         Validators.minLength(8),
-        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.{8,})')
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
       ]],
       confirm : [''],
       fName: ['', [ Validators.required]],
@@ -58,6 +67,21 @@ export class TrialPageComponent implements OnInit {
   ngOnInit() {
   }
 
+  openDialog(): void{
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width:' 600px',
+      height:' 350px',
+      data:{message: this.message}
+    });
+
+    dialogRef.afterClosed().subscribe(result =>{
+        console.log('The dialog was closed');
+        this.router.navigate(['/main']);
+    });
+
+  }
+
+
   checkingPassword(group: FormGroup) {
       let password = group.get('password').value;
       let confirm = group.get('confirm').value;
@@ -65,7 +89,17 @@ export class TrialPageComponent implements OnInit {
       return password === confirm ? null : { notSame : true }
   }
 
-  onClick(fName,lName,restaurant,address,pos,email,password,confirm) {
-      this.managerService.register(fName.value,lName.value,email.value,password.value,restaurant.value,address.value,pos.value);
+  async onClick(fName,lName,restaurant,address,pos,email,password,confirm) {
+
+     // tslint:disable-next-line: max-line-length
+     this.loading= true;
+     const response = await this.managerService.register(fName.value,lName.value,email.value,password.value,restaurant.value,address.value,pos.value);
+     this.managerService.getMessage().subscribe((data) => {
+        this.message = data;
+        this.openDialog();
+
+      });
+      this.loading= false;
+
   }
 }

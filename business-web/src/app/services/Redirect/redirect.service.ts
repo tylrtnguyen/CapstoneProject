@@ -17,7 +17,7 @@ export class RedirectService implements CanActivate {
  get window(): Window{return this.document.defaultView;}
 
   /** Jumps instantly to the external link without the mediation of the router */
-  public jump(url: string, target: string = '_blank'): Promise<boolean> {
+  public jump(url: string, target: string = '_self'): Promise<boolean> {
 
     return new Promise<boolean>( (resolve, reject) => {
 
@@ -56,7 +56,7 @@ export class RedirectService implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot) {
-
+    
     // Gets the url query parameter, if any
     const url = route.queryParamMap.get('url');
     // If the url matches an external link, redirects stopping the route activation

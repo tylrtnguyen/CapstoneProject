@@ -10,7 +10,7 @@ export class ErrorInterceptor implements HttpInterceptor{
 
   intercept(req: HttpRequest<any>, next: HttpHandler){
       return next.handle(req).pipe(
-        catchError((err:HttpErrorResponse)=>{
+        catchError((err:HttpErrorResponse) => {
 
             alert(err.error.message);
             const error = err.error.message || err.statusText

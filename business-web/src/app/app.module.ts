@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import {MatProgressSpinnerModule, MatMenuModule , MatDialogModule ,MatCardModule,MatListModule,MatToolbarModule, MatGridListModule, MatGridList, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatIcon, MatList, MatSelectModule, MatStepperModule } from '@angular/material';
+import {MatProgressSpinnerModule, MatSnackBarModule ,MatMenuModule , MatDialogModule ,MatCardModule,MatListModule,MatToolbarModule, MatGridListModule, MatGridList, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule, MatIcon, MatList, MatSelectModule, MatStepperModule } from '@angular/material';
 
 import { IgxIconModule, IgxInputGroupModule, IgxButtonModule, IgxRippleModule, IgxDatePickerModule, IgxTimePickerModule, IgxComboModule, IgxSelectModule, IgxToggleModule, IgxLayoutModule } from "igniteui-angular";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -28,6 +28,7 @@ import {ManagerService} from './services/Manager/manager.service';
 import { ErrorInterceptor } from './error-interceptor';
 import { PricingComponent } from './components/pricing/pricing.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { DialogComponent } from './components/features/dialog/dialog.component';
 
 
 @NgModule({
@@ -45,14 +46,12 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
     PaymentHandlerComponent,
     CheckoutComponent,
     LoginComponent,
-
     PricingComponent,
-
     NotFoundPageComponent,
-
-
-
+    DialogComponent,
   ],
+  entryComponents: [ DialogComponent,] ,
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -83,12 +82,12 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
     HttpClientModule,
     MatProgressSpinnerModule,
     MatCardModule,
-    MatDialogModule
-
-
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [ManagerService, {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule {
 }

@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     Validators.minLength(8),
   ]);
 
-  constructor(private fb: FormBuilder,  private router: Router, private managerSerivce : ManagerService) {
+  constructor(private fb: FormBuilder,  private router: Router, private managerService : ManagerService) {
     // this.login = fb.group({
     //   email : ['',[
     //     Validators.required,
@@ -39,11 +39,14 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.authStatusSub = this.managerSerivce.getAuthStatusListener().subscribe(
+
+    this.authStatusSub = this.managerService.getAuthStatusListener().subscribe(
       authStatus => {
           this.isLoading = false;
       }
     )
+
+
   }
 
   onLogin(email, password)
@@ -51,7 +54,7 @@ export class LoginComponent implements OnInit {
     console.log(email)
     console.log(password)
     this.isLoading = true;
-    this.managerSerivce.login(email.value, password.value);
+    this.managerService.login(email.value, password.value);
   }
   onDestroy()
   {

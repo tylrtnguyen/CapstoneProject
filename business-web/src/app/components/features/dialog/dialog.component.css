@@ -1,0 +1,32 @@
+*{
+  display: block;
+  text-align: center;
+  justify-content: center;
+}
+h3{
+
+  color:#FCBB47;
+}
+#icon{
+  color: green;
+  font-size: 30px;
+}
+#message{
+  font-weight: bold;
+  font-size: 20px;
+}
+p{
+  font-size: 20px;
+  color:#3B4A6B;
+}
+#btn-action{
+  display: inline;
+}
+button{
+  float: left;
+  width: 25%;
+}
+a{
+  float: right;
+  width: 25%;
+}

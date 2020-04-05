@@ -16,13 +16,14 @@ export class ManagerService {
   private tokenTimer: any;
   private isAuthenticated = false;
   private authStatusListener = new Subject<boolean>();
-
+  private message = new Subject<string>();
 
   constructor(private http: HttpClient , private router : Router) { }
 
   getToken(){return this.token}
   getAuthStatus() {return this.isAuthenticated}
   getAuthStatusListener() {return this.authStatusListener.asObservable();}
+  getMessage() {return this.message.asObservable();}
 
   login(email, password){
     const credentials = {
@@ -91,15 +92,16 @@ export class ManagerService {
         pos
       }
       return  this.http.post<any>(`${this.uri}/register`, manager_to_add, {headers: {'Content-Type':'application/json'}}).subscribe(res => {
-              if(res.success)
+              if (res.success)
               {
                   console.log('Successfully Added a manager!!!');
-                  console.log(res.data);
-                  this.router.navigate(['checkout']);
+                  this.message.next("Successfully registered!!!");
+                
               }
         }, error => {
             console.log(error);
             this.authStatusListener.next(false);
+
         })
 
       };

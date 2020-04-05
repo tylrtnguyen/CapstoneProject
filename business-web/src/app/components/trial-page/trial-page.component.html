@@ -85,8 +85,8 @@
       </mat-form-field>
       <br><br>
       <button id="btnBack" color="primary" mat-button matStepperPrevious>Back</button>
-      <button id="btnNext" color="primary" (click) = "onClick(fName,lName,restaurant,address,pos,email,password,confirm)" [disabled]="!user.valid || !profile.valid " mat-button >Finish</button>
-
+      <button *ngIf='!loading' id="btnNext" color="primary" (click) = "onClick(fName,lName,restaurant,address,pos,email,password,confirm)" [disabled]="!user.valid || !profile.valid " mat-button >Finish</button>
+      <mat-spinner *ngIf='loading'></mat-spinner>
     </form>
   </mat-step>
 

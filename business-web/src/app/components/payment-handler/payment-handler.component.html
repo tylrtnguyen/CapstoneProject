@@ -66,7 +66,7 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="4">
 
-  <button *ngIf="!loading"  igxButton="raised" igxButtonColor="#3B4A6B" igxButtonBackground="#F0D43A" id="payment-submit" (click) = "handleForm($event,fullname.value,address.value,city.value,state.value,zip.value,email.value,phone.value)">Pay {{planSub.amount/100}}$CAD</button>
+  <button mat-raised-button color="primary" *ngIf="!loading"   igxButtonBackground="#F0D43A" id="payment-submit" (click) = "handleForm($event,fullname.value,address.value,city.value,state.value,zip.value,email.value,phone.value)" [disabled] ="!checkoutForm.valid" >Pay {{planSub.amount / 100}} $CAD</button>
   <mat-spinner *ngIf='loading' id="spinner"></mat-spinner>
   </mat-grid-tile>
   <mat-grid-tile colspan="4">

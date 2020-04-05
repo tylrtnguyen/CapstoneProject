@@ -12,32 +12,20 @@ import { Subscription } from 'rxjs';
 })
 export class PricingComponent implements OnInit {
 
-  small = {
-    amount:999,
-    currency: 'cad',
-    description: 'Small plan of Restaskest Application',
-  }
-  medium = {
-    amount:1599,
-    currency: 'cad',
-    description: 'Medium plan of Restaskest Application'
 
-  }
-  large = {
-    amount:2699,
-    currency: 'cad',
-    description: 'Large plan of Restaskest Application'
-
-  }
   authListener :boolean;
   constructor( private servicePlan : ServicePlanService, private router: Router, private managerService : ManagerService) { }
 
   ngOnInit() {
-    this.managerService.getAuthStatusListener().subscribe(res => this.authListener = res)
+    this.managerService.autoAuthUser();
+    this.authListener = this.managerService.getAuthStatus();
+    console.log(this.authListener);
+    console.log(this.managerService.getAuthStatusListener);
   }
 
   choosePlan(newPlan) {
-     this.servicePlan.changePlanObj(newPlan);
+     this.servicePlan.submitPlan(newPlan);
+
      if(!this.authListener) {
      this.router.navigate(['/login']);
      }
