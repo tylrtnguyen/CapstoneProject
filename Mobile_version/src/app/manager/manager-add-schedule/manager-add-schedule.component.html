@@ -1,0 +1,72 @@
+<!-- <Button text="manager-add-schedule works!" class="btn btn-primary" [nsRouterLink]="['/manager-schedule']"></Button> -->
+<StackLayout>
+    <ns-action-bar></ns-action-bar>
+
+    <StackLayout height='92%'>
+
+        <Button class='submit' [style.background-color]="valid==false ? 'red': '#443b3b'" text='Add Schedule'
+            (tap)=onSubmit()></Button>
+        <StackLayout orientation='horizontal'>
+            <GridLayout columns="150" rows="50,50,50">
+                <!-- start date -->
+                <Button class='button_title' [style.border-color]="valid==false ? 'red': 'white'" col='0' row='0'
+                    text='Start Date' (tap)='show_date()'></Button>
+                <!-- start time -->
+                <Button class='button_title' [style.border-color]="valid==false ? 'red': 'white'" col='0' row='1'
+                    text='Start Time' (tap)="start_time()"></Button>
+                <!-- end time -->
+                <Button class='button_title' [style.border-color]="valid==false ? 'red': 'white'" col='0' row='2'
+                    text='End Time' (tap)="end_time()"></Button>
+            </GridLayout>
+
+            <GridLayout rows='200' columns='*'>
+                <!-- start date -->
+                <StackLayout row='0' columns='0' *ngIf="show_datepicker" class='content'>
+                    <DatePicker [minDate]="minDate" [maxDate]="maxDate" (dateChange)="onDateChanged($event)"
+                        verticalAlignment="center">
+                    </DatePicker>
+                </StackLayout>
+
+
+                <!-- start time -->
+                <StackLayout row='0' columns='0' class='content' *ngIf="show_start_time">
+                    <TimePicker verticalAlignment="center" (loaded)="onTimeLoad($event)"
+                        (timeChange)="onStartTimeSelected($event)">
+                    </TimePicker>
+                </StackLayout>
+
+                <!-- end time -->
+                <StackLayout row='0' columns='0' class='content' *ngIf="show_end_time">
+                    <TimePicker (loaded)="onTimeLoad($event)" (timeChange)="onEndTimeSelected($event)">
+                    </TimePicker>
+                </StackLayout>
+            </GridLayout>
+        </StackLayout>
+
+
+
+        <!-- Employee List -->
+
+        <GridLayout columns='150' rows='50'>
+            <Button class='employee-title' [style.border-color]="valid==false ? 'red': '#666e6c'" col='0' row='0'
+                text='Employees'></Button>
+        </GridLayout>
+
+        <StackLayout [style.border-color]="valid==false ? 'red': '#666e6c'" class='content' height=100%>
+            <RadListView [items]="dataItems" selectionBehavior="Press" multipleSelection="true" height=100%
+                (itemSelected)="onItemSelected($event)" (itemDeselected)="onItemDeselected($event)">
+                <ng-template let-item="item">
+                    <StackLayout class="container">
+                        <Label class='employee-detail' [text]="item.name"></Label>
+                        <Label class='employee-detail' [text]="item.position"></Label>
+                    </StackLayout>
+                </ng-template>
+            </RadListView>
+        </StackLayout>
+
+
+
+    </StackLayout>
+    <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
+</StackLayout>
+<ns-manager-tab-manager *ngIf='ifAndroid'></ns-manager-tab-manager>

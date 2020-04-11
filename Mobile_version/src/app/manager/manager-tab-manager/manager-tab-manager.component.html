@@ -1,0 +1,60 @@
+
+
+<ScrollView height='7%' orientation="horizontal" *ngIf='ifIOS' style='border-width: 2px; border-top-left-radius: 15px; border-top-right-radius: 15px;'>
+    <GridLayout columns="100,100,100,100,100 ">
+        <Button style="background: url(~/app/images/home.png)" col='0' width='50' backgroundColor='red' text='1' [nsRouterLink]="['/manager-home']"></Button>
+        <Button style="background: url(~/app/images/schedule.png)" col='1' width='50' text='2' [nsRouterLink]="['/manager-schedule']"></Button>
+        <Button style="background: url(~/app/images/work_history.png)" col='2' width='50' text='3' [nsRouterLink]="['/manager-work-history']"></Button>
+        <Button style="background: url(~/app/images/inventory.png)" col='3' width='50' text='4' [nsRouterLink]="['/manager-inventory']"></Button>
+        <Button style="background: url(~/app/images/employees.png)" col='4' width='50' text='5' [nsRouterLink]="['/manager-employee-list']"></Button>
+    </GridLayout>
+</ScrollView>
+
+<BottomNavigation selectedIndex="0" *ngIf='ifAndroid'>
+
+    <TabStrip>
+        <TabStripItem [nsRouterLink]="['/manager-home']">
+            <Label text="Home"></Label>
+            <Image [src]="'~/app/images/home.png'" decodeWidth="40" decodeHeight="40"></Image>
+        </TabStripItem>
+        <TabStripItem [nsRouterLink]="['/manager-schedule']">
+            <Label text="Scheudle"></Label>
+            <Image [src]="'~/app/images/schedule.png'" decodeWidth="20" decodeHeight="20"></Image>
+        </TabStripItem>
+        <TabStripItem [nsRouterLink]="['/manager-work-history']">
+            <Label text="Work History"></Label>
+            <Image [src]="'~/app/images/work_history.png'" decodeWidth="20" decodeHeight="20"></Image>
+        </TabStripItem>
+        <TabStripItem [nsRouterLink]="['/manager-inventory']">
+            <Label text="Inventory"></Label>
+            <Image [src]="'~/app/images/inventory.png'" decodeWidth="20" decodeHeight="20"></Image>
+        </TabStripItem>
+        <TabStripItem [nsRouterLink]="['/manager-employee-list']">
+            <Label text="Employee"></Label>
+            <Image [src]="'~/app/images/employees.png'" decodeWidth="20" decodeHeight="20"></Image>
+        </TabStripItem>
+
+    </TabStrip>
+
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+    <TabContentItem>
+        <GridLayout>
+        </GridLayout>
+    </TabContentItem>
+
+</BottomNavigation>

@@ -1,0 +1,41 @@
+/* Add mobile styles for the component here.  */
+.inventory-header{
+    text-align: center;
+    font-size: 32px;
+    padding: 20px;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.border-top-bottom-right{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-width: 5px;
+    background-color:#443b3b;
+    color: white;
+    font-size: 14px;
+
+
+}
+.border-top-bottom-left{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-width: 5px;
+    background-color:#f84242;
+    color: white;
+    font-size: 14px;
+
+}
+.empty-employee{
+    margin: 10%;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+.nameLabel{
+    text-align: center;
+    font-size: 14px;
+
+}

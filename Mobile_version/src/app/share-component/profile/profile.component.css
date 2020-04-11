@@ -1,0 +1,26 @@
+/* Add mobile styles for the component here.  */
+.employee-name{
+    horizontal-alignment:center;
+    font: 14px;
+    margin-top: 10;
+    font-family: 'Oxanium', ;
+    font-weight: 600;
+    letter-spacing: 0.2
+}
+.info-box{
+    margin: 2%;
+    border-radius: 15px;
+    border-width: 2px;
+    padding-top: 50%;
+}
+.info-text{
+    margin-bottom: 3%;
+    margin-left:10%;
+    word-wrap: break-word;
+    horizontal-alignment:left;
+    font: 14px;
+    
+    font-family: 'Oxanium', ;
+    font-weight: 400;
+    letter-spacing: 0.2
+}

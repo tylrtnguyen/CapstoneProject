@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@ng-bootstrap/ng-bootstrap": "^5.2.1",
+
     "@types/hammerjs": "^2.0.36",
     "@types/stripe-checkout": "^1.0.3",
     "@types/stripe-v3": "^3.1.15",
@@ -30,6 +31,9 @@
     "jszip": "^3.1.5",
     "minireset.css": "~0.0.4",
     "resize-observer-polyfill": "^1.5.1",
+    "g": "^2.0.1",
+    "now": "^16.7.3",
+
     "rxjs": "~6.4.0",
     "stripe": "^8.14.0",
     "tslib": "^1.10.0",

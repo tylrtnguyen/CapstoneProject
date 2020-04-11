@@ -1,0 +1,15 @@
+<StackLayout>
+    <ns-action-bar></ns-action-bar>
+
+    <GridLayout columns="*" rows='*,70' height=93%>
+        <RadCalendar #myCalendar [selectionMode]="selectionMode"></RadCalendar>
+        <StackLayout col='0' row='1'>
+            <StackLayout orientation='horizontal'>
+                <Button class='btn btn-primary' horizontalAlignment='center' width='93%' text='Submit'
+                    (tap)='onSubmit()'></Button>
+            </StackLayout>
+        </StackLayout>
+    </GridLayout>
+    <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
+</StackLayout>
+<ns-manager-tab-manager *ngIf='ifAndroid'></ns-manager-tab-manager>

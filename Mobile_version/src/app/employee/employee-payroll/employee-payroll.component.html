@@ -1,0 +1,13 @@
+<StackLayout class="Page">
+
+    <ns-action-bar [Title]='title'></ns-action-bar>
+
+    <StackLayout>
+        <label  class='header'  text=" &nbsp; Payroll storage &nbsp;"></label>
+        <Image width='50%' height='50%' [src]="'~/app/images/under-construction.png'" class="fas t-36"></Image>
+        <label class="description" text="Under construction"></label>
+    </StackLayout>
+    <ns-employee-tab-manager *ngIf='ifIOS'></ns-employee-tab-manager>
+
+</StackLayout>
+<ns-employee-tab-manager *ngIf='ifAndroid'></ns-employee-tab-manager>

@@ -1,0 +1,12 @@
+.header{
+    text-align: center;
+    font-size: 32px;
+    margin-top: 10%;
+    text-decoration: underline;    
+    letter-spacing: 0.2px;
+}
+.description{
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 0.3px;
+}

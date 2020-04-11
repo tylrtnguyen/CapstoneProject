@@ -1,0 +1,55 @@
+<StackLayout>
+    <ns-action-bar [Title]='title'></ns-action-bar>
+    <GridLayout class='header-container' columns='*,50' rows='50'>
+        <Label col='0' row='0' text='Employees List' class='header-title' ></Label>
+        <Image style="margin-right: 5%;" col='1' row='0' [src]="'~/app/images/add.png'" decodeWidth="40" decodeHeight="40" (tap)='addEmployee()'>
+        </Image>
+    </GridLayout>
+
+    <RadListView [items]="employees_info" height='80%'>
+        <ng-template let-item="item">
+            <StackLayout>
+                    <StackLayout orientation='vertical' height='100%' width='100%'>
+                        <GridLayout columns="50,*,50" rows='25' orientation='horizontal' class='employee-option' width='96%'>
+                            <Image col='0' row='0' [src]="'~/app/images/edit.png'" decodeWidth="40" decodeHeight="40"
+                                (tap)='employee_detail(item)'>
+                            </Image>
+                            <Button col="2" row="0" style='border-width:5px ;border-radius:15px;border-color: black;' text='X'
+                                (tap)="confirmation(item)"></Button>
+                        </GridLayout>
+                        <StackLayout orientation='horizontal' style="border-width: 2px;">
+                            <Label class='vertical_title' text='Employee Name : '></Label>
+                            <Label class="vertical_text" text="{{item.fName}}  {{item.lName}}"></Label>
+                        </StackLayout>
+                        <StackLayout orientation='horizontal' style='border-width: 2px;'>
+                            <Label class='vertical_title' text='Wage : '></Label>
+                            <Label width=100% class="vertical_text" [text]="item.wages + '$/hour'">
+                            </Label>
+                        </StackLayout>
+                        <StackLayout orientation='horizontal' style='border-width: 2px;'>
+                            <Label class='vertical_title' text='Email : '></Label>
+                            <Label width='100%' class="vertical_text" [text]="item.email"></Label>
+                        </StackLayout>
+                        <StackLayout orientation='horizontal' style='border-width: 2px;'>
+                            <Label class='vertical_title' text='Join Date : '></Label>
+                            <Label width='100%' class="vertical_text" [text]="item.JoinDate">
+                            </Label>
+                        </StackLayout>
+                        <StackLayout orientation='horizontal' style='border-width: 2px;'>
+                            <Label class='vertical_title' text='Date of Birth : '></Label>
+                            <Label width='100%' class="vertical_text" [text]="item.DOB"></Label>
+                        </StackLayout>
+                        <StackLayout orientation='horizontal' style='border-width: 2px;'>
+                            <Label class='vertical_title' text='Address : '></Label>
+                            <Label width='100%' class="vertical_text" [text]="item.address">
+                            </Label>
+                        </StackLayout>
+
+                    </StackLayout>
+                
+            </StackLayout>
+        </ng-template>
+    </RadListView>
+    <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
+</StackLayout>
+<ns-manager-tab-manager *ngIf='ifAndroid'></ns-manager-tab-manager>

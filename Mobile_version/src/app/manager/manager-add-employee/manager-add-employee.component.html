@@ -1,0 +1,7 @@
+    <StackLayout orientation="vertical">
+        <Button text='Add Employee' (tap)='submit()'></Button>
+
+        <RadDataForm #employee_radForm [source]="employee" [metadata]="employee_meta"></RadDataForm>
+
+    </StackLayout>
+

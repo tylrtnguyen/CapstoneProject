@@ -1,0 +1,35 @@
+<StackLayout class="Page">
+    <ns-action-bar [Title]='title'></ns-action-bar>
+    <StackLayout orientation='horizontal'>
+        <Label class='header-label' text='Inventory'></Label>
+        <Button class='btn btn-secondary' text='Request Update' (tap)="update_material_quantity()"></Button>
+    </StackLayout>
+
+    <RadListView style="border-width: 2px;" [items]="inventory_data" selectionBehavior="Press" multipleSelection="true"
+        (itemSelected)="onItemSelected($event)" (itemDeselected)="onItemDeselected($event)" height=75%>
+        <ng-template let-item="item">
+            <StackLayout>
+                <StackLayout class='container'>
+                    <StackLayout orientation='horizontal'>
+                        <StackLayout class='border-top-bottom-left' width='75%' orientation='horizontal'>
+                            <Label class="title" text='MATERIAL: '></Label>
+                            <Label class="description" [text]="item.name"></Label>
+                        </StackLayout>
+                        <StackLayout class='border-top-bottom-right' width='25%' orientation='horizontal'>
+                            <Label class="title" [text]="item.quantity"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout orientation='horizontal'>
+                        <StackLayout width='100%' orientation='horizontal'>
+                            <Label class="title" text='Status:'></Label>
+                            <Label class="description" [text]="item.stockStatus"></Label>
+                            
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ng-template>
+    </RadListView>
+    <ns-employee-tab-manager *ngIf='ifIOS'></ns-employee-tab-manager>
+</StackLayout>
+<ns-employee-tab-manager *ngIf='ifAndroid'></ns-employee-tab-manager>

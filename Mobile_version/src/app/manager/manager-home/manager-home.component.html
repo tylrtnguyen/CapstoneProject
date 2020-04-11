@@ -1,0 +1,28 @@
+<StackLayout>
+    <ns-action-bar [Title]="title"></ns-action-bar>
+    <TabView selectedTabTextColor="#fa5454" tabTextColor='white'  tabBackgroundColor="#443b3b" tabTextFontSize="16" selectedIndex="0">
+        <StackLayout *tabItem="{title: 'Sales', iconSource: '~/app/images/growth.png'}" >
+            <RadCartesianChart height='90%'>
+                <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
+                <LinearAxis tkCartesianVerticalAxis></LinearAxis>
+                <BarSeries tkCartesianSeries [items]="sale_data" categoryProperty="month" valueProperty="money">
+                </BarSeries>
+            </RadCartesianChart>
+        </StackLayout>
+        <StackLayout *tabItem="{title: 'Resources', iconSource: '~/app/images/pie_chart.png'}" > 
+            <RadPieChart allowAnimation="true" row="0">
+                <PieSeries tkPieSeries
+                    selectionMode="DataPoint"
+                    expandRadius="0.4"
+                    outerRadiusFactor="0.7"
+                    valueProperty="quantity"
+                    legendLabel="name"
+                    [items]="material">
+                </PieSeries>
+                <RadLegendView tkPieLegend position="Right" title="Resources" offsetOrigin="TopRight" width="110" enableSelection="true"></RadLegendView>
+            </RadPieChart>
+        </StackLayout>
+    </TabView>
+    <ns-manager-tab-manager *ngIf='ifIOS'></ns-manager-tab-manager>
+</StackLayout>
+<ns-manager-tab-manager *ngIf='ifAndroid'></ns-manager-tab-manager>

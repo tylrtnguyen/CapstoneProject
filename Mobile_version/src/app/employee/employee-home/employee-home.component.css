@@ -1,0 +1,29 @@
+.header{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.2;
+    margin-bottom: 5%;
+}
+.container{
+    border-radius: 15px;
+    border-width: 2px;
+    margin: 2%;
+    font-size: 14px;
+    font-weight: 500;
+    height:75%;
+    margin-top:5%;
+    padding: 5%;
+    text-align: center;
+
+}
+
+.text{
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+.label{
+    font-size: 16px;
+    font-weight: 400;
+}

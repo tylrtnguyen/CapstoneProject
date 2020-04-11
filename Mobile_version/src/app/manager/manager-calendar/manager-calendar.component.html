@@ -1,0 +1,6 @@
+<StackLayout>
+    <StackLayout [style.height]="height" >
+        <RadCalendar viewMode="Week" [eventSource]="eventSource" (dateSelected)="onDateSelected($event)">
+        </RadCalendar>
+    </StackLayout>
+</StackLayout>

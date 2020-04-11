@@ -1,0 +1,28 @@
+<ns-action-bar></ns-action-bar>
+<StackLayout class = "Page">
+    <GridLayout columns="*,*" rows="*,*,*,*,*,*" height = "90%"  >
+        <Label id="header" text="Item" col="0" row="0" ></Label>
+        <Label id="header" text="Remaning Quantity" col="1" row="0" ></Label>
+        <Label text="{{item1}}" col="0" row="1" ></Label>
+        <ListPicker [items]="years" selectedIndex="0" col = "1" row = "1"
+            (selectedIndexChange)="onSelectedIndexChanged($event)">
+        </ListPicker>
+        <Label text="{{item2}}" col="0" row="2" ></Label>
+        <ListPicker [items]="years" selectedIndex="0" col = "1" row = "2"
+            (selectedIndexChange)="onSelectedIndexChanged($event)">
+        </ListPicker>
+        <Label text="{{item3}}" col="0" row="3" ></Label>
+        <ListPicker [items]="years" selectedIndex="0" col = "1" row = "3"
+            (selectedIndexChange)="onSelectedIndexChanged($event)">
+        </ListPicker>
+        <Label text="{{item4}}" col="0" row="4" ></Label>
+        <ListPicker [items]="years" selectedIndex="0" col = "1" row = "4"
+            (selectedIndexChange)="onSelectedIndexChanged($event)">
+        </ListPicker>
+        <Button text = "Confirm" width = "50%" col="0" row="5"></Button>
+        <Button text = "Cancel" width = "50%" col="1" row="5"></Button>
+    </GridLayout>
+    <ns-employee-tab-manager *ngIf='ifIOS'></ns-employee-tab-manager>
+
+</StackLayout>
+<ns-employee-tab-manager *ngIf='ifAndroid'></ns-employee-tab-manager>

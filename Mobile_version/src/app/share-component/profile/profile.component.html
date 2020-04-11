@@ -1,0 +1,28 @@
+<StackLayout class="Page">
+    <ns-action-bar [Title]='title' [isLogout]='logout'></ns-action-bar>
+    <StackLayout style="height: 90%;">
+        <!-- Header -->
+        <StackLayout style="height: 30%;">
+            <Image [src]="'~/app/images/avatar.png'" height='80%'></Image>
+            <label class="employee-name" id="name" text={{name}}></label>
+        </StackLayout>
+        <!-- Employee Information -->
+        <StackLayout class='info-box' height='65%'>
+            <TextField class='info-text' text="Full Name   : {{name}}"  textWrap = "true" editable= "false" ></TextField>
+            <TextField class='info-text' text="Email   : {{email}}"  textWrap = "true" editable= "{{false}}" ></TextField>
+            <TextField class='info-text' *ngIf="this.share.currentUser.role==='manager' "  text="Restaurants Name  : {{restaurants}}"  textWrap = "true" editable= "false" ></TextField>
+            <TextField class='info-text' *ngIf="this.share.currentUser.role==='manager' "  text="Restaurants Address  : {{restaurant_address}}"  textWrap = "true" editable= "false" ></TextField>
+            <TextField class='info-text' *ngIf="this.share.currentUser.role==='manager' "  text="Restaurants POS  : {{pos}}"  textWrap = "true" editable= "false" ></TextField>
+
+            <TextField class='info-text' *ngIf="this.share.currentUser.role==='employee' " text="Address   : {{address}}"  textWrap = "true" editable= "false" ></TextField>
+            <TextField class='info-text' *ngIf="this.share.currentUser.role==='employee' " text="Date of Birth   : {{dob}}"  textWrap = "true" editable= "false" ></TextField>
+            <TextField class='info-text' *ngIf="this.share.currentUser.role==='employee' " text="Wage   : {{wage}}"  textWrap = "true" editable= "false" ></TextField>
+
+        </StackLayout>
+    </StackLayout>
+    <ns-employee-tab-manager *ngIf='this.share.currentUser.role === "employee" && ifIOS '></ns-employee-tab-manager>
+    <ns-manager-tab-manager *ngIf='this.share.currentUser.role === "manager" && ifIOS'></ns-manager-tab-manager>
+
+</StackLayout>
+<ns-employee-tab-manager *ngIf='this.share.currentUser.role === "employee" && ifAndroid'></ns-employee-tab-manager>
+<ns-manager-tab-manager *ngIf='this.share.currentUser.role === "manager" && ifAndroid'></ns-manager-tab-manager>
