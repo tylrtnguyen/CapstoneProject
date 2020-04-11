@@ -1,0 +1,95 @@
+<app-navbar></app-navbar>
+<div class="form-container">
+<mat-horizontal-stepper  #stepper>
+
+  <mat-step [stepControl]="user">
+    <form [formGroup] = 'user'>
+      <ng-template matStepLabel>Fill out your first name and last name</ng-template>
+      <h4><span>Sign up as restaurant</span> manager/owner</h4>
+      <mat-form-field class="form-full-width">
+        <mat-label>Enter your first name</mat-label>
+        <input matInput formControlName="fName" name="fName" type="text" #fName>
+        <mat-error *ngIf="user.get('fName').hasError('required')" >
+          This field is <strong> required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field  class="form-full-width">
+        <mat-label>Enter your last name</mat-label>
+        <input matInput formControlName="lName" name="lName" type="text" #lName>
+        <mat-error *ngIf="user.get('lName').hasError('required')" >
+          This field is <strong> required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br><br>
+      <button id="btnNext" color="primary" mat-button matStepperNext>Next</button>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="profile">
+    <form [formGroup] = 'profile'>
+      <ng-template matStepLabel>Fill out your restaurant information</ng-template>
+      <h4><span>Sign up as restaurant</span> manager/owner</h4>
+      <mat-form-field  class="form-full-width">
+        <mat-label>Enter your restaurant name</mat-label>
+        <input matInput formControlName="restaurant" name="restaurant" type="text" #restaurant>
+        <mat-error *ngIf="profile.get('restaurant').hasError('required')"> This field is <strong> required</strong> </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field  class="form-full-width">
+        <mat-label>Enter your restaurant address</mat-label>
+        <input matInput formControlName="address" name="address" type="text" #address>
+        <mat-error *ngIf="profile.get('address').hasError('required')"> This field is <strong> required</strong> </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="form-full-width">
+        <mat-label> POS integration: </mat-label>
+        <mat-select formControlName='pos' name="pos" #pos>
+          <mat-option *ngFor='let item of posLists' [value]="item.value">
+            {{item.view}}
+          </mat-option>
+        </mat-select>
+        <mat-hint>Select one of our provided POS integration</mat-hint>
+        <mat-error *ngIf="profile.get('pos').hasError('required')"> This field is <strong> required</strong> </mat-error>
+      </mat-form-field>
+      <br><br>
+      <button id="btnBack" color="primary" mat-button matStepperPrevious>Back</button>
+      <button id="btnNext" color="primary" mat-button matStepperNext>Next</button>
+
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="user">
+    <form [formGroup] = 'user'>
+      <ng-template matStepLabel>Fill out your email and password</ng-template>
+      <h4><span>Sign up as restaurant</span> manager/owner</h4>
+      <mat-form-field  class="form-full-width">
+        <mat-label>Enter your email</mat-label>
+        <input matInput formControlName="email" name="email" type="text" #email>
+        <mat-error *ngIf="user.get('email').hasError('required') && !user.get('email').hasError('email') ">This field is <strong> required</strong> </mat-error>
+        <mat-error *ngIf="user.get('email').hasError('email')"> Please enter a valid email address </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field  class="form-full-width">
+        <mat-label>Enter your password</mat-label>
+        <input matInput formControlName="password" name="password" type="password" #password>
+        <mat-error *ngIf="user.get('password').hasError('required')">This field is <strong> required</strong>  </mat-error>
+        <mat-hint>Min 8 characters | At least 1 uppercase letter | At least 1 digit</mat-hint>
+      </mat-form-field>
+      <br>
+      <mat-form-field  class="form-full-width">
+        <mat-label>Enter your password again</mat-label>
+        <input matInput formControlName="confirm" name="confirm" type="password" [errorStateMatcher]="matcher" #confirm>
+        <mat-error *ngIf="user.hasError('notSame')"> Your password and confirmation password must match</mat-error>
+        <mat-hint>Password confirmation</mat-hint>
+      </mat-form-field>
+      <br><br>
+      <button id="btnBack" color="primary" mat-button matStepperPrevious>Back</button>
+      <button *ngIf='!loading' id="btnNext" color="primary" (click) = "onClick(fName,lName,restaurant,address,pos,email,password,confirm)" [disabled]="!user.valid || !profile.valid " mat-button >Finish</button>
+      <mat-spinner *ngIf='loading'></mat-spinner>
+    </form>
+  </mat-step>
+
+
+</mat-horizontal-stepper>
+</div>

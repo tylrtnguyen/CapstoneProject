@@ -1,0 +1,38 @@
+
+<app-navbar></app-navbar>
+
+  <section id="home">
+    <app-mainlanding></app-mainlanding>
+  </section>
+
+  <section id="dashboard">
+    <app-dashboard></app-dashboard>
+  </section>
+
+  <section id="inventory">
+    <app-inventory></app-inventory>
+  </section>
+
+  <section id="schedule">
+    <app-schedule></app-schedule>
+  </section>
+
+  <section id="paystub">
+    <app-paystub></app-paystub>
+  </section>
+
+  <section id="contact">
+  <app-contact-us> </app-contact-us>
+  </section>
+
+  <script>
+    $(window).on("scroll", () =>{
+      if($(window).scrollTop()){
+        $('nav-bar').addClass('black')
+      }
+      else{
+        $('nav-bar').removeClass('black')
+      }
+    })
+
+  </script>

@@ -1,0 +1,36 @@
+.form-container{
+  display: block;
+  flex-direction: row;
+  padding: 10%;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+
+form{
+  display: inline-block;
+
+}
+
+.form-full-width{
+  width: 100%;
+
+}
+
+#btnBack{
+  float: left;
+}
+#btnNext{
+  float: right;
+}
+span{
+  color:#FCBB47 ;
+}
+h4 {
+
+  font-weight: bold;
+  color:#3B4A6B
+}
+button{
+  width: 25%;
+}

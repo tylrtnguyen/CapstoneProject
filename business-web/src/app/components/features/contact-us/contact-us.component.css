@@ -1,0 +1,45 @@
+#contact-page{
+  display:block;
+  width: auto;
+  height: 100vh;
+
+}
+.title p {
+  font-size: 30px;
+  font-weight: bold;
+  color: #FCBB47;
+}
+.title #line-2{
+  font-size: 35px;
+  color: #3B4A6B;
+}
+mat-form-field{
+  width: 100%;
+}
+a{
+  text-decoration: none;
+}
+a p {
+  color: #3B4A6B;
+  letter-spacing: 0.025em;
+  font-weight: 500;
+  font-size: 20px;
+}
+button{
+  float:center;
+  width: 50%;
+  border-radius: 20px;
+  background: #F0D43A;
+
+}
+#title{
+  font-size: 20px;
+  color: #3B4A6B;
+  font-weight: bold;
+}
+#list-content{
+  list-style: none;
+}
+.footer{
+  width: 100%;
+}

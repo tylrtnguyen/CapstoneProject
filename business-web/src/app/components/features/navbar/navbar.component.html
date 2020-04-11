@@ -1,0 +1,40 @@
+<div class="header">
+  <nav class="nav-bar" id="navbar">
+    <nav class='navbar-left'>
+        <a href="#home"><img class='logo' src="../assets/images/restaskestLogo.png" alt='logo'></a>
+        <ul class="nav-links">
+            <li class="dropdown">
+              <a href="javascript:void(0)" class='dropbtn'>Features</a>
+            <div class="dropdown-content">
+              <ul class =dropdown-container>
+              <li><a href="main#dashboard">Dashboard</a></li>
+              <li><a href="main#inventory">Inventory</a></li>
+              <li><a href="main#schedule">Schedule</a></li>
+              <li><a href="main#paystub">Paystub </a></li>
+            </ul>
+            </div>
+          </li>
+          <li><a routerLink="/pricing">Pricing</a></li>
+          <li><a href="main#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+    <nav class="navbar-right">
+      <ul class="nav-links">
+        <li *ngIf="!isLogin"><a routerLink="/redirect" [queryParams]="{url:'https://restaskest.now.sh/'}" >Login</a></li>
+        <li><a routerLink="/signup" > <button  class="btnTrial"> Start Your Free 30-Day Trial</button></a></li>
+      </ul>
+      <div id="menu-toggle">
+        <button mat-icon-button [matMenuTriggerFor] = "menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <a href="main#dashboard"><button mat-menu-item> Dashboard </button> </a>
+          <a href="main#inventory"><button mat-menu-item>Inventory </button></a>
+          <a href="main#schedule"><button mat-menu-item> Schedule </button> </a>
+          <a href="main#paystub"><button mat-menu-item> Paystub </button> </a>
+          <a routerLink="/login"><button mat-menu-item> Login </button> </a>
+        </mat-menu>
+      </div>
+    </nav>
+  </nav>
+  </div>

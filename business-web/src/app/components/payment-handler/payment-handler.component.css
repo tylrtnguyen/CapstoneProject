@@ -1,0 +1,66 @@
+
+.payment-form{
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+#card-element{
+width: 100%;
+}
+#payment-submit{
+
+  width: 25%;
+
+  float:center;
+}
+
+
+#card-error {
+  color : red;
+
+}
+.StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+
+   padding: 10px 12px; 
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+mat-grid-list{
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  padding: 0 5 0 5 ;
+}
+
+#full-width{
+  width: 100%;
+}
+
+#half-width{
+  width:100%
+}
+
+#small-box{
+  width: 100%;
+}

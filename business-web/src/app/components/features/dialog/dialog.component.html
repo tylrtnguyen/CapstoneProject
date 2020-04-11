@@ -1,0 +1,9 @@
+<h3 mat-dialog-title> <mat-icon id="icon">check_circle_outline</mat-icon>Congratulation!!!</h3>
+<div mat-dialog-content>
+  <p id="message">{{data.message}}</p>
+  <p>Click Ok button to start using Restaskest</p>
+</div>
+<div id="btn-action" mat-dialog-actions>
+<button mat-button (click)="onNoClick()"  > No, thanks</button>
+<a mat-button  routerLink="/redirect" [queryParams]="{url:'https://restaskest.now.sh/'}" >Ok </a>
+</div>
